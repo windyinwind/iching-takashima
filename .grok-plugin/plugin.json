@@ -1,0 +1,25 @@
+{
+  "name": "iching-takashima",
+  "version": "1.4.0",
+  "description": "I Ching cast by Takashima Donsho's method, step by step, in Chinese, English and Japanese: cast a hexagram by time, numbers or yarrow stalks with a fully reproducible derivation, then read the 64 judgments and 384 line texts with line-by-line interpretation, plus Takashima Donsho's original commentary and recorded cases. Sources cited; the bot makes no predictions of its own.",
+  "author": {
+    "name": "I Ching · Takashima Method 周易·高岛略筮"
+  },
+  "homepage": "https://github.com/windyinwind/iching-takashima",
+  "repository": "https://github.com/windyinwind/iching-takashima",
+  "license": "MIT",
+  "keywords": [
+    "iching-takashima",
+    "takashima method",
+    "takashima donsho",
+    "高岛略筮",
+    "高島流",
+    "高島呑象"
+  ],
+  "skills": [
+    "./skills/zhouyi-lookup"
+  ],
+  "agents": [
+    "./agents/iching-takashima.md"
+  ]
+}
