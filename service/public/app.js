@@ -31,6 +31,8 @@ const UI = {
     tkNote: "Takashima's own words, in Wang Zhiben's Chinese translation of Zōho Takashima Ekidan, shown untranslated. For an explanation in English, ask the Grok Bot.",
     omitted: "Health, pregnancy and war-related passages are left out.",
     copied: "Link copied.",
+    allHex: "All 64 hexagrams",
+    upperTri: "upper trigram", lowerTri: "lower trigram", lineLink: "this line explained",
     error: "Something went wrong. Please try again.",
   },
   zh: {
@@ -63,6 +65,8 @@ const UI = {
     tkNote: "以下为高岛原书之辞（王治本汉译），照录原文。",
     omitted: "健康、生育与战事相关内容已略去。",
     copied: "链接已复制。",
+    allHex: "六十四卦",
+    upperTri: "上卦", lowerTri: "下卦", lineLink: "此爻详解",
     error: "出错了，请再试一次。",
   },
   ja: {
@@ -95,6 +99,8 @@ const UI = {
     tkNote: "高島の原書は日本語（明治19年刊）ですが、ここでは王治本の漢訳を原文のまま掲げます。",
     omitted: "健康・出産・戦争に関する部分は省略しています。",
     copied: "リンクをコピーしました。",
+    allHex: "六十四卦一覧",
+    upperTri: "上卦", lowerTri: "下卦", lineLink: "この爻の解説",
     error: "エラーが発生しました。もう一度お試しください。",
   },
 };
@@ -117,6 +123,8 @@ const params = new URLSearchParams(location.search);
 const INPUT_KEYS = ["seed", "piles", "numbers", "at", "variant"];
 
 function pickLang() {
+  const page = document.documentElement.dataset.lang;
+  if (page in UI) return page;
   const q = params.get("lang");
   if (q in UI) return q;
   const saved = store.get("lang");
@@ -153,6 +161,7 @@ function applyChrome() {
   }
   for (const b of $$("[data-lang]")) b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
   $("#mcp-url").textContent = location.origin + "/mcp";
+  $("#all-link").setAttribute("href", `/${lang}/hexagrams`);
 }
 
 function quoteBlock(item) {
@@ -178,7 +187,8 @@ async function setLang(next) {
   lang = next;
   store.set("lang", lang);
   const u = new URL(location.href);
-  u.searchParams.set("lang", lang);
+  u.pathname = `/${lang}/`;
+  u.searchParams.delete("lang");
   history.replaceState(null, "", u);
   applyChrome();
   guide = await api("guide", {});
@@ -285,6 +295,28 @@ function castError(msg) {
 
 const linesFromGlyphs = (g) => [...g].reverse().map((c) => (c === "⚊" ? 1 : 0));
 
+const TRIGRAM_SLUG = { "☰": "qian", "☱": "dui", "☲": "li", "☳": "zhen", "☴": "xun", "☵": "kan", "☶": "gen", "☷": "kun" };
+
+/** Turn a narration line into text with links: trigram symbols go to their trigram page, hexagram titles to theirs. */
+function linkify(text, c) {
+  const targets = [[c.titles.hexagram, c.links.hexagram]];
+  if (c.changed) targets.push([c.titles.changed, c.links.changed]);
+  const pattern = new RegExp(`(${targets.map(([t]) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")}|[☰-☷])`, "g");
+  const out = [];
+  let last = 0;
+  for (const m of text.matchAll(pattern)) {
+    out.push(text.slice(last, m.index));
+    const hit = targets.find(([t]) => t === m[0]);
+    const href = hit ? hit[1] : `/${lang}/trigram/${TRIGRAM_SLUG[m[0]]}`;
+    out.push(el("a", { href, class: hit ? "inline-hex" : "inline-tri" }, m[0]));
+    last = m.index + m[0].length;
+  }
+  out.push(text.slice(last));
+  return out;
+}
+
+const linkTo = (href, text) => (href ? el("a", { href }, text) : text);
+
 function drawHex(target, lines, moving, animate) {
   target.replaceChildren(...lines.map((l, i) => {
     const bar = el("div", { class: `bar ${l ? "yang" : "yin"}${moving.includes(i) ? " moving" : ""}` });
@@ -325,11 +357,11 @@ async function runCast(next, { animate = true } = {}) {
   const lines = linesFromGlyphs(c.hexagram.glyphs);
   const moving = c.changed ? lines.flatMap((l, i) => (l !== c.changed.linesBottomUp[i] ? [i] : [])) : [];
   drawHex($("#hex"), lines, moving, animate);
-  $("#hex-name").textContent = c.titles.hexagram;
+  $("#hex-name").replaceChildren(linkTo(c.links.hexagram, c.titles.hexagram));
   $("#changed-wrap").hidden = !c.changed;
   if (c.changed) {
     drawHex($("#hex-changed"), c.changed.linesBottomUp, [], animate);
-    $("#changed-name").textContent = c.titles.changed;
+    $("#changed-name").replaceChildren(linkTo(c.links.changed, c.titles.changed));
   }
 
   clearInterval(revealTimer);
@@ -338,7 +370,7 @@ async function runCast(next, { animate = true } = {}) {
   const skip = $('[data-action="skip"]');
   const finish = () => {
     clearInterval(revealTimer);
-    list.replaceChildren(...c.narration.map((n) => el("li", {}, n)));
+    list.replaceChildren(...c.narration.map((n) => el("li", {}, ...linkify(n, c))));
     skip.hidden = true;
     loadReading();
   };
@@ -348,7 +380,7 @@ async function runCast(next, { animate = true } = {}) {
   let i = 0;
   revealTimer = setInterval(() => {
     if (i >= c.narration.length) return finish();
-    list.append(el("li", {}, c.narration[i++]));
+    list.append(el("li", {}, ...linkify(c.narration[i++], c)));
   }, 900);
 }
 
@@ -361,7 +393,13 @@ async function loadReading() {
   ]);
   if (c !== chain) return; // a newer cast or language switch has started
   const p = c.moving_position;
-  $("#read-title").textContent = c.titles.hexagram;
+  $("#read-title").replaceChildren(linkTo(c.links.hexagram, c.titles.hexagram));
+  const [upSym, loSym] = [...c.hexagram.symbol].filter((x) => x in TRIGRAM_SLUG);
+  $("#read-parts").replaceChildren(
+    el("a", { href: c.links.upper_trigram }, `${upSym} ${t("upperTri")}`), " · ",
+    el("a", { href: c.links.lower_trigram }, `${loSym} ${t("lowerTri")}`),
+    ...(c.links.moving_line ? [" · ", el("a", { href: c.links.moving_line }, t("lineLink"))] : []),
+    ...(c.links.changed ? [" · ", el("a", { href: c.links.changed }, c.titles.changed)] : []));
   const original = (txt) => el("div", { class: "muted small", lang: "zh" }, txt);
   if (lang === "en") {
     $("#read-judgment").replaceChildren(read.english.judgment, original(read.judgment));
@@ -373,7 +411,7 @@ async function loadReading() {
   $("#read-line-wrap").hidden = p === null;
   if (p !== null) {
     const ln = read.lines[p];
-    $("#read-line-label").textContent = t("movingLine")(ln.label);
+    $("#read-line-label").replaceChildren(linkTo(c.links.moving_line, t("movingLine")(ln.label)));
     if (lang === "en") $("#read-line").replaceChildren(read.english.lines[p], original(ln.text));
     else if (lang === "ja") $("#read-line").replaceChildren(el("span", { lang: "ja" }, read.japanese.lines[p]));
     else $("#read-line").replaceChildren(ln.text);
@@ -431,7 +469,7 @@ document.addEventListener("click", async (ev) => {
   else if (act === "now") runCast({ at: localIso() });
   else if (act === "skip") {
     clearInterval(revealTimer);
-    $("#narration").replaceChildren(...chain.narration.map((n) => el("li", {}, n)));
+    $("#narration").replaceChildren(...chain.narration.map((n) => el("li", {}, ...linkify(n, chain))));
     a.hidden = true;
     loadReading();
   } else if (act === "restart") restart();

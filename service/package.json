@@ -6,8 +6,9 @@
   "scripts": {
     "test": "node --test 'tests/*.test.ts'",
     "tables": "python3 scripts/gen_tables.py",
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "build": "python3 scripts/gen_excerpts.py",
+    "dev": "python3 scripts/gen_excerpts.py && wrangler dev",
+    "deploy": "python3 scripts/gen_excerpts.py && wrangler deploy"
   },
   "engines": { "node": ">=23.6" }
 }

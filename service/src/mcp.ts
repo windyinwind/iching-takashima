@@ -1,6 +1,7 @@
 // Remote MCP server (Streamable HTTP, stateless, JSON responses).
 // Spec: https://modelcontextprotocol.io/specification/2025-06-18/basic/transports
 import * as engine from "./engine/index.ts";
+import { castLinks } from "./pages.ts";
 
 const PROTOCOL_VERSIONS = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
@@ -9,7 +10,8 @@ const INSTRUCTIONS = `I Ching · Takashima Method. You guide the user through Ta
 2. Start with iching_guide in the user's language (zh, en or ja; for any other language use en and translate). Explain the five preparation steps with their quotes, then offer the input methods. Default: a short phrase.
 3. Cast with iching_cast. Relay the "narration" lines exactly as returned, numbered, one per line. Don't merge them, change numbers or recompute anything. Draw the hexagram from "hexagram.glyphs", top to bottom.
 4. Then call iching_takashima with next.number and next.position. Quote Takashima's commentary, the topic reading the user cares about (zhan) and one recorded case (cases), always attributed. Takashima's text is Chinese only (Wang Zhiben's translation): if you translate it, say it is your translation.
-5. Close with the guide's "after" items: the first cast stands (初筮告，再三渎，渎则不告), read the text first, the decision is the user's.
+5. Link the user to the pages in "links" (the hexagram, the moving line, the changed hexagram and both trigrams) so they can read each part and see its lines drawn.
+6. Close with the guide's "after" items: the first cast stands (初筮告，再三渎，渎则不告), read the text first, the decision is the user's.
 Never make predictions or say whether something will succeed. Give structure, text and sources and leave the conclusion to the user. Health, pregnancy and war content is left out by default; don't use include_sensitive for a user's medical or pregnancy matter.`;
 
 const LANG = { type: "string", enum: ["zh", "en", "ja"], description: "Output language: zh Chinese, en English (with Legge's translation), ja Japanese." };
@@ -72,7 +74,7 @@ const TOOLS = [
 const lang = (v: unknown): engine.Lang => (v === "en" || v === "ja" ? v : "zh");
 const pos = (v: unknown) => (v === undefined || v === null || v === "" ? null : String(v));
 
-function callTool(name: string, a: Record<string, any>): unknown {
+function callTool(name: string, a: Record<string, any>, origin: string): unknown {
   if (name === "iching_guide") return engine.guide(lang(a.lang));
   if (name === "iching_cast") {
     const given = ["phrase", "piles", "numbers", "at"].filter((k) => a[k] !== undefined && a[k] !== null && a[k] !== "");
@@ -81,9 +83,10 @@ function callTool(name: string, a: Record<string, any>): unknown {
       seed: a.phrase, piles: a.piles, numbers: a.numbers, at: a.at,
       variant: a.method === "dayan" ? "dayan" : "lueshi", lang: lang(a.lang),
     });
+    c.links = castLinks(lang(a.lang) as any, origin, c);
     if (a.detail) return c;
     return { method: c.method, narration: c.narration, hexagram: c.hexagram, changed: c.changed, moving_position: c.moving_position,
-      next: c.next, reproduce: c.reproduce };
+      next: c.next, reproduce: c.reproduce, links: c.links };
   }
   if (name === "iching_read") return engine.read(Number(a.number), pos(a.position), lang(a.lang));
   if (name === "iching_takashima") return engine.takashima(Number(a.number), pos(a.position), lang(a.lang), !!a.include_sensitive);
@@ -98,7 +101,7 @@ class RpcError extends Error {
   }
 }
 
-function handle(msg: any): any | null {
+function handle(msg: any, origin: string): any | null {
   const { id, method, params } = msg ?? {};
   const isNotification = id === undefined || id === null;
   try {
@@ -118,7 +121,7 @@ function handle(msg: any): any | null {
       result = { tools: TOOLS };
     } else if (method === "tools/call") {
       try {
-        const out = callTool(params?.name, params?.arguments ?? {});
+        const out = callTool(params?.name, params?.arguments ?? {}, origin);
         result = { content: [{ type: "text", text: JSON.stringify(out, null, 1) }] };
       } catch (e) {
         if (!(e instanceof engine.EngineError)) throw e;
@@ -137,7 +140,7 @@ function handle(msg: any): any | null {
   }
 }
 
-export async function mcp(req: Request): Promise<Response> {
+export async function mcp(req: Request, origin: string): Promise<Response> {
   if (req.method !== "POST") {
     return new Response("This MCP server speaks Streamable HTTP: send JSON-RPC with POST.", { status: 405, headers: { Allow: "POST" } });
   }
@@ -147,7 +150,7 @@ export async function mcp(req: Request): Promise<Response> {
   } catch {
     return Response.json({ jsonrpc: "2.0", id: null, error: { code: -32700, message: "Parse error" } }, { status: 400 });
   }
-  const replies = (Array.isArray(body) ? body : [body]).map(handle).filter((r) => r !== null);
+  const replies = (Array.isArray(body) ? body : [body]).map((m) => handle(m, origin)).filter((r) => r !== null);
   if (!replies.length) return new Response(null, { status: 202 });
   return Response.json(Array.isArray(body) ? replies : replies[0]);
 }

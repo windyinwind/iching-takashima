@@ -3,6 +3,6 @@
   "name": "iching-takashima",
   "main": "src/worker.ts",
   "compatibility_date": "2026-10-01",
-  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*", "/mcp"] },
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/", "/index.html", "/en", "/en/*", "/zh", "/zh/*", "/ja", "/ja/*", "/api/*", "/mcp", "/sitemap.xml", "/robots.txt"] },
   "observability": { "enabled": true }
 }

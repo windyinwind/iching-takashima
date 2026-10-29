@@ -178,3 +178,40 @@ footer { max-width: 760px; margin: 0 auto; padding: 0 16px 40px; color: var(--mu
 @media (prefers-reduced-motion: reduce) {
   .bar, .stalk, .narration li { transition: none; animation: none; }
 }
+
+/* server-rendered pages */
+.crumbs { max-width: 760px; margin: -6px auto 14px; padding: 0 16px; font: 14px var(--sans); color: var(--muted); }
+.crumbs a { color: var(--muted); }
+.crumbs .cta { color: var(--seal); font-weight: 600; }
+.langs.pages a { font: 14px var(--sans); border: 1px solid var(--line); color: var(--muted); padding: 4px 10px; border-radius: 999px; text-decoration: none; }
+.langs.pages a[aria-current] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.doc { background: color-mix(in srgb, var(--card) 86%, transparent); border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; }
+.doc h1 { font-size: 1.7rem; }
+.doc h2 { margin-top: 28px; }
+.fig { display: block; fill: var(--ink); flex: none; }
+.fig .hl { fill: var(--seal); }
+.hero { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; margin: 12px 0 8px; }
+.trigrams { display: grid; gap: 12px; }
+.trigrams > div { display: grid; gap: 4px; }
+.tri, .hexlink { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.tri span, .hexlink span { border-bottom: 1px solid var(--line); }
+.tri:hover span, .hexlink:hover span { border-color: var(--seal); color: var(--seal); }
+.line { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 18px; }
+.line h3, .line h1 { text-transform: none; letter-spacing: 0; font: 600 1.1rem var(--serif); color: var(--ink); }
+.line h1 { font-size: 1.5rem; }
+.line h3 a { color: var(--ink); }
+.line-head { display: flex; gap: 18px; align-items: flex-start; }
+.line-head > div { flex: 1; min-width: 0; }
+.facts { font: 15px/1.6 var(--sans); color: var(--muted); padding-left: 18px; }
+.changes { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tk { margin-top: 18px; }
+.grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 18px; }
+.tri-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.prevnext { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; font: 15px var(--sans); flex-wrap: wrap; }
+.parts { font: 15px var(--sans); margin: -4px 0 10px; }
+.narration a.inline-tri { text-decoration: none; }
+.hex-name a, #read-title a { color: inherit; }
+@media (max-width: 520px) {
+  .doc { padding: 20px 14px; }
+  .line-head { flex-direction: column; }
+}
