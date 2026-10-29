@@ -4,6 +4,15 @@ A Grok Bot / Grok Build plugin for structured lookup of the *Zhouyi* (I Ching): 
 
 ![logo](assets/logo.png)
 
+## Install
+
+```bash
+grok plugin marketplace add windyinwind/iching-takashima
+grok plugin install iching-takashima --trust
+```
+
+`--trust` lets Grok load the plugin's skill and agent; without it, the install only shows what the plugin contains. To update later: `grok plugin marketplace update`.
+
 ## What it does
 
 - **Casting methods**: Takashima Donshō's three-change abbreviated method (略筮法, default; from the 筮儀 section of 《増補高島易断》), the classical 18-change Dayan method, and Meihua number and time casting (time casting uses the Chinese lunar calendar, 1900–2100)
