@@ -62,7 +62,7 @@ HEXAGRAM_JA = {
 
 KANSUJI = ["一", "二", "三", "四", "五", "六"]
 POS_JA = ["初爻", "二爻", "三爻", "四爻", "五爻", "上爻"]
-SHIYI_JA = "高島嘉右衛門『増補高島易断』筮儀（王治本漢訳より）"
+SHIYI_JA = "高島嘉右衛門『増補高島易断』筮儀"
 
 
 def hexagram_title(number: int) -> str:
