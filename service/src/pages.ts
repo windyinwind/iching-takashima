@@ -3,6 +3,7 @@
 import { HEXAGRAMS, LEGGE, LINE_MEANING, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
+import { LEARN, type SideCtx, hexData, learnPage, learnPath, leftSidebar, rightSidebar } from "./learn.ts";
 
 export type Lang = "en" | "zh" | "ja";
 export const LANGS: Lang[] = ["en", "zh", "ja"];
@@ -24,7 +25,7 @@ export const trigramPath = (lang: Lang, t: string) => `/${lang}/trigram/${TRIGRA
 
 const W = {
   en: {
-    site: "I Ching · Takashima Method", all: "All 64 hexagrams", trigrams: "The eight trigrams", cast: "Cast a hexagram",
+    site: "I Ching · Takashima Method", learn: "Learn", all: "All 64 hexagrams", trigrams: "The eight trigrams", cast: "Cast a hexagram",
     judgment: "The judgment", lines: "The six lines", line: (p: number) => `Line ${p + 1}`, original: "Original text",
     lower: "Lower (inner) trigram", upper: "Upper (outer) trigram", changesTo: "If this line moves, it changes to",
     takashima: "From Takashima's commentary", tkFull: "Takashima’s full commentary, topic readings and recorded cases: in the Grok Bot and the forthcoming edition.",
@@ -35,7 +36,7 @@ const W = {
     yongLabel: "All lines moving",
   },
   zh: {
-    site: "周易 · 高岛略筮", all: "六十四卦", trigrams: "八卦", cast: "起一卦",
+    site: "周易 · 高岛略筮", learn: "入门", all: "六十四卦", trigrams: "八卦", cast: "起一卦",
     judgment: "卦辞", lines: "六爻", line: (p: number) => `第 ${p + 1} 爻`, original: "原文",
     lower: "下卦（内卦）", upper: "上卦（外卦）", changesTo: "此爻动则变为",
     takashima: "高岛原书（节录）", tkFull: "高岛全文、分事占断与占例：见 Grok Bot。", tkZhOnly: "",
@@ -45,7 +46,7 @@ const W = {
     yongLabel: "六爻皆动",
   },
   ja: {
-    site: "易経 · 高島流略筮", all: "六十四卦一覧", trigrams: "八卦", cast: "卦を立てる",
+    site: "易経 · 高島流略筮", learn: "入門", all: "六十四卦一覧", trigrams: "八卦", cast: "卦を立てる",
     judgment: "卦辞", lines: "六爻", line: (p: number) => `${["初", "二", "三", "四", "五", "上"][p]}爻`, original: "原文",
     lower: "下卦（内卦）", upper: "上卦（外卦）", changesTo: "この爻が動けば之卦は",
     takashima: "高島の解釈（抄録）", tkFull: "高島の全文・事項別占断・占例は Grok Bot で。",
@@ -127,7 +128,11 @@ const changedOf = (n: number, p: number) => {
 
 // --- shell ------------------------------------------------------------------
 
-type Meta = { lang: Lang; title: string; description: string; path: (l: Lang) => string; og?: string; jsonld?: unknown; origin: string };
+type Meta = { lang: Lang; title: string; description: string; path: (l: Lang) => string; og?: string; jsonld?: unknown; origin: string; side?: SideCtx };
+
+export function sideScripts(lang: Lang) {
+  return `<script type="application/json" id="hexdata">${JSON.stringify(hexData(lang)).replace(/</g, "\\u003c")}</script><script type="module" src="/explore.js"></script>`;
+}
 
 function shell(m: Meta, body: string) {
   const w = W[m.lang];
@@ -147,8 +152,9 @@ function shell(m: Meta, body: string) {
 ${m.jsonld ? `<script type="application/ld+json">${JSON.stringify(m.jsonld).replace(/</g, "\\u003c")}</script>` : ""}
 </head><body>
 <header class="top"><a class="brand" href="/${m.lang}/">${esc(w.site)}</a><nav class="langs pages" aria-label="Language">${langs}</nav></header>
-<nav class="crumbs"><a href="/${m.lang}/hexagrams">${esc(w.all)}</a> · <a href="/${m.lang}/trigrams">${esc(w.trigrams)}</a> · <a class="cta" href="/${m.lang}/">${esc(w.cast)}</a></nav>
-<main class="doc">${body}</main>
+<nav class="crumbs"><a href="/${m.lang}/hexagrams">${esc(w.all)}</a> · <a href="/${m.lang}/trigrams">${esc(w.trigrams)}</a> · <a href="${learnPath(m.lang, LEARN[0])}">${esc(w.learn)}</a> · <a class="cta" href="/${m.lang}/">${esc(w.cast)}</a></nav>
+<div class="layout">${leftSidebar(m.lang, m.side ?? {})}<main class="doc">${body}</main>${rightSidebar(m.lang, m.side ?? {})}</div>
+${sideScripts(m.lang)}
 <footer><p>${esc(w.noPredict)}</p><p class="small"><a href="${TEMPLATE}" rel="noopener">${esc(w.askBot)}</a> · <a href="https://github.com/windyinwind/iching-takashima" rel="noopener">GitHub</a></p></footer>
 </body></html>`;
 }
@@ -232,7 +238,7 @@ ${yong}
 ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
 </article>`;
   return shell({
-    lang, origin, title: `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`,
+    lang, origin, title: `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`, side: { n },
     jsonld: {
       "@context": "https://schema.org", "@type": "Article", headline: hexTitle(lang, n), inLanguage: lang,
       about: { "@type": "CreativeWork", name: "I Ching (Book of Changes)" }, isPartOf: { "@type": "WebSite", name: W.en.site, url: origin },
@@ -254,7 +260,7 @@ ${lineSection(lang, n, p, { heading: "h1", link: false })}
     ? `${title}: “${LEGGE[String(n)].lines[p]}” Drawn and explained, with the hexagram it changes to and Takashima's commentary.`
     : lang === "ja" ? `${title}：${TRAD[String(n)].lines[p]} 爻の図・構造・之卦と高島の解釈。`
       : `${title}：${getByNumber(n).lines[p]} 爻位图解、义理、之卦与高岛原注。`;
-  return shell({ lang, origin, title: `${title} · ${w.site}`, description: desc, path: (l) => linePath(l, n, p), og: `/og/${n}.png` }, body);
+  return shell({ lang, origin, title: `${title} · ${w.site}`, description: desc, path: (l) => linePath(l, n, p), og: `/og/${n}.png`, side: { n, p } }, body);
 }
 
 export function hexagramsIndex(lang: Lang, origin: string) {
@@ -281,7 +287,7 @@ export function trigramPage(lang: Lang, slug: string, origin: string) {
   const body = `<h1>${esc(title)}</h1><div class="hero">${figure([...T.trigrams[t]], { label: title })}<p>${esc(info)}</p></div>
 <h2>${esc(w.asLower)}</h2><ol class="grid">${asLower.map((h) => `<li>${hLink(lang, h.number)}</li>`).join("")}</ol>
 <h2>${esc(w.asUpper)}</h2><ol class="grid">${asUpper.map((h) => `<li>${hLink(lang, h.number)}</li>`).join("")}</ol>`;
-  return shell({ lang, origin, title: `${title} · ${w.site}`, path: (l) => `/${l}/trigram/${slug}`, description: `${title}: ${info}` }, body);
+  return shell({ lang, origin, title: `${title} · ${w.site}`, path: (l) => `/${l}/trigram/${slug}`, description: `${title}: ${info}`, side: { trigram: t } }, body);
 }
 
 export function trigramsIndex(lang: Lang, origin: string) {
@@ -295,7 +301,7 @@ export function trigramsIndex(lang: Lang, origin: string) {
 export function sitemap(origin: string) {
   const urls: string[] = [];
   for (const l of LANGS) {
-    urls.push(`/${l}/`, `/${l}/hexagrams`, `/${l}/trigrams`);
+    urls.push(`/${l}/`, `/${l}/hexagrams`, `/${l}/trigrams`, ...LEARN.map((s) => learnPath(l, s)));
     for (const t of ORDER) urls.push(trigramPath(l, t));
     for (let n = 1; n <= 64; n++) {
       urls.push(hexPath(l, n));
@@ -320,6 +326,11 @@ export function castLinks(lang: Lang, origin: string, chain: any) {
 }
 
 export function route(path: string, origin: string): string | null {
+  const lm = /^\/(en|zh|ja)\/learn\/([a-z-]+)$/.exec(path);
+  if (lm) {
+    const lang = lm[1] as Lang, pg = learnPage(lang, lm[2]);
+    return pg && shell({ lang, origin, title: `${pg.title} · ${W[lang].site}`, description: pg.description, path: (l) => learnPath(l, lm[2]), side: { learn: lm[2] } }, pg.body);
+  }
   const m = /^\/(en|zh|ja)\/(hexagrams|trigrams|hexagram\/(\d+)(?:-[a-z-]*)?(?:\/line-([1-6]))?|trigram\/([a-z]+))$/.exec(path);
   if (!m) return null;
   const lang = m[1] as Lang;

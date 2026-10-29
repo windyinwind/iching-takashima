@@ -357,6 +357,7 @@ async function runCast(next, { animate = true } = {}) {
   const lines = linesFromGlyphs(c.hexagram.glyphs);
   const moving = c.changed ? lines.flatMap((l, i) => (l !== c.changed.linesBottomUp[i] ? [i] : [])) : [];
   drawHex($("#hex"), lines, moving, animate);
+  window.dispatchEvent(new CustomEvent("iching:cast", { detail: { lines } }));
   $("#hex-name").replaceChildren(linkTo(c.links.hexagram, c.titles.hexagram));
   $("#changed-wrap").hidden = !c.changed;
   if (c.changed) {

@@ -215,3 +215,48 @@ footer { max-width: 760px; margin: 0 auto; padding: 0 16px 40px; color: var(--mu
   .doc { padding: 20px 14px; }
   .line-head { flex-direction: column; }
 }
+
+/* three-column layout: learn / content / all 64 */
+.layout { max-width: 760px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.layout > main { padding-left: 0; padding-right: 0; max-width: none; margin: 0; }
+.layout > main.doc { padding: 24px 22px; }
+.layout .side { order: 2; }
+.side section { background: color-mix(in srgb, var(--card) 86%, transparent); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+.side h4 { font: 600 13px/1.3 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; display: flex; justify-content: space-between; }
+.side h4 a { color: inherit; text-decoration: none; }
+.help { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); font-size: 11px; }
+.learn-list { margin: 0; padding-left: 20px; font: 15px/1.5 var(--sans); }
+.learn-list li { margin: 4px 0; }
+.learn-list a { color: var(--ink); }
+.learn-list a[aria-current] { color: var(--seal); font-weight: 600; }
+.rel { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.rel li { display: grid; gap: 4px; }
+.builder { display: flex; flex-direction: column; gap: 7px; width: 130px; }
+.builder button { height: 16px; border: 0; padding: 0; cursor: pointer; background: transparent; position: relative; }
+.builder button.yang { background: var(--ink); border-radius: 2px; }
+.builder button.yin { background: linear-gradient(90deg, var(--ink) 0 43%, transparent 43% 57%, var(--ink) 57%); border-radius: 2px; }
+.builder button:hover { outline: 2px solid color-mix(in srgb, var(--seal) 50%, transparent); outline-offset: 2px; }
+.builder-out { font: 600 15px var(--sans); margin: 12px 0 0; min-height: 1.4em; }
+.matrix { border-collapse: collapse; width: 100%; font: 11px var(--sans); }
+.matrix th { font-size: 15px; font-weight: 400; padding: 2px; }
+.matrix th a { color: var(--ink); text-decoration: none; }
+.matrix td { padding: 1px; text-align: center; }
+.matrix td a { display: grid; justify-items: center; gap: 1px; padding: 3px 1px; border-radius: 6px; color: var(--muted); text-decoration: none; }
+.matrix td a:hover { background: var(--quote); color: var(--ink); }
+.matrix .fig.sm { width: 22px; height: auto; }
+.matrix td.cur a { background: var(--seal); color: var(--seal-ink); }
+.matrix td.cur .fig { fill: var(--seal-ink); }
+.matrix td.built a { outline: 2px solid var(--seal); }
+.learn .demo { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; margin: 16px 0; }
+.learn figure { margin: 0; display: grid; justify-items: start; gap: 8px; }
+.learn figcaption { font: 14px var(--sans); }
+.learn .points li { margin: 8px 0; }
+.labelled td { padding: 2px 10px 2px 0; font: 14px var(--sans); }
+.tbl { border-collapse: collapse; width: 100%; font: 15px var(--sans); }
+.tbl th, .tbl td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+@media (min-width: 1240px) {
+  .top, .crumbs { max-width: 1340px; }
+  .layout { max-width: 1340px; grid-template-columns: 250px minmax(0, 760px) 290px; justify-content: center; }
+  .layout .side { order: 0; position: sticky; top: 12px; align-self: start; max-height: calc(100vh - 24px); overflow: auto; }
+  footer { max-width: 1340px; }
+}

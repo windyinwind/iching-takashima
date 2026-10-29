@@ -1,7 +1,8 @@
 // Cloudflare Worker: pages for search engines, the casting app, the JSON API, the MCP server and static assets.
 import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
-import { LANGS, type Lang, castLinks, route, sitemap } from "./pages.ts";
+import { LANGS, type Lang, castLinks, route, sideScripts, sitemap } from "./pages.ts";
+import { leftSidebar, rightSidebar } from "./learn.ts";
 
 type Env = { ASSETS: { fetch: (req: Request | string) => Promise<Response> } };
 
@@ -94,6 +95,11 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
     .on("#prep-intro", { element: (e) => { e.setInnerContent(g.intro); } })
     .on("#prep-steps", { element: (e) => { e.setInnerContent(steps, { html: true }); } })
     .on("a.brand", { element: (e) => { e.setAttribute("href", `/${l}/`); } })
+    .on("main", { element: (e) => {
+      e.before(`<div class="layout app">${leftSidebar(l, {})}`, { html: true });
+      e.after(`${rightSidebar(l, {})}</div>`, { html: true });
+    } })
+    .on("body", { element: (e) => { e.append(sideScripts(l), { html: true }); } })
     .transform(new Response(page.body, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": noindex ? "no-store" : "public, max-age=3600" } }));
 }
 
