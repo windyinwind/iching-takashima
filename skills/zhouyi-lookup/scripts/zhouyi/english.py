@@ -44,7 +44,7 @@ HEXAGRAM_EN = {
 }
 
 ORDINAL = ["first", "second", "third", "fourth", "fifth", "sixth"]
-SHIYI_EN = "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀), Wang Zhiben's Chinese translation"
+SHIYI_EN = "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀)"
 
 
 @lru_cache(maxsize=1)

@@ -11,7 +11,7 @@ from .trigrams import NATURE, SYMBOLS
 
 LINE_NAMES = ["初", "二", "三", "四", "五", "上"]
 
-SHIYI = "《増補高島易断》筮儀（王治本译）"
+SHIYI = "《増補高島易断》筮儀"
 
 
 def preparation() -> Dict:

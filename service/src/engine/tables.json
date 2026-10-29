@@ -1726,25 +1726,25 @@
      "step": "默念于心",
      "say": "把这件事在心里默念清楚，不必告诉我。所占何事只在你自己心里。",
      "quote": "将其欲占问之事项默念于心",
-     "src": "《増補高島易断》筮儀（王治本译）"
+     "src": "《増補高島易断》筮儀"
     },
     {
      "step": "去私心",
      "say": "放下想要某个结果的念头。问的是事理，不是求一个想听的答案。",
      "quote": "诚意正心，不挟一点之私",
-     "src": "《増補高島易断》筮儀（王治本译）"
+     "src": "《増補高島易断》筮儀"
     },
     {
      "step": "静心收息",
      "say": "闭眼，慢慢呼吸，等杂念退去。约一两分钟。",
      "quote": "闭眼收息",
-     "src": "《増補高島易断》筮儀（王治本译）"
+     "src": "《増補高島易断》筮儀"
     },
     {
      "step": "至诚之际报数",
      "say": "觉得心最专一的那一刻，立即报数，不要斟酌，不要挑一个「好数字」。",
      "quote": "于其至诚之极处之时，以右手拇指，随手平分为二",
-     "src": "《増補高島易断》筮儀（王治本译）"
+     "src": "《増補高島易断》筮儀"
     }
    ],
    "inputs": [
@@ -1815,28 +1815,28 @@
      "say": "Go over the matter silently in your mind. You don't need to tell me what it is.",
      "quote": "将其欲占问之事项默念于心",
      "quote_en": "Recite silently in your heart the matter you wish to ask about.",
-     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀), Wang Zhiben's Chinese translation"
+     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀)"
     },
     {
      "step": "Let go of wanting",
      "say": "Set aside the wish for a particular answer. You are asking what is so, not for what you hope to hear.",
      "quote": "诚意正心，不挟一点之私",
      "quote_en": "Make your intent sincere and your heart upright, holding no trace of self-interest.",
-     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀), Wang Zhiben's Chinese translation"
+     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀)"
     },
     {
      "step": "Calm your breath",
      "say": "Close your eyes and breathe slowly until stray thoughts settle — a minute or two.",
      "quote": "闭眼收息",
      "quote_en": "Close the eyes and gather the breath.",
-     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀), Wang Zhiben's Chinese translation"
+     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀)"
     },
     {
      "step": "Answer at the moment of focus",
      "say": "When your mind feels most focused, answer at once. Don't deliberate or pick a \"lucky\" number.",
      "quote": "于其至诚之极处之时，以右手拇指，随手平分为二",
      "quote_en": "At the very height of sincerity, divide the stalks in two with the right thumb, without deliberation.",
-     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀), Wang Zhiben's Chinese translation"
+     "src": "Takashima, Zōho Takashima Ekidan, chapter on the casting ritual (筮儀)"
     }
    ],
    "inputs": [
