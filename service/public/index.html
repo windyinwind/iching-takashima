@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Ching · Takashima Method</title>
+<meta name="description" content="Cast the I Ching by Takashima Donshō's yarrow-stalk method and see every step: every count, every rule, every source. English, 中文, 日本語. No predictions.">
+<meta property="og:title" content="I Ching · Takashima Method">
+<meta property="og:description" content="Split the stalks yourself and see every step of the cast. The classic text, Legge's translation and Takashima's own commentary. No predictions.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23b23a2b'/%3E%3Cg fill='%23fbf7ef'%3E%3Crect x='6' y='7' width='20' height='3'/%3E%3Crect x='6' y='14' width='8' height='3'/%3E%3Crect x='18' y='14' width='8' height='3'/%3E%3Crect x='6' y='21' width='20' height='3'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/" data-i18n="brand">I Ching · Takashima Method</a>
+  <nav class="langs" aria-label="Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="zh">中文</button>
+    <button type="button" data-lang="ja">日本語</button>
+  </nav>
+</header>
+
+<main>
+  <section id="shared" class="card notice" hidden>
+    <p data-i18n="sharedNote"></p>
+    <button type="button" class="btn ghost" data-action="restart" data-i18n="startOwn"></button>
+  </section>
+
+  <section id="prepare" class="card">
+    <p class="kicker" data-i18n="step1"></p>
+    <h1 id="prep-title"></h1>
+    <p id="prep-intro" class="lead"></p>
+    <ol id="prep-steps" class="steps"></ol>
+    <button type="button" class="btn" data-action="ready" data-i18n="ready"></button>
+  </section>
+
+  <section id="method" class="card" hidden>
+    <p class="kicker" data-i18n="step2"></p>
+    <h2 data-i18n="chooseTitle"></h2>
+    <p class="muted" data-i18n="noQuestion"></p>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="stalks" data-i18n="tabStalks"></button>
+      <button type="button" role="tab" data-tab="phrase" data-i18n="tabPhrase"></button>
+      <button type="button" role="tab" data-tab="numbers" data-i18n="tabNumbers"></button>
+      <button type="button" role="tab" data-tab="time" data-i18n="tabTime"></button>
+    </div>
+
+    <div class="panel" data-panel="stalks">
+      <p data-i18n="stalksHow"></p>
+      <div id="stalks" class="stalks" tabindex="0" role="button" aria-describedby="stalk-status"></div>
+      <p id="stalk-status" class="status" aria-live="polite"></p>
+      <ol id="stalk-counts" class="counts"></ol>
+      <button type="button" class="btn" data-action="divide" data-i18n="divide"></button>
+    </div>
+
+    <form class="panel" data-panel="phrase" hidden>
+      <label for="phrase" data-i18n="phraseLabel"></label>
+      <input id="phrase" name="phrase" autocomplete="off" maxlength="200" required>
+      <p class="muted small" data-i18n="phraseHow"></p>
+      <button class="btn" data-i18n="cast"></button>
+    </form>
+
+    <form class="panel" data-panel="numbers" hidden>
+      <label data-i18n="numbersLabel"></label>
+      <div class="nums">
+        <input name="n1" inputmode="numeric" pattern="[0-9]*" required aria-label="1">
+        <input name="n2" inputmode="numeric" pattern="[0-9]*" required aria-label="2">
+        <input name="n3" inputmode="numeric" pattern="[0-9]*" aria-label="3">
+      </div>
+      <button class="btn" data-i18n="cast"></button>
+    </form>
+
+    <div class="panel" data-panel="time" hidden>
+      <p data-i18n="timeHow"></p>
+      <button type="button" class="btn" data-action="now" data-i18n="castNow"></button>
+    </div>
+    <p id="cast-error" class="error" role="alert" hidden></p>
+  </section>
+
+  <section id="reveal" class="card" hidden>
+    <p class="kicker" data-i18n="step3"></p>
+    <div class="figure">
+      <div>
+        <div id="hex" class="hex" aria-hidden="true"></div>
+        <p id="hex-name" class="hex-name"></p>
+      </div>
+      <div id="changed-wrap" hidden>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div>
+          <div id="hex-changed" class="hex small" aria-hidden="true"></div>
+          <p id="changed-name" class="hex-name small"></p>
+        </div>
+      </div>
+    </div>
+    <ol id="narration" class="narration"></ol>
+    <button type="button" class="btn ghost" data-action="skip" data-i18n="showAll"></button>
+  </section>
+
+  <section id="reading" class="card" hidden>
+    <p class="kicker" data-i18n="step4"></p>
+    <h2 id="read-title"></h2>
+    <h3 data-i18n="judgment"></h3>
+    <blockquote id="read-judgment" class="text"></blockquote>
+    <div id="read-line-wrap">
+      <h3 id="read-line-label"></h3>
+      <blockquote id="read-line" class="text"></blockquote>
+      <div id="read-meaning" class="meaning"></div>
+    </div>
+    <p id="read-source" class="muted small"></p>
+
+    <div id="tk" hidden>
+      <h3 data-i18n="takashima"></h3>
+      <p id="tk-note" class="muted small"></p>
+      <div id="tk-commentary" class="text zh" lang="zh"></div>
+      <details id="tk-zhan-wrap">
+        <summary data-i18n="zhan"></summary>
+        <dl id="tk-zhan" class="zhan" lang="zh"></dl>
+      </details>
+      <details id="tk-cases-wrap">
+        <summary data-i18n="cases"></summary>
+        <div id="tk-cases" lang="zh"></div>
+      </details>
+      <p id="tk-source" class="muted small"></p>
+    </div>
+  </section>
+
+  <section id="after" class="card" hidden>
+    <p class="kicker" data-i18n="step5"></p>
+    <ul id="after-list" class="steps"></ul>
+    <div class="actions">
+      <button type="button" class="btn" data-action="copy" data-i18n="copyLink"></button>
+      <a class="btn ghost" href="https://x.ai/bot/1UcfT98mXBGBnDMaoGtG2" target="_blank" rel="noopener" data-i18n="openGrok"></a>
+      <button type="button" class="btn ghost" data-action="restart" data-i18n="restart"></button>
+    </div>
+    <p id="copied" class="status" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer"></p>
+  <p class="small">
+    <a href="https://github.com/windyinwind/iching-takashima" target="_blank" rel="noopener">GitHub</a> ·
+    <span data-i18n="mcp"></span> <code id="mcp-url"></code>
+  </p>
+</footer>
+<script type="module" src="/app.js"></script>
+</body>
+</html>
