@@ -8,6 +8,7 @@
   --seal-ink: #fbf7ef;
   --quote: #efe7d8;
   --shadow: 0 1px 2px rgb(60 40 20 / 6%), 0 8px 24px rgb(60 40 20 / 6%);
+  --bagua-opacity: .075;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Songti SC", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK SC", "Noto Serif", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
   color-scheme: light;
@@ -23,6 +24,7 @@
     --seal-ink: #1a0f0c;
     --quote: #26221c;
     --shadow: none;
+    --bagua-opacity: .09;
     color-scheme: dark;
   }
 }
@@ -35,6 +37,15 @@ body {
   color: var(--ink);
   font: 17px/1.65 var(--serif);
 }
+/* Earlier Heaven bagua behind everything, drawn in the theme's ink colour */
+body::before {
+  content: ""; position: fixed; z-index: -1; pointer-events: none;
+  left: 50%; top: 50%; width: min(118vmin, 980px); aspect-ratio: 1; transform: translate(-50%, -50%);
+  background: var(--ink); opacity: var(--bagua-opacity);
+  -webkit-mask: url("/bagua.svg") center / contain no-repeat;
+  mask: url("/bagua.svg") center / contain no-repeat;
+}
+body { position: relative; isolation: isolate; }
 a { color: var(--seal); }
 code { font-size: .85em; word-break: break-all; }
 [hidden] { display: none !important; }
@@ -53,7 +64,7 @@ code { font-size: .85em; word-break: break-all; }
 
 main { max-width: 760px; margin: 0 auto; padding: 0 16px 32px; }
 .card {
-  background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+  background: color-mix(in srgb, var(--card) 86%, transparent); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
   padding: 24px 22px; margin: 0 0 20px;
 }
 .notice { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
