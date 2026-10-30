@@ -3,8 +3,9 @@ import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
 import { LANGS, type Lang, castLinks, route, sideScripts, sitemap } from "./pages.ts";
 import { leftSidebar, rightSidebar } from "./learn.ts";
+import { infoLinks } from "./info.ts";
 
-type Env = { ASSETS: { fetch: (req: Request | string) => Promise<Response> } };
+type Env = { ASSETS: { fetch: (req: Request | string) => Promise<Response> }; CANONICAL_HOST?: string };
 
 const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Mcp-Session-Id, Mcp-Protocol-Version" };
 const CAST_KEYS = ["seed", "piles", "numbers", "at", "variant"];
@@ -99,6 +100,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
       e.before(`<div class="layout app">${leftSidebar(l, {})}`, { html: true });
       e.after(`${rightSidebar(l, {})}</div>`, { html: true });
     } })
+    .on("footer", { element: (e) => { e.append(`<p class="small">${infoLinks(l)}</p>`, { html: true }); } })
     .on("body", { element: (e) => { e.append(sideScripts(l), { html: true }); } })
     .transform(new Response(page.body, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": noindex ? "no-store" : "public, max-age=3600" } }));
 }
@@ -110,6 +112,10 @@ export default {
     const url = new URL(req.url);
     const origin = url.origin;
     const path = url.pathname;
+    // Pages move to the custom domain once CANONICAL_HOST is set; the API and MCP stay on every host so existing clients keep working.
+    const home = env.CANONICAL_HOST;
+    if (home && url.hostname !== home && url.hostname !== "localhost" && req.method === "GET" && path !== "/mcp" && !path.startsWith("/api/"))
+      return Response.redirect(`https://${home}${path}${url.search}`, 301);
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: { ...CORS, "Access-Control-Allow-Methods": "GET, POST, OPTIONS" } });
     if (path === "/mcp") {
       const res = await mcp(req, origin);

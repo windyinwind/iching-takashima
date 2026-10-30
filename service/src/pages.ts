@@ -4,6 +4,7 @@ import { HEXAGRAMS, LEGGE, LINE_MEANING, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
 import { LEARN, type SideCtx, hexData, learnPage, learnPath, leftSidebar, rightSidebar } from "./learn.ts";
+import { INFO, infoLinks, infoPage, infoPath } from "./info.ts";
 
 export type Lang = "en" | "zh" | "ja";
 export const LANGS: Lang[] = ["en", "zh", "ja"];
@@ -29,7 +30,7 @@ const W = {
     judgment: "The judgment", lines: "The six lines", line: (p: number) => `Line ${p + 1}`, original: "Original text",
     lower: "Lower (inner) trigram", upper: "Upper (outer) trigram", changesTo: "If this line moves, it changes to",
     takashima: "From Takashima's commentary", tkFull: "Takashima’s full commentary, topic readings and recorded cases: in the Grok Bot and the forthcoming edition.",
-    tkZhOnly: "Takashima’s commentary in the original Chinese translation (Wang Zhiben). English translation in progress.",
+    tkZhOnly: "Takashima’s commentary in the Chinese text.",
     legge: "English: James Legge, The Yî King (1882), public domain.", prev: "Previous", next: "Next",
     structure: "Structure", asLower: "As the lower trigram", asUpper: "As the upper trigram",
     askBot: "Ask the Grok Bot about this", noPredict: "A study tool for the classic text. It makes no predictions; the decision is yours.",
@@ -50,7 +51,7 @@ const W = {
     judgment: "卦辞", lines: "六爻", line: (p: number) => `${["初", "二", "三", "四", "五", "上"][p]}爻`, original: "原文",
     lower: "下卦（内卦）", upper: "上卦（外卦）", changesTo: "この爻が動けば之卦は",
     takashima: "高島の解釈（抄録）", tkFull: "高島の全文・事項別占断・占例は Grok Bot で。",
-    tkZhOnly: "高島の解釈は王治本の漢訳原文で掲げます（和訳は準備中）。",
+    tkZhOnly: "高島の解釈は漢文テキストのまま掲げます。",
     legge: "", prev: "前の卦", next: "次の卦",
     structure: "卦の構造", asLower: "下卦として", asUpper: "上卦として",
     askBot: "Grok Bot に聞く", noPredict: "経文を調べるための道具です。予言はしません。結論はご自身で。",
@@ -155,7 +156,7 @@ ${m.jsonld ? `<script type="application/ld+json">${JSON.stringify(m.jsonld).repl
 <nav class="crumbs"><a href="/${m.lang}/hexagrams">${esc(w.all)}</a> · <a href="/${m.lang}/trigrams">${esc(w.trigrams)}</a> · <a href="${learnPath(m.lang, LEARN[0])}">${esc(w.learn)}</a> · <a class="cta" href="/${m.lang}/">${esc(w.cast)}</a></nav>
 <div class="layout">${leftSidebar(m.lang, m.side ?? {})}<main class="doc">${body}</main>${rightSidebar(m.lang, m.side ?? {})}</div>
 ${sideScripts(m.lang)}
-<footer><p>${esc(w.noPredict)}</p><p class="small"><a href="${TEMPLATE}" rel="noopener">${esc(w.askBot)}</a> · <a href="https://github.com/windyinwind/iching-takashima" rel="noopener">GitHub</a></p></footer>
+<footer><p>${esc(w.noPredict)}</p><p class="small"><a href="${TEMPLATE}" rel="noopener">${esc(w.askBot)}</a> · <a href="https://github.com/windyinwind/iching-takashima" rel="noopener">GitHub</a></p><p class="small">${infoLinks(m.lang)}</p></footer>
 </body></html>`;
 }
 
@@ -301,7 +302,7 @@ export function trigramsIndex(lang: Lang, origin: string) {
 export function sitemap(origin: string) {
   const urls: string[] = [];
   for (const l of LANGS) {
-    urls.push(`/${l}/`, `/${l}/hexagrams`, `/${l}/trigrams`, ...LEARN.map((s) => learnPath(l, s)));
+    urls.push(`/${l}/`, `/${l}/hexagrams`, `/${l}/trigrams`, ...LEARN.map((s) => learnPath(l, s)), ...INFO.map((s) => infoPath(l, s)));
     for (const t of ORDER) urls.push(trigramPath(l, t));
     for (let n = 1; n <= 64; n++) {
       urls.push(hexPath(l, n));
@@ -331,6 +332,9 @@ export function route(path: string, origin: string): string | null {
     const lang = lm[1] as Lang, pg = learnPage(lang, lm[2]);
     return pg && shell({ lang, origin, title: `${pg.title} · ${W[lang].site}`, description: pg.description, path: (l) => learnPath(l, lm[2]), side: { learn: lm[2] } }, pg.body);
   }
+  const im = /^\/(en|zh|ja)\/([a-z]+)$/.exec(path);
+  const ip = im && infoPage(im[1] as Lang, im[2], origin);
+  if (ip) return shell({ lang: im![1] as Lang, origin, title: `${ip.title} · ${W[im![1] as Lang].site}`, description: ip.description, path: (l) => `/${l}/${im![2]}` }, ip.body);
   const m = /^\/(en|zh|ja)\/(hexagrams|trigrams|hexagram\/(\d+)(?:-[a-z-]*)?(?:\/line-([1-6]))?|trigram\/([a-z]+))$/.exec(path);
   if (!m) return null;
   const lang = m[1] as Lang;
