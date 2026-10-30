@@ -152,7 +152,7 @@ def cmd_takashima(args) -> int:
             from zhouyi.english import hexagram_title
             out["english"] = {
                 "title": hexagram_title(args.number),
-                "language_note": ("Takashima's text exists in Chinese only (Wang Zhiben's translation). "
+                "language_note": ("Takashima's text here is in Chinese only. "
                                   "Translate it for the user and label it as your own translation."),
             }
         elif args.lang == "ja":

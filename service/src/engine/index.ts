@@ -80,7 +80,7 @@ export function takashima(number: number, position: string | null = null, lang: 
   if (lang === "en") {
     out.english = {
       title: hexagramTitleEn(number),
-      language_note: "Takashima's text exists in Chinese only (Wang Zhiben's translation). Translate it for the user and label it as your own translation.",
+      language_note: "Takashima's text here is in Chinese only. Translate it for the user and label it as your own translation.",
     };
   } else if (lang === "ja") out.japanese = takashimaExtraJa(number);
   return out;

@@ -28,7 +28,7 @@ const UI = {
     casting: "Casting…",
     movingLine: (label) => `The moving line — ${label}`,
     leggeSrc: "English: James Legge, The Yî King (Sacred Books of the East XVI, 1882). Public domain.",
-    tkNote: "Takashima's own words, in Wang Zhiben's Chinese translation of Zōho Takashima Ekidan, shown untranslated. For an explanation in English, ask the Grok Bot.",
+    tkNote: "Takashima's own words from Zōho Takashima Ekidan, shown in the Chinese text. For an explanation in English, ask the Grok Bot.",
     omitted: "Health, pregnancy and war-related passages are left out.",
     copied: "Link copied.",
     allHex: "All 64 hexagrams",
@@ -62,7 +62,7 @@ const UI = {
     casting: "起卦中…",
     movingLine: (label) => `动爻 · ${label}`,
     leggeSrc: "",
-    tkNote: "以下为高岛原书之辞（王治本汉译），照录原文。",
+    tkNote: "以下为高岛原书之辞，照录原文。",
     omitted: "健康、生育与战事相关内容已略去。",
     copied: "链接已复制。",
     allHex: "六十四卦",
@@ -96,7 +96,7 @@ const UI = {
     casting: "起卦中…",
     movingLine: (label) => `動爻 · ${label}`,
     leggeSrc: "",
-    tkNote: "高島の原書は日本語（明治19年刊）ですが、ここでは王治本の漢訳を原文のまま掲げます。",
+    tkNote: "高島の原書は日本語（明治19年刊）ですが、ここでは漢文テキストをそのまま掲げます。",
     omitted: "健康・出産・戦争に関する部分は省略しています。",
     copied: "リンクをコピーしました。",
     allHex: "六十四卦一覧",
@@ -117,6 +117,10 @@ const el = (tag, attrs = {}, ...kids) => {
 const store = {
   get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
   set: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
+};
+const session = {
+  set: (k, v) => { try { sessionStorage.setItem(k, v); } catch {} },
+  take: (k) => { try { const v = sessionStorage.getItem(k); sessionStorage.removeItem(k); return v; } catch { return null; } },
 };
 
 const params = new URLSearchParams(location.search);
@@ -159,7 +163,7 @@ function applyChrome() {
     const v = t(n.dataset.i18n);
     if (typeof v === "string") n.textContent = v;
   }
-  for (const b of $$("[data-lang]")) b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+  for (const b of $$(".langs [data-lang]")) b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
   $("#mcp-url").textContent = location.origin + "/mcp";
   $("#all-link").setAttribute("href", `/${lang}/hexagrams`);
 }
@@ -183,18 +187,16 @@ function renderGuide() {
   how.textContent = phraseInput.how;
 }
 
-async function setLang(next) {
-  lang = next;
-  store.set("lang", lang);
+// Load the other language's page: the sidebars and guide are rendered on the server.
+// A cast in progress travels in the URL; the flag keeps it from showing as a shared link.
+function setLang(next) {
+  if (next === lang) return;
+  store.set("lang", next);
   const u = new URL(location.href);
-  u.pathname = `/${lang}/`;
+  u.pathname = `/${next}/`;
   u.searchParams.delete("lang");
-  history.replaceState(null, "", u);
-  applyChrome();
-  guide = await api("guide", {});
-  renderGuide();
-  updateStalkStatus();
-  if (input) await runCast(input, { animate: false });
+  if (input) session.set("own-cast", "1");
+  location.assign(u);
 }
 
 // ---------------------------------------------------------------------------
@@ -430,7 +432,7 @@ async function loadReading() {
     $("#tk-zhan-wrap").hidden = !tk.zhan.length && !tk.zhan_general;
     $("#tk-cases").replaceChildren(...tk.cases.map((x) => el("div", { class: "case" }, x.cast ? el("b", {}, x.cast) : null, x.text)));
     $("#tk-cases-wrap").hidden = !tk.cases.length;
-    $("#tk-source").textContent = `${tk.source.author}《${tk.source.work}》${tk.source.translator ? "，" + tk.source.translator : ""} · ${tk.source.location}`;
+    $("#tk-source").textContent = `${tk.source.author}《${tk.source.work}》 · ${tk.source.location}`;
   }
   show("#after");
 }
@@ -454,7 +456,7 @@ function restart() {
 
 document.addEventListener("click", async (ev) => {
   const a = ev.target.closest("[data-action]");
-  const l = ev.target.closest("[data-lang]");
+  const l = ev.target.closest(".langs [data-lang]");
   const tab = ev.target.closest("[data-tab]");
   if (l) return setLang(l.dataset.lang);
   if (tab) return selectTab(tab.dataset.tab);
@@ -516,7 +518,7 @@ $("[data-panel=numbers]").addEventListener("submit", (ev) => {
   renderGuide();
   const shared = Object.fromEntries(INPUT_KEYS.filter((k) => params.get(k)).map((k) => [k, params.get(k)]));
   if (Object.keys(shared).length) {
-    show("#shared");
+    if (!session.take("own-cast")) show("#shared");
     $("#prepare").hidden = true;
     await runCast(shared, { animate: false });
   }

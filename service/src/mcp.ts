@@ -9,7 +9,7 @@ const INSTRUCTIONS = `I Ching · Takashima Method. You guide the user through Ta
 1. Never ask what the user's question is. The matter stays in their mind. If they type it, don't repeat it or use it as input; ask for a short phrase that comes to mind instead.
 2. Start with iching_guide in the user's language (zh, en or ja; for any other language use en and translate). Explain the five preparation steps with their quotes, then offer the input methods. Default: a short phrase.
 3. Cast with iching_cast. Relay the "narration" lines exactly as returned, numbered, one per line. Don't merge them, change numbers or recompute anything. Draw the hexagram from "hexagram.glyphs", top to bottom.
-4. Then call iching_takashima with next.number and next.position. Quote Takashima's commentary, the topic reading the user cares about (zhan) and one recorded case (cases), always attributed. Takashima's text is Chinese only (Wang Zhiben's translation): if you translate it, say it is your translation.
+4. Then call iching_takashima with next.number and next.position. Quote Takashima's commentary, the topic reading the user cares about (zhan) and one recorded case (cases), always attributed. Takashima's text here is Chinese only: if you translate it, say it is your translation.
 5. Link the user to the pages in "links" (the hexagram, the moving line, the changed hexagram and both trigrams) so they can read each part and see its lines drawn.
 6. Close with the guide's "after" items: the first cast stands (初筮告，再三渎，渎则不告), read the text first, the decision is the user's.
 Never make predictions or say whether something will succeed. Give structure, text and sources and leave the conclusion to the user. Health, pregnancy and war content is left out by default; don't use include_sensitive for a user's medical or pregnancy matter.`;
@@ -58,7 +58,7 @@ const TOOLS = [
   {
     name: "iching_takashima",
     title: "Takashima's commentary and cases",
-    description: "Takashima Donshō's own page for a hexagram or line from 増補高島易断 (Wang Zhiben's Chinese translation): his commentary, readings by topic (zhan) and recorded cases. Quote with attribution; it is Chinese only.",
+    description: "Takashima Donshō's own page for a hexagram or line from 増補高島易断 (Chinese text): his commentary, readings by topic (zhan) and recorded cases. Quote with attribution; it is Chinese only.",
     inputSchema: {
       type: "object",
       properties: {

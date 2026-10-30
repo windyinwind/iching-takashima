@@ -129,7 +129,7 @@ export function readExtraJa(number: number, position: number | string | null = n
 
 export const takashimaExtraJa = (number: number) => ({
   title: hexagramTitleJa(number),
-  language_note: "原書は明治19年刊の日本語（漢文訓読体）。本データは王治本による漢訳で、引用を和訳する場合は重訳となる。アシスタントの訳と明記すること。",
+  language_note: "原書は明治19年刊の日本語（漢文訓読体）。本データは漢文版で、引用を和訳する場合は重訳となる。アシスタントの訳と明記すること。",
 });
 
 // --- Takashima -------------------------------------------------------------
@@ -176,7 +176,7 @@ export function commentary(number: number, position: string | number | null = nu
     zhan,
     cases: outCases,
     omitted: { zhan: page.zhan.length - zhan.length, cases: page.cases.length - cases.length },
-    source: { work: m.work, author: m.author, translator: m.translator, location: `${h.name}卦·${part}` },
-    note: "以上为高島呑象原书之辞（王治本汉译），系明治时期的占断与实录，照录原文，不代表对当下任何具体事项的判断。",
+    source: { work: m.work, author: m.author, location: `${h.name}卦·${part}` },
+    note: "以上为高島呑象原书之辞，系明治时期的占断与实录，照录原文，不代表对当下任何具体事项的判断。",
   };
 }

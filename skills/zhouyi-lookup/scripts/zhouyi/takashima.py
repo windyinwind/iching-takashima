@@ -107,11 +107,10 @@ def commentary(number: int, position=None, include_sensitive: bool = False) -> D
         "source": {
             "work": m["work"],
             "author": m["author"],
-            "translator": m["translator"],
             "location": f"{h['name']}卦·{part}",
         },
         "note": (
-            "以上为高島呑象原书之辞（王治本汉译），系明治时期的占断与实录，"
+            "以上为高島呑象原书之辞，系明治时期的占断与实录，"
             "照录原文，不代表对当下任何具体事项的判断。"
         ),
     }
