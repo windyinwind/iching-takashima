@@ -1,7 +1,7 @@
 // Cloudflare Worker: pages for search engines, the casting app, the JSON API, the MCP server and static assets.
 import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
-import { LANGS, type Lang, castLinks, route, sideScripts, sitemap } from "./pages.ts";
+import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W } from "./pages.ts";
 import { leftSidebar, rightSidebar } from "./learn.ts";
 import { infoLinks } from "./info.ts";
 
@@ -75,6 +75,17 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
   const meta = LANDING[l];
   const steps = g.prepare.map((s: any) =>
     `<li><strong>${escapeHtml(s.step)}</strong>${escapeHtml(s.say)}${s.quote ? `<blockquote class="quote"><span lang="${l === "en" ? "zh" : l}">${escapeHtml(s.quote)}</span>${s.quote_en ? `<div>“${escapeHtml(s.quote_en)}”</div>` : ""}<cite>${escapeHtml(s.src)}</cite></blockquote>` : ""}</li>`).join("");
+  // WebSite is what lets a search result show the site's name instead of the
+  // bare domain. Only the landing pages carry it; the hexagram pages already
+  // declare their own Article markup.
+  const jsonld = `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: W[l].site,
+    url: `${origin}/${l}/`,
+    inLanguage: l === "zh" ? "zh-Hans" : l,
+    description: meta.description,
+  })}</script>`;
   const head = [
     `<link rel="canonical" href="${origin}/${l}/">`,
     ...LANGS.map((x) => `<link rel="alternate" hreflang="${x === "zh" ? "zh-Hans" : x}" href="${origin}/${x}/">`),
@@ -82,6 +93,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
     `<meta property="og:url" content="${origin}/${l}/">`,
     `<meta property="og:image" content="${origin}/og/default.png">`,
     `<meta name="twitter:image" content="${origin}/og/default.png">`,
+    jsonld,
     noindex ? `<meta name="robots" content="noindex, follow">` : "",
   ].join("");
   return new HTMLRewriter()
@@ -143,7 +155,12 @@ export default {
       return landing(req, env, target, origin, true);
     }
     const lm = /^\/(en|zh|ja)\/?$/.exec(path);
-    if (lm) return landing(req, env, lm[1] as Lang, origin, hasCast);
+    if (lm) {
+      // Both forms rendered the same page, so Google saw two URLs for it; the
+      // canonical already named the slashed one, so send the other there.
+      if (!path.endsWith("/")) return Response.redirect(`${origin}${path}/${url.search}`, 301);
+      return landing(req, env, lm[1] as Lang, origin, hasCast);
+    }
 
     const page = route(path.replace(/\/$/, ""), origin);
     if (page) return html(page);

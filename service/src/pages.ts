@@ -24,7 +24,7 @@ export const trigramPath = (lang: Lang, t: string) => `/${lang}/trigram/${TRIGRA
 
 // --- words ------------------------------------------------------------------
 
-const W = {
+export const W = {
   en: {
     site: "I Ching · Takashima Method", learn: "Learn", all: "All 64 hexagrams", trigrams: "The eight trigrams", cast: "Cast a hexagram",
     judgment: "The judgment", lines: "The six lines", line: (p: number) => `Line ${p + 1}`, original: "Original text",
