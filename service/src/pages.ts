@@ -216,13 +216,20 @@ function descFor(lang: Lang, n: number) {
   return `${h.name}卦（第${n}卦），上${h.upper}下${h.lower}：卦辞、六爻爻辞与逐爻图解、义理，附高岛呑象《増補高島易断》原注。`;
 }
 
-export function hexagramPage(lang: Lang, n: number, origin: string) {
+export // legge.json stores 用九/用六 as one string, not a list, so joining it directly
+// threw on the only two hexagrams that have it (1 and 2).
+function leggeYong(n: number): string {
+  const v = LEGGE[String(n)].yong;
+  return Array.isArray(v) ? v.join(" ") : (v ?? "");
+}
+
+function hexagramPage(lang: Lang, n: number, origin: string) {
   const w = W[lang];
   const h = getByNumber(n);
   const lines = linesOf(h);
   const meaning = lang === "zh" ? T.hexagram_meaning[h.name] : "";
   const yong = h.yong
-    ? `<section class="line" id="yong"><h3>${esc(h.yong.label)} · ${esc(w.yongLabel)}</h3><blockquote class="text">${esc(lang === "en" ? (LEGGE[String(n)].yong ?? []).join(" ") : h.yong.text)}</blockquote>${takashimaBlock(lang, n, "yong")}</section>`
+    ? `<section class="line" id="yong"><h3>${esc(h.yong.label)} · ${esc(w.yongLabel)}</h3><blockquote class="text">${esc(lang === "en" ? leggeYong(n) : h.yong.text)}</blockquote>${takashimaBlock(lang, n, "yong")}</section>`
     : "";
   const body = `<article>
 <p class="kicker">${esc(lang === "en" ? `Hexagram ${n} of 64` : lang === "ja" ? `六十四卦の第${n}` : `六十四卦之第 ${n}`)}</p>
