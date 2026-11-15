@@ -127,6 +127,15 @@ const changedOf = (n: number, p: number) => {
   return getByLines(l).number;
 };
 
+// --- analytics --------------------------------------------------------------
+// Google Tag Manager, injected into every HTML page. Landing pages are rewritten
+// by worker.ts; all other pages are built by shell() below.
+export const GTM_HEAD = `<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PK39VX5W');</script>
+<!-- End Google Tag Manager -->`;
+
+export const GTM_NOSCRIPT = `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PK39VX5W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`;
+
 // --- shell ------------------------------------------------------------------
 
 type Meta = { lang: Lang; title: string; description: string; path: (l: Lang) => string; og?: string; jsonld?: unknown; origin: string; side?: SideCtx };
@@ -150,8 +159,10 @@ function shell(m: Meta, body: string) {
 <meta property="og:url" content="${url}"><meta property="og:image" content="${og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${og}">
 <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css">
+${GTM_HEAD}
 ${m.jsonld ? `<script type="application/ld+json">${JSON.stringify(m.jsonld).replace(/</g, "\\u003c")}</script>` : ""}
 </head><body>
+${GTM_NOSCRIPT}
 <header class="top"><a class="brand" href="/${m.lang}/">${esc(w.site)}</a><nav class="langs pages" aria-label="Language">${langs}</nav></header>
 <nav class="crumbs"><a href="/${m.lang}/hexagrams">${esc(w.all)}</a> · <a href="/${m.lang}/trigrams">${esc(w.trigrams)}</a> · <a href="${learnPath(m.lang, LEARN[0])}">${esc(w.learn)}</a> · <a class="cta" href="/${m.lang}/">${esc(w.cast)}</a></nav>
 <div class="layout">${leftSidebar(m.lang, m.side ?? {})}<main class="doc">${body}</main>${rightSidebar(m.lang, m.side ?? {})}</div>

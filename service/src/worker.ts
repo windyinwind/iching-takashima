@@ -1,7 +1,7 @@
 // Cloudflare Worker: pages for search engines, the casting app, the JSON API, the MCP server and static assets.
 import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
-import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W } from "./pages.ts";
+import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W, GTM_HEAD, GTM_NOSCRIPT } from "./pages.ts";
 import { leftSidebar, rightSidebar } from "./learn.ts";
 import { infoLinks } from "./info.ts";
 
@@ -87,6 +87,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
     description: meta.description,
   })}</script>`;
   const head = [
+    GTM_HEAD,
     `<link rel="canonical" href="${origin}/${l}/">`,
     ...LANGS.map((x) => `<link rel="alternate" hreflang="${x === "zh" ? "zh-Hans" : x}" href="${origin}/${x}/">`),
     `<link rel="alternate" hreflang="x-default" href="${origin}/en/">`,
@@ -113,7 +114,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
       e.after(`${rightSidebar(l, {})}</div>`, { html: true });
     } })
     .on("footer", { element: (e) => { e.append(`<p class="small">${infoLinks(l)}</p>`, { html: true }); } })
-    .on("body", { element: (e) => { e.append(sideScripts(l), { html: true }); } })
+    .on("body", { element: (e) => { e.prepend(GTM_NOSCRIPT, { html: true }); e.append(sideScripts(l), { html: true }); } })
     .transform(new Response(page.body, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": noindex ? "no-store" : "public, max-age=3600" } }));
 }
 

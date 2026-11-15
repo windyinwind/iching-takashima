@@ -8,7 +8,7 @@ The I Ching · Takashima Method as a Cloudflare Worker (free plan): a step-by-st
 | `/api/guide`, `/api/chain`, `/api/read`, `/api/takashima`, `/api/list`, `/api/sources` | JSON, GET only, query parameters as in `zy.py` (`lang`, `seed`, `piles=21,22,16`, `numbers=7,13`, `at`, `n`, `pos`, `all=1`) |
 | `/mcp` | MCP server (Streamable HTTP, stateless): `iching_guide`, `iching_cast`, `iching_read`, `iching_takashima` |
 
-No network calls, no storage, no analytics, no credentials. The question a user has in mind is never asked for or sent.
+No accounts, no credentials, no stored casts. The question a user has in mind is never asked for or sent. Pages load Google Tag Manager (container `GTM-PK39VX5W`) for visit analytics; see the privacy page for what it collects and how to opt out.
 
 ## Develop
 
