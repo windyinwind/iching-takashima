@@ -9,7 +9,7 @@ export const infoPath = (lang: Lang, slug: InfoSlug) => `/${lang}/${slug}`;
 const REPO = "https://github.com/windyinwind/iching-takashima";
 const ISSUES = `${REPO}/issues`;
 const BOT = "https://x.ai/bot/1UcfT98mXBGBnDMaoGtG2";
-const UPDATED = { en: "Last updated: 15 November 2026", zh: "最后更新：2026 年 11 月 15 日", ja: "最終更新：2026年11月15日" };
+const UPDATED = { en: "Last updated: 18 November 2026", zh: "最后更新：2026 年 11 月 18 日", ja: "最終更新：2026年11月18日" };
 
 export const INFO_TITLES: Record<InfoSlug, Record<Lang, string>> = {
   about: { en: "About this site", zh: "关于本站", ja: "このサイトについて" },
@@ -126,65 +126,74 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
   privacy: {
     en: () => `
 <p class="muted">${UPDATED.en}</p>
-<p>In short: no accounts, no stored casts, and the question on your mind is never asked for or sent. The site uses Google Tag Manager to measure visits; see below.</p>
+<p>In short: no accounts, no stored casts, and the question on your mind is never asked for or sent. The site uses Google Tag Manager to measure visits and shows advertising served by Google AdSense; see below.</p>
 <h2>When you visit</h2>
-<p>The site runs on Cloudflare. Like any web server, it receives your IP address, browser type, the page address and the time of each request. Cloudflare uses these to deliver the page and protect against abuse, and the site’s request logs keep them for a few days for fixing errors. They are not used to identify you, build a profile or show ads. See ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare’s privacy policy")}.</p>
+<p>The site runs on Cloudflare. Like any web server, it receives your IP address, browser type, the page address and the time of each request. Cloudflare uses these to deliver the page and protect against abuse, and the site’s request logs keep them for a few days for fixing errors. They are not used to identify you or build a profile. See ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare’s privacy policy")}.</p>
 <h2>Analytics</h2>
-<p>The site loads ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")} (container <code>GTM-PK39VX5W</code>) to load ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}. It records the pages you view, the page address, an approximate location derived from your IP address, and browser and device information. Google may set cookies such as <code>_ga</code> to tell visits apart. The site shows no advertising and does not use this data for advertising profiles. See ${a("https://policies.google.com/privacy", "Google’s privacy policy")}.</p>
+<p>The site loads ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")} (container <code>GTM-PK39VX5W</code>) to load ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}. It records the pages you view, the page address, an approximate location derived from your IP address, and browser and device information. Google may set cookies such as <code>_ga</code> to tell visits apart. The site does not use this analytics data to build advertising profiles. See ${a("https://policies.google.com/privacy", "Google’s privacy policy")}.</p>
 <p>To opt out, block or delete these cookies in your browser settings, use a tracker blocker, or install ${a("https://tools.google.com/dlpage/gaoptout", "Google’s Analytics opt-out add-on")}.</p>
+<h2>Advertising</h2>
+<p>The site shows advertising served by ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")}. Google and third-party vendors use cookies to serve ads based on your prior visits to this and other websites; Google’s use of advertising cookies enables it and its partners to serve ads based on those visits. See ${a("https://policies.google.com/technologies/ads", "how Google uses data in advertising")}.</p>
+<p>You can opt out of personalised advertising in ${a("https://www.google.com/settings/ads", "Google Ads Settings")}, and opt out of some third-party vendors’ use of cookies at ${a("https://www.aboutads.info", "aboutads.info")}.</p>
 <h2>When you cast a hexagram</h2>
 <p>The numbers from your stalk-splitting are sent to the server, which works out the hexagram and sends it back. The cast is not saved. It appears in the request logs only as part of the page address, for the same few days.</p>
 <p>A “share” link carries the cast in the link itself. Anyone you give the link to can see that cast.</p>
 <h2>In your browser</h2>
-<p>The site remembers your language choice in your browser’s local storage, and briefly keeps an unfinished cast in session storage while you switch language. Neither leaves your device, and you can clear both in your browser settings. The site itself sets no cookies; Google Analytics may set the cookies described above.</p>
+<p>The site remembers your language choice in your browser’s local storage, and briefly keeps an unfinished cast in session storage while you switch language. Neither leaves your device, and you can clear both in your browser settings. The site itself sets no cookies; Google Analytics and AdSense may set the cookies described above.</p>
 <h2>API, MCP server and Grok Bot</h2>
 <p>Requests to the API and the MCP server are handled in the same way as page requests and are not stored. The ${a(BOT, "Grok Bot")} runs on xAI’s service, under ${a("https://x.ai/legal/privacy-policy", "xAI’s privacy policy")}.</p>
 <h2>Children</h2>
 <p>The site is not aimed at children and collects no personal information from anyone.</p>
 <h2>Changes</h2>
-<p>Visit analytics was added on 15 November 2026, and this page was updated before it went live. If the analytics in use changes or advertising is added, this page will be updated before that goes live.</p>
+<p>Visit analytics was added on 15 November 2026, and advertising (Google AdSense) on 18 November 2026; this page was updated before each went live. If the analytics or advertising in use changes, this page will be updated before that goes live.</p>
 <h2>Contact</h2>
 <p>See ${a("/en/contact", "Contact and support")}.</p>`,
     zh: () => `
 <p class="muted">${UPDATED.zh}</p>
-<p>简而言之：不设账号，不保存起卦结果，也从不索取或传送你心里所问之事。本站使用 Google Tag Manager 统计访问量，见下文。</p>
+<p>简而言之：不设账号，不保存起卦结果，也从不索取或传送你心里所问之事。本站使用 Google Tag Manager 统计访问量，并投放由 Google AdSense 提供的广告，见下文。</p>
 <h2>访问时</h2>
-<p>本站运行在 Cloudflare 上。和所有网站一样，服务器会收到每次请求的 IP 地址、浏览器类型、页面地址和时间。Cloudflare 用这些来送达页面、防范滥用；本站的请求日志会保留几天，用于排查错误。这些信息不用于识别你、建立画像或投放广告。详见 ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare 隐私政策")}。</p>
+<p>本站运行在 Cloudflare 上。和所有网站一样，服务器会收到每次请求的 IP 地址、浏览器类型、页面地址和时间。Cloudflare 用这些来送达页面、防范滥用；本站的请求日志会保留几天，用于排查错误。这些信息不用于识别你或建立画像。详见 ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare 隐私政策")}。</p>
 <h2>访问统计</h2>
-<p>本站通过 ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（容器 <code>GTM-PK39VX5W</code>）加载 ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}。它记录你浏览的页面、页面地址、由 IP 推算的大致地区，以及浏览器与设备信息。Google 可能写入 <code>_ga</code> 等 Cookie 以区分访问。本站不投放广告，也不将这些数据用于广告画像。详见 ${a("https://policies.google.com/privacy", "Google 隐私政策")}。</p>
+<p>本站通过 ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（容器 <code>GTM-PK39VX5W</code>）加载 ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}。它记录你浏览的页面、页面地址、由 IP 推算的大致地区，以及浏览器与设备信息。Google 可能写入 <code>_ga</code> 等 Cookie 以区分访问。本站不将这些统计数据用于广告画像。详见 ${a("https://policies.google.com/privacy", "Google 隐私政策")}。</p>
 <p>若不想被统计，可在浏览器设置中阻止或删除这些 Cookie、使用追踪拦截器，或安装 ${a("https://tools.google.com/dlpage/gaoptout", "Google Analytics 停用插件")}。</p>
+<h2>广告</h2>
+<p>本站投放由 ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")} 提供的广告。Google 及第三方供应商会使用 Cookie，根据你此前对本站及其他网站的访问来投放广告；Google 使用广告 Cookie 后，它及其合作伙伴便可依据你的访问记录投放广告。详见 ${a("https://policies.google.com/technologies/ads", "Google 如何将数据用于广告")}。</p>
+<p>你可以在 ${a("https://www.google.com/settings/ads", "Google 广告设置")} 中退出个性化广告，也可以在 ${a("https://www.aboutads.info", "aboutads.info")} 退出部分第三方供应商对 Cookie 的使用。</p>
 <h2>起卦时</h2>
 <p>你分筮得到的数字会发送到服务器，服务器算出卦象后返回。起卦结果不保存，只会作为页面地址的一部分出现在请求日志中，同样保留几天。</p>
 <p>“分享”链接把卦象写在链接里，拿到链接的人都能看到这一卦。</p>
 <h2>浏览器中</h2>
-<p>本站在浏览器的本地存储中记住你选的语言；切换语言时，会在会话存储中暂存未完成的起卦。两者都不离开你的设备，可在浏览器设置中清除。本站自身不设置 Cookie；Google Analytics 可能设置上文所述的 Cookie。</p>
+<p>本站在浏览器的本地存储中记住你选的语言；切换语言时，会在会话存储中暂存未完成的起卦。两者都不离开你的设备，可在浏览器设置中清除。本站自身不设置 Cookie；Google Analytics 与 AdSense 可能设置上文所述的 Cookie。</p>
 <h2>API、MCP 服务与 Grok Bot</h2>
 <p>对 API 与 MCP 服务的请求，处理方式与页面请求相同，不作保存。${a(BOT, "Grok Bot")} 运行在 xAI 的服务上，适用 ${a("https://x.ai/legal/privacy-policy", "xAI 隐私政策")}。</p>
 <h2>未成年人</h2>
 <p>本站不面向儿童，也不向任何人收集个人信息。</p>
 <h2>变更</h2>
-<p>本站于 2026 年 11 月 15 日加入访问统计，本页已在上线前更新。若所用统计方式改变或加入广告，本页会在其上线前更新。</p>
+<p>本站于 2026 年 11 月 15 日加入访问统计，2026 年 11 月 18 日加入广告（Google AdSense），本页均已在上线前更新。若所用统计或广告方式改变，本页会在其上线前更新。</p>
 <h2>联系</h2>
 <p>见${a("/zh/contact", "联系与支持")}。</p>`,
     ja: () => `
 <p class="muted">${UPDATED.ja}</p>
-<p>要点：アカウントなし、起卦の結果は保存しません。心の中で思っている問いは一切尋ねず、送信もしません。本サイトはアクセス解析に Google Tag Manager を使用しています（下記）。</p>
+<p>要点：アカウントなし、起卦の結果は保存しません。心の中で思っている問いは一切尋ねず、送信もしません。本サイトはアクセス解析に Google Tag Manager を使用し、Google AdSense の広告を表示しています（下記）。</p>
 <h2>閲覧時</h2>
-<p>本サイトは Cloudflare 上で動いています。一般的なウェブサーバーと同じく、リクエストごとに IP アドレス、ブラウザの種類、ページのアドレス、時刻を受け取ります。Cloudflare はこれをページの配信と不正利用の防止に使い、本サイトのリクエストログはエラー対応のため数日間保持します。個人の特定、プロファイル作成、広告には使いません。詳しくは ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare のプライバシーポリシー")} をご覧ください。</p>
+<p>本サイトは Cloudflare 上で動いています。一般的なウェブサーバーと同じく、リクエストごとに IP アドレス、ブラウザの種類、ページのアドレス、時刻を受け取ります。Cloudflare はこれをページの配信と不正利用の防止に使い、本サイトのリクエストログはエラー対応のため数日間保持します。個人の特定やプロファイル作成には使いません。詳しくは ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare のプライバシーポリシー")} をご覧ください。</p>
 <h2>アクセス解析</h2>
-<p>本サイトは ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（コンテナ <code>GTM-PK39VX5W</code>）で ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")} を読み込みます。閲覧したページ、ページのアドレス、IP アドレスから推定されるおおよその地域、ブラウザ・端末の情報が記録されます。Google は訪問を区別するため <code>_ga</code> などの Cookie を設定する場合があります。本サイトは広告を表示せず、広告目的のプロファイル作成にも利用しません。詳しくは ${a("https://policies.google.com/privacy", "Google のプライバシーポリシー")} をご覧ください。</p>
+<p>本サイトは ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（コンテナ <code>GTM-PK39VX5W</code>）で ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")} を読み込みます。閲覧したページ、ページのアドレス、IP アドレスから推定されるおおよその地域、ブラウザ・端末の情報が記録されます。Google は訪問を区別するため <code>_ga</code> などの Cookie を設定する場合があります。本サイトはこの解析データを広告目的のプロファイル作成には利用しません。詳しくは ${a("https://policies.google.com/privacy", "Google のプライバシーポリシー")} をご覧ください。</p>
 <p>解析を拒否するには、ブラウザの設定でこれらの Cookie をブロック・削除する、トラッキング防止機能を使う、または ${a("https://tools.google.com/dlpage/gaoptout", "Google Analytics オプトアウト アドオン")} をインストールしてください。</p>
+<h2>広告</h2>
+<p>本サイトは ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")} の広告を表示します。Google を含む第三者配信事業者は Cookie を使用して、本サイトや他のサイトへの過去のアクセス情報に基づいて広告を配信します。Google が広告 Cookie を使用することにより、Google とそのパートナーはあなたのアクセス情報に基づく広告を配信できます。詳しくは ${a("https://policies.google.com/technologies/ads", "広告における Google のデータ使用")} をご覧ください。</p>
+<p>パーソナライズ広告は ${a("https://www.google.com/settings/ads", "Google 広告設定")} で無効にできます。一部の第三者配信事業者による Cookie の使用は ${a("https://www.aboutads.info", "aboutads.info")} でオプトアウトできます。</p>
 <h2>起卦時</h2>
 <p>筮竹を分けて得た数はサーバーに送られ、サーバーが卦を算出して返します。起卦の結果は保存しません。ページのアドレスの一部としてリクエストログに残るだけで、保持期間は同じく数日です。</p>
 <p>「共有」リンクには卦がリンク自体に含まれます。リンクを受け取った人は誰でもその卦を見られます。</p>
 <h2>ブラウザ内</h2>
-<p>選んだ言語をブラウザのローカルストレージに記憶し、言語を切り替える間だけ途中の起卦をセッションストレージに一時保存します。どちらも端末の外には出ず、ブラウザの設定で消去できます。本サイト自体は Cookie を使いませんが、Google Analytics が上記の Cookie を設定する場合があります。</p>
+<p>選んだ言語をブラウザのローカルストレージに記憶し、言語を切り替える間だけ途中の起卦をセッションストレージに一時保存します。どちらも端末の外には出ず、ブラウザの設定で消去できます。本サイト自体は Cookie を使いませんが、Google Analytics と AdSense が上記の Cookie を設定する場合があります。</p>
 <h2>API・MCP サーバー・Grok Bot</h2>
 <p>API と MCP サーバーへのリクエストはページと同じ扱いで、保存しません。${a(BOT, "Grok Bot")} は xAI のサービス上で動き、${a("https://x.ai/legal/privacy-policy", "xAI のプライバシーポリシー")}が適用されます。</p>
 <h2>お子さまについて</h2>
 <p>本サイトは子ども向けではなく、どなたからも個人情報を収集しません。</p>
 <h2>変更</h2>
-<p>2026 年 11 月 15 日にアクセス解析を導入し、本ページを公開前に更新しました。利用する解析や広告に変更がある場合は、その前に本ページを更新します。</p>
+<p>2026 年 11 月 15 日にアクセス解析を、2026 年 11 月 18 日に広告（Google AdSense）を導入し、いずれも公開前に本ページを更新しました。利用する解析や広告に変更がある場合は、その前に本ページを更新します。</p>
 <h2>お問い合わせ</h2>
 <p>${a("/ja/contact", "お問い合わせ・サポート")}をご覧ください。</p>`,
   },
