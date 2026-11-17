@@ -136,6 +136,8 @@ export const GTM_HEAD = `<!-- Google Tag Manager -->
 
 export const GTM_NOSCRIPT = `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PK39VX5W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`;
 
+export const ADSENSE_HEAD = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2386768377934520" crossorigin="anonymous"></script>`;
+
 // --- shell ------------------------------------------------------------------
 
 type Meta = { lang: Lang; title: string; description: string; path: (l: Lang) => string; og?: string; jsonld?: unknown; origin: string; side?: SideCtx };
@@ -160,6 +162,7 @@ function shell(m: Meta, body: string) {
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${og}">
 <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css">
 ${GTM_HEAD}
+${ADSENSE_HEAD}
 ${m.jsonld ? `<script type="application/ld+json">${JSON.stringify(m.jsonld).replace(/</g, "\\u003c")}</script>` : ""}
 </head><body>
 ${GTM_NOSCRIPT}

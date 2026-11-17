@@ -1,7 +1,7 @@
 // Cloudflare Worker: pages for search engines, the casting app, the JSON API, the MCP server and static assets.
 import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
-import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W, GTM_HEAD, GTM_NOSCRIPT } from "./pages.ts";
+import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W, GTM_HEAD, GTM_NOSCRIPT, ADSENSE_HEAD } from "./pages.ts";
 import { leftSidebar, rightSidebar } from "./learn.ts";
 import { infoLinks } from "./info.ts";
 
@@ -88,6 +88,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
   })}</script>`;
   const head = [
     GTM_HEAD,
+    ADSENSE_HEAD,
     `<link rel="canonical" href="${origin}/${l}/">`,
     ...LANGS.map((x) => `<link rel="alternate" hreflang="${x === "zh" ? "zh-Hans" : x}" href="${origin}/${x}/">`),
     `<link rel="alternate" hreflang="x-default" href="${origin}/en/">`,
