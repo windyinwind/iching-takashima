@@ -3,7 +3,7 @@
 import { HEXAGRAMS, LEGGE, LINE_MEANING, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
-import { LEARN, type SideCtx, hexData, learnPage, learnPath, leftSidebar, rightSidebar } from "./learn.ts";
+import { LEARN, type SideCtx, hexData, learnPage, learnPath, learnTitle, leftSidebar, rightSidebar } from "./learn.ts";
 import { INFO, infoLinks, infoPage, infoPath } from "./info.ts";
 
 export type Lang = "en" | "zh" | "ja";
@@ -248,6 +248,71 @@ function leggeYong(n: number): string {
   return Array.isArray(v) ? v.join(" ") : (v ?? "");
 }
 
+// --- hexagram FAQ -------------------------------------------------------------
+// Questions and answers generated only from the site's own data: the judgment text, the two
+// trigrams and their images, and the moving-line reading order taught on the Learn pages.
+const FAQ_HEADING: Record<Lang, string> = { en: "Frequently asked questions", zh: "常见问题", ja: "よくある質問" };
+
+function hexFaq(lang: Lang, n: number): { q: string; aHtml: string; aText: string }[] {
+  const h = getByNumber(n);
+  const up = h.upper, lo = h.lower;
+  const ml = `<a href="${learnPath(lang, "moving-lines")}">${esc(learnTitle(lang, "moving-lines"))}</a>`;
+  const mlName = learnTitle(lang, "moving-lines");
+  if (lang === "en") {
+    const j = String(LEGGE[String(n)].judgment);
+    return [
+      { q: `What is I Ching hexagram ${n} (${T.hexagram_en[String(n)][0]}, ${h.name})?`,
+        aHtml: `${esc(hexTitle(lang, n))} is hexagram ${n} of the 64: ${esc(T.trigram_en[up][1])} over ${esc(T.trigram_en[lo][1])}. Its judgment, in James Legge’s translation, reads: “${esc(j)}”`,
+        aText: `${hexTitle(lang, n)} is hexagram ${n} of the 64: ${T.trigram_en[up][1]} over ${T.trigram_en[lo][1]}. Its judgment, in James Legge’s translation, reads: “${j}”` },
+      { q: `Which two trigrams form hexagram ${n}?`,
+        aHtml: `The upper (outer) trigram is ${esc(trigramTitle(lang, up))}, whose image is ${esc(T.trigram_en[up][1])}; the lower (inner) trigram is ${esc(trigramTitle(lang, lo))}, whose image is ${esc(T.trigram_en[lo][1])}.`,
+        aText: `The upper (outer) trigram is ${trigramTitle(lang, up)}, whose image is ${T.trigram_en[up][1]}; the lower (inner) trigram is ${trigramTitle(lang, lo)}, whose image is ${T.trigram_en[lo][1]}.` },
+      { q: `How is a moving line in hexagram ${n} read?`,
+        aHtml: `Read the moving line’s own text first — each line section on this page gives it — then look at the hexagram it changes into, linked under “${esc(W.en.changesTo)}”. See ${ml} for how moving lines and the changed hexagram work.`,
+        aText: `Read the moving line’s own text first — each line section on this page gives it — then look at the hexagram it changes into, linked under “${W.en.changesTo}”. See “${mlName}” for how moving lines and the changed hexagram work.` },
+    ];
+  }
+  if (lang === "ja") {
+    const j = String(TRAD[String(n)].judgment);
+    const name = T.hexagram_ja[String(n)][0];
+    return [
+      { q: `第${n}卦 ${name}とはどんな卦ですか？`,
+        aHtml: `${esc(hexTitle(lang, n))}は六十四卦の第${n}卦で、上卦は${esc(up)}、下卦は${esc(lo)}です。卦辞の原文は「${esc(j)}」。`,
+        aText: `${hexTitle(lang, n)}は六十四卦の第${n}卦で、上卦は${up}、下卦は${lo}です。卦辞の原文は「${j}」。` },
+      { q: `${name}を構成する二つの卦は何ですか？`,
+        aHtml: `上卦（外卦）は${esc(trigramTitle(lang, up))}で、象は${esc(T.trigram_ja[up][2])}。下卦（内卦）は${esc(trigramTitle(lang, lo))}で、象は${esc(T.trigram_ja[lo][2])}です。`,
+        aText: `上卦（外卦）は${trigramTitle(lang, up)}で、象は${T.trigram_ja[up][2]}。下卦（内卦）は${trigramTitle(lang, lo)}で、象は${T.trigram_ja[lo][2]}です。` },
+      { q: `${name}の動爻はどう読みますか？`,
+        aHtml: `まず本卦の動爻そのものの爻辞を読みます（このページの各爻の節にあります）。次に、その爻が変化してなる之卦を見ます（「${esc(W.ja.changesTo)}」のリンク先）。動爻と之卦の仕組みは${ml}を参照してください。`,
+        aText: `まず本卦の動爻そのものの爻辞を読みます（このページの各爻の節にあります）。次に、その爻が変化してなる之卦を見ます（「${W.ja.changesTo}」のリンク先）。動爻と之卦の仕組みは「${mlName}」を参照してください。` },
+    ];
+  }
+  const j = h.judgment;
+  return [
+    { q: `第 ${n} 卦 ${h.name} 是什么卦？`,
+      aHtml: `${esc(h.name)}是六十四卦之第 ${n} 卦，上${esc(up)}下${esc(lo)}。卦辞原文：「${esc(j)}」`,
+      aText: `${h.name}是六十四卦之第 ${n} 卦，上${up}下${lo}。卦辞原文：「${j}」` },
+    { q: `${h.name} 由哪两个三画卦组成？`,
+      aHtml: `上卦（外卦）为 ${esc(up)} ${SYMBOLS[up]}，象${esc(T.nature[up])}；下卦（内卦）为 ${esc(lo)} ${SYMBOLS[lo]}，象${esc(T.nature[lo])}。`,
+      aText: `上卦（外卦）为 ${up} ${SYMBOLS[up]}，象${T.nature[up]}；下卦（内卦）为 ${lo} ${SYMBOLS[lo]}，象${T.nature[lo]}。` },
+    { q: `${h.name} 的动爻怎么读？`,
+      aHtml: `先读本卦动爻本身的爻辞（见本页各爻小节），再看该爻变化后所成的之卦（见各爻下「${esc(W.zh.changesTo)}」的链接）。动爻与之卦的原理见${ml}。`,
+      aText: `先读本卦动爻本身的爻辞（见本页各爻小节），再看该爻变化后所成的之卦（见各爻下「${W.zh.changesTo}」的链接）。动爻与之卦的原理见《${mlName}》。` },
+  ];
+}
+
+function faqSection(lang: Lang, n: number) {
+  return `<section class="faq"><h2>${esc(FAQ_HEADING[lang])}</h2>${hexFaq(lang, n).map(({ q, aHtml }) => `<h3>${esc(q)}</h3><p>${aHtml}</p>`).join("")}</section>`;
+}
+
+/** EN only: one factual sentence-summary of the hexagram, templated from its name, trigrams and Legge's judgment. */
+function inBrief(n: number) {
+  const h = getByNumber(n);
+  const [name, meaningWord] = T.hexagram_en[String(n)];
+  const first = String(LEGGE[String(n)].judgment).split(/(?<=[.!?])\s+/)[0];
+  return `<p class="brief"><b>In brief:</b> ${esc(name)} — “${esc(meaningWord)}” — is ${esc(T.trigram_en[h.upper][1])} over ${esc(T.trigram_en[h.lower][1])}. Legge translates its judgment: “${esc(first)}”</p>`;
+}
+
 function hexagramPage(lang: Lang, n: number, origin: string) {
   const w = W[lang];
   const h = getByNumber(n);
@@ -262,23 +327,30 @@ function hexagramPage(lang: Lang, n: number, origin: string) {
 <div class="hero">${figure(lines, { label: hexTitle(lang, n) })}
 <div class="trigrams"><div><span class="muted small">${esc(w.upper)}</span>${tLink(lang, h.upper)}</div><div><span class="muted small">${esc(w.lower)}</span>${tLink(lang, h.lower)}</div></div></div>
 <h2>${esc(w.judgment)}</h2>${judgmentText(lang, n)}
+${lang === "en" ? inBrief(n) : ""}
 ${meaning ? `<p>${esc(meaning)}</p>` : ""}
 ${takashimaBlock(lang, n, "judgment")}
 ${adUnit(AD_SLOT_INARTICLE)}
 <h2>${esc(w.lines)}</h2>
 ${[5, 4, 3, 2, 1, 0].map((p) => lineSection(lang, n, p)).join("")}
 ${yong}
+${faqSection(lang, n)}
 <nav class="prevnext">${n > 1 ? `<a rel="prev" href="${hexPath(lang, n - 1)}">← ${esc(w.prev)}: ${esc(hexShort(lang, n - 1))}</a>` : "<span></span>"}${n < 64 ? `<a rel="next" href="${hexPath(lang, n + 1)}">${esc(w.next)}: ${esc(hexShort(lang, n + 1))} →</a>` : ""}</nav>
 ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
 </article>`;
   return shell({
     lang, origin, title: `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`, side: { n },
     jsonld: {
-      "@context": "https://schema.org", "@type": "Article", headline: hexTitle(lang, n), inLanguage: lang,
-      about: { "@type": "CreativeWork", name: "I Ching (Book of Changes)" }, isPartOf: { "@type": "WebSite", name: W.en.site, url: origin },
-      breadcrumb: { "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: w.all, item: `${origin}/${lang}/hexagrams` },
-        { "@type": "ListItem", position: 2, name: hexTitle(lang, n), item: origin + hexPath(lang, n) }] },
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Article", headline: hexTitle(lang, n), inLanguage: lang,
+          about: { "@type": "CreativeWork", name: "I Ching (Book of Changes)" }, isPartOf: { "@type": "WebSite", name: W.en.site, url: origin },
+          breadcrumb: { "@type": "BreadcrumbList", itemListElement: [
+            { "@type": "ListItem", position: 1, name: w.all, item: `${origin}/${lang}/hexagrams` },
+            { "@type": "ListItem", position: 2, name: hexTitle(lang, n), item: origin + hexPath(lang, n) }] } },
+        { "@type": "FAQPage", inLanguage: lang,
+          mainEntity: hexFaq(lang, n).map(({ q, aText }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: aText } })) },
+      ],
     },
   }, body);
 }
