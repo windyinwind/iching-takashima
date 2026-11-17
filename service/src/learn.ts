@@ -71,6 +71,8 @@ function body(lang: Lang, slug: string): string {
   const r = relations(MENG);
   const en = lang === "en", ja = lang === "ja";
   const t = (e: string, z: string, j: string) => (en ? e : ja ? j : z);
+  const qa = (q: string, a: string) => `<h3>${q}</h3>${p(a)}`;
+  const faq = (items: string[]) => [`<h2>${t("Frequently asked questions", "常见问题", "よくある質問")}</h2>`, ...items].join("");
   switch (slug) {
     case "reading-a-hexagram":
       return [
@@ -90,6 +92,10 @@ function body(lang: Lang, slug: string): string {
         p(t(`<b>What to read.</b> Each hexagram has a <i>judgment</i> for the whole and a text for each line. When you cast by Takashima’s method you get one hexagram and one moving line: read the judgment, then that line, then look at the hexagram it changes into. See ${L(lang, "moving-lines")}.`,
           `<b>读什么。</b>每卦有总说全卦的卦辞，与六条爻辞。按高岛略筮法起卦，得一卦一动爻：先读卦辞，再读那一爻的爻辞，再看它变成的之卦。见${L(lang, "moving-lines")}。`,
           `<b>何を読むか。</b>卦には全体を述べる卦辞と、六つの爻辞があります。高島の略筮法では一卦と一つの動爻が得られます。まず卦辞、次にその爻の爻辞、そして之卦を見ます。${L(lang, "moving-lines")}を参照。`)),
+        `<h2>${t("After a cast on this site", "在本站起卦之后", "このサイトで起卦したら")}</h2>`,
+        p(t(`Your cast links every part of the reading; read them in this order. <b>1. The judgment</b> — on your hexagram’s own page, for example ${H(lang, MENG)}. <b>2. The moving line</b> — it has a page of its own, for example <a href="${linePath(lang, MENG, 4)}">Meng, line 5</a>, where the line’s text, its structure and Takashima’s commentary sit together. <b>3. The changed hexagram</b> — for example ${H(lang, 59)}, read as background: where the situation is heading. The reasoning behind steps 2 and 3 is in ${L(lang, "moving-lines")}.`,
+          `起卦结果会把每一部分都链接好，按此顺序读。<b>一、卦辞</b>——在该卦自己的页面，如${H(lang, MENG)}。<b>二、动爻</b>——动爻有独立的页面，如<a href="${linePath(lang, MENG, 4)}">蒙卦六五</a>，爻辞、结构与高岛原注都在一处。<b>三、之卦</b>——如${H(lang, 59)}，作为事之所趋的参照。第二、三步的读法见${L(lang, "moving-lines")}。`,
+          `起卦の結果は各部分へリンクしています。この順序で読んでください。<b>1．卦辞</b>――その卦自身のページ、例えば${H(lang, MENG)}。<b>2．動爻</b>――動爻には専用のページがあり、例えば<a href="${linePath(lang, MENG, 4)}">蒙・六五</a>には爻辞・構造・高島の解釈がまとまっています。<b>3．之卦</b>――例えば${H(lang, 59)}。事の行く先を示す参考として読みます。2と3の読み方は${L(lang, "moving-lines")}にあります。`)),
       ].join("");
     case "lines-and-positions": {
       const five = linePath(lang, MENG, 4);
@@ -112,6 +118,14 @@ function body(lang: Lang, slug: string): string {
         p(t(`<b>Example.</b> In Meng the fifth line is yin in a yang place (out of place), but central, and it answers the yang second line. Takashima reads it as a young ruler who trusts a worthy minister: “The youthful and inexperienced: good fortune.” <a href="${five}">Read the line</a>.`,
           `<b>例。</b>蒙卦六五，阴居阳位不当位，然得中，下应九二之阳。高岛释为幼主信任贤臣：「童蒙，吉。」<a href="${five}">看这一爻</a>。`,
           `<b>例。</b>蒙の六五は陰が陽位にあって位を得ませんが、中を得て九二の陽と応じます。高島は若い君主が賢臣を信任する象と読みます：「童蒙、吉」。<a href="${five}">この爻を読む</a>。`)),
+        faq([
+          qa(t("Which places are yang places, and which are yin?", "哪些是阳位，哪些是阴位？", "陽位と陰位はどれですか？"),
+            t("Places 1, 3 and 5 are yang places; 2, 4 and 6 are yin places. A yang line in a yang place, or a yin line in a yin place, is in its proper place.", "初、三、五为阳位，二、四、上为阴位。阳爻居阳位、阴爻居阴位为当位。", "初・三・五が陽位、二・四・上が陰位です。陽爻が陽位、陰爻が陰位にあれば当位です。")),
+          qa(t("Which lines are central?", "哪两爻得中？", "中を得る爻はどれですか？"),
+            t("Lines 2 and 5, the middle of the lower and upper trigrams. The fifth is the ruler’s place and the second the minister’s.", "二、五两爻，居下卦与上卦之中。五为君位，二为臣位。", "二爻と五爻で、上下卦の真ん中です。五は君の位、二は臣の位です。")),
+          qa(t("Which lines correspond to each other?", "哪几对爻相应？", "応じる爻の組はどれですか？"),
+            t("Lines 1 and 4, 2 and 5, and 3 and 6 are partners. They answer each other when one is yin and the other yang; two lines of the same kind do not respond.", "初与四、二与五、三与上相应。一阴一阳为有应，同性则无应。", "初と四、二と五、三と上が対です。陰と陽なら応じ、同性なら応じません。")),
+        ]),
       ].join("");
     }
     case "the-eight-trigrams":
@@ -121,6 +135,14 @@ function body(lang: Lang, slug: string): string {
           "三本の爻で 2³＝8 つの小成卦ができ、六十四卦の材料になります。それぞれ自然の象・家族の象・先天数を持ち、高島の略筮法は先天数で筮竹の数を卦に直します。")),
         trigramTable(lang),
         p(t(`Two trigrams make a hexagram: <a href="/${lang}/hexagrams">all 64 in one table</a>.`, `两卦相重成六十四卦：<a href="/${lang}/hexagrams">六十四卦全表</a>。`, `二つを重ねて六十四卦：<a href="/${lang}/hexagrams">一覧表</a>。`)),
+        faq([
+          qa(t("Why are there exactly eight trigrams?", "为什么恰好是八卦？", "なぜ八卦は八つなのですか？"),
+            t("Each trigram is three lines, and each line is yin or yang: 2³ = 8.", "每卦三爻，每爻或阴或阳：2³ = 8。", "各卦は三本の爻で、各爻は陰か陽：2³＝8 です。")),
+          qa(t("What belongs to each trigram?", "每一卦都带哪些象？", "各卦には何が属しますか？"),
+            t("An image in nature, a place in the family and a number in the Earlier Heaven order — all three are in the table above.", "自然之象、家人之象与先天之数——三者都在上表中。", "自然の象、家族の象、先天数です。三つとも上の表にあります。")),
+          qa(t("How do trigrams make hexagrams?", "八卦怎样组成六十四卦？", "八卦はどう六十四卦になりますか？"),
+            t("Stack two trigrams, one as the lower (inner) and one as the upper (outer): the 8 × 8 combinations are the 64 hexagrams.", "两卦相重，一为下卦（内卦），一为上卦（外卦）：8 × 8 即成六十四卦。", "二つを重ね、一つを下卦（内卦）、一つを上卦（外卦）とすると、8×8 で六十四卦になります。")),
+        ]),
       ].join("");
     case "moving-lines":
       return [
@@ -132,6 +154,14 @@ function body(lang: Lang, slug: string): string {
         p(t("Takashima’s method always gives exactly one moving line. Read that line in the original hexagram first; the changed hexagram is background. The classical 18-change method can give anywhere from none to six.",
           "高岛略筮法恒得一动爻：先读本卦这一爻，之卦为参照。古法大衍十八变则动爻零至六个不定。",
           "高島の略筮法では動爻は必ず一つ。まず本卦のその爻を読み、之卦は参考にします。古法の十八変では動爻は〇〜六と一定しません。")),
+        faq([
+          qa(t("What makes a line “moving”?", "什么叫动爻？", "「動爻」とはどういう爻ですか？"),
+            t("Its number: 9 (old yang) and 6 (old yin) are moving, while 7 (young yang) and 8 (young yin) are still. An old line has reached its extreme and turns into its opposite.", "看其数：九为老阳、六为老阴，皆动；七为少阳、八为少阴，皆静。老则极，极则变为其反面。", "その数です。九（老陽）と六（老陰）が動、七（少陽）と八（少陰）は静。極まったものは反対に転じます。")),
+          qa(t("How is the changed hexagram formed?", "之卦如何得出？", "之卦はどうやって得ますか？"),
+            t("Turn every moving line into its opposite — yang becomes yin, yin becomes yang — and leave the still lines as they are. The result is the changed hexagram.", "把所有动爻阴阳互变，静爻不变，所得即之卦。", "動爻の陰陽をすべて反転させ、静の爻はそのままにします。その結果が之卦です。")),
+          qa(t("How many moving lines can a cast give?", "一次起卦能有几个动爻？", "一度の起卦で動爻はいくつ出ますか？"),
+            t("Takashima’s method always gives exactly one. The classical 18-change method can give anywhere from none to six.", "高岛略筮法恒得一动爻。古法大衍十八变则零至六个不定。", "高島の略筮法では必ず一つです。古法の十八変では〇〜六と一定しません。")),
+        ]),
       ].join("");
     case "takashima-method":
       return [
@@ -149,6 +179,24 @@ function body(lang: Lang, slug: string): string {
           "<b>高岛自己的占例。</b>左手 21、22、16 策：21 余 5 加 1 得 6 为坎；22 余 6 加 1 得 7 为艮；16 六六数之余 4 加 1 得 5。下坎上艮为蒙，动五爻，之涣。即高岛为友人福原实赴任冲绳县知事所占。",
           "<b>高島自身の占例。</b>左手 21・22・16 本：21 は余り 5 で＋1＝6、坎。22 は余り 6 で＋1＝7、艮。16 は六本ずつで余り 4、＋1＝5。下坎上艮で蒙、五爻動いて渙に之く。友人福原実の沖縄県知事赴任に際しての占いです。")),
         row(cap(fig(MENG, [4]), H(lang, MENG)), `<span class="arrow">→</span>`, cap(fig(59, [4]), H(lang, 59))),
+        `<h2>${t("Three ways to cast, compared", "三种起卦法比较", "三つの起卦法の比較")}</h2>`,
+        p(t("All three methods answer with one of the 64 hexagrams; they differ in how much work they take and in how the moving lines fall out.",
+          "三种方法都得六十四卦之一，区别在手续繁简与动爻的出法。",
+          "三つの方法はいずれも六十四卦の一つを返します。違いは手続きの手間と、動爻の出方です。")),
+        `<table class="tbl"><thead><tr><th>${t("Method", "方法", "方法")}</th><th>${t("Operations", "操作次数", "操作回数")}</th><th>${t("Moving lines", "动爻", "動爻")}</th><th>${t("Used for", "适用", "用途")}</th></tr></thead><tbody>
+<tr><td>${t("Three coins", "三钱法", "三銭法")}</td><td>${t("6 tosses, one for each line", "掷六次，每次成一爻", "六回投げ、一回ごとに一爻")}</td><td>${t("none to six", "零至六个", "〇〜六")}</td><td>${t("the common quick method today", "今日最常用的简便法", "今日最も一般的な簡便法")}</td></tr>
+<tr><td>${t("Classical yarrow stalks (Dayan)", "大衍筮法（古法蓍筮）", "大衍筮法（古法の筮竹）")}</td><td>${t("18 changes, three for each line", "十八变，每爻三变", "十八変、一爻ごとに三変")}</td><td>${t("none to six", "零至六个", "〇〜六")}</td><td>${t("the full classical rite", "完整的古典仪式", "古典の正式な手順")}</td></tr>
+<tr><td>${t("Takashima’s three changes", "高岛略筮（三变）", "高島の略筮（三変）")}</td><td>${t("3 operations: two give the trigrams, one the moving line", "三变：两变定上下卦，一变定动爻", "三変：二変で上下卦、一変で動爻")}</td><td>${t("exactly one", "恒为一爻", "必ず一つ")}</td><td>${t("everyday use, as Takashima recommends", "日常起卦，高岛所荐", "日常の起卦。高島の勧め")}</td></tr>
+</tbody></table>`,
+        p(t("Takashima keeps the yarrow stalks and the Earlier Heaven numbers of the classical rite, but compresses its 18 changes into 3. The shortcut has a fixed price: where the classical method lets the number of moving lines fall where it may — none to six — his method always gives exactly one, and the reading turns on that single line.",
+          "高岛保留了古法的蓍草与先天数，只把十八变压缩为三变。简化的代价是固定的：古法动爻之数听其自然，零至六个不定；略筮则恒得一动爻，全卦的读法系于这一爻。",
+          "高島は古法の筮竹と先天数を保ちながら、十八変を三変に圧縮しました。その代償は固定です。古法では動爻の数は〇〜六と自然に委ねられますが、略筮では必ず一つとなり、読みはその一爻に懸かります。")),
+        faq([
+          qa(t("Why are 49 stalks used, out of 50?", "五十策为何只用四十九？", "五十本のうち四十九本を使うのはなぜですか？"),
+            t("One stalk is set aside and not used; it stands for the Great Ultimate. The remaining 49 are the ones divided and counted.", "去一策不用，象太极；所分所数的，是余下的四十九策。", "一本を除いて使わず、太極を象ります。分けて数えるのは残りの四十九本です。")),
+          qa(t("Why count off in eights, and then in sixes?", "为何先八八数、后六六数？", "なぜ八本ずつ、次に六本ずつ数えるのですか？"),
+            t("Eights because there are eight trigrams: the count gives an Earlier Heaven number from 1 to 8, which names a trigram. Sixes because a hexagram has six lines: the count gives 1 to 6, which names the moving line.", "八八数，因卦有八：得数一至八，按先天数定一卦。六六数，因一卦六爻：得数一至六，定动爻。", "八本ずつは、卦が八つあるからです。得られた一〜八の数が先天数として一卦を定めます。六本ずつは、一卦が六爻だからで、一〜六が動爻を定めます。")),
+        ]),
         p(`<a class="btn" href="/${lang}/">${esc(t("Split the stalks yourself", "亲手分筮竹起一卦", "自分で筮竹を分ける"))}</a>`),
       ].join("");
     case "related-hexagrams":
@@ -164,6 +212,14 @@ function body(lang: Lang, slug: string): string {
         p(t("The traditional order of the 64 hexagrams pairs each one with its inverse; the eight that look the same upside down are paired with their opposite instead. Every hexagram page lists its relatives in the left column.",
           "通行卦序两两相配：多以综卦为对，上下颠倒仍不变的八卦则以错卦为对。每一卦页面的左栏都列出其亲缘卦。",
           "伝統的な卦の順序は二つずつ対になっており、多くは綜卦同士、上下逆さでも同じ八卦は錯卦同士です。各卦のページの左欄に親戚の卦を示しています。")),
+        faq([
+          qa(t("What is the inverse hexagram?", "什么是综卦？", "綜卦とは何ですか？"),
+            t("The same hexagram turned upside down: its six lines read in reverse order.", "把卦上下颠倒：六爻次序整个反过来。", "卦を上下逆さにしたもの。六爻の順序が逆になります。")),
+          qa(t("What is the nuclear hexagram?", "什么是互卦？", "互卦とは何ですか？"),
+            t("The hexagram hidden inside: lines 2–4 taken as the lower trigram and lines 3–5 as the upper.", "卦中所藏之卦：取二至四爻为下卦、三至五爻为上卦。", "卦の中に隠れた卦です。二〜四爻を下卦、三〜五爻を上卦とします。")),
+          qa(t("How are the 64 hexagrams paired in the traditional order?", "通行卦序如何配对？", "伝統的な卦の順序ではどう対になりますか？"),
+            t("Each hexagram is paired with its inverse; the eight that look the same upside down are paired with their opposite instead.", "多以综卦为对；上下颠倒仍不变的八卦，则以错卦为对。", "多くは綜卦同士が対で、上下逆さでも同じ八卦は錯卦同士が対になります。")),
+        ]),
       ].join("");
   }
   return "";
