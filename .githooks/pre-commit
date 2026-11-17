@@ -1,0 +1,5 @@
+#!/bin/sh
+# Pre-commit: remove obsolete data (caches, .DS_Store, tmp-* scratch dirs).
+# Only untracked/ignored files are touched, so staged content is never affected.
+root="$(git rev-parse --show-toplevel)" || exit 1
+python3 "$root/scripts/cleanup.py"
