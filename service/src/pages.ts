@@ -141,8 +141,8 @@ export const ADSENSE_HEAD = `<script async src="https://pagead2.googlesyndicatio
 // --- advertising ------------------------------------------------------------
 // Manual AdSense units. The slot IDs are created in the AdSense dashboard; until they are
 // filled in, adUnit() renders nothing and every page stays exactly as it is today.
-export const AD_SLOT_INARTICLE = "";
-export const AD_SLOT_DISPLAY = "";
+export const AD_SLOT_INARTICLE = "4165708695";
+export const AD_SLOT_DISPLAY = "1241383649";
 
 export function adUnit(slot: string, format = "auto") {
   if (!slot) return "";
@@ -335,6 +335,7 @@ ${adUnit(AD_SLOT_INARTICLE)}
 ${[5, 4, 3, 2, 1, 0].map((p) => lineSection(lang, n, p)).join("")}
 ${yong}
 ${faqSection(lang, n)}
+${adUnit(AD_SLOT_DISPLAY)}
 <nav class="prevnext">${n > 1 ? `<a rel="prev" href="${hexPath(lang, n - 1)}">← ${esc(w.prev)}: ${esc(hexShort(lang, n - 1))}</a>` : "<span></span>"}${n < 64 ? `<a rel="next" href="${hexPath(lang, n + 1)}">${esc(w.next)}: ${esc(hexShort(lang, n + 1))} →</a>` : ""}</nav>
 ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
 </article>`;
