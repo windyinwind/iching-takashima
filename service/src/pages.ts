@@ -138,6 +138,17 @@ export const GTM_NOSCRIPT = `<noscript><iframe src="https://www.googletagmanager
 
 export const ADSENSE_HEAD = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2386768377934520" crossorigin="anonymous"></script>`;
 
+// --- advertising ------------------------------------------------------------
+// Manual AdSense units. The slot IDs are created in the AdSense dashboard; until they are
+// filled in, adUnit() renders nothing and every page stays exactly as it is today.
+export const AD_SLOT_INARTICLE = "";
+export const AD_SLOT_DISPLAY = "";
+
+export function adUnit(slot: string, format = "auto") {
+  if (!slot) return "";
+  return `<div class="adbox"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2386768377934520" data-ad-slot="${esc(slot)}" data-ad-format="${esc(format)}" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>`;
+}
+
 // --- shell ------------------------------------------------------------------
 
 type Meta = { lang: Lang; title: string; description: string; path: (l: Lang) => string; og?: string; jsonld?: unknown; origin: string; side?: SideCtx };
@@ -253,6 +264,7 @@ function hexagramPage(lang: Lang, n: number, origin: string) {
 <h2>${esc(w.judgment)}</h2>${judgmentText(lang, n)}
 ${meaning ? `<p>${esc(meaning)}</p>` : ""}
 ${takashimaBlock(lang, n, "judgment")}
+${adUnit(AD_SLOT_INARTICLE)}
 <h2>${esc(w.lines)}</h2>
 ${[5, 4, 3, 2, 1, 0].map((p) => lineSection(lang, n, p)).join("")}
 ${yong}
@@ -277,6 +289,7 @@ export function linePage(lang: Lang, n: number, p: number, origin: string) {
   const title = `${hexTitle(lang, n)} · ${w.line(p)} ${label}`;
   const body = `<article><p class="kicker"><a href="${hexPath(lang, n)}">${esc(hexTitle(lang, n))}</a></p>
 ${lineSection(lang, n, p, { heading: "h1", link: false })}
+${adUnit(AD_SLOT_INARTICLE)}
 <nav class="prevnext">${p > 0 ? `<a rel="prev" href="${linePath(lang, n, p - 1)}">← ${esc(w.line(p - 1))}</a>` : `<a href="${hexPath(lang, n)}">← ${esc(hexShort(lang, n))}</a>`}${p < 5 ? `<a rel="next" href="${linePath(lang, n, p + 1)}">${esc(w.line(p + 1))} →</a>` : `<a href="${hexPath(lang, n)}">${esc(hexShort(lang, n))} →</a>`}</nav></article>`;
   const desc = lang === "en"
     ? `${title}: “${LEGGE[String(n)].lines[p]}” Drawn and explained, with the hexagram it changes to and Takashima's commentary.`
@@ -351,7 +364,7 @@ export function route(path: string, origin: string): string | null {
   const lm = /^\/(en|zh|ja)\/learn\/([a-z-]+)$/.exec(path);
   if (lm) {
     const lang = lm[1] as Lang, pg = learnPage(lang, lm[2]);
-    return pg && shell({ lang, origin, title: `${pg.title} · ${W[lang].site}`, description: pg.description, path: (l) => learnPath(l, lm[2]), side: { learn: lm[2] } }, pg.body);
+    return pg && shell({ lang, origin, title: `${pg.title} · ${W[lang].site}`, description: pg.description, path: (l) => learnPath(l, lm[2]), side: { learn: lm[2] } }, pg.body.replace('<nav class="prevnext">', `${adUnit(AD_SLOT_INARTICLE)}<nav class="prevnext">`));
   }
   const im = /^\/(en|zh|ja)\/([a-z]+)$/.exec(path);
   const ip = im && infoPage(im[1] as Lang, im[2], origin);
