@@ -343,7 +343,13 @@ export function sitemap(origin: string) {
       for (let p = 0; p < 6; p++) urls.push(linePath(l, n, p));
     }
   }
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${origin}${u}</loc></url>`).join("\n")}\n</urlset>\n`;
+  const altFor = (u: string) => {
+    const rest = u.replace(/^\/(en|zh|ja)\//, "");
+    const href = (l: Lang) => `${origin}/${l}/${rest}`;
+    return LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l === "zh" ? "zh-Hans" : l}" href="${href(l)}"/>`).join("") +
+      `<xhtml:link rel="alternate" hreflang="x-default" href="${href("en")}"/>`;
+  };
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map((u) => `<url><loc>${origin}${u}</loc>${altFor(u)}<lastmod>2026-11-18</lastmod></url>`).join("\n")}\n</urlset>\n`;
 }
 
 /** Page URLs for a cast, so the website, the API and the MCP server can link every part of a reading. */
