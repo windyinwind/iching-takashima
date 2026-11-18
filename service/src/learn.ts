@@ -52,6 +52,8 @@ const H = (lang: Lang, n: number) => `<a href="${hexPath(lang, n)}">${esc(hexTit
 const fig = (n: number, hl: number[] = []) => figure(linesOf(getByNumber(n)), { hl, label: "" });
 const row = (...items: string[]) => `<div class="demo">${items.join("")}</div>`;
 const cap = (figHtml: string, text: string) => `<figure>${figHtml}<figcaption>${text}</figcaption></figure>`;
+// Deep link into the casting flow: /#cast opens the method step, /#cast=stalks preselects a method.
+const castLink = (lang: Lang, text: string, hash = "#cast") => `<p><a class="btn" href="/${lang}/${hash}">${esc(text)}</a></p>`;
 
 function labelledFigure(lang: Lang) {
   const l = linesOf(getByNumber(MENG));
@@ -101,6 +103,7 @@ function body(lang: Lang, slug: string): string {
         p(t(`Your cast links every part of the reading; read them in this order. <b>1. The judgment</b> — on your hexagram’s own page, for example ${H(lang, MENG)}. <b>2. The moving line</b> — it has a page of its own, for example <a href="${linePath(lang, MENG, 4)}">Meng, line 5</a>, where the line’s text, its structure and Takashima’s commentary sit together. <b>3. The changed hexagram</b> — for example ${H(lang, 59)}, read as background: where the situation is heading. The reasoning behind steps 2 and 3 is in ${L(lang, "moving-lines")}.`,
           `起卦结果会把每一部分都链接好，按此顺序读。<b>一、卦辞</b>——在该卦自己的页面，如${H(lang, MENG)}。<b>二、动爻</b>——动爻有独立的页面，如<a href="${linePath(lang, MENG, 4)}">蒙卦六五</a>，爻辞、结构与高岛原注都在一处。<b>三、之卦</b>——如${H(lang, 59)}，作为事之所趋的参照。第二、三步的读法见${L(lang, "moving-lines")}。`,
           `起卦の結果は各部分へリンクしています。この順序で読んでください。<b>1．卦辞</b>――その卦自身のページ、例えば${H(lang, MENG)}。<b>2．動爻</b>――動爻には専用のページがあり、例えば<a href="${linePath(lang, MENG, 4)}">蒙・六五</a>には爻辞・構造・高島の解釈がまとまっています。<b>3．之卦</b>――例えば${H(lang, 59)}。事の行く先を示す参考として読みます。2と3の読み方は${L(lang, "moving-lines")}にあります。`)),
+        castLink(lang, t("Cast one now and read it in this order", "现在起一卦，按这个顺序读", "今すぐ一卦立て、この順序で読みましょう")),
       ].join("");
     case "lines-and-positions": {
       const five = linePath(lang, MENG, 4);
@@ -131,6 +134,7 @@ function body(lang: Lang, slug: string): string {
           qa(t("Which lines correspond to each other?", "哪几对爻相应？", "応じる爻の組はどれですか？"),
             t("Lines 1 and 4, 2 and 5, and 3 and 6 are partners. They answer each other when one is yin and the other yang; two lines of the same kind do not respond.", "初与四、二与五、三与上相应。一阴一阳为有应，同性则无应。", "初と四、二と五、三と上が対です。陰と陽なら応じ、同性なら応じません。")),
         ]),
+        castLink(lang, t("Cast one and see which place your moving line takes", "起一卦，看你的动爻居于何位", "一卦立てて、動爻がどの位にあるか見てみましょう")),
       ].join("");
     }
     case "the-eight-trigrams":
@@ -148,6 +152,7 @@ function body(lang: Lang, slug: string): string {
           qa(t("How do trigrams make hexagrams?", "八卦怎样组成六十四卦？", "八卦はどう六十四卦になりますか？"),
             t("Stack two trigrams, one as the lower (inner) and one as the upper (outer): the 8 × 8 combinations are the 64 hexagrams.", "两卦相重，一为下卦（内卦），一为上卦（外卦）：8 × 8 即成六十四卦。", "二つを重ね、一つを下卦（内卦）、一つを上卦（外卦）とすると、8×8 で六十四卦になります。")),
         ]),
+        castLink(lang, t("Split the stalks and watch two trigrams meet", "分筮竹起一卦，看两个三画卦如何相遇", "筮竹を分けて、二つの小成卦が重なるのを見てみましょう"), "#cast=stalks"),
       ].join("");
     case "moving-lines":
       return [
@@ -167,6 +172,7 @@ function body(lang: Lang, slug: string): string {
           qa(t("How many moving lines can a cast give?", "一次起卦能有几个动爻？", "一度の起卦で動爻はいくつ出ますか？"),
             t("Takashima’s method always gives exactly one. The classical 18-change method can give anywhere from none to six.", "高岛略筮法恒得一动爻。古法大衍十八变则零至六个不定。", "高島の略筮法では必ず一つです。古法の十八変では〇〜六と一定しません。")),
         ]),
+        castLink(lang, t("Cast one and read only your moving line", "起一卦，只读你动的那一爻", "一卦立てて、動いた一爻だけを読みましょう")),
       ].join("");
     case "takashima-method":
       return [
@@ -214,7 +220,7 @@ function body(lang: Lang, slug: string): string {
           qa(t("Why count off in eights, and then in sixes?", "为何先八八数、后六六数？", "なぜ八本ずつ、次に六本ずつ数えるのですか？"),
             t("Eights because there are eight trigrams: the count gives an Earlier Heaven number from 1 to 8, which names a trigram. Sixes because a hexagram has six lines: the count gives 1 to 6, which names the moving line.", "八八数，因卦有八：得数一至八，按先天数定一卦。六六数，因一卦六爻：得数一至六，定动爻。", "八本ずつは、卦が八つあるからです。得られた一〜八の数が先天数として一卦を定めます。六本ずつは、一卦が六爻だからで、一〜六が動爻を定めます。")),
         ]),
-        p(`<a class="btn" href="/${lang}/">${esc(t("Split the stalks yourself", "亲手分筮竹起一卦", "自分で筮竹を分ける"))}</a>`),
+        p(`<a class="btn" href="/${lang}/#cast=stalks">${esc(t("Split the stalks yourself", "亲手分筮竹起一卦", "自分で筮竹を分ける"))}</a>`),
       ].join("");
     case "worked-example":
       return workedExample(lang);
@@ -241,6 +247,7 @@ function body(lang: Lang, slug: string): string {
           qa(t("How are the 64 hexagrams paired in the traditional order?", "通行卦序如何配对？", "伝統的な卦の順序ではどう対になりますか？"),
             t("Each hexagram is paired with its inverse; the eight that look the same upside down are paired with their opposite instead.", "多以综卦为对；上下颠倒仍不变的八卦，则以错卦为对。", "多くは綜卦同士が対で、上下逆さでも同じ八卦は錯卦同士が対になります。")),
         ]),
+        castLink(lang, t("Cast one and find its kin in the left column", "起一卦，在左栏找它的亲缘卦", "一卦立てて、左欄の関連卦を探してみましょう")),
       ].join("");
   }
   return "";
@@ -368,7 +375,7 @@ function workedExample(lang: Lang): string {
     p(t("That is the whole method. The summary is in " + L(lang, "takashima-method") + "; when you are ready, do a real cast and let the site count alongside you:",
       "方法全体就是这些。提要见" + L(lang, "takashima-method") + "；准备好了，就亲手起一卦，让本站陪你一起数：",
       "方法の全体はこれだけです。要約は" + L(lang, "takashima-method") + "にあります。準備ができたら、実際に起卦して、サイトに一緒に数えさせてください：")),
-    p(`<a class="btn" href="/${lang}/">${esc(t("Cast a hexagram now", "现在起一卦", "今すぐ卦を立てる"))}</a>`),
+    p(`<a class="btn" href="/${lang}/#cast">${esc(t("Cast a hexagram now", "现在起一卦", "今すぐ卦を立てる"))}</a>`),
   ].join("");
 }
 
@@ -466,6 +473,7 @@ function howToReadTheText(lang: Lang): string {
       qa(t("Where can I see a line’s picture explained in more depth?", "想更深入看一爻的象，去哪里看？", "一爻の絵をもっと深く知りたいときは？"),
         t("Each line page pairs the text with a structural reading (取象) and a practical one (义理), drawn from the classic commentaries; they are shown in Chinese.", "每一爻的页面都把爻辞与取象（爻位与卦体结构）、义理（修身处事之法）并列，依公版注疏撰述，中文显示。", "各爻のページでは、爻辞と取象（爻位と卦の構造）、義理（修身処世の道）が並べて示されます（中国語）。")),
     ]),
+    castLink(lang, t("Cast one and read it with the four steps", "起一卦，用四步法读它", "一卦立てて、四歩で読んでみましょう")),
   ].join("");
 }
 

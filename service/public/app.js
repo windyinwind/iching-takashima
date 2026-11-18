@@ -540,4 +540,12 @@ $("[data-panel=numbers]").addEventListener("submit", (ev) => {
     $("#prepare").hidden = true;
     await runCast(shared, { animate: false });
   }
+  // Deep link from the Learn pages: /#cast skips the guide, /#cast=stalks|phrase|numbers|time also preselects the method.
+  const deep = /^#(?:cast|method)(?:=([a-z]+))?$/.exec(location.hash);
+  if (deep && !Object.keys(shared).length) {
+    $("#prepare").hidden = true;
+    show("#method");
+    if (deep[1] && ["stalks", "phrase", "numbers", "time"].includes(deep[1])) selectTab(deep[1]);
+    $("#method").scrollIntoView();
+  }
 })();
