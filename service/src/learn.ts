@@ -30,7 +30,7 @@ const mini = (lang: Lang, n: number, hl: number[] = []) =>
 
 // --- learn pages -------------------------------------------------------------
 
-export const LEARN = ["reading-a-hexagram", "lines-and-positions", "the-eight-trigrams", "moving-lines", "takashima-method", "worked-example", "related-hexagrams"];
+export const LEARN = ["reading-a-hexagram", "lines-and-positions", "the-eight-trigrams", "moving-lines", "takashima-method", "worked-example", "how-to-read-the-text", "related-hexagrams"];
 export const learnPath = (lang: Lang, slug: string) => `/${lang}/learn/${slug}`;
 
 const TITLES: Record<string, Record<Lang, string>> = {
@@ -40,6 +40,7 @@ const TITLES: Record<string, Record<Lang, string>> = {
   "moving-lines": { en: "Moving lines and the changed hexagram", zh: "动爻与之卦", ja: "動爻と之卦" },
   "takashima-method": { en: "Takashima’s three-change method", zh: "高岛的略筮法", ja: "高島の略筮法" },
   "worked-example": { en: "A complete cast, stalk by stalk", zh: "一次完整的起卦：逐步拆解", ja: "起卦の完全な実例：一歩ずつ" },
+  "how-to-read-the-text": { en: "How to read the text", zh: "经文怎么读", ja: "経文の読み方" },
   "related-hexagrams": { en: "Related hexagrams: inverse, opposite, nuclear", zh: "综卦、错卦、互卦", ja: "綜卦・錯卦・互卦" },
 };
 export const learnTitle = (lang: Lang, slug: string) => TITLES[slug][lang];
@@ -217,6 +218,8 @@ function body(lang: Lang, slug: string): string {
       ].join("");
     case "worked-example":
       return workedExample(lang);
+    case "how-to-read-the-text":
+      return howToReadTheText(lang);
     case "related-hexagrams":
       return [
         p(t("Hexagrams come in families. Three relations are used constantly in commentary, Takashima’s included:", "卦与卦之间有亲缘。注家（包括高岛）常用三种关系：", "卦と卦には親戚関係があります。注釈（高島も含む）でよく使われる三つ：")),
@@ -300,9 +303,9 @@ function workedExample(lang: Lang): string {
     changeTable(16, 6, t("Line 5 moves", "第五爻动", "五爻が動く")),
     row(cap(fig(MENG, [4]), H(lang, MENG)), `<span class="arrow">→</span>`, cap(fig(59, [4]), H(lang, 59))),
     `<h2>${t("Reading this cast, in order", "按顺序读这一卦", "この卦を順序どおりに読む")}</h2>`,
-    p(t("Takashima’s method gives exactly one moving line, and the reading has a fixed order: <b>the judgment, then the moving line, then the changed hexagram</b> as background. Here is that order applied to the cast you have just built.",
-      "高岛略筮恒得一动爻，读法次序固定：<b>先卦辞，次动爻，再以之卦为参照</b>。下面就把这个次序用到刚刚起成的这一卦上。",
-      "高島の略筮では動爻は必ず一つで、読む順序は決まっています：<b>まず卦辞、次に動爻、最後に之卦を参考として</b>。その順序を、今立てたばかりのこの卦に当てはめます。")),
+    p(t("Takashima’s method gives exactly one moving line, and the reading has a fixed order: <b>the judgment, then the moving line, then the changed hexagram</b> as background. Here is that order applied to the cast you have just built. How to read each piece of text — its picture, its verdict words, how they connect — is its own lesson: " + L(lang, "how-to-read-the-text") + ".",
+      "高岛略筮恒得一动爻，读法次序固定：<b>先卦辞，次动爻，再以之卦为参照</b>。下面就把这个次序用到刚刚起成的这一卦上。经文本身怎么读——象、断语、二者的连接——另有一课：" + L(lang, "how-to-read-the-text") + "。",
+      "高島の略筮では動爻は必ず一つで、読む順序は決まっています：<b>まず卦辞、次に動爻、最後に之卦を参考として</b>。その順序を、今立てたばかりのこの卦に当てはめます。経文そのものの読み方――絵・断語・そのつながり――は別の課です：" + L(lang, "how-to-read-the-text") + "。")),
     `<h3>${t("Step 1 — the judgment of Meng", "第一步——蒙卦卦辞", "第一歩――蒙の卦辞")}</h3>`,
     `<blockquote class="text">${jq(4)}</blockquote>`,
     p(t("The judgment speaks for the whole situation: a beginner who comes sincerely to be taught will be taught; one who keeps asking again and again will not. Keep that sentence in mind — it returns in the common mistakes below.",
@@ -369,6 +372,103 @@ function workedExample(lang: Lang): string {
   ].join("");
 }
 
+function howToReadTheText(lang: Lang): string {
+  const en = lang === "en", ja = lang === "ja";
+  const t = (e: string, z: string, j: string) => (en ? e : ja ? j : z);
+  const qa = (q: string, a: string) => `<h3>${q}</h3>${p(a)}`;
+  const faq = (items: string[]) => [`<h2>${t("Frequently asked questions", "常见问题", "よくある質問")}</h2>`, ...items].join("");
+  // The classic text quoted from the site's own data: Legge for English, the traditional-character text for Japanese, the received text for Chinese.
+  const lineText = (n: number, idx: number, name: string) =>
+    en ? esc(LEGGE[String(n)].lines[idx]) : ja ? `${name}。${esc(TRAD[String(n)].lines[idx])}` : `${name}：${esc(getByNumber(n).lines[idx])}`;
+  const verdictTable = () => {
+    const rows: [string, string, string][] = en ? [
+      ["亨", "smooth going", "the way is open; things flow without obstruction"],
+      ["吉", "auspicious", "favorable to the matter at hand"],
+      ["元吉", "greatly auspicious", "the strongest favorable verdict"],
+      ["利贞", "favorable to persevere", "holding steady is the advantage"],
+      ["咎", "blame", "fault attaches; 无咎, “no blame”, often follows a warning and marks the way out"],
+      ["厉", "danger", "precarious but avoidable; often paired with its way out: 厉，无咎 — “danger, yet no blame”"],
+      ["悔", "remorse", "distress from a misstep; 悔亡, “the remorse fades”, when you correct course"],
+      ["吝", "regret", "embarrassment from hesitation; lighter than 厉"],
+      ["凶", "inauspicious", "unfavorable to the matter at hand"],
+    ] : ja ? [
+      ["亨（こう）", "とおる", "道が開け、物事が阻害なく運ぶ"],
+      ["吉（きち）", "よし", "その事にとって順"],
+      ["元吉（げんきち）", "大いに吉", "最も強い吉の断語"],
+      ["利貞（りてい）", "守るに利あり", "保つことが利になる"],
+      ["咎（とが）", "とが", "无咎（とがなし）は戒めののちに置かれ、出路を示すことが多い"],
+      ["厲（あやうし）", "あやうし", "危ないが避けられる。厲，无咎（危ういがとがなし）と併記されやすい"],
+      ["悔（くい）", "くい", "誤りからの懊悩。悔亡（くいが消える）は軌道修正のとき"],
+      ["吝（りん）", "こん", "ためらいからの恥。厲より軽い"],
+      ["凶（きょう）", "わるし", "その事にとって逆"],
+    ] : [
+      ["亨", "通畅", "道路敞开，事情没有阻隔地运行"],
+      ["吉", "有利", "对所占之事为顺"],
+      ["元吉", "大吉", "吉中最强的断语"],
+      ["利贞", "宜于守正", "持守不躁为利"],
+      ["咎", "灾殃", "「无咎」即无灾；经文常先加戒惧，再以无咎示出路"],
+      ["厉", "危险", "形势不稳但可避免；常与出路连言：厉，无咎"],
+      ["悔", "追悔", "一步走错带来的憾恨；改辙则「悔亡」"],
+      ["吝", "羞吝", "迟疑不决所致的难堪，较厉为轻"],
+      ["凶", "不利", "对所占之事为逆"],
+    ];
+    const head = { en: ["Word", "Meaning", "Note"], zh: ["断语", "义", "注"], ja: ["断語", "意味", "注"] }[lang];
+    return `<table class="tbl"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("")}</tbody></table>`;
+  };
+  const top = linePath(lang, MENG, 5), tai3 = linePath(lang, 11, 2);
+  return [
+    p(t("The classic text is terse. Each judgment and each line text does two things: it <b>pictures</b> a situation, and it <b>names its quality</b>. The picture is built from the hexagram’s own structure — which trigrams meet, where the line stands, what it touches. Read the picture first; the verdict hangs on it.",
+      "经文极简。卦辞与爻辞各做两件事：<b>画出</b>一个处境，<b>说出</b>它的性质。画面取自卦体本身——哪两个卦相遇、此爻居于何位、与谁相接。先读象；断语挂在象上。",
+      "経文はきわめて簡潔です。卦辞も爻辞も、二つのことをします：<b>状況を絵として描き</b>、<b>その性質を名指す</b>こと。絵の材料は卦そのもの――どの卦と卦が重なり、爻がどこに立ち、何に接しているか。まず絵を読みます。断語はその絵に掛かっています。")),
+    p(t("The quality is named in a small verdict vocabulary, met over and over across all 64 hexagrams. Learn it once and every page of this site opens:",
+      "性质由一套很小的断语词汇说出，六十四卦中反复出现。记一次，本站每一页都为你打开：",
+      "性質は小さな断語の語彙で名指されます。六十四卦を通じて繰り返し現れる語ばかりです。一度覚えれば、このサイトのどのページも開けます。")),
+    verdictTable(),
+    `<h2>${t("How to read a line, in four steps", "读一条爻辞，四步", "一爻を四歩で読む")}</h2>`,
+    `<ol class="points">`,
+    `<li>${t("<b>Find the picture.</b> Ask what scene the text paints. The scene comes from the hexagram’s structure: the two trigrams meeting, the place the line stands in, the lines it touches.",
+      "<b>找象。</b>先问这句经文画的是什么场景。场景取自卦体：哪两个卦相遇，此爻居什么位，与谁相接。",
+      "<b>絵を見つける。</b>まず、この経文はどんな場面を描いているのかを問います。場面の材料は卦そのもの：どの卦と卦が重なり、この爻がどこに立ち、何に接しているか。")}</li>`,
+    `<li>${t("<b>Find the verdict.</b> Which word from the table appears — and is it plain (吉) or qualified (厉，无咎 — “danger, yet no blame”)? A qualified verdict carries its way out inside it; the condition is the teaching.",
+      "<b>找断。</b>看上表哪个词出现了；是直言（吉），还是带条件的断（厉，无咎——虽危而可免）？带条件的断语把出路写进了断语里，条件本身就是教导。",
+      "<b>断語を見つける。</b>上の表のどの語が出たか。断定（吉）か、条件つき（厲，无咎――危ういがとがなし）か。条件つきの断語は出路を断語の中に含んでおり、その条件こそが教えです。")}</li>`,
+    `<li>${t("<b>Connect picture and verdict.</b> Ask why this verdict follows this picture. That connection is the point of the line; once you can say it in one sentence, the line is yours.",
+      "<b>连起来。</b>问为什么此象得此断。一问一答之间就是这一爻的道理；能用一句话说明白，这一爻就是你的了。",
+      "<b>絵と断語をつなぐ。</b>なぜこの絵にこの断語が続くのかを問います。このつながりこそがその爻の言葉です。一文で言い表せたら、その爻はあなたのものです。")}</li>`,
+    `<li>${t("<b>Set it in place.</b> Re-read the line against its position and partners — proper place, centrality, correspondence, as in " + L(lang, "lines-and-positions") + " — and against the judgment of the whole hexagram.",
+      "<b>放回爻位。</b>结合爻位与应与再读一遍——当位、得中、有应，见" + L(lang, "lines-and-positions") + "——并结合全卦卦辞。",
+      "<b>位に置いて読む。</b>爻の位置と応爻に照らして――当位・中・応については" + L(lang, "lines-and-positions") + "参照――そして卦全体の卦辞に照らして、もう一度読みます。")}</li></ol>`,
+    `<h2>${t("Two lines read through", "两条爻辞的完整走查", "二つの爻を読み通す")}</h2>`,
+    `<h3>${t("Example 1 — Meng, top line (上九)", "例一——蒙卦上九", "例一――蒙・上九")}</h3>`,
+    row(cap(fig(MENG, [5]), `<a href="${top}">${esc(t("Meng, top line (上九)", "蒙卦上九", "蒙・上九"))}</a>`)),
+    `<blockquote class="text">${lineText(MENG, 5, t("Shang Jiu", "上九", "上九"))}</blockquote>`,
+    p(t(`Step 1, the picture: 击蒙 — force applied to ignorance, striking the uncomprehending. Step 2, the verdicts: two of them, split by posture — 为寇, acting as a bandit, is <i>unfavorable</i>; 御寇, warding off bandits, is <i>favorable</i>. Step 3, the connection: the same force helps or harms depending on whether it imposes or protects — only defensive force clears ignorance; forcing people just breeds resistance. Step 4, in place: the top line is the extreme, where instruction has run its course, which is why the line’s only remaining tool is force, and why its verdict is conditional. One sentence, and the line is yours: <b>when words no longer reach someone, protect rather than compel</b>.`,
+      `第一步找象：击蒙——以力开蒙，击其不悟。第二步找断：断语有二，随姿态而分——为寇（强加于人）则<i>不利</i>，御寇（护其所守）则<i>利</i>。第三步连起来：同样是用力，强加则激其抗拒，护持则开其蒙昧；唯防御之力能启蒙。第四步放回爻位：上爻居极，教化至此已穷，故此爻所用的只剩力，而其断语是有条件的。一句话：<b>言语达不到时，护而不迫</b>。`,
+      `第一歩、絵：擊蒙――蒙昧に力を加えること。第二歩、断語：二つあり、姿勢で分かれます――為寇（寇のように攻める）は<i>不利</i>、禦寇（寇を防ぐ）は<i>利</i>。第三歩、つなぐ：同じ力でも、押しつければ抵抗を生み、守れば蒙を開く。防衛の力だけが蒙昧を開きます。第四歩、位：上爻は極みで、教化はここまで。だから残る道具は力だけとなり、断語は条件つきです。一文にすれば：<b>言葉が届かないときは、迫るより守る</b>。`)),
+    `<h3>${t("Example 2 — Tai, line 3 (九三)", "例二——泰卦九三", "例二――泰・九三")}</h3>`,
+    row(cap(fig(11, [2]), `<a href="${tai3}">${esc(t("Tai, line 3 (九三)", "泰卦九三", "泰・九三"))}</a>`)),
+    `<blockquote class="text">${lineText(11, 2, t("Jiu San", "九三", "九三"))}</blockquote>`,
+    p(t(`Step 1, the picture: 无平不陂，无往不复 — no plain without a slope, no going without returning: the turning point where prosperity begins to lean. Step 2, the verdict: 无咎, no blame — but conditional: 艰贞, persevering through hardship. Step 3, the connection: because decline begins here, the care taken now is what turns the change from harm into no blame. Step 4, in place: line 3 is the top of the inner trigram, the hinge where heaven below hands over to earth above. One sentence: <b>when things are at their best, the slope is already in sight</b>.`,
+      `第一步找象：无平不陂，无往不复——平地无不有坡，去者无不有回：泰极将倾的转折之点。第二步找断：无咎，然有条件——艰贞，于艰难中守正。第三步连起来：衰自此时始，此刻的戒惧艰辛，正是把转变化成无咎的东西。第四步放回爻位：九三是内卦之顶，下乾上坤交割的枢纽。一句话：<b>最好之时，坡已在望</b>。`,
+      `第一歩、絵：无平不陂，无往不復――平らかな地に坂のないことはなく、去るものに帰らないことはない。繁栄が傾き始める転換点です。第二歩、断語：无咎――とがなし。ただし条件つき：艱貞、苦難の中で貞を守ること。第三歩、つなぐ：衰えはここから始まる。今このときの戒めこそが、変化を災いではなく无咎へと変えるのです。第四歩、位：九三は内卦の頂で、下の乾から上の坤へ引き渡される継ぎ目。一文にすれば：<b>最も良いときこそ、坂はすでに見えている</b>。`)),
+    `<h2>${t("The verdict is not a prophecy", "断语不是预言", "断語は予言ではありません")}</h2>`,
+    p(t("吉 and 凶 in the text name the quality of the situation the picture depicts — they are a quotation from the classic, not a judgment about your matter. What the situation means for you is yours to draw. This site keeps the same line everywhere: it returns text and structure, and makes no judgment of its own.",
+      "经文中的吉、凶说的是象所画处境的性质——那是《周易》原文的引用，不是对你所占之事的判断。处境于你意味着什么，由你自己领会。本站处处守住这条界线：只给经文与结构，不作任何断言。",
+      "経文の吉・凶は、絵が描く状況の性質を述べるもの――『周易』の引用であって、あなたの占った事柄への判断ではありません。その状況があなたにとって何を意味するかは、自分で読み取るものです。このサイトもすべてのページでこの線を守ります：経文と構造を示すだけで、自らは判断しません。")),
+    p(t("<b>Where this fits after a cast.</b> Read the judgment, then your moving line, then the changed hexagram as background — the full walk-through is in " + L(lang, "worked-example") + ". When Takashima’s commentary quotes 彖曰 or 象曰, it is citing the Tradition texts — the oldest layer of explanation attached to the classic. Read them the way you read any commentary: as someone else’s careful reading of the same picture and the same verdict.",
+      "<b>起卦之后在哪一步用。</b>先读卦辞，再读动爻，之卦为参照——完整走查见" + L(lang, "worked-example") + "。高岛注中引「彖曰」「象曰」处，是引《彖传》《象传》——附于经文的最古解释层。读它们如读一切注疏：那是别人对同一幅象、同一条断语的细心解读。",
+      "<b>起卦ののち、どこで使うか。</b>卦辞、動爻、之卦の順に読みます――通しの実例は" + L(lang, "worked-example") + "にあります。高島の注に「彖曰」「象曰」とあれば、『彖伝』『象伝』――経文に付された最古の解釈層――を引いています。それらは、同じ絵と同じ断語を他の人が丁寧に読んだものとして読んでください。")),
+    faq([
+      qa(t("Do the verdict words predict my future?", "断语是在预测我的未来吗？", "断語は私の将来を予言していますか？"),
+        t("No. They name the quality of the situation depicted. The site’s standing rule holds here too: no predictions of its own, conclusions left to the reader.", "不是。断语描述的是象所画处境的性质。本站的立站之规在这里同样适用：不作任何预测，结论留给读者。", "いいえ。断語は描かれた状況の性質を述べるものです。このサイトの規則はここでも変わりません：予測をせず、結論を読む人に委ねます。")),
+      qa(t("Why do some verdicts come with conditions?", "为什么有的断语带条件？", "なぜ断語に条件が付くのですか？"),
+        t("Because the classic teaches rather than decrees: 厉，无咎 — danger, yet no blame — means the way out is written into the line itself. The condition is the instruction.", "因为经文在教导，不在判决：厉，无咎——虽危可免——出路就写在爻辞里，条件本身就是教导。", "経文は断罪ではなく教えだからです。厲，无咎――危ういがとがなし――のように、出路は爻辞の中に書き込まれています。その条件こそが教えです。")),
+      qa(t("Where can I see a line’s picture explained in more depth?", "想更深入看一爻的象，去哪里看？", "一爻の絵をもっと深く知りたいときは？"),
+        t("Each line page pairs the text with a structural reading (取象) and a practical one (义理), drawn from the classic commentaries; they are shown in Chinese.", "每一爻的页面都把爻辞与取象（爻位与卦体结构）、义理（修身处事之法）并列，依公版注疏撰述，中文显示。", "各爻のページでは、爻辞と取象（爻位と卦の構造）、義理（修身処世の道）が並べて示されます（中国語）。")),
+    ]),
+  ].join("");
+}
+
 const DESC: Record<string, Record<Lang, string>> = {
 
   "reading-a-hexagram": { en: "Yin and yang lines, reading from the bottom, the two trigrams, line names like 六五, and what to read after a cast.", zh: "阴爻阳爻、自下而上、上下卦、爻题与起卦后读什么。", ja: "陰爻・陽爻、下から読むこと、上下卦、爻の名前、起卦後に読むもの。" },
@@ -377,6 +477,7 @@ const DESC: Record<string, Record<Lang, string>> = {
   "moving-lines": { en: "Old and young lines, moving lines, and how the changed hexagram is formed.", zh: "老少之爻、动爻与之卦如何得出。", ja: "老陰老陽、動爻と之卦の求め方。" },
   "takashima-method": { en: "Takashima Donshō’s abbreviated yarrow-stalk method, step by step, with his own worked example.", zh: "高岛呑象三变略筮法，逐步讲解，附其本人占例。", ja: "高島呑象の三変略筮法を一歩ずつ、本人の占例つきで。" },
   "worked-example": { en: "Takashima’s own cast (21, 22, 16 → Meng, line 5 → Huan) taken apart stalk by stalk, read in full, with practice casts and the common mistakes.", zh: "把高岛本人占例（21、22、16 → 蒙卦五爻动 → 之涣）一策一策拆开，完整读一遍，附练习与常见错误。", ja: "高島自身の占例（21・22・16 → 蒙・五爻動 → 之卦は渙）を筮竹一本ずつ分解し、読み通す。練習とよくある間違いつき。" },
+  "how-to-read-the-text": { en: "The verdict vocabulary of the Zhouyi — 吉, 凶, 厉, 悔, 吝, 咎 — and a four-step way to read any judgment or line text, with two lines read through.", zh: "《周易》断语词汇——吉、凶、厉、悔、吝、咎——与四步读法，附两条爻辞的完整走查。", ja: "『周易』の断語の語彙――吉・凶・厉・悔・吝・咎――と四歩の読み方。二つの爻を読み通します。" },
   "related-hexagrams": { en: "Inverse, opposite and nuclear hexagrams, with examples.", zh: "综卦、错卦、互卦及其示例。", ja: "綜卦・錯卦・互卦とその例。" },
 };
 
