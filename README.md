@@ -1,5 +1,7 @@
 # I Ching · Takashima Method · 周易·高岛略筮
 
+[![tests](https://github.com/windyinwind/iching-takashima/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/windyinwind/iching-takashima/actions/workflows/tests.yml)
+
 A Grok Bot / Grok Build plugin for structured lookup of the *Zhouyi* (I Ching): the 64 hexagram judgments, the 384 line texts, and a line-by-line interpretation of each, with public-domain sources cited.
 
 ![logo](assets/logo.png)
