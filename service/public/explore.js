@@ -1,3 +1,14 @@
+// Analytics: events go to the GTM dataLayer; GTM forwards them to GA4.
+function track(event, params = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...params });
+}
+
+document.addEventListener("click", (ev) => {
+  const a = ev.target.closest('a[href*="x.ai/bot"]');
+  if (a) track("grok_bot_click", { lang: document.documentElement.lang, page: location.pathname });
+});
+
 // Sidebar interactions: the hexagram builder and highlighting in the 64-hexagram table.
 const data = JSON.parse(document.getElementById("hexdata")?.textContent || "[]");
 const byLines = new Map(data.map(([n, lines, title, path]) => [lines, { n, title, path }]));
@@ -32,6 +43,8 @@ if (builder) {
     const i = Number(b.dataset.i);
     lines = lines.slice(0, i) + (lines[i] === "1" ? "0" : "1") + lines.slice(i + 1);
     paint(lines);
+    const hit = byLines.get(lines);
+    if (hit) track("hexagram_built", { hexagram_number: hit.n, lang: document.documentElement.lang });
   });
   // the casting app announces each new hexagram
   window.addEventListener("iching:cast", (ev) => {

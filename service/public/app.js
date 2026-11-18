@@ -106,6 +106,12 @@ const UI = {
 };
 
 const $ = (s) => document.querySelector(s);
+
+// Analytics: events go to the GTM dataLayer; GTM forwards them to GA4.
+function track(event, params = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...params });
+}
 const $$ = (s) => [...document.querySelectorAll(s)];
 const el = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -348,6 +354,14 @@ async function runCast(next, { animate = true } = {}) {
   }
   input = next;
   chain = c;
+  track("cast_completed", {
+    lang,
+    cast_method: "piles" in next ? "stalks" : "seed" in next ? "phrase" : "numbers" in next ? "numbers" : "at" in next ? "now" : "shared",
+    hexagram_number: c.hexagram.number,
+    hexagram_title: c.titles?.hexagram || "",
+    moving_line: c.moving_position == null ? 0 : c.moving_position + 1,
+    changed_hexagram_number: c.changed ? c.changed.number : 0,
+  });
   const u = new URL(location.href);
   for (const k of INPUT_KEYS) u.searchParams.delete(k);
   for (const [k, v] of Object.entries(input)) u.searchParams.set(k, v);
@@ -458,12 +472,16 @@ document.addEventListener("click", async (ev) => {
   const a = ev.target.closest("[data-action]");
   const l = ev.target.closest(".langs [data-lang]");
   const tab = ev.target.closest("[data-tab]");
-  if (l) return setLang(l.dataset.lang);
+  if (l) {
+    track("language_switched", { from_lang: lang, to_lang: l.dataset.lang });
+    return setLang(l.dataset.lang);
+  }
   if (tab) return selectTab(tab.dataset.tab);
   if (ev.target.closest("#stalks")) return stalks.divide();
   if (!a) return;
   const act = a.dataset.action;
   if (act === "ready") {
+    track("cast_started", { lang });
     $("#prepare").hidden = true;
     show("#method");
     selectTab("stalks");
