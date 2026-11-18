@@ -164,6 +164,16 @@ form .btn { margin-top: 6px; }
 .zhan dd { margin: 2px 0 0; }
 details { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
 summary { cursor: pointer; font: 600 15px var(--sans); }
+/* Takashima's readings by topic are what readers most often look for after a
+   cast: seal-red pill so the block is found at a glance, and open by default. */
+#tk-zhan-wrap summary {
+  display: inline-block;
+  background: var(--seal);
+  color: var(--seal-ink);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+#tk-zhan-wrap[open] summary { margin-bottom: 8px; }
 .case { margin: 12px 0 0; padding: 10px 14px; border-left: 3px solid var(--line); }
 .case b { display: block; font-family: var(--sans); font-size: .85rem; color: var(--muted); }
 

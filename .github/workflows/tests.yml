@@ -21,4 +21,5 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Service tests (npm test)
         working-directory: service
-        run: npm test
+        # learn.ts imports src/generated/excerpts.json, which is generated, not committed.
+        run: npm run build && npm test
