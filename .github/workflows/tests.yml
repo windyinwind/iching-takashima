@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      # Root Python engine suite (zy.py), which npm test's parity check also relies on.
+      - name: Python engine tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Service tests (npm test)
+        working-directory: service
+        run: npm test
