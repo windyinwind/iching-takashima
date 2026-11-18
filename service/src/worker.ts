@@ -1,6 +1,7 @@
 // Cloudflare Worker: pages for search engines, the casting app, the JSON API, the MCP server and static assets.
 import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
+import { retryIn, apiTooMany, mcpTooMany } from "./guardrail.ts";
 import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W, GTM_HEAD, GTM_NOSCRIPT, ADSENSE_HEAD } from "./pages.ts";
 import { leftSidebar, rightSidebar } from "./learn.ts";
 import { infoLinks } from "./info.ts";
@@ -122,7 +123,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
 const escapeHtml = (s: unknown) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 export default {
-  async fetch(req: Request, env: Env): Promise<Response> {
+  async fetch(req: Request, env: Env, ctx: { waitUntil: (p: Promise<unknown>) => void }): Promise<Response> {
     const url = new URL(req.url);
     const origin = url.origin;
     const path = url.pathname;
@@ -131,16 +132,37 @@ export default {
     if (home && url.hostname !== home && url.hostname !== "localhost" && req.method === "GET" && path !== "/mcp" && !path.startsWith("/api/"))
       return Response.redirect(`https://${home}${path}${url.search}`, 301);
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: { ...CORS, "Access-Control-Allow-Methods": "GET, POST, OPTIONS" } });
+    const ip = req.headers.get("CF-Connecting-IP") ?? "unknown";
     if (path === "/mcp") {
+      if (req.method === "POST") {
+        const retry = retryIn(ip);
+        if (retry !== null) return mcpTooMany(retry, CORS);
+      }
       const res = await mcp(req, origin);
       for (const [k, v] of Object.entries(CORS)) res.headers.set(k, v);
       return res;
     }
     if (path.startsWith("/api/")) {
       if (req.method !== "GET") return json({ error: "Use GET." }, 405);
+      const retry = retryIn(ip);
+      if (retry !== null) return apiTooMany(lang(url.searchParams), retry, CORS);
+      // The API is deterministic, so responses are cacheable: repeated identical
+      // requests (scrapers included) are absorbed by the edge cache instead of the engine.
+      const cache = caches.default;
+      const key = new Request(url.toString());
+      const hit = await cache.match(key);
+      if (hit) {
+        const h = new Response(hit.body, hit);
+        h.headers.set("X-Cache", "HIT");
+        return h;
+      }
       try {
         const out = api(path, url.searchParams, origin);
-        return out === undefined ? json({ error: "Not found." }, 404) : json(out);
+        if (out === undefined) return json({ error: "Not found." }, 404);
+        const res = json(out);
+        ctx.waitUntil(cache.put(key, res.clone()));
+        res.headers.set("X-Cache", "MISS");
+        return res;
       } catch (e) {
         if (e instanceof engine.EngineError) return json({ error: e.message }, 400);
         throw e;
