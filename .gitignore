@@ -4,3 +4,5 @@ __pycache__/
 translations/
 minitool/node_modules/
 minitool/dist/
+
+minitool/preview-*.png
