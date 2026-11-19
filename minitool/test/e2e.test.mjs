@@ -107,7 +107,7 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   assert.equal($(w, "rv-hex").querySelectorAll(".hexrow").length, 6, "本卦应画出 6 行横条");
   assert.ok($(w, "rv-hex").querySelector(".hexrow.yang"), "阳爻应有 yang 类（满宽）");
   assert.match($(w, "rv-to-reading").textContent, /解读（结果）/, "按钮应明确写'结果'");
-  assert.match(text(w, "rd-summary"), /这卦讲：/, "结果速览应给出白话大意");
+  assert.match(text(w, "rd-summary"), /这卦在讲什么/, "结果速览应给出白话大意");
   assert.match(text(w, "rd-summary"), /怎么读：/, "结果速览应告诉用户先读哪");
   assert.match(text(w, "rd-summary"), /旅卦/, "结果速览应一眼看到卦名");
   assert.ok($(w, "rd-summary").querySelector(".sum-head b"), "卦名应是大字醒目呈现");
@@ -117,6 +117,16 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   assert.equal(vbox.open, true, "断语小抄应默认展开，不必点一下才看到");
   assert.match(vbox.textContent, /亨|吉|利贞/, "小抄应解释本卦经文里出现的断语字");
   assert.match(vbox.textContent, /不是对你的判断/, "小抄须带合规声明");
+  // 结果的"意思"最醒目：编号 1/2 的白话分区
+  const means = $(w, "rd-summary").querySelectorAll(".sum-meaning");
+  assert.equal(means.length, 2, "应有两条编号白话（这卦 / 这一爻）");
+  assert.match(means[0].textContent, /这卦在讲什么/);
+  assert.match(means[1].textContent, /这一爻在讲什么/);
+  // 出处类折叠收起，想看才点开
+  const sources = w.document.querySelectorAll(".source-box");
+  assert.ok(sources.length >= 2, "出处和高岛节录应折叠");
+  for (const s of sources) assert.equal(s.open, false, "出处默认收起");
+  assert.match(w.document.body.textContent, /高岛原书 · 义理节录/);
   // 卦辞、爻辞下方都直接跟白话解释
   assert.match(w.document.body.textContent, /白话：.*旅居之理|白话：下艮上离/, "卦辞下方应有白话");
   assert.match(text(w, "rd-meaning"), /白话·取象/);
@@ -126,7 +136,7 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   assert.ok(text(w, "rd-line").includes(rn.line.text), "动爻爻辞与 zy.py 一致");
   assert.match(text(w, "rd-meaning"), /取象/);
   assert.match(text(w, "rd-meaning"), /义理/);
-  assert.match(text(w, "rd-tk"), /高岛原书 · 节录/);
+  assert.match(text(w, "rd-tk"), /高岛原书 · 义理节录/);
   assert.match(text(w, "rd-disclaimer"), /不含吉凶预测/);
   w.close();
 });

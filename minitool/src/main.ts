@@ -237,9 +237,9 @@ function renderReading(c: any): void {
   parts.push(`<div class="sum-head"><span class="sum-no">第 ${esc(String(h.number))} 卦</span><b>${esc(h.name)}卦</b></div>`);
   parts.push(`<div class="sum-meta">上${esc(h.upper)}（${esc(r.upper_nature?.nature ?? "")}）· 下${esc(h.lower)}（${esc(r.lower_nature?.nature ?? "")}）` +
     (pos ? `　·　动爻 <b>${esc(pos)}</b>　·　之卦 ${esc(String(c.changed?.number ?? "—"))} ${esc(c.changed?.name ?? "")}` : "") + `</div>`);
-  // 白话大意：卦义（引擎原文）+ 动爻取象，直接照录，不新编
-  if (typeof r.meaning === "string" && r.meaning) parts.push(`<p class="sum-line"><span>这卦讲：</span>${esc(r.meaning)}</p>`);
-  if (li?.meaning?.xiang) parts.push(`<p class="sum-line"><span>这一爻：</span>${esc(li.meaning.xiang)}</p>`);
+  // 白话大意：结果的意思放最显眼处，编号对应读法次序
+  if (typeof r.meaning === "string" && r.meaning) parts.push(`<div class="sum-meaning"><span class="sum-step">1</span><div><b>这卦在讲什么</b><p>${esc(r.meaning)}</p></div></div>`);
+  if (li?.meaning?.xiang) parts.push(`<div class="sum-meaning"><span class="sum-step">2</span><div><b>动的这一爻在讲什么</b><p>${esc(li.meaning.xiang)}</p></div></div>`);
   parts.push(`<p class="sum-how">怎么读：先看卦辞（全卦处境）→ 再看动爻（你这一爻）→ 之卦作参照。看完往下翻，原文按此顺序排好。</p>`);
   // 断语小抄：只列本卦经文里真正出现的字，大白话解释（不按事项下断）
   const vw = verdictsIn(r.judgment + " " + (li?.text ?? ""));
@@ -269,11 +269,13 @@ function renderReading(c: any): void {
     const m = li.meaning ?? ({} as any);
     $("rd-meaning").innerHTML =
       `<p class="plain"><b>白话·取象：</b>${esc(m.xiang ?? "")}</p><p class="plain"><b>白话·义理：</b>${esc(m.li ?? "")}</p>` +
-      (m.sources?.length ? `<p class="small muted">出处：${esc(m.sources.map((s: any) => s.work).join("、"))}</p>` : "");
-    // 高岛节录（与网站卦页同源切片）
+      (m.sources?.length ? `<details class="source-box"><summary>出处（点开看注疏来源）</summary><p class="small muted">${esc(m.sources.map((s: any) => s.work).join("、"))}</p></details>` : "");
+    // 高岛原书节录：出处引文，折叠收起，想深入者自点
     const tk = excerptFor(h.number, li.label);
     $("rd-tk").innerHTML = tk
-      ? `<h3>高岛原书 · 节录</h3>` + tk.map((p: string) => `<p lang="zh">${esc(p)}</p>`).join("")
+      ? `<details class="source-box"><summary>高岛原书 · 义理节录（王治本汉译，点开看原文）</summary>` +
+        tk.map((p: string) => `<p lang="zh">${esc(p)}</p>`).join("") +
+        `<p class="small muted">引自《増補高島易断》，为原书对这一爻的阐发，不是给你的判断。</p></details>`
       : "";
     // 之卦：changed 对象只有 linesBottomUp，没有 glyphs —— 由爻线现算
     const ch = c.changed;
@@ -283,6 +285,8 @@ function renderReading(c: any): void {
     $("rd-changed").innerHTML = ch
       ? `<p class="arrow">→ 之卦</p><div class="changed"><div class="hexdraw">${hexBars(chGlyphs)}</div><p>${ch.number} · ${ch.name}卦（事之所趋，轻轻读）</p>` +
         blockquote(engine.read(ch.number, null, "zh").judgment) +
+        (typeof engine.read(ch.number, null, "zh").meaning === "string"
+          ? `<p class="plain"><b>白话：</b>${esc(engine.read(ch.number, null, "zh").meaning)}</p>` : "") +
         `</div>`
       : "";
     wrap.hidden = false;
