@@ -1,0 +1,14 @@
+{
+  "name": "zhouyi-minitool",
+  "private": true,
+  "type": "module",
+  "description": "小红书小工具：周易·高岛略筮（中文精简版）。构建产物为 dist/，打包成离线 zip。",
+  "scripts": {
+    "build": "node build-data.mjs && node build.mjs",
+    "test": "node --test --test-force-exit test/"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "jsdom": "^25.0.1"
+  }
+}

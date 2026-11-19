@@ -23,3 +23,6 @@ jobs:
         working-directory: service
         # learn.ts imports src/generated/excerpts.json, which is generated, not committed.
         run: npm run build && npm test
+      - name: Mini-tool e2e tests (jsdom, zy.py parity)
+        working-directory: minitool
+        run: npm test

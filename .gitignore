@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 .DS_Store
 translations/
+minitool/node_modules/
+minitool/dist/

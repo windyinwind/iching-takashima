@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>周易·高岛略筮</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+  </style>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <img class="brand" src="./assets/icon.png" alt="" />
+      <h1>周易 · 高岛略筮</h1>
+      <p class="sub">按高島呑象略筮法起卦，每一变步步可见 · 不作预测，结论在你</p>
+    </header>
+
+    <!-- ① 准备（静态首屏：JS 加载前即可见） -->
+    <section id="v-prepare" class="view card" aria-label="起卦之前">
+      <p class="kicker">① 起卦之前</p>
+      <h2>一事一占，默念于心</h2>
+      <p class="lead">本卦按高島呑象的略筮法起卦。高島认为，卦准不准不在手续繁简，而在起卦那一刻心是否至诚专一。请照下面几步准备好，再报数。</p>
+      <ol class="steps">
+        <li><strong>一事一占</strong>先想定一件事。一次只占一件，不要几件事混在一起。</li>
+        <li><strong>默念于心</strong>把这件事在心里默念清楚，不必告诉我。所占何事只在你自己心里。<blockquote class="quote">将其欲占问之事项默念于心<cite>《増補高島易断》筮儀</cite></blockquote></li>
+        <li><strong>去私心</strong>放下想要某个结果的念头。问的是事理，不是求一个想听的答案。<blockquote class="quote">诚意正心，不挟一点之私<cite>《増補高島易断》筮儀</cite></blockquote></li>
+        <li><strong>静心收息</strong>闭眼，慢慢呼吸，等杂念退去。约一两分钟。<blockquote class="quote">闭眼收息<cite>《増補高島易断》筮儀</cite></blockquote></li>
+        <li><strong>至诚之际报数</strong>觉得心最专一的那一刻，立即报数，不要斟酌，不要挑一个「好数字」。<blockquote class="quote">于其至诚之极处之时，以右手拇指，随手平分为二<cite>《増補高島易断》筮儀</cite></blockquote></li>
+      </ol>
+      <button id="prep-ready" class="btn">准备好了，选起卦方式</button>
+      <button id="prep-last" class="btn ghost" hidden></button>
+    </section>
+
+    <!-- ② 方法选择 -->
+    <section id="v-method" class="view card" hidden aria-label="选择起卦方式">
+      <p class="kicker">② 选择起卦方式</p>
+      <div class="tabs" role="tablist">
+        <button type="button" data-tab="stalks" aria-selected="true">分筮竹</button>
+        <button type="button" data-tab="phrase" aria-selected="false">随口一句</button>
+        <button type="button" data-tab="numbers" aria-selected="false">报数</button>
+        <button type="button" data-tab="time" aria-selected="false">时间</button>
+      </div>
+
+      <div class="panel" data-panel="stalks">
+        <p>四十九策在你面前左右游走。<b>觉得心最专一的那一刻，点「分」</b>——光标停在哪里，哪里就是左手的根数。连分三次，即得一卦。</p>
+        <div id="stalks" class="stalks" role="button" aria-label="点此分筮"></div>
+        <p id="stalk-status" class="muted small" aria-live="polite"></p>
+        <button type="button" id="stalk-divide" class="btn">分</button>
+        <ol id="stalk-counts" class="counts"></ol>
+        <details class="alt">
+          <summary class="muted small">已有真筮竹？直接报三次左手根数</summary>
+          <form id="m-piles-form">
+            <div class="nums">
+              <input id="m-p1" inputmode="numeric" placeholder="第一变" aria-label="第一变左手根数" />
+              <input id="m-p2" inputmode="numeric" placeholder="第二变" aria-label="第二变左手根数" />
+              <input id="m-p3" inputmode="numeric" placeholder="第三变" aria-label="第三变左手根数" />
+            </div>
+            <button type="submit" class="btn ghost">用这三个数起卦</button>
+          </form>
+        </details>
+      </div>
+
+      <form class="panel" id="m-phrase-form" data-panel="phrase" hidden>
+        <p>随口说一句当下浮现的话，或几个字。这句话只被换算成三变的筮数，不读其意。</p>
+        <input id="m-phrase" maxlength="30" placeholder="例：今天下午" autocomplete="off" />
+        <button type="submit" class="btn">起卦</button>
+      </form>
+
+      <form class="panel" id="m-numbers-form" data-panel="numbers" hidden>
+        <p>随口报两个或三个正整数（梅花易数）。</p>
+        <div class="nums">
+          <input id="m-n1" inputmode="numeric" placeholder="数一" aria-label="第一个数" />
+          <input id="m-n2" inputmode="numeric" placeholder="数二" aria-label="第二个数" />
+          <input id="m-n3" inputmode="numeric" placeholder="数三（可选）" aria-label="第三个数" />
+        </div>
+        <button type="submit" class="btn">起卦</button>
+      </form>
+
+      <div class="panel" data-panel="time" hidden>
+        <p>以此刻的年月日时起卦（梅花易数，按农历计）。</p>
+        <button type="button" id="m-now" class="btn">以当前时刻起卦</button>
+      </div>
+    </section>
+
+    <!-- ③ 逐步推演 -->
+    <section id="v-reveal" class="view card" hidden aria-label="逐步推演">
+      <p class="kicker">③ 逐步推演</p>
+      <div class="figure">
+        <div id="rv-hex" class="hex"></div>
+        <p id="rv-name" class="hexname"></p>
+      </div>
+      <p id="rv-steps" class="muted small"></p>
+      <ol id="rv-narration" class="narration"></ol>
+      <div class="actions">
+        <button type="button" id="rv-next" class="btn">继续</button>
+        <button type="button" id="rv-skip" class="btn ghost">全部显示</button>
+        <button type="button" id="rv-back" class="btn ghost">重来</button>
+      </div>
+      <p class="arrow-line"><button type="button" id="rv-to-reading" class="btn">看卦辞与动爻 →</button></p>
+      <p id="rv-reproduce" class="muted small"></p>
+    </section>
+
+    <!-- ④ 经文与义理 -->
+    <section id="v-reading" class="view card" hidden aria-label="卦辞与动爻">
+      <p class="kicker">④ 经文与义理</p>
+      <h2 id="rd-judgment-label"></h2>
+      <p id="rd-ctx" class="muted small"></p>
+      <blockquote id="rd-judgment" class="text"></blockquote>
+      <div id="rd-line-wrap">
+        <h3 id="rd-line-label"></h3>
+        <blockquote id="rd-line" class="text"></blockquote>
+        <div id="rd-meaning" class="meaning"></div>
+        <div id="rd-tk" class="tk" lang="zh"></div>
+      </div>
+      <div id="rd-changed"></div>
+      <p id="rd-disclaimer" class="muted small"></p>
+      <button type="button" id="rd-again" class="btn ghost">再起一卦之前，先读收尾三则 →</button>
+    </section>
+
+    <!-- ⑤ 收尾 -->
+    <section id="v-after" class="view card" hidden aria-label="起卦之后">
+      <p class="kicker">⑤ 起卦之后</p>
+      <h2>三则收尾</h2>
+      <ul class="steps">
+        <li><strong>初筮为准</strong>「初筮告，再三渎，渎则不告。」要就同一件事再起一卦，先想想蒙卦这句卦辞。</li>
+        <li><strong>以经文为主</strong>高岛原书的占断是一百多年前的引文，标注出处；经文与结构才是本体。</li>
+        <li><strong>结论在你</strong>本工具给的是经文、结构与出处，不作预测。卦里的吉凶是经文原字，判断留给你。</li>
+      </ul>
+      <p class="disclaimer">本输出为《周易》经文与义理的结构化检索结果，不含吉凶预测，不构成对任何具体事项的判断。</p>
+      <button type="button" id="af-restart" class="btn ghost">回到起卦之前</button>
+    </section>
+
+    <footer class="foot">
+      <p class="small muted">数据：《周易》经文、公版注疏、《増補高島易断》（王治本汉译）· 引擎与 takashima-iching.com 同源 · 同一输入必得同一卦</p>
+    </footer>
+  </div>
+  <script src="./assets/main.js"></script>
+</body>
+</html>
