@@ -26,4 +26,4 @@ jobs:
       - name: Mini-tool e2e tests (jsdom, zy.py parity)
         working-directory: minitool
         # dist/ is build output; the zh excerpt slice is committed so only the bundle step is needed here.
-        run: node build.mjs && npm test
+        run: npm ci && node build.mjs && npm test
