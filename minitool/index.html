@@ -115,12 +115,19 @@
 
     <!-- ④ 经文与义理 -->
     <section id="v-reading" class="view card" hidden aria-label="卦辞与动爻">
-      <p class="kicker">④ 经文与义理</p>
-      <h2 id="rd-judgment-label"></h2>
-      <p id="rd-ctx" class="muted small"></p>
-      <blockquote id="rd-judgment" class="text"></blockquote>
+      <p class="kicker">④ 读懂这一卦</p>
+
+      <!-- 一眼可见的结果速览：这卦是什么、动爻是什么、白话大意、按什么顺序看 -->
+      <div id="rd-summary" class="summary"></div>
+
+      <h3 class="section-h">按顺序读经文</h3>
+      <div id="rd-ctx" class="muted small"></div>
+      <div id="rd-judgment-wrap">
+        <h3 id="rd-judgment-label" class="section-h"></h3>
+        <blockquote id="rd-judgment" class="text"></blockquote>
+      </div>
       <div id="rd-line-wrap">
-        <h3 id="rd-line-label"></h3>
+        <h3 id="rd-line-label" class="section-h"></h3>
         <blockquote id="rd-line" class="text"></blockquote>
         <div id="rd-meaning" class="meaning"></div>
         <div id="rd-tk" class="tk" lang="zh"></div>

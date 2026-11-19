@@ -107,9 +107,12 @@ const stalks = {
 
 function show(id: string): void {
   for (const v of document.querySelectorAll(".view")) (v as El).hidden = v.id !== id;
-  // 分筮竹只在方法页且处于该方法面板时游走
-  if (id === "v-method") stalks.start();
-  else stalks.stop();
+  // 分筮竹只在方法页且处于该方法面板时游走。
+  // 三次分完起卦后 counts 保留 3 个值；退回方法页必须重置，否则 start() 被 counts>=3 挡住，按钮卡死。
+  if (id === "v-method") {
+    if (stalks.counts.length >= 3) stalks.reset();
+    stalks.start();
+  } else stalks.stop();
   window.scrollTo(0, 0);
 }
 
@@ -132,6 +135,12 @@ function localIso(): string {
 
 const blockquote = (text: string, cls = "text") => `<blockquote class="${cls}">${esc(text)}</blockquote>`;
 
+// 卦画：一行一条长横杠，阳爻一条实线、阴爻中间断开（同网站的呈现）
+const hexBars = (glyphs: string): string =>
+  glyphs.split("").map((g) =>
+    `<div class="hexrow">${g === "⚊" ? `<i class="bar"></i>` : `<i class="bar"></i><i class="bar"></i>`}</div>`
+  ).join("");
+
 // --- 起卦入口 ----------------------------------------------------------------
 let LAST: any = null;
 
@@ -150,7 +159,7 @@ function runCast(input: Record<string, unknown>): void {
 
 function renderReveal(c: any): void {
   const h = c.hexagram;
-  $("rv-hex").textContent = String(h.glyphs).split("").join("\n");
+  $("rv-hex").innerHTML = hexBars(String(h.glyphs));
   $("rv-name").textContent = `${h.number} · ${h.name}卦（上${h.upper}下${h.lower}）`;
   $("rv-hex").classList.remove("revealed");
   $("rv-name").classList.remove("revealed");
@@ -198,20 +207,33 @@ function renderReveal(c: any): void {
 function renderReading(c: any): void {
   const h = c.hexagram;
   const r = engine.read(h.number, null, "zh");
-  $("rd-judgment-label").textContent = `${h.number} · ${h.name}卦 卦辞`;
-  $("rd-judgment-label").className = "result-heading";
-  const label2 = $("rd-line-label");
-  label2.className = "result-heading";
-  $("rd-judgment").innerHTML = blockquote(r.judgment);
-  $("rd-ctx").textContent = `上${r.hexagram.upper}（${r.upper_nature?.nature ?? ""}）下${r.hexagram.lower}（${r.lower_nature?.nature ?? ""}）`;
-
-  // 动爻（略筮法恒得一爻；无动爻则只读卦辞）
   const pos = c.next?.position ?? null;
+  const lr = pos ? engine.read(h.number, pos, "zh") : null;
+  const li: any = lr?.line ?? null;
+
+  // ── 结果速览：一眼看清「起了什么卦、动哪爻、在讲什么、先看哪」──
+  const summary = $("rd-summary");
+  const parts: string[] = [];
+  parts.push(`<div class="sum-head"><span class="sum-no">第 ${esc(String(h.number))} 卦</span><b>${esc(h.name)}卦</b></div>`);
+  parts.push(`<div class="sum-meta">上${esc(h.upper)}（${esc(r.upper_nature?.nature ?? "")}）· 下${esc(h.lower)}（${esc(r.lower_nature?.nature ?? "")}）` +
+    (pos ? `　·　动爻 <b>${esc(pos)}</b>　·　之卦 ${esc(String(c.changed?.number ?? "—"))} ${esc(c.changed?.name ?? "")}` : "") + `</div>`);
+  // 白话大意：卦义（引擎原文）+ 动爻取象，直接照录，不新编
+  if (typeof r.meaning === "string" && r.meaning) parts.push(`<p class="sum-line"><span>这卦讲：</span>${esc(r.meaning)}</p>`);
+  if (li?.meaning?.xiang) parts.push(`<p class="sum-line"><span>这一爻：</span>${esc(li.meaning.xiang)}</p>`);
+  parts.push(`<p class="sum-how">怎么读：先看卦辞（全卦处境）→ 再看动爻（你这一爻）→ 之卦作参照。看完往下翻，原文按此顺序排好。</p>`);
+  summary.innerHTML = parts.join("");
+
+  // ── 经文原文（按读序排：卦辞 → 动爻 → 之卦）──
+  $("rd-ctx").textContent = `以下经文均按「卦辞 → 动爻 → 之卦」的次序排列；吉凶等字是《周易》原文引用，不是给你的判断。`;
+  $("rd-judgment-label").textContent = `① 卦辞 · 全卦的处境`;
+  $("rd-judgment-label").className = "section-h";
+  $("rd-judgment").innerHTML = blockquote(r.judgment);
+  const label2 = $("rd-line-label");
+  label2.className = "section-h";
+
   const wrap = $("rd-line-wrap");
-  if (pos) {
-    const lr = engine.read(h.number, pos, "zh");
-    const li = lr.line;
-    $("rd-line-label").textContent = `${h.name}卦 ${li.label} · 动爻`;
+  if (li) {
+    $("rd-line-label").textContent = `② 动爻 · ${esc(li.label)}（略筮法系于这一爻，重点看）`;
     $("rd-line").innerHTML = blockquote(li.text);
     const m = li.meaning ?? ({} as any);
     $("rd-meaning").innerHTML =
@@ -228,7 +250,7 @@ function renderReading(c: any): void {
       ? ch.linesBottomUp.slice().reverse().map((b: number) => (b === 1 ? "⚊" : "⚋")).join("")
       : ch?.symbol ?? "";
     $("rd-changed").innerHTML = ch
-      ? `<p class="arrow">→ 之卦</p><div class="changed">${esc(chGlyphs.split("").join("\n"))}<p>${ch.number} · ${ch.name}卦（事之所趋，轻轻读）</p>` +
+      ? `<p class="arrow">→ 之卦</p><div class="changed"><div class="hexdraw">${hexBars(chGlyphs)}</div><p>${ch.number} · ${ch.name}卦（事之所趋，轻轻读）</p>` +
         blockquote(engine.read(ch.number, null, "zh").judgment) +
         `</div>`
       : "";

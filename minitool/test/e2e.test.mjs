@@ -100,12 +100,17 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   const rn = zy(["read", "56", oracle.next.position, "--lang", "zh"]);
   assert.match(text(w, "rd-judgment"), /旅：小亨/);
   assert.ok(text(w, "rd-judgment").includes(rn.judgment), "卦辞与 zy.py 一致");
-  assert.match(text(w, "rd-ctx"), /上离（火）下艮（山）/, "自然象应是文字，不能是 [object Object]");
+  assert.match(text(w, "rd-summary"), /上离（火）.*下艮（山）/, "自然象应是文字，不能是 [object Object]");
   assert.match(text(w, "rv-steps"), /略筮法/, "方法名应显示中文，不是 lueshi");
   assert.match(text(w, "rd-changed"), /→ 之卦/);
-  assert.match(text(w, "rd-changed"), /[⚊⚋]/, "之卦应画出阴阳爻，不是 undefined");
-  assert.doesNotMatch(w.document.body.textContent, /\[object Object\]|undefined|null|NaN/, "结果页不得出现乱码占位");
-  assert.match(text(w, "rd-line-label"), /九四/);
+  assert.equal($(w, "rd-changed").querySelectorAll(".hexdraw .hexrow").length, 6, "之卦应画出 6 行横条，不是 undefined");
+  assert.equal($(w, "rv-hex").querySelectorAll(".hexrow").length, 6, "本卦应画出 6 行横条");
+  assert.match(text(w, "rd-summary"), /这卦讲：/, "结果速览应给出白话大意");
+  assert.match(text(w, "rd-summary"), /怎么读：/, "结果速览应告诉用户先读哪");
+  assert.match(text(w, "rd-summary"), /旅卦/, "结果速览应一眼看到卦名");
+  assert.ok($(w, "rd-summary").querySelector(".sum-head b"), "卦名应是大字醒目呈现");
+  assert.doesNotMatch(w.document.body.textContent, /\[object Object\]|undefined|NaN/, "结果页不得出现乱码占位");
+  assert.match(text(w, "rd-line-label"), /动爻/);
   assert.ok(text(w, "rd-line").includes(rn.line.text), "动爻爻辞与 zy.py 一致");
   assert.match(text(w, "rd-meaning"), /取象/);
   assert.match(text(w, "rd-meaning"), /义理/);
@@ -156,6 +161,28 @@ test("互动分筮竹：三变自动成卦，piles 与显示一致并可与 zy.p
   $(w, "rv-skip").click();
   const uiAll = Array.from($(w, "rv-narration").children).map((li) => li.textContent);
   assert.deepEqual(uiAll, oracle.narration);
+  w.close();
+});
+
+test("退回后重新起卦：分筮竹按钮不会卡死（counts 已满时自动重置）", async () => {
+  const w = await boot();
+  w.Math.random = () => 0;
+  $(w, "prep-ready").click();
+  // 第一次：分三次成卦
+  for (let i = 0; i < 3; i++) {
+    $(w, "stalk-divide").click();
+    await new Promise((r) => setTimeout(r, 1200));
+  }
+  await new Promise((r) => setTimeout(r, 200));
+  assert.ok(visible(w, "v-reveal"));
+  // 退回方法页
+  $(w, "rv-back").click();
+  assert.ok(visible(w, "v-method"));
+  assert.equal($(w, "stalk-counts").children.length, 0, "退回后计数应清空");
+  // 关键：再点「分」应能记录第一变，不再卡死
+  $(w, "stalk-divide").click();
+  await new Promise((r) => setTimeout(r, 100));
+  assert.equal($(w, "stalk-counts").children.length, 1, "重新起卦应能再分第一变");
   w.close();
 });
 
