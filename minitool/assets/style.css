@@ -76,6 +76,8 @@ details.alt form { margin-top: 8px; }
 .muted { color: var(--muted); }
 .small { font-size: 12px; }
 .text { font-family: var(--serif); font-size: 17px; background: var(--quote); border-radius: 10px; padding: 12px 14px; margin: 8px 0; }
+.plain { background: var(--paper); border-left: 3px solid var(--seal); border-radius: 6px; padding: 8px 10px; margin: 6px 0 10px; font-size: 14px; line-height: 1.7; }
+.plain b { color: var(--seal); }
 /* 结果速览：一眼看清起了什么卦、在讲什么、先看哪 */
 .summary { background: linear-gradient(180deg, #fdf3f0 0%, var(--card) 100%); border: 2px solid var(--seal); border-radius: 12px; padding: 14px 16px; margin: 10px 0 16px; box-shadow: 0 2px 10px rgba(178,58,43,.12); }
 .sum-head { display: flex; align-items: baseline; gap: 10px; }

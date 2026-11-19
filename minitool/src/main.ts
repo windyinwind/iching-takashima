@@ -244,7 +244,7 @@ function renderReading(c: any): void {
   // 断语小抄：只列本卦经文里真正出现的字，大白话解释（不按事项下断）
   const vw = verdictsIn(r.judgment + " " + (li?.text ?? ""));
   if (vw.length) {
-    parts.push(`<details class="verdict-box"><summary>经文里的「${esc(vw.map((v) => v.word).join("、"))}」是什么意思？</summary>` +
+    parts.push(`<details class="verdict-box" open><summary>经文里的「${esc(vw.map((v) => v.word).join("、"))}」是什么意思？</summary>` +
       vw.map((v) => `<p><b>${esc(v.word)}</b>：${esc(v.gloss)}</p>`).join("") +
       `<p class="small muted">以上是对经文用字的解释；吉凶等字是《周易》原文，不是对你的判断。</p></details>`);
   }
@@ -255,6 +255,10 @@ function renderReading(c: any): void {
   $("rd-judgment-label").textContent = `① 卦辞 · 全卦的处境`;
   $("rd-judgment-label").className = "section-h";
   $("rd-judgment").innerHTML = blockquote(r.judgment);
+  // 卦辞白话：卦义主旨（引擎依公版注疏撰述），直接摆在原文下方
+  if (typeof r.meaning === "string" && r.meaning) {
+    $("rd-judgment").insertAdjacentHTML("afterend", `<p class="plain"><b>白话：</b>${esc(r.meaning)}</p>`);
+  }
   const label2 = $("rd-line-label");
   label2.className = "section-h";
 
@@ -264,7 +268,7 @@ function renderReading(c: any): void {
     $("rd-line").innerHTML = blockquote(li.text);
     const m = li.meaning ?? ({} as any);
     $("rd-meaning").innerHTML =
-      `<p><b>取象：</b>${esc(m.xiang ?? "")}</p><p><b>义理：</b>${esc(m.li ?? "")}</p>` +
+      `<p class="plain"><b>白话·取象：</b>${esc(m.xiang ?? "")}</p><p class="plain"><b>白话·义理：</b>${esc(m.li ?? "")}</p>` +
       (m.sources?.length ? `<p class="small muted">出处：${esc(m.sources.map((s: any) => s.work).join("、"))}</p>` : "");
     // 高岛节录（与网站卦页同源切片）
     const tk = excerptFor(h.number, li.label);

@@ -114,8 +114,13 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   // 断语小抄：扫出本卦经文里真实出现的字并解释（旅卦卦辞「小亨，旅贞吉」→ 亨、吉、利贞相关）
   const vbox = $(w, "rd-summary").querySelector(".verdict-box");
   assert.ok(vbox, "应给出断语小抄");
+  assert.equal(vbox.open, true, "断语小抄应默认展开，不必点一下才看到");
   assert.match(vbox.textContent, /亨|吉|利贞/, "小抄应解释本卦经文里出现的断语字");
   assert.match(vbox.textContent, /不是对你的判断/, "小抄须带合规声明");
+  // 卦辞、爻辞下方都直接跟白话解释
+  assert.match(w.document.body.textContent, /白话：.*旅居之理|白话：下艮上离/, "卦辞下方应有白话");
+  assert.match(text(w, "rd-meaning"), /白话·取象/);
+  assert.match(text(w, "rd-meaning"), /白话·义理/);
   assert.doesNotMatch(w.document.body.textContent, /\[object Object\]|undefined|NaN/, "结果页不得出现乱码占位");
   assert.match(text(w, "rd-line-label"), /动爻/);
   assert.ok(text(w, "rd-line").includes(rn.line.text), "动爻爻辞与 zy.py 一致");
