@@ -66,14 +66,24 @@ test("随口一句起卦：与 zy.py 逐字对拍（seed=今天下午 → 旅卦
 
   // 视图流转
   assert.ok(visible(w, "v-reveal"), "应进入推演视图");
+  // 结果横幅一眼可见：成卦、之卦、动爻
+  const banner = $(w, "rv-banner").textContent;
+  assert.match(banner, /成卦：/);
+  assert.match(banner, /56 · 旅卦/);
+  assert.match(banner, /之卦/);
+  assert.match(banner, /动爻/);
+  // 逐步动画：narration 逐条出现（间隔 420ms），先只露第一条
+  const li0 = $(w, "rv-narration").children;
+  assert.equal(li0.length, 15);
+  assert.equal(li0[0].hidden, false);
+  assert.equal(li0[1].hidden, true, "第二条应先隐藏（自动逐条推出）");
+  await new Promise((r) => setTimeout(r, 500));
+  assert.equal(li0[1].hidden, false, "约 420ms 后第二条应自动出现");
   // 与 zy.py 对拍：narration 全文一致
   const oracle = zy(["chain", "--seed", "今天下午", "--lang", "zh"]);
-  const ui = Array.from($(w, "rv-narration").children).map((li) => li.textContent);
-  // UI 逐步显示：先点「全部显示」再比对
   $(w, "rv-skip").click();
   const uiAll = Array.from($(w, "rv-narration").children).map((li) => li.textContent);
   assert.deepEqual(uiAll, oracle.narration, "narration 应与 zy.py 逐字一致");
-  void ui;
   assert.equal(oracle.hexagram.number, 56, "zy.py 应得 56 旅");
   assert.match(text(w, "rv-name"), /56 · 旅卦/);
   assert.match(uiAll[2], /左手 6 策/);
@@ -90,6 +100,11 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   const rn = zy(["read", "56", oracle.next.position, "--lang", "zh"]);
   assert.match(text(w, "rd-judgment"), /旅：小亨/);
   assert.ok(text(w, "rd-judgment").includes(rn.judgment), "卦辞与 zy.py 一致");
+  assert.match(text(w, "rd-ctx"), /上离（火）下艮（山）/, "自然象应是文字，不能是 [object Object]");
+  assert.match(text(w, "rv-steps"), /略筮法/, "方法名应显示中文，不是 lueshi");
+  assert.match(text(w, "rd-changed"), /→ 之卦/);
+  assert.match(text(w, "rd-changed"), /[⚊⚋]/, "之卦应画出阴阳爻，不是 undefined");
+  assert.doesNotMatch(w.document.body.textContent, /\[object Object\]|undefined|null|NaN/, "结果页不得出现乱码占位");
   assert.match(text(w, "rd-line-label"), /九四/);
   assert.ok(text(w, "rd-line").includes(rn.line.text), "动爻爻辞与 zy.py 一致");
   assert.match(text(w, "rd-meaning"), /取象/);

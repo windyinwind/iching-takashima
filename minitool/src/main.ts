@@ -115,6 +115,7 @@ function show(id: string): void {
 
 // --- 工具 --------------------------------------------------------------------
 const POS_KEY: Record<string, string> = { 初: "0", 二: "1", 三: "2", 四: "3", 五: "4", 上: "5" };
+const METHOD_LABEL: Record<string, string> = { lueshi: "略筮法", dayan: "大衍筮法", numbers: "报数起卦", time: "时间起卦" };
 const excerptKey = (label: string): string => POS_KEY[label[0]] ?? "judgment";
 const excerptFor = (n: number, label: string | null): string[] | null => {
   const key = label ? excerptKey(label) : "judgment";
@@ -151,42 +152,58 @@ function renderReveal(c: any): void {
   const h = c.hexagram;
   $("rv-hex").textContent = String(h.glyphs).split("").join("\n");
   $("rv-name").textContent = `${h.number} · ${h.name}卦（上${h.upper}下${h.lower}）`;
+  $("rv-hex").classList.remove("revealed");
+  $("rv-name").classList.remove("revealed");
+  const banner = $("rv-banner");
+  banner.hidden = false;
+  banner.innerHTML = `成卦：<b>${esc(String(h.number))} · ${esc(h.name)}卦</b>　之卦 ${esc(String(c.changed?.number ?? "—"))} · ${esc(c.changed?.name ?? "—")}　动爻 ${esc(c.next?.position ?? "—")}`;
   const ol = $("rv-narration");
   ol.innerHTML = "";
   const lines = c.narration.map((n: string) => `<li>${esc(n)}</li>`).join("");
   ol.innerHTML = lines;
-  $("rv-steps").textContent = `${c.method} · 共 ${c.narration.length} 步`;
-  // 逐步显示：先只露第一条，用户点「继续」推进
+  $("rv-steps").textContent = `${METHOD_LABEL[c.method] ?? c.method} · 共 ${c.narration.length} 步`;
+  // 逐步推演：像网站一样每秒推出一条，卦名在最后一条出现时才点亮
   const items = Array.from(ol.children) as El[];
   items.forEach((li, i) => (li.hidden = i > 0));
   let shown = 1;
+  let timer: any = null;
   const btn = $("rv-next");
+  const skipBtn = $("rv-skip");
   btn.hidden = false;
-  $("rv-skip").hidden = false;
-  const advance = () => {
-    if (shown < items.length) {
-      items[shown++].hidden = false;
-      if (shown === items.length) btn.hidden = true;
-    }
-  };
-  btn.onclick = advance;
-  $("rv-skip").onclick = () => {
+  skipBtn.hidden = false;
+  const finish = () => {
+    if (timer) { clearInterval(timer); timer = null; }
     items.forEach((li) => (li.hidden = false));
     shown = items.length;
     btn.hidden = true;
+    skipBtn.hidden = true;
+    $("rv-hex").classList.add("revealed");
+    $("rv-name").classList.add("revealed");
   };
-  $("rv-reproduce").textContent = c.reproduce?.note ?? "";
+  const advance = () => {
+    if (shown < items.length) {
+      items[shown++].hidden = false;
+      if (shown === items.length) finish();
+    }
+  };
+  btn.onclick = advance;
+  skipBtn.onclick = finish;
+  timer = setInterval(advance, 420);
+  $("rv-reproduce").textContent = c.reproduce ? `同一输入必得同一卦 · ${c.reproduce}` : "";
   store.set("last-cast", JSON.stringify({ input: (LAST as any)._input ?? null, hex: h.number }));
   show("v-reveal");
-  $("rv-to-reading").onclick = () => renderReading(c);
+  $("rv-to-reading").onclick = () => { finish(); renderReading(c); };
 }
 
 function renderReading(c: any): void {
   const h = c.hexagram;
   const r = engine.read(h.number, null, "zh");
   $("rd-judgment-label").textContent = `${h.number} · ${h.name}卦 卦辞`;
+  $("rd-judgment-label").className = "result-heading";
+  const label2 = $("rd-line-label");
+  label2.className = "result-heading";
   $("rd-judgment").innerHTML = blockquote(r.judgment);
-  $("rd-ctx").textContent = `上${r.hexagram.upper}（${r.upper_nature}）下${r.hexagram.lower}（${r.lower_nature}）`;
+  $("rd-ctx").textContent = `上${r.hexagram.upper}（${r.upper_nature?.nature ?? ""}）下${r.hexagram.lower}（${r.lower_nature?.nature ?? ""}）`;
 
   // 动爻（略筮法恒得一爻；无动爻则只读卦辞）
   const pos = c.next?.position ?? null;
@@ -205,10 +222,13 @@ function renderReading(c: any): void {
     $("rd-tk").innerHTML = tk
       ? `<h3>高岛原书 · 节录</h3>` + tk.map((p: string) => `<p lang="zh">${esc(p)}</p>`).join("")
       : "";
-    // 之卦
+    // 之卦：changed 对象只有 linesBottomUp，没有 glyphs —— 由爻线现算
     const ch = c.changed;
+    const chGlyphs = Array.isArray(ch?.linesBottomUp)
+      ? ch.linesBottomUp.slice().reverse().map((b: number) => (b === 1 ? "⚊" : "⚋")).join("")
+      : ch?.symbol ?? "";
     $("rd-changed").innerHTML = ch
-      ? `<p class="arrow">→ 之卦</p><div class="changed">${esc(String(ch.glyphs).split("").join("\n"))}<p>${ch.number} · ${ch.name}卦（事之所趋，轻轻读）</p>` +
+      ? `<p class="arrow">→ 之卦</p><div class="changed">${esc(chGlyphs.split("").join("\n"))}<p>${ch.number} · ${ch.name}卦（事之所趋，轻轻读）</p>` +
         blockquote(engine.read(ch.number, null, "zh").judgment) +
         `</div>`
       : "";
