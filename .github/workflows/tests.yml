@@ -25,4 +25,4 @@ jobs:
         run: npm run build && npm test
       - name: Mini-tool e2e tests (jsdom, zy.py parity)
         working-directory: minitool
-        run: npm test
+        run: npm ci && npm test
