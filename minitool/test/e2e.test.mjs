@@ -66,10 +66,10 @@ test("随口一句起卦：与 zy.py 逐字对拍（seed=今天下午 → 旅卦
 
   // 视图流转
   assert.ok(visible(w, "v-reveal"), "应进入推演视图");
-  // 结果横幅一眼可见：成卦、之卦、动爻
+  // 结果横幅一眼可见：明确写"结果"、卦名、动爻、之卦
   const banner = $(w, "rv-banner").textContent;
-  assert.match(banner, /成卦：/);
-  assert.match(banner, /56 · 旅卦/);
+  assert.match(banner, /结果：/);
+  assert.match(banner, /旅卦/);
   assert.match(banner, /之卦/);
   assert.match(banner, /动爻/);
   // 逐步动画：narration 逐条出现（间隔 420ms），先只露第一条
@@ -105,10 +105,17 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   assert.match(text(w, "rd-changed"), /→ 之卦/);
   assert.equal($(w, "rd-changed").querySelectorAll(".hexdraw .hexrow").length, 6, "之卦应画出 6 行横条，不是 undefined");
   assert.equal($(w, "rv-hex").querySelectorAll(".hexrow").length, 6, "本卦应画出 6 行横条");
+  assert.ok($(w, "rv-hex").querySelector(".hexrow.yang"), "阳爻应有 yang 类（满宽）");
+  assert.match($(w, "rv-to-reading").textContent, /解读（结果）/, "按钮应明确写'结果'");
   assert.match(text(w, "rd-summary"), /这卦讲：/, "结果速览应给出白话大意");
   assert.match(text(w, "rd-summary"), /怎么读：/, "结果速览应告诉用户先读哪");
   assert.match(text(w, "rd-summary"), /旅卦/, "结果速览应一眼看到卦名");
   assert.ok($(w, "rd-summary").querySelector(".sum-head b"), "卦名应是大字醒目呈现");
+  // 断语小抄：扫出本卦经文里真实出现的字并解释（旅卦卦辞「小亨，旅贞吉」→ 亨、吉、利贞相关）
+  const vbox = $(w, "rd-summary").querySelector(".verdict-box");
+  assert.ok(vbox, "应给出断语小抄");
+  assert.match(vbox.textContent, /亨|吉|利贞/, "小抄应解释本卦经文里出现的断语字");
+  assert.match(vbox.textContent, /不是对你的判断/, "小抄须带合规声明");
   assert.doesNotMatch(w.document.body.textContent, /\[object Object\]|undefined|NaN/, "结果页不得出现乱码占位");
   assert.match(text(w, "rd-line-label"), /动爻/);
   assert.ok(text(w, "rd-line").includes(rn.line.text), "动爻爻辞与 zy.py 一致");

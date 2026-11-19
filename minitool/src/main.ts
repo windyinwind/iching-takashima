@@ -119,6 +119,24 @@ function show(id: string): void {
 // --- 工具 --------------------------------------------------------------------
 const POS_KEY: Record<string, string> = { 初: "0", 二: "1", 三: "2", 四: "3", 五: "4", 上: "5" };
 const METHOD_LABEL: Record<string, string> = { lueshi: "略筮法", dayan: "大衍筮法", numbers: "报数起卦", time: "时间起卦" };
+
+// 断语小抄：经文里这些字最让人费解。这里是字义解释（字典），不是对任何事项的判断。
+const VERDICT: Record<string, string> = {
+  "元吉": "大吉，吉中最强",
+  "无咎": "没有灾祸；常出现在告诫之后，指照着做可免于咎",
+  "利贞": "宜于守持正固，不躁进",
+  "亨": "通畅，事情无阻隔",
+  "吉": "有利、顺遂（经文原字，非对你的判断）",
+  "咎": "灾祸、过错",
+  "厉": "危险、不稳；经典常连「无咎」给出路",
+  "悔亡": "悔恨消失，指改辙之后憾恨可消",
+  "悔": "懊悔、因走错一步而憾",
+  "吝": "羞吝、难堪，较「厉」为轻",
+  "凶": "不利（经文原字，非对你的判断）",
+};
+const VERDICT_ORDER = ["元吉", "无咎", "利贞", "亨", "吉", "悔亡", "悔", "吝", "厉", "咎", "凶"];
+const verdictsIn = (text: string): { word: string; gloss: string }[] =>
+  VERDICT_ORDER.filter((w) => text.includes(w)).map((w) => ({ word: w, gloss: VERDICT[w] }));
 const excerptKey = (label: string): string => POS_KEY[label[0]] ?? "judgment";
 const excerptFor = (n: number, label: string | null): string[] | null => {
   const key = label ? excerptKey(label) : "judgment";
@@ -138,7 +156,9 @@ const blockquote = (text: string, cls = "text") => `<blockquote class="${cls}">$
 // 卦画：一行一条长横杠，阳爻一条实线、阴爻中间断开（同网站的呈现）
 const hexBars = (glyphs: string): string =>
   glyphs.split("").map((g) =>
-    `<div class="hexrow">${g === "⚊" ? `<i class="bar"></i>` : `<i class="bar"></i><i class="bar"></i>`}</div>`
+    g === "⚊"
+      ? `<div class="hexrow yang"><i class="bar"></i></div>`
+      : `<div class="hexrow yin"><i class="bar"></i><i class="bar"></i></div>`
   ).join("");
 
 // --- 起卦入口 ----------------------------------------------------------------
@@ -165,7 +185,7 @@ function renderReveal(c: any): void {
   $("rv-name").classList.remove("revealed");
   const banner = $("rv-banner");
   banner.hidden = false;
-  banner.innerHTML = `成卦：<b>${esc(String(h.number))} · ${esc(h.name)}卦</b>　之卦 ${esc(String(c.changed?.number ?? "—"))} · ${esc(c.changed?.name ?? "—")}　动爻 ${esc(c.next?.position ?? "—")}`;
+  banner.innerHTML = `<span class="banner-cap">结果：这一卦是</span> <b>${esc(h.name)}卦</b>（第${esc(String(h.number))}卦）　动爻 ${esc(c.next?.position ?? "—")}　之卦 ${esc(String(c.changed?.number ?? "—"))}·${esc(c.changed?.name ?? "—")}<br><span class="banner-note">上面一行就是结果。下面是怎么一步步算出来的（可核对）；看完点「看这一卦的解读」读经文。</span>`;
   const ol = $("rv-narration");
   ol.innerHTML = "";
   const lines = c.narration.map((n: string) => `<li>${esc(n)}</li>`).join("");
@@ -221,6 +241,13 @@ function renderReading(c: any): void {
   if (typeof r.meaning === "string" && r.meaning) parts.push(`<p class="sum-line"><span>这卦讲：</span>${esc(r.meaning)}</p>`);
   if (li?.meaning?.xiang) parts.push(`<p class="sum-line"><span>这一爻：</span>${esc(li.meaning.xiang)}</p>`);
   parts.push(`<p class="sum-how">怎么读：先看卦辞（全卦处境）→ 再看动爻（你这一爻）→ 之卦作参照。看完往下翻，原文按此顺序排好。</p>`);
+  // 断语小抄：只列本卦经文里真正出现的字，大白话解释（不按事项下断）
+  const vw = verdictsIn(r.judgment + " " + (li?.text ?? ""));
+  if (vw.length) {
+    parts.push(`<details class="verdict-box"><summary>经文里的「${esc(vw.map((v) => v.word).join("、"))}」是什么意思？</summary>` +
+      vw.map((v) => `<p><b>${esc(v.word)}</b>：${esc(v.gloss)}</p>`).join("") +
+      `<p class="small muted">以上是对经文用字的解释；吉凶等字是《周易》原文，不是对你的判断。</p></details>`);
+  }
   summary.innerHTML = parts.join("");
 
   // ── 经文原文（按读序排：卦辞 → 动爻 → 之卦）──

@@ -41,14 +41,22 @@ input:focus { outline: 2px solid var(--seal); }
 .figure { display: flex; align-items: center; gap: 16px; margin: 8px 0; }
 .reveal-figure { background: var(--quote); border-radius: 12px; padding: 12px 16px; opacity: .55; transition: opacity .6s; }
 .reveal-figure .revealed { opacity: 1; }
-.result-banner { background: var(--seal); color: var(--seal-ink); border-radius: 10px; padding: 10px 12px; margin: 8px 0 12px; font-size: 15px; line-height: 1.6; }
-.result-banner b { font-size: 18px; }
+.result-banner { background: var(--seal); color: var(--seal-ink); border-radius: 10px; padding: 10px 12px; margin: 8px 0 12px; font-size: 15px; line-height: 1.7; }
+.result-banner b { font-size: 20px; }
+.result-banner .banner-cap { font-size: 13px; opacity: .9; }
+.result-banner .banner-note { font-size: 12px; opacity: .85; display: block; margin-top: 4px; }
 .hex { font-size: 26px; line-height: 1.35; font-family: var(--serif); white-space: pre-line; color: var(--ink); }
 .hexdraw { display: inline-block; }
-.hexrow { display: flex; justify-content: center; gap: 8px; height: 13px; align-items: center; }
-.hexrow .bar { display: block; width: 72px; height: 8px; background: var(--ink); border-radius: 3px; }
+/* 卦画：阳爻一条满宽实线，阴爻两段断开，两段合计与阳爻等宽 */
+.hexrow { display: flex; justify-content: center; gap: 8px; height: 14px; align-items: center; width: 152px; }
+.hexrow .bar { display: block; height: 9px; background: var(--ink); border-radius: 3px; }
+.hexrow.yang .bar { width: 152px; }
+.hexrow.yin .bar { width: 72px; }
 .reveal-figure .hexrow .bar { background: var(--seal); }
-.changed .hexrow .bar { background: var(--muted); width: 52px; height: 6px; }
+.changed .hexrow { width: 110px; }
+.changed .hexrow.yang .bar { width: 110px; }
+.changed .hexrow.yin .bar { width: 51px; }
+.changed .hexrow .bar { background: var(--muted); height: 7px; }
 .hexname { font-family: var(--serif); font-size: 17px; font-weight: 700; }
 .narration { list-style: none; margin: 10px 0; }
 .narration li { background: var(--quote); border-radius: 8px; padding: 8px 12px; margin-bottom: 6px; font-size: 14px; }
@@ -69,7 +77,7 @@ details.alt form { margin-top: 8px; }
 .small { font-size: 12px; }
 .text { font-family: var(--serif); font-size: 17px; background: var(--quote); border-radius: 10px; padding: 12px 14px; margin: 8px 0; }
 /* 结果速览：一眼看清起了什么卦、在讲什么、先看哪 */
-.summary { background: var(--card); border: 2px solid var(--seal); border-radius: 12px; padding: 14px 16px; margin: 10px 0 16px; }
+.summary { background: linear-gradient(180deg, #fdf3f0 0%, var(--card) 100%); border: 2px solid var(--seal); border-radius: 12px; padding: 14px 16px; margin: 10px 0 16px; box-shadow: 0 2px 10px rgba(178,58,43,.12); }
 .sum-head { display: flex; align-items: baseline; gap: 10px; }
 .sum-head .sum-no { color: var(--seal); font-size: 13px; font-weight: 700; }
 .sum-head b { font: 900 34px var(--serif); color: var(--ink); letter-spacing: 2px; }
@@ -78,6 +86,10 @@ details.alt form { margin-top: 8px; }
 .sum-line { font-size: 14px; margin-top: 6px; line-height: 1.6; }
 .sum-line span { color: var(--seal); font-weight: 700; margin-right: 4px; }
 .sum-how { background: var(--quote); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--muted); margin-top: 12px; }
+.verdict-box { border-top: 1px dashed var(--line); margin-top: 10px; padding-top: 8px; }
+.verdict-box summary { cursor: pointer; color: var(--seal); font-weight: 700; font-size: 13px; }
+.verdict-box p { font-size: 13px; margin-top: 6px; line-height: 1.6; }
+.verdict-box p b { color: var(--seal); }
 .section-h { color: var(--seal); font-size: 16px; font-weight: 900; margin: 16px 0 6px; border-left: 4px solid var(--seal); padding-left: 8px; }
 .result-heading { color: var(--seal); font-size: 19px; font-weight: 900; border-left: 5px solid var(--seal); padding-left: 10px; margin: 14px 0 6px; }
 .meaning p { font-size: 14px; margin-top: 8px; }
