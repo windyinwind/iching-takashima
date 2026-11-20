@@ -1,6 +1,6 @@
 // Server-rendered pages for search engines and link previews: hexagrams, lines and trigrams in
 // three languages. Every page draws its lines (yang ⚊ / yin ⚋) and links to the related pages.
-import { HEXAGRAMS, LEGGE, LINE_MEANING, T, TRAD } from "./engine/data.ts";
+import { HEXAGRAMS, LEGGE, LINE_MEANING, PLAIN, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
 import { LEARN, type SideCtx, hexData, learnPage, learnPath, learnTitle, leftSidebar, rightSidebar } from "./learn.ts";
@@ -33,6 +33,7 @@ export const W = {
     tkZhOnly: "Takashima’s commentary in the Chinese text.",
     legge: "English: James Legge, The Yî King (1882), public domain.", prev: "Previous", next: "Next",
     structure: "Structure", asLower: "As the lower trigram", asUpper: "As the upper trigram",
+    plain: "In plain language", plainNote: "A modern, plain-language retelling of the classic commentary. It explains the text; it is not a prediction about your situation.",
     askBot: "Ask the Grok Bot about this", noPredict: "A study tool for the classic text. It makes no predictions; the decision is yours.",
     yongLabel: "All lines moving",
   },
@@ -43,6 +44,7 @@ export const W = {
     takashima: "高岛原书（节录）", tkFull: "高岛全文、分事占断与占例：见 Grok Bot。", tkZhOnly: "",
     legge: "", prev: "上一卦", next: "下一卦",
     structure: "象数结构", asLower: "为下卦", asUpper: "为上卦",
+    plain: "白话", plainNote: "把经文与义理用现代白话讲一遍，帮你读懂原文，不是对你所占事项的判断。",
     askBot: "问 Grok Bot", noPredict: "经文与义理的检索工具，不作预测，结论在你。",
     yongLabel: "六爻皆动",
   },
@@ -54,6 +56,7 @@ export const W = {
     tkZhOnly: "高島の解釈は漢文テキストのまま掲げます。",
     legge: "", prev: "前の卦", next: "次の卦",
     structure: "卦の構造", asLower: "下卦として", asUpper: "上卦として",
+    plain: "平易な解説", plainNote: "経文と義理を現代のやさしい言葉で言い換えたものです。原文を読む手助けであり、あなたの事項に対する予言ではありません。",
     askBot: "Grok Bot に聞く", noPredict: "経文を調べるための道具です。予言はしません。結論はご自身で。",
     yongLabel: "六爻すべて動く",
   },
@@ -215,6 +218,16 @@ function takashimaBlock(lang: Lang, n: number, key: string) {
   return `<section class="tk"><h3>${esc(w.takashima)}</h3>${note}${paras.map((p: string) => `<p${paras === e.zh ? ' lang="zh"' : ""}>${esc(p)}</p>`).join("")}<p class="muted small"><a href="${TEMPLATE}" rel="noopener">${esc(w.tkFull)}</a></p></section>`;
 }
 
+// 人话版：64 卦 + 384 爻的现代白话转写，三语各自成文，与取象/义理原文并列展示。
+function plainBlock(lang: Lang, kind: "hex" | "line", n: number, p?: number): string {
+  const text = kind === "hex"
+    ? PLAIN.hexagrams[String(n)]?.[lang]
+    : PLAIN.lines[`${n}-${p}`]?.[lang];
+  if (!text) return "";
+  const w = W[lang];
+  return `<section class="plain"><h3>${esc(w.plain)}</h3><p>${esc(text)}</p><p class="muted small">${esc(w.plainNote)}</p></section>`;
+}
+
 function lineSection(lang: Lang, n: number, p: number, { heading = "h3", link = true } = {}) {
   const w = W[lang];
   const lines = linesOf(getByNumber(n));
@@ -227,6 +240,7 @@ function lineSection(lang: Lang, n: number, p: number, { heading = "h3", link = 
 <div class="line-head">${figure(lines, { hl: [p], label: `${hexTitle(lang, n)}, ${title}` })}<div>${lineText(lang, n, p)}</div></div>
 <ul class="facts">${facts(lang, n, p).map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
 ${meaning ? `<p>${esc(meaning.x)}</p><p>${esc(meaning.l)}</p>` : ""}
+${plainBlock(lang, "line", n, p)}
 <p class="changes">${esc(w.changesTo)} ${hLink(lang, ch, [p])}</p>
 ${heading === "h1" ? takashimaBlock(lang, n, String(p)) : ""}
 </section>`;
@@ -329,6 +343,7 @@ function hexagramPage(lang: Lang, n: number, origin: string) {
 <h2>${esc(w.judgment)}</h2>${judgmentText(lang, n)}
 ${lang === "en" ? inBrief(n) : ""}
 ${meaning ? `<p>${esc(meaning)}</p>` : ""}
+${plainBlock(lang, "hex", n)}
 ${takashimaBlock(lang, n, "judgment")}
 ${adUnit(AD_SLOT_INARTICLE)}
 <h2>${esc(w.lines)}</h2>

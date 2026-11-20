@@ -5,6 +5,7 @@ import linesJson from "../../../skills/zhouyi-lookup/scripts/zhouyi/lines.json" 
 import leggeJson from "../../../skills/zhouyi-lookup/scripts/zhouyi/legge.json" with { type: "json" };
 import tradJson from "../../../skills/zhouyi-lookup/scripts/zhouyi/jing_trad.json" with { type: "json" };
 import takashimaJson from "../../../skills/zhouyi-lookup/scripts/zhouyi/takashima.json" with { type: "json" };
+import plainJson from "../../../skills/zhouyi-lookup/scripts/zhouyi/plain.json" with { type: "json" };
 import tablesJson from "./tables.json" with { type: "json" };
 
 export type Hexagram = {
@@ -22,4 +23,5 @@ export const LINE_MEANING: Record<string, { x: string; l: string; s: string[] }[
 export const LEGGE: any = leggeJson;
 export const TRAD: any = tradJson;
 export const TAKASHIMA: any = takashimaJson;
+export const PLAIN: any = plainJson;
 export const T: any = tablesJson;
