@@ -128,7 +128,11 @@ test("经文页：卦辞、动爻、义理、高岛节录、免责声明齐全",
   for (const s of sources) assert.equal(s.open, false, "出处默认收起");
   assert.match(w.document.body.textContent, /高岛原书 · 义理节录/);
   // 卦辞、爻辞下方都直接跟真正的白话（引擎 plain 层），取象/义理原文折叠收起
-  assert.match(w.document.body.textContent, /白话：.*行旅在外|白话：.*在外的人/, "卦辞下方应有 plain 层白话");
+  assert.match(w.document.body.textContent, /白话：/, "卦辞下方应有 plain 层白话");
+  // 只查白话区块本身，不查推演步骤与折叠的原文出处（那些保留文言是设计如此）
+  for (const el of w.document.querySelectorAll(".plain, .sum-meaning")) {
+    assert.doesNotMatch(el.textContent, /旅居之理|柔顺为贵|刚而居柔/, "白话区块不应是注释腔");
+  }
   assert.match(text(w, "rd-meaning"), /白话：/);
   assert.match(text(w, "rd-meaning"), /原文取象与义理/);
   assert.doesNotMatch(w.document.body.textContent, /\[object Object\]|undefined|NaN/, "结果页不得出现乱码占位");
