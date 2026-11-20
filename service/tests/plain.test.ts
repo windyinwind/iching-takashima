@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { PLAIN } from "../src/engine/data.ts";
 import { linePage } from "../src/pages.ts";
+import { read } from "../src/engine/index.ts";
 
 const ROOT = fileURLToPath(new URL("../..", import.meta.url));
 const LANGS = ["en", "zh", "ja"] as const;
@@ -47,6 +48,15 @@ test("line pages render the plain-language block in every language", () => {
     assert.ok(html.includes(plain), `${lang}: plain text not rendered verbatim`);
     assert.doesNotMatch(html.slice(html.indexOf('class="plain"')).slice(0, 600), /undefined|\[object Object\]/, `${lang}: garbage in plain block`);
   }
+});
+
+test("engine.read exposes plain at top level and on each line (mini-tool/MCP contract)", () => {
+  const hex = read(56, null, "zh");
+  assert.deepEqual(hex.plain, PLAIN.hexagrams["56"]);
+  const line = read(56, 3, "zh");
+  assert.deepEqual(line.line.plain, PLAIN.lines["56-3"]);
+  // plain is a sibling of meaning, not nested inside it
+  assert.ok(!("plain" in (line.line.meaning ?? {})), "plain must not be nested under meaning");
 });
 
 test("plain.json committed copy matches the generator source", () => {

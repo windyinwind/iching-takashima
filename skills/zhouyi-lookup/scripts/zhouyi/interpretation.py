@@ -238,6 +238,33 @@ def _load_line_meaning() -> Dict[str, list]:
 
 LINE_MEANING: Dict[str, list] = _load_line_meaning()
 
+
+def _load_plain() -> Dict:
+    """加载人话版（L3.5）：64 卦 + 384 爻 × zh/en/ja 的现代白话转写。
+
+    只做忠实的白话转写，不含占断；与「取象/义理」原文并列，帮读者读懂经文。
+    """
+    path = data_file("plain.json")
+    if not path.exists():
+        return {"hexagrams": {}, "lines": {}}
+    with path.open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+PLAIN: Dict = _load_plain()
+
+
+def plain_hexagram(number: int) -> Dict[str, str]:
+    """卦义的现代白话转写（三语）。"""
+    return PLAIN.get("hexagrams", {}).get(str(number), {})
+
+
+def plain_line(number: int, position: int) -> Dict[str, str]:
+    """单爻取象/义理的现代白话转写（三语）。position 0=初 … 5=上。"""
+    position = normalize_position(position)
+    return PLAIN.get("lines", {}).get(f"{number}-{position}", {})
+
+
 SOURCE_TITLES: Dict[str, str] = {k: v["title"] for k, v in SOURCES.items()}
 
 
@@ -287,6 +314,7 @@ def line_commentary(number: int, position: int) -> Dict:
         "label": line_label(position, is_yang),
         "text": text,
         "meaning": line_meaning(number, position),
+        "plain": plain_line(number, position),
         "trigram": _position_trigram(number, position),
         "text_source": {
             "work": SOURCES["yijing"]["title"],
@@ -358,6 +386,7 @@ def full_reading(number: int, position: Optional[int] = None) -> Dict:
             "status": SOURCES["yijing"]["status"],
         },
         "meaning": hexagram_meaning(number),
+        "plain": plain_hexagram(number),
         "upper_nature": {
             "name": h["upper"],
             "symbol": SYMBOLS[h["upper"]],

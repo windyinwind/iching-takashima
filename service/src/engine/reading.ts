@@ -1,6 +1,6 @@
 // Port of interpretation.full_reading, english.legge / titles, japanese read_extra / titles,
 // and takashima.commentary.
-import { LEGGE, LINE_MEANING, TAKASHIMA, TRAD, T } from "./data.ts";
+import { LEGGE, LINE_MEANING, PLAIN, TAKASHIMA, TRAD, T } from "./data.ts";
 import { EngineError, SYMBOLS, getByNumber, lineLabel, linesOf, normalizePosition } from "./core.ts";
 
 export const SOURCES: Record<string, any> = T.sources;
@@ -33,6 +33,7 @@ function lineCommentary(number: number, pos: number | string) {
     label: lineLabel(position, yang),
     text: h.lines[position],
     meaning: lineMeaning(number, position),
+    plain: PLAIN.lines[`${number}-${position}`] ?? null,
     trigram: {
       name: t, tier: position <= 2 ? "下卦" : "上卦", symbol: SYMBOLS[t], nature: NATURE[t],
       element: ELEMENTS[t], direction: DIRECTIONS[t], family: FAMILY[t], creature: CREATURES[t],
@@ -52,6 +53,7 @@ export function fullReading(number: number, position: number | string | null = n
     judgment: h.judgment,
     judgment_source: { work: SOURCES.yijing.title, location: `${h.name}卦·卦辞`, status: SOURCES.yijing.status },
     meaning: T.hexagram_meaning[h.name] ?? "",
+    plain: PLAIN.hexagrams[String(number)] ?? null,
     upper_nature: nature(h.upper),
     lower_nature: nature(h.lower),
   };

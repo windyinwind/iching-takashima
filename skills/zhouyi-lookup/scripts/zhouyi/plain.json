@@ -8,7 +8,7 @@
    "hexagrams": "卦号→三语一句",
    "lines": "卦号-爻序(0..5)→三语一段"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
  },
  "hexagrams": {
   "1": {
@@ -57,9 +57,9 @@
    "ja": "小畜は下が乾、上が巽。小さい力で大きい力を畜える。蓄えることを表す——雲は厚いのに雨が降らない。まだ積もりが足りない。時を待つこと。"
   },
   "10": {
-   "zh": "履卦下兑上乾，喜悦而应和。它讲的是守礼有分寸——像踩着老虎尾巴走路，心里戒惧又不失礼，才能顺通行事。",
-   "en": "Lü is joy below, strength above — gladness responding. It's about walking with propriety and measure — like treading on a tiger's tail: stay alert without losing decorum, and you get through.",
-   "ja": "履は下が兑、上が乾。悦んで応じる。礼を守り度をわきまえることを表す——虎の尾を踏むような歩み。戒めつつ礼を失わなければ、通じる。"
+   "zh": "履卦讲的是守规矩、有分寸——像踩着老虎尾巴走路，心里提着小心又不失礼数，才能顺顺当当地过去。",
+   "en": "Lü is about keeping your footing and watching your step — like walking on a tiger's tail: stay alert, keep your manners, and you'll get through smoothly.",
+   "ja": "履は、足元を固めて分を守ること——虎の尾を踏むような歩み。警戒を怠らず礼を失わなければ、難なく通り抜けられる。"
   },
   "11": {
    "zh": "泰卦下乾上坤，天地相交、通泰。它讲的是上下沟通、心意相同的好局面；但泰到了极点就会转否，所以要存一份防满的心。",
@@ -102,9 +102,9 @@
    "ja": "蠱は下が巽、上が艮。積み重なった弊が治めを待つ。先人の残した乱れを直すことを表す——乱れを正すが、手をつける前に事情を明らかにすること。"
   },
   "19": {
-   "zh": "临卦下兑上坤，以柔临刚。它讲的是居上位者的德行——靠正道而不是靠权势去临民；八月是盛极之时，借此警戒盈满。",
-   "en": "Lin is joy below, yielding above — softness approaching strength. It's the virtue of those in high position: lead by what's right, not by power. The eighth month is the peak of fullness — a warning against overflowing.",
-   "ja": "臨は下が兑、上が坤。柔で剛に臨む。上位者の徳を表す——勢いではなく正しさで人に臨む。八月は盛りの極みで、満ちることへの戒め。"
+   "zh": "临卦讲的是在高位怎么待人——靠正道，不靠权势压人。八月是势头最盛的时候，借它提醒你：越满越要收着。",
+   "en": "Lin is about how to treat people from above — through what's right, not through raw power. The eighth month is the peak of fullness; it's there to warn you: the fuller you are, the more you should rein yourself in.",
+   "ja": "臨は、上の者がどう人に臨むかを表す——権力ではなく、正しさによる。八月は勢いの絶頂。それによって「満ちたら引け」と戒めている。"
   },
   "20": {
    "zh": "观卦下坤上巽，观看而不行动。它讲的是省察的道理——观国之光、观人也观己；要看风化好不好，先看自己。",
@@ -197,9 +197,9 @@
    "ja": "家人は下が離、上が巽。家の道。家を正すことを表す——厳しさと和やかさが助け合って家を治める。"
   },
   "38": {
-   "zh": "睽卦下兑上离，两女同居、志向不同。它讲的是乖离——在分离中看到相同，在差异中看到相通。",
-   "en": "Kui is joy below, clarity above — two women dwelling together, aims apart. It's about divergence: within separation see the common, within difference see the connection.",
-   "ja": "睽は下が兑、上が離。二人の女が同じ家にいて志が違う。離れることを表す——離れる中に同じものを見いだし、違う中に通じるものを見る。"
+   "zh": "睽卦讲的是分离——两个人、两拨人各怀心思、越走越远。但这一卦真正的意思是：在分开里找相同，在不一样里找相通。",
+   "en": "Kui is about divergence — two people, two camps, each with their own mind, drifting further apart. But the real point of this hexagram: find the same within the separate, find the connection within the different.",
+   "ja": "睽は離れることを表す——二人、二つの集団がそれぞれ思いを持ち、離れていく。だがこの卦の本当の意味は、離れる中に同じものを見つけ、違う中に通じるものを見つけることだ。"
   },
   "39": {
    "zh": "蹇卦下艮上坎，行路有险。它讲的是见险能止——蹇的时候，往西南有利、往东北不利，方位比喻进退。",
@@ -287,14 +287,14 @@
    "ja": "豊は下が離、上が震。明かりが盛ん。豊かな時を表す——日は真昼に傾き始める。豊かさにあって満ちることを戒める。"
   },
   "56": {
-   "zh": "旅卦下艮上离，行旅在外。它讲旅居之理——在外的人，柔顺为贵，放低姿态自处。",
-   "en": "Lu is mountain below, clarity above — traveling away from home. It's about the way of the traveler: away from home, softness is precious, keep yourself lowly.",
-   "ja": "旅は下が艮、上が離。旅に出ている。旅居の道理を表す——旅の人は柔順を尊び、低く自らを処する。"
+   "zh": "旅卦讲的在外奔波、不在自己主场。这种时候把姿态放低、随和一点，事情反而顺——这不是坏卦，是提醒你人在屋檐下别硬出头，先安顿下来。",
+   "en": "Lu is about being away from home, not on your own turf. In that spot, keeping low and easy actually gets you further — this isn't a bad hexagram; it reminds you not to push too hard under someone else's roof, but to settle in first.",
+   "ja": "旅は家を離れ、自分の場所ではない所にいること。そういう時は身を低くし、柔らかに振る舞うほうが事が順調だ——これは悪い卦ではない。人の屋根の下で強く出るな、まず落ち着け、と警告している。"
   },
   "57": {
-   "zh": "巽卦为风，风行无形。它讲柔入之理——巽用来申明命令、推行政事，柔而能入，入而能断。",
-   "en": "Xun is wind, blowing without form. It's about gentle penetration — Xun declares commands and carries out affairs: soft yet penetrating, penetrating yet decisive.",
-   "ja": "巽は風、形なく吹く。柔らかく入る道理を表す——巽は命令を述べて事を行い、柔で入り、入って断てる。"
+   "zh": "巽卦讲的是像风一样无声无息地渗入——把命令说清楚、把事情办下去。柔能渗进去，渗进去了还能拿定主意，这就是巽。",
+   "en": "Xun is about seeping in like wind, silently — getting the word out and seeing the job through. Softness can penetrate, and having penetrated can still decide. That's Xun.",
+   "ja": "巽は風のように音もなく染み入ることを表す——命令をはっきり伝え、事をやり遂げる。柔は入り込み、入った後も判断を保てる。それが巽だ。"
   },
   "58": {
    "zh": "兑卦为泽，泽润万物。它讲和悦——和悦可亲，用喜悦引导众人，就能使人忘了劳苦。",
@@ -354,9 +354,9 @@
    "ja": "もう上へ進もうとしているが、まだ決めかねている——幸い背後には淵があり、いつでも引ける。時を見極めて動くこと。進めるなら進み、駄目なら引く。迷って安易に動かないのも、自分を守る道だ。"
   },
   "1-4": {
-   "zh": "你到了尊位，居中又端正，是全卦的主爻。德行和位置相称，就可以真正做点事——要紧的是你的德配得上这个位子。",
-   "en": "You've reached the place of honor — centered and upright, the main line of the whole hexagram. With character matching position, you can genuinely accomplish something. What matters is that your virtue fits the station.",
-   "ja": "尊い位に就き、真ん中で正しく、全卦の主爻。徳と地位が釣り合えば、本当に事を成せる。肝心なのは、自分の徳がその位に見合うこと。"
+   "zh": "你现在正当红，站在最核心的位置，手里也有实权。这时候能真正做成点大事——但要记住，位子越高，越得有配得上它的真本事，别光靠位置唬人。",
+   "en": "You're at the top right now, right at the center of things with real power in your hands. This is when you can actually get something big done — but remember: the higher you climb, the more real substance you need to back it up. Don't coast on the title alone.",
+   "ja": "あなたは今まさに絶頂にいて、中心の地位に立ち、実権も握っている。ここで初めて大きなことを成せる。ただし心せよ——位が高くなるほど、それに見合う真の実力が要る。肩書だけでは乗り切れない。"
   },
   "1-5": {
    "zh": "你冲到了顶，再往上没路了——太满的东西撑不久。只知进、不知退，就会留下悔恨。守住满局的诀窍，是主动减损一点。",
@@ -374,9 +374,9 @@
    "ja": "下卦の中央で、位も中も得て、徳は素直で広い。内は直く外は方正、それは自然に育ったもので饰る必要はない。正を守れば、道は自ずと通じる。"
   },
   "2-2": {
-   "zh": "你在下卦上面，不中不正，才华是藏着没发出来的。有本事别急着张扬，守住本分就行；跟着别人做事不居功，反而能有好结果。",
-   "en": "You're at the top of the lower trigram — off-center and improper, your talent held in, not yet shown. Don't rush to show off; just keep to your duty. Serve others without claiming credit, and you'll get a good result.",
-   "ja": "下卦の上部にいて、中も正も外れ、才はしまったまま出ていない。急にひけらかさず本分を守ること。人の仕事を助けて功を奪わなければ、かえって良い結果が得られる。"
+   "zh": "你在下卦偏上的位置，位置还没摆正，才华藏着没露出来。有本事别急着显摆，守住本分就好；帮人做事不抢功，反而能有好结果。",
+   "en": "You're just above the lower center, not yet in your proper place, your talent still hidden. Having ability, don't rush to show off — just keep your part. Help others without claiming credit and you get a good result instead.",
+   "ja": "あなたは下のやや上にいて、まだ正しい位置に着けておらず、才能もしまったままだ。腕前があっても急に見せるな——分を守ればよい。人の仕事を助けて功を奪わねば、かえって良い結果が出る。"
   },
   "2-3": {
    "zh": "你在上卦下面，靠近五位却合不来，处在容易招猜疑的位置。把嘴管紧、像扎住口袋一样别乱说——在这种尴尬处境，沉默就够自保，不必求什么好名声。",
@@ -384,9 +384,9 @@
    "ja": "上卦の下にいて、五位に近いのにうまく合わず、疑われやすい場所にいる。口を結んだ袋のように緘すること。この気まずい状況では、黙っているだけで身は守れる。評判を求める必要はない。"
   },
   "2-4": {
-   "zh": "你身居尊位，以柔守中，就像黄色的下裳——贵气藏在内里。在上位却不僭越，用中道守住自己，文采在里面而不外露。",
-   "en": "You're in the place of honor, holding the center with softness — like a yellow lower robe: nobility kept inside. In high position you don't overstep; you guard yourself with the middle way, your grace within rather than displayed.",
-   "ja": "尊い位にいて、柔らかく中を守る——黄色い下衣のような、気高さを内に秘めた姿。上位にいて分を越えず、中庸で自分を守る。美しさは内にあり、外に誇示しない。"
+   "zh": "你身居高位，却用柔和的方式守住分寸——像穿一件黄色的下裳，贵气藏在里头。在上位不摆架子、不越界，把光彩收在里面而不是到处显摆。",
+   "en": "You're high up, but you hold your ground with gentleness — like wearing a yellow lower robe, nobility tucked inside. In a high position you don't put on airs or step out of bounds; you keep your luster within instead of flashing it around.",
+   "ja": "あなたは高い地位にいながら、柔らかさで分を守っている——黄色い下衣を着るように、気高さを内に秘めた姿。上位にいても威張らず、線を越えず、光を外に誇示せず内にしまう。"
   },
   "2-5": {
    "zh": "阴柔到了极点，就跟阳刚争起来了——两股气在外面相斗。走到这一步是路到头了：柔到了极处维持不住，事物一到极端就会反转。",
@@ -434,9 +434,9 @@
    "ja": "全卦の主爻で、真ん中にいて多くの者の蒙昧を包み込める。教えるには容れることが肝心——容れて初めて人を感化できる。剛でありながら中を得ているので、家を担い人を率いられる。"
   },
   "4-2": {
-   "zh": "你在下卦上面，不中不正，丢了该应的对象去追上九。见了利就失了操守，等于自己放弃了立身之本——跟错了人，去了也不会有什么收获。",
-   "en": "You're at the top of the lower trigram — off-center and improper, abandoning your proper match to chase the top line. Seeing gain, you lose your principles — that's abandoning yourself. Following the wrong person, you'll gain nothing.",
-   "ja": "下卦の上部にいて、中も正も外れ、応じるべき相手を捨てて上九を追う。利益を見て操守を失うのは、自分を捨てること。間違った者に従えば、行っても得るものはない。"
+   "zh": "你在下卦偏上的位置，没走正道，抛了该回应的人去追上面那个。见了利就丢了操守，等于自毁根基——跟错了人，去了也白去。",
+   "en": "You're just above the lower center, off the right path — abandoning the one who should answer you to chase the one above. Seeing gain, you lose your principles and tear down your own foundation. Wrong person followed, going there is wasted.",
+   "ja": "あなたは下のやや上にいて、正道を外れ、応じるべき者を捨てて上の者を追う。利益を見て操守を失うのは、自ら基盤を壊すことだ——人を間違えれば、行っても無駄だ。"
   },
   "4-3": {
    "zh": "你在上卦下面，独自远离阳爻，上下都是阴，没人能帮你。困住又不肯学，就一直蒙下去——处境偏、又没明师指点，路就走死了。",
@@ -444,9 +444,9 @@
    "ja": "上卦の下にいて、陽から離れ、上下とも陰で助ける者がない。困ってまだ学ばなければ、蒙昧なまま。場所が偏り、良い師の導きもなく、道は行き詰まる。"
   },
   "4-4": {
-   "zh": "你身居尊位，柔和居中，以孩童般虚心来求教。虚怀接受别人，教的人就乐意告诉你；地位高却不自以为是，这正是你能明白的道理。",
-   "en": "You're in the place of honor, soft and centered, seeking teaching with a child's open mind. Receive others with humility and the teacher is glad to tell you. High in station yet not self-satisfied — that's why you can understand.",
-   "ja": "尊い位にいて、柔らかく中を守り、童子のような素直な心で教えを請う。虚な心で人を受け入れれば、教える者も喜んで告げる。位が高くても自分を正しいと決めつけない——だからこそ明るくなれる。"
+   "zh": "你在上位，却用柔和的态度，像小孩一样虚心去请教。肯虚下心来听，别人就乐意把话说给你；地位高却不自以为是——这正是你能想明白的原因。",
+   "en": "You're up high, yet you ask for teaching with a child's open mind, gentle about it. Willing to listen and others are happy to tell you; high in station but not self-important — that's exactly why you can see clearly.",
+   "ja": "あなたは上位にいて、柔らかな態度で、子どものような素直さで教えを請う。虚な心で聞けば、人は喜んで話してくれる——位が高くても自分を正しいと決めつけぬ。それこそが、あなたが物事を見通せる理由だ。"
   },
   "4-5": {
    "zh": "你到了卦的顶，用刚强去治蒙昧，过了头、失了柔。治蒙太严反而成了害——刚的作用在于挡住外面的诱惑，不在于攻打人的本心。",
@@ -539,9 +539,9 @@
    "ja": "上位にいて人を使うなら、一人に専任させ、権を委ねれば隊伍は統一される。多くの人に権を分たせれば、事は壊れる。"
   },
   "7-5": {
-   "zh": "仗打完了，到了论功行赏的时候。功劳可以赏，但别把管人的权交出去——小人就算有功，赏他钱物可以，不能给他封地掌权。",
-   "en": "The campaign is over; it's time to reward merit. Reward with honors but don't hand over governing power — even a base person who served can be rewarded with goods, but not given a fief to rule.",
-   "ja": "戦いが終わり、功績を褒める時が来た。功は褒美として与えても、人を治める権は渡すな。小人に功があれば褒美を与えてよいが、国を任せてはならない。"
+   "zh": "仗打完了，到了论功行赏的时候。功劳该赏就赏，但别把管人的权也交出去——有功的人赏钱物可以，不能给他封地掌权。",
+   "en": "The campaign is over; time to reward merit. Reward the merit, but don't hand over the power to govern too — the deserving can be given money and goods, not a fief and authority.",
+   "ja": "戦いが終わり、論功行賞の時が来た。功は賞すべきだが、人を治める権まで渡すな——功のある者には金品を与えても、領地と権限は与えられぬ。"
   },
   "8-0": {
    "zh": "你跟人亲近，靠的是诚信。心里真有诚意，别人就不怀疑你——就算素不相识，也能亲得起来。",
@@ -594,9 +594,9 @@
    "ja": "上卦の下にいて、柔で剛を畜え、誠意を内に積めば上下が信じ合う。誠をもって接すれば疑いや恐れは消える——柔が剛に勝つのは力ではなく、誠があるからだ。"
   },
   "9-4": {
-   "zh": "你身居尊位，是畜卦的主爻，用诚信把上下的阳爻团结起来。团结众人的关键在信义牢固——与其自己独享富足，不如跟大家共享。",
-   "en": "You're in the place of honor, the main line, binding the yang lines above and below with sincerity. The key to uniting people is solid trust — rather than hoarding abundance alone, share it with others.",
-   "ja": "尊い位にいて、畜の主爻となり、誠信で上下の陽を結びつける。衆をまとめる要は信義が固いこと。一人で富を独占するより、人と分かち合うほうがよい。"
+   "zh": "你在上位，是聚拢人心的核心，用诚信把大家团结起来。要拢住人，靠的是信义牢靠——与其自己独吞好处，不如跟人分享，人心才聚得起来。",
+   "en": "You're in charge, the one pulling people together, binding everyone with sincerity. What holds a group is trust that lasts — so rather than keeping the goodies to yourself, share them, and people will actually gather around you.",
+   "ja": "あなたは上位にいて、人心を寄せる中心的存在。誠実さでみんなを結びつけている。人を集めるには、変わらぬ信義が要る——自分だけ得を独占するより、分け合えば人が集まってくる。"
   },
   "9-5": {
    "zh": "你到了卦的顶，畜道已成，阴德积满，像月亮将要圆。积到极处就会通，德积够了才能承载万物；但满了还不止，往前走就失了正。",
@@ -614,9 +614,9 @@
    "ja": "下卦の中央で、履く道は平ら。上に応えもせず、自ら目立とうとしない。道はもともと平坦で、患いは自分で顕れを求めること。独行して人に知られることを求めない——これを幽人の貞という。"
   },
   "10-2": {
-   "zh": "你在下卦上面，不中不正，眼光和行为都偏了还硬要去做。本事撑不起事情却硬撑，等于自己往险里跳——量力而行，才是保身之道。",
-   "en": "You're at the top of the lower trigram — off-center and improper, your view and conduct skewed, yet you force ahead. Ability can't carry the task but you push anyway — that's leaping into danger yourself. Knowing your measure before acting is how you stay safe.",
-   "ja": "下卦の上部にいて、中も正も外れ、見方も行いも偏っているのに無理に事をする。才が任に足りないのに無理に任うのは、自ら険に飛び込むこと。力量を見計らって動くのが、身を守る道だ。"
+   "zh": "你在下卦偏上的位置，眼光和行为都偏了，还硬要往前冲。本事撑不住事情还硬撑，等于自己往险里跳——量力而行，才是保身之道。",
+   "en": "You're just above the lower center, your view and conduct skewed, yet you push ahead anyway. Ability can't hold the task but you force it — you leap into danger yourself. Knowing your measure is how you stay safe.",
+   "ja": "あなたは下のやや上にいて、見方も行いも曲がっているのに、なお突き進む。能力が支えぬのに無理をすれば、自分で険に飛び込むようなもの——力を量ってこそ、身を守れる。"
   },
   "10-3": {
    "zh": "你在上卦下面，靠近九五的刚，用柔顺和戒惧行事。靠近刚强却不放肆，小心警惕地走——能把戒惧常放心上，即使走在险处也不受伤。",
@@ -624,9 +624,9 @@
    "ja": "上卦の下にいて、九五の剛に近く、柔と恐れをもって行く。剛に近くても勝手にふるまわず、戒めて慎重に歩む——恐れを心に保てれば、険を履んでも傷つかない。"
   },
   "10-4": {
-   "zh": "你身居尊位，果断去履行，以刚行刚、毫无顾虑。刚过头又没有制约，即使做得对也危险——决断的关键在于仔细审度，不在于一味果敢。",
-   "en": "You're in the place of honor, acting decisively, meeting rigidity with rigidity, without a second thought. Rigidity overdone and unchecked is dangerous even when right — the key to decision is careful weighing, not raw boldness.",
-   "ja": "尊い位にいて、決して履み、剛をもって剛を行い、何ら顧みない。剛が過ぎて制するものがなければ、正しくても危うい。決する要は詳しく審えることで、断ち切ることではない。"
+   "zh": "你身居高位，做事果断、一股脑往前冲。但光有冲劲没有约束，就算做得对也危险——决断的关键是把事情审清楚，不是一味逞强。",
+   "en": "You're high up and you act decisively, charging straight ahead. But drive without restraint is dangerous even when you're right — the key to a decision is thinking it through carefully, not just being bold.",
+   "ja": "あなたは高い地位で、毅然と一気に進む。だが勢いだけでは、正しくても危うい。決断の肝は、物事をよく見極めること——ただ強気で押し切ることではない。"
   },
   "10-5": {
    "zh": "你到了卦的顶，履之道已成，回头看自己走过的路，检验得失。走到底再回望开头，看看哪里对哪里错——周旋没有亏欠，这就是学问到家的地方。",
@@ -654,9 +654,9 @@
    "ja": "上卦の下にいて、三つの陰が連なって下へ向かい、戒められずとも自ら来る。同じ類は約さずとも信じ合う——勢いはすでに成っており、力では止められない。"
   },
   "11-4": {
-   "zh": "你身居尊位，柔和中正而向下呼应九二，以尊贵的身份降低姿态。处高位却能礼贤下士，把身份地位忘了去追随贤者——这是泰的最高境界。",
-   "en": "You're in the place of honor, soft and centered, reaching down to the second line — high status lowering itself. In high position you humble yourself before the worthy, forgetting rank to follow them — that's the height of Tai.",
-   "ja": "尊い位にいて、柔らかく中を得て下の九二に応じ、貴い身で頭を下げる。高位にいながら人を敬い、位を忘れて賢者に従う——これが泰の極みだ。"
+   "zh": "你在上位，却肯放下身段去够下面的人。处在高位还能礼贤下士、忘掉自己的身份去追随有本事的人——这就是最通透的处世。",
+   "en": "You're up high, yet you stoop to reach the people below. In a high place you can still humble yourself before the worthy — forgetting your rank to follow someone truly able. That's about as good as it gets.",
+   "ja": "あなたは高位にいながら、自ら身を低くして下の人に手を伸ばす。高い場所にいても賢者を敬い、地位を忘れて従う——これが最も美しい処し方だ。"
   },
   "11-5": {
    "zh": "你到了卦的顶，泰到了头，城墙倾塌、回到壕沟，势头已经反转。泰极生否，由来已久——这时候即使有命令也行不通，死守不变只会更困境。",
@@ -674,9 +674,9 @@
    "ja": "下卦の中央にいて、上の九五を受け、柔で剛を承け、従顺だが正しくない。従って人に迎合するのは小人の道。大人はこの局面で、自ら否せられても正を失わない。"
   },
   "12-2": {
-   "zh": "你在下卦最上面，不中不正，包容迎合到了极点，以至于自取羞辱。靠谄媚去迎合人，久了连人家也看轻你——你包藏的那点心思，终会变成你的羞耻。",
-   "en": "You're at the top of the lower trigram — off-center and improper, your flattering compliance taken to the limit, bringing shame on yourself. Curry favor too long and even they despise you — what you harbor ends up your disgrace.",
-   "ja": "下卦の最上部にいて、中も正も外れ、包み迎合することが極まり、自ら恥を招く。諂って人に迎合すれば、久すれば人もまた軽く見る。その包んだものは、やがて恥となる。"
+   "zh": "你在下卦最上面，位置没摆正，一味讨好迎合到了头，结果自取其辱。靠谄媚待人，久了连人家也看轻你——藏的那点心思，终会变成你的羞耻。",
+   "en": "You're at the top of the lower trigram, out of place — flattering to the extreme and bringing shame on yourself. Currying favor too long, even they despise you. The motive you hide ends up your disgrace.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、媚びへつらうこと極まり、自ら恥を招いた。諂って人に接すれば、久すれば軽く見られる——隠したその心が、やがて恥となる。"
   },
   "12-3": {
    "zh": "你在上卦下面，靠近九五君主，能实行自己的志向而不专断。处在闭塞之时，能有所作为的人，一定是承受君命而行——奉命去做，过错就不归自己。",
@@ -684,9 +684,9 @@
    "ja": "上卦の下にいて、九五の君に近く、志を行えて専断しない。否の時、何か成せる者は必ず君の命を受ける。命を奉じて行けば、過ちは自分に帰しない。"
   },
   "12-4": {
-   "zh": "你身居尊位，得中得正，能扭转闭塞的运势，心里常怀危惧。否将要转好的时候，心里更要戒惧——常拿危亡警醒自己，安稳才像系在桑树上一样牢固。",
-   "en": "You're in the place of honor, centered and correct, able to halt the blocking tide, your heart ever watchful. When Pi is about to ease, keep fear alive — constantly warn yourself of danger, and your safety stays firm as if tied to a mulberry tree.",
-   "ja": "尊い位にいて、中も正も得て、否の運を止め、心に常に危惧を抱く。否がやっと良くなりかける時こそ恐れる。危亡を常に心がけていれば、安さは桑に繋がるように固い。"
+   "zh": "你在上位，又稳又正，能扭转闭塞的局面，但心里始终绷着弦。局面快转好时更要小心——常拿最坏的情况警醒自己，安稳才牢靠。",
+   "en": "You're up high, steady and upright, able to turn a blocked situation around — but you keep a tight guard. When things are about to ease, be more careful than ever — keep the worst case in mind and your calm will hold.",
+   "ja": "あなたは上位にいて穩やかで正しく、塞がった局面を立て直せる。だが心にはいつも張り詰めたものがある。局面が良くなりかける時こそ要注意——最悪の事態を想定して初めて、安泰は確かになる。"
   },
   "12-5": {
    "zh": "你到了卦的顶，否到了头，倾覆就要转回来。否极必反，物极必反——处在这个极点，一天都不能忘了戒惧。",
@@ -709,19 +709,19 @@
    "ja": "下卦の最上部にいて、剛すぎて中を外れ、同じ志を結ぼうとして得られず、兵器を隠して機を伺う。力で同じにしようとすれば、結ぶ者はかえって離れる。策を隠して待っても長く成果がなく、手詰まりだ。"
   },
   "13-3": {
-   "zh": "你在上卦下面，不中不正，想攻却攻不下来，反而自己停住了。理不直，力就胜不了——知道攻不动而自己罢手，这是能回到道理上来的表现。",
-   "en": "You're below the upper trigram — off-center and improper, wanting to attack but unable, and stopping yourself instead. When the cause isn't just, force won't win — knowing you can't attack and holding back is returning to reason.",
-   "ja": "上卦の下にいて、中も正も外れ、攻めようとして勝てず、かえって自ら止めた。理が正しくなければ力は勝てない。攻められぬと知って自ら止めるのは、理に返えることだ。"
+   "zh": "你在上面偏下的位置，位置不正，想攻却攻不动，干脆自己停手。理不直，劲就使不上——知道攻不下而收手，是回到了正理上。",
+   "en": "You're just below the upper trigram, out of place — wanting to attack but unable, so you stop yourself. When the cause isn't just, the force won't come. Knowing you can't win and holding back is returning to what's right.",
+   "ja": "あなたは上のやや下にいて、位置が正しくなく、攻めようとして攻められず、自ら手を引いた。理が曲がれば力も出ぬ——攻められぬと知って止めるのは、正理に返ることだ。"
   },
   "13-4": {
-   "zh": "你身居尊位，与六二正应，被三四两爻隔开，先乖离而后相合。中正的道理，即使暂时隔开也终会相合——先用诚意相待，虽有间隔也一定能通。",
-   "en": "You're in the place of honor, properly matched with the second line, separated by the third and fourth — first at odds, then united. The principle of centered rightness, though briefly parted, will join again — lead with sincerity and even a gap will open through.",
-   "ja": "尊い位にいて、六二と正しく応じるが、三・四の爻に隔てられ、まず乖きて後で合う。中直の理は、しばらく隔てられても終には合う。まず誠をもって接すれば、間があっても必ず通じる。"
+   "zh": "你在上位，和下面一个志同道合的人本该相合，却被旁人隔着，一开始合不来。但正道暂时被隔开，终究会合上——先拿出诚意，哪怕有隔阂也一定能打通。",
+   "en": "You're in charge, and you're meant to click with someone below, but others are keeping you apart — at first it doesn't work. But what's right, even if briefly blocked, comes together in the end. Lead with sincerity and even a gap will open through.",
+   "ja": "あなたは上位にいて、下の志を同じくする人と本来は通じるはずだが、周囲に隔てられて初めは合わない。だが正しいものは、しばらく隔てられてもやがて合う。まず誠を示す——間があっても必ず通じる。"
   },
   "13-5": {
-   "zh": "你到了卦的顶，远离六二，没人可以合同，志向没实现却也不后悔。志在与人相同却没能达成，是时机没到——无所同，也就无所悔。",
-   "en": "You're at the top of the hexagram, far from the second line, with no one to unite with — your aim unfulfilled, yet no regret. Wanting unity but not reaching it means the time hasn't come — no unity, and so no regret.",
-   "ja": "卦の頂点にいて、六二から遠く、同じ志を結ぶ者がいない。志は達せられなかったが悔いはない。人と同じ志を結ぼうとして及ばないのは、時がまだ来ていないだけ。同じものがなく、悔いもない。"
+   "zh": "你到了最上面，离那个志同道合的人很远，没人能跟你相合。想跟人走到一起却没能如愿，是时候还没到——既然合不上，也没什么好后悔的。",
+   "en": "You're at the very top, far from the like-minded one, with no one to join. Wanting unity and not reaching it means the time hasn't come. Since you can't join, there's nothing to regret.",
+   "ja": "あなたは最も上にいて、志を同じくする人から遠く、誰とも合えない。人と一つになろうとして叶わぬのは、時がまだ来ていないからだ。合えぬのなら、悔いることもない。"
   },
   "14-0": {
    "zh": "你在最底下，是大有的开始，还没和外物打交道，以艰难自处。刚拥有的时候，怕的是骄傲——用艰难来警醒自己，就不至于在与人交往中招害。",
@@ -744,14 +744,14 @@
    "ja": "上卦の下にいて、六五に近く、持っていても自ら盛んにしない。富の世にあって自らその盛りを減らせば、所有に引きずられない。これを知る者は禍を免れる。"
   },
   "14-4": {
-   "zh": "你身居尊位，柔和中正，五个阳爻都应你，用诚信与人交往，自然有威严。用诚实待人，不用发怒人家也敬畏——威严生于诚信，不在刑罚。",
-   "en": "You're in the place of honor, soft and centered, with all five yang lines responding. Trusting others wins them without anger — awe arises from faith, not from punishment.",
-   "ja": "尊い位にいて、柔らかく中を得て、五つの陽がすべて応じる。誠で人と交われば、怒らずとも人が畏れる。威厳は信から生まれ、刑にあるのではない。"
+   "zh": "你在上位，性子稳、走得正，大家都愿意跟你。待人诚恳，不用发火别人也敬你——威信是从信任里来的，不是靠罚出来的。",
+   "en": "You're up high, steady and upright, and people willingly follow you. Meet others with genuine feeling — without losing your temper, others still respect you. Authority grows from trust, not from punishment.",
+   "ja": "あなたは高位にいて、穩やかで正しく、人が進んで従う。誠をもって人に接すれば、怒らずとも敬われる。威厳は罰からではなく、信から生まれる。"
   },
   "14-5": {
-   "zh": "你到了卦的顶，履行诚信、心思考顺，以刚居柔位，顺天而不自恃。履行诚信又思顺从，还尊尚贤者来辅佐自己，这是上天所助——天助的，正是自助到了极点的人。",
-   "en": "You're at the top of the hexagram, walking in faith and thinking of compliance, rigid in a soft place — following heaven without relying on yourself. Faithful and compliant, honoring worthies to help you — this is what heaven aids. Heaven aids those who help themselves to the utmost.",
-   "ja": "卦の頂点にいて、信を履み順を思い、剛で柔の位に居り、天に従って自らを恃まない。信を履み順を思い、さらに賢者を尊んで自らを補う——これは天が助けるところ。天が助けるのは、自ら助けを極めた者だ。"
+   "zh": "你到了最上面，讲信用、懂顺势，刚强却待在柔的位置，顺着天道不逞强。讲信用又肯顺势，还尊重贤者来帮自己——这是老天都帮的人；说到底，老天帮的正是自己先帮自己的人。",
+   "en": "You're at the very top — keeping faith, reading the current, strong yet in a soft place, following heaven without pushing. Faithful and compliant, honoring worthies to help you: this is someone heaven aids. And heaven aids those who first help themselves.",
+   "ja": "あなたは最も上にいて、信を守り流れを読み、剛でありながら柔の位にいて、天道に従って強がらない。信を守り、順を思い、賢者を尊んで自らを助けさせる——天が助ける人だ。言えば、天が助けるのは、まず自分で自分を助けた者だ。"
   },
   "15-0": {
    "zh": "你在最底下，谦了又谦，以柔处下，德行越发卑下。以卑下管束自己，是君子的起点——身处低位又能甘居人下，就能渡过艰难。",
@@ -774,9 +774,9 @@
    "ja": "上卦の下にいて、柔らかく正しく、六五を受けて謙を発揮できる。謙の道は広げられることが肝心で、自分で守るだけではない。謙で下の人に接すれば、どこへ行っても順調だ。"
   },
   "15-4": {
-   "zh": "你身居尊位，柔和中正又谦逊，对不服的人就用威严来辅助。以谦待人但不废威严——德行有余而还有人不服，就不能不加以讨伐。",
-   "en": "You're in the place of honor, soft, centered and humble, backing it with severity for those who won't submit. Humility toward people without discarding dignity — when virtue is more than enough and some still won't submit, you must correct them.",
-   "ja": "尊い位にいて、柔らかく中を得て謙遜だが、服さない者には威厳をもって補う。謙で人に接しても威を捨てない。徳が十分あるのにまだ服しない者がいれば、征さずにはいられない。"
+   "zh": "你在上位，又谦逊又稳，对还不服气的人就拿出威严来兜底。谦归谦，该有的规矩不能丢——德行够了还有人不服，就得拿出手段来。",
+   "en": "You're up high, modest and steady, and when someone still won't listen, you back it with firmness. Modest, yes — but you don't drop the boundaries. When virtue is more than enough and someone still won't fall in line, you have to show some teeth.",
+   "ja": "あなたは高位にいて、謙虚で穩やか。それでも従わない者には、威厳で支える。謙虚でも節度は捨てない——徳が十分あるのにまだ従わぬ者がいれば、手を打たねばならない。"
   },
   "15-5": {
    "zh": "你到了卦的顶，谦到了极处，名声更加远播，可以行你的征伐。谦到极处，人信你信得深，所以能驱使众人——用兵，不过是端正自己私邑里不服的人罢了。",
@@ -794,19 +794,19 @@
    "ja": "下卦の中央にいて、柔らかく正しく静かで、豫の楽しみに溺れず、操守は石のよう。安楽にあっても沈まず、兆しを見れば一日を待たず動く。静かに守る——これが耿介というものだ。"
   },
   "16-2": {
-   "zh": "你在下卦最上面，不中不正，抬头望着九四去求安逸。依附别人来取乐，既丢了操守，又不早作决断，所以越拖越悔。",
-   "en": "You're at the top of the lower trigram — off-center and improper, looking up to the fourth line for ease. Leaning on others for pleasure, you lose your principles and fail to decide early, so regret grows the longer you wait.",
-   "ja": "下卦の最上部にいて、中も正も外れ、九四を見上げて楽を求める。人に頼って楽しむのは、操守を失い、早く決めないので、遅れるほど悔いが増す。"
+   "zh": "你在下卦最上面，位置没摆正，仰着头去讨上面欢心。靠依附别人取乐，既失了操守，又不早拿主意，所以越拖越悔。",
+   "en": "You're at the top of the lower trigram, out of place, craning toward the one above to get your pleasure. Leaning on others for joy, you lose your principles and delay deciding — so regret keeps growing.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、上の者に媚びて喜びを得ようとする。人に寄りかかって楽しみ、操守も失い、決断も遅くする——だから引くほど悔いが増す。"
   },
   "16-3": {
-   "zh": "你在上卦下面，是豫卦的主爻，众阴靠你得到安乐。被人依赖而安稳，就该开诚布公、不生疑心——一疑众人就离心，一诚众人就聚合。",
-   "en": "You're below the upper trigram, the main line of Yu, the yin lines relying on you for ease. When others depend on you for peace, open your heart and don't doubt — doubt scatters them; sincerity gathers them like a hairpin.",
-   "ja": "上卦の下にいて、豫の主爻となり、多くの陰があなたによって安楽を得る。人に頼られて安んじるなら、誠を開いて疑わないこと。疑えば衆は離れ、誠ならば簪のように集まる。"
+   "zh": "你在上面偏下的位置，是大家安乐的来源，众人靠你才踏实。被人依赖着，就该开诚布公、别起疑心——一疑大家就散，一诚大家就紧紧跟着你。",
+   "en": "You're just below the upper trigram, the source everyone's ease depends on. Trusted like that, open your heart and don't suspect — doubt scatters them; sincerity keeps them close as a hairpin holds hair.",
+   "ja": "あなたは上のやや下にいて、皆の安楽の源。あなたがいてこそ人は落ち着く。頼られているなら、心を開いて疑うな——疑えば皆が離れ、誠ならば簪のように集まる。"
   },
   "16-4": {
-   "zh": "你身居尊位，柔和中正却乘着九四的刚，得到辅佐却不能自己作乐。得人辅佐而不能自专，像有病的人靠药才活着——之所以不死，是因为还有人扶着。",
-   "en": "You're in the place of honor, soft and centered but riding the rigidity of the fourth line — you gain a helper but can't indulge yourself. Aided but not free to act alone, like a sick person kept alive by medicine — you survive because someone supports you.",
-   "ja": "尊い位にいて、柔らかく中を得るが、九四の剛に乗り、補佐を得ても自ら楽しめない。人の助けを得て自専できぬのは、病んだ者が薬で生きるようなもの。死なないのは、まだ人が支えているからだ。"
+   "zh": "你在上位，性子稳却被下面一个强势的人架着，得了帮手却不能自己痛快。就像有病的人靠药撑着——之所以还撑得住，是因为身边有人扶着。",
+   "en": "You're up high, steady, but propped up by a strong person below — you gain a helper yet can't be fully your own. Like a sick person kept alive by medicine — you're still standing only because someone's holding you up.",
+   "ja": "あなたは高位にいて、穩やかだが下の強い人に支えられ、助けは得たが自分では思いのままにできない。病んだ人が薬で生きるようなもの——まだ立っているのは、誰かが支えているからだ。"
   },
   "16-5": {
    "zh": "你到了卦的顶，豫到了头，沉溺已极，能改变就可以免祸。沉溺享乐到了极点还不知回头，路就快走死了——能改，过失还能补。",
@@ -819,9 +819,9 @@
    "ja": "一番下にいて、随の初め。常道を守って偏らず、門を出て人と交われば私的な執わりがない。人に従っても正を失わず、変わりつつ本を守る。門を出て交われば、その働きは外に及ぶ。"
   },
   "17-1": {
-   "zh": "你在下卦正中，近处系着初九，却远处失了九五。所系的是小的，所失的却是大的——随之道在于选对跟从的对象，不能两头都要。",
-   "en": "You're at the center of the lower trigram, tied to the nearby first line but losing the distant fifth. What you hold is small; what you lose is great — following means choosing whom to follow; you can't have both.",
-   "ja": "下卦の中央にいて、近くの初九に繋がり、遠くの九五を失う。繋いだのは小さく、失ったのは大きい。随う道は、従う相手を選ぶことにあり、両方は選べない。"
+   "zh": "你在下卦正中，近处跟了一个小角色，远处却把一个大人物丢了。为了小的丢了大的——跟人这件事，得挑对对象，不能两头都占。",
+   "en": "You're at the center of the lower trigram — tied to a small player nearby, letting a big one go in the distance. Trading the big for the small: following people means choosing well; you can't have both.",
+   "ja": "あなたは下卦の中央にいて、近くは小さな者に、遠くは大きな者を失った。小ささを取って大きさを失った——人に従うには、相手を選ばねばならない。両方は持てない。"
   },
   "17-2": {
    "zh": "你在下卦最上面，向上系着九四而舍了初九。跟从该跟的人，所求的就得到——随有所得却不失操守，这是会选择的。",
@@ -834,14 +834,14 @@
    "ja": "上卦の下にいて、九五に近く、衆に随われて得るところがある。人に随われて得るのは、勢いが上に迫ることだ。誠を保ち道を守って自分を明らかにすれば、過ちを免れられる。"
   },
   "17-4": {
-   "zh": "你身居尊位，得中得正，用诚信随顺天下的善。随的是善不是人——你所信的是善本身；君主能信善，善人自然就来。",
-   "en": "You're in the place of honor, centered and correct, following the goodness of the world with faith. You follow the good, not people — what you trust is goodness itself. When a ruler trusts goodness, good people come of themselves.",
-   "ja": "尊い位にいて、中も正も得て、誠信で天下の善に従う。人ではなく善に従う——信じるのは善そのもの。君が善を信じれば、善い者は自ら来る。"
+   "zh": "你在上位，又稳又正，真心跟着天下的善走。你跟的是善本身、不是某个人——认准了善，善人自然就聚过来。",
+   "en": "You're up high, steady and upright, genuinely following the goodness of the world. You follow goodness itself, not any person — fix on the good and good people come of themselves.",
+   "ja": "あなたは上位にいて穩やかで正しく、心から天下の善に従う。従うのは善そのもので、誰か個人ではない——善と決めれば、善い者が自然と集まる。"
   },
   "17-5": {
-   "zh": "你到了卦的顶，随到了头，随得已经牢固，乃至被拘系维系。随之极而人心固结，不是靠力气能做到的——诚足以系住人，人自然就不走。",
-   "en": "You're at the top of the hexagram; Sui has ended, your following is firm, even to being bound and tied. At the depth of following, hearts are fixed — not something force can do. When faith is enough to bind people, they stay of themselves.",
-   "ja": "卦の頂点にいて、随は終わり、従うことは確かに固まり、拘束されて繋がるばかり。随の極は人心が固く結ばれることで、力では及ばない。誠が人を繋ぐに足れば、人は自ら去らない。"
+   "zh": "你到了最上面，跟着别人走到头，关系已经很牢，牢到像被捆住一样。人心聚到这份上，靠力气是捆不住的——靠的是诚，诚到了人自然不走。",
+   "en": "You're at the very top of Sui — following others to the end, the bond so firm it's like being tied. Hearts this united can't be bound by force; it's faith that binds. Sincere, and people stay on their own.",
+   "ja": "あなたは最も上にいて、人に従って最後まで来た。関係はもう固く、縛られたようだ。人心がここまで集まっても、力では縛れない——誠が縛るのだ。誠があれば、人は自然と離れぬ。"
   },
   "18-0": {
    "zh": "你在最底下，是蛊的开始，继承父辈留下的败坏去收拾它。前人的积弊，靠后人来整治，过失就能补——治弊的开头有危险，之后才安。",
@@ -864,9 +864,9 @@
    "ja": "上卦の下にいて、柔で正しくなく、弊を寛大にしてかえって助長する。弊を知りながら治さず、さらに寛くして大きくするのは、蠱を養うことだ。このまま行けば、恥は目に見えている。"
   },
   "18-4": {
-   "zh": "你身居尊位，柔和中正，任用九二的刚强来治弊。治弊不必自己动手，用贤人去治、功劳归到自己身上，这叫善于用人而获誉。",
-   "en": "You're in the place of honor, soft and centered, appointing the rigidity of the second line to repair the corruption. Repair needn't come from you — use the worthy and take the credit: that's earning praise through others.",
-   "ja": "尊い位にいて、柔らかく中を得て、九二の剛を用い蠱を治める。弊を治めるのに自分でなくてもよい。賢者を使って治め、功が上に帰る——これを誉を用いるという。"
+   "zh": "你在上位，性子稳，用能干的人去收拾烂摊子。治弊不必自己冲在前面——让贤者去办、功劳记到你头上，这就是会用人。",
+   "en": "You're up high, steady, and you use a capable person to clean up the mess. Fixing things doesn't mean doing it all yourself — let the worthies handle it and take the credit: that's knowing how to use people.",
+   "ja": "あなたは高位にいて、穩やか。できる人を使って 弊害を片付ける。弊害を直すのに自分が先に立つ必要はない——賢者に任せ、功は自分に帰す。これが人を使うコツだ。"
   },
   "18-5": {
    "zh": "你到了卦的顶，置身蛊之外，不被俗世的事情役使。处在积弊极深的时候不出来做官，洁身自守——可贵的是这种志向，不是那个位子。",
@@ -879,14 +879,14 @@
    "ja": "一番下にいて、六四と正しく応じ、誠で感化して下に臨む。人に臨むにはまず誠で感ずる——感じて初めて応じる。力で臨めば、人は我に親しまない。"
   },
   "19-1": {
-   "zh": "你在下卦正中，上应六五，刚健中正而能感，临人不偏。刚而得中，感化就正——用正道去感召下面，就无往而不顺。",
-   "en": "You're at the center of the lower trigram, matched with the sixth line, strong and centered in your influence, approaching without bias. Strength with centrality makes your influence right — move those below by what's right and everywhere goes smoothly.",
-   "ja": "下卦の中央にいて、六五に応じ、剛中で感ずる。臨みに偏りがない。剛で中を得れば、その感は正しい——正しさで下を感じれば、行く先すべて順調だ。"
+   "zh": "你在下卦正中，刚强却守着分寸，上面的大人物也回应你，感召得很正。有本事又不偏，感召就正——用正道带动下面，走到哪里都顺。",
+   "en": "You're at the center of the lower trigram, strong but measured, and the great one above answers you — your influence is right. Ability without bias makes the influence right; lead below with what's right and everywhere goes smoothly.",
+   "ja": "あなたは下卦の中央にいて、剛強だが節度を保ち、上の大人物も応えて、感化が正しい。実力があって偏らぬなら、感化は正しい——正道で下を動かせば、どこへでも順調だ。"
   },
   "19-2": {
-   "zh": "你在下卦最上面，不中不正，用甜言蜜语去临人。用好听的话取悦人却没有实质，这叫甘临——既然知道不对而发愁，就可以改。",
-   "en": "You're at the top of the lower trigram — off-center and improper, approaching people with sweet talk. Pleasing with words but no substance is called sweet approach. Once you know it's wrong and feel concern, you can change.",
-   "ja": "下卦の最上部にいて、中も正も外れ、甘い言葉で人に臨む。言葉で人を悦ばせて実がない——これを甘臨という。それが非と知って憂えれば、改められる。"
+   "zh": "你在下面偏上的位置，位置不正，净捡好听的话哄人。光说漂亮话、没有实在的，人家迟早看穿——你既然知道不对还发愁，那就还来得及改。",
+   "en": "You're at the top of the lower trigram, out of place, all sweet talk to win people over. Pretty words with no substance get seen through eventually. Since you know it's wrong and worry, it's not too late to change.",
+   "ja": "あなたは下のやや上にいて、位置が正しくなく、ただ聞こえのいい言葉で人を機嫌取っている。綺麗事だけで中身がなければ、いずれ見抜かれる——非と知って嘆いているなら、まだ直せる。"
   },
   "19-3": {
    "zh": "你在上卦下面，柔顺得正而下应初九，亲自到下面去。临民贵在亲身前往，不只是摆位子——亲自到下面，情意就不会隔。",
@@ -894,9 +894,9 @@
    "ja": "上卦の下にいて、柔らかく正しく下の初九に応じ、自らその場へ赴く。臨むには身が至ることが肝心で、位だけではない。自ら下に臨めば、情は隔たらない。"
   },
   "19-4": {
-   "zh": "你身居尊位，柔和中正而下应初九，不刚愎自用而用人。大君主的智慧在于知人而不自用——任用贤者去临下，不刻意作为而事自成。",
-   "en": "You're in the place of honor, soft and centered, reaching down to the first line, not relying on yourself but using others. A great ruler's wisdom is knowing people, not self-reliance — appoint the worthy to govern below, and things get done without forcing.",
-   "ja": "尊い位にいて、柔らかく中を得て下の初九に応じ、自ら用いず人を用いる。大君の知は人を知ることにあり、自分を用いない。賢者を任じて下に臨めば、為さずとも事は成る。"
+   "zh": "你在上位，性子稳，肯听下面的声音，不刚愎自用。当领导的聪明在于会识人、不事事自己来——把合适的人放上去，你不用累死事情也成了。",
+   "en": "You're up high, steady, and you actually listen to those below — no know-it-all. A leader's wisdom is knowing people, not doing everything yourself. Put the right people in place and things get done without you killing yourself.",
+   "ja": "あなたは高位にいて、穩やか、下の声をよく聞き、自分ですべて決めない。指導者の知恵は人を見極めることにあり、自分で疲れ切ることではない。適材を適所に置けば、あなたが奔走せずとも事は成る。"
   },
   "19-5": {
    "zh": "你到了卦的顶，临到了头，以柔居上而待下深厚。临下之道，久了不倦怠、厚道不刻薄——用敦厚去临民，最终没有祸患。",
@@ -904,9 +904,9 @@
    "ja": "卦の頂点にいて、臨は終わり、柔で上に居り下に厚い。下に臨む道は、久しくても倦まず、厚くて薄くない。敦厚で臨めば、終わりに禍はない。"
   },
   "20-0": {
-   "zh": "你在最底下，离九五最远，所见浅薄，像小孩子看热闹。见识浅，对小人物还不算过错；可要是君子也这样，就成不了什么事。",
-   "en": "You're at the bottom, farthest from the fifth line, your view shallow — like a child watching the show. Shallow seeing is no great fault in a small person; but a gentleman like this can't accomplish anything.",
-   "ja": "一番下にいて、九五から最も遠く、見るところが浅い。童子の見物のようだ。見識が浅いのは小人なら大過ではないが、君子がそうでは何も成せない。"
+   "zh": "你在最底下，离那位核心人物最远，眼界窄，像小孩看热闹。见识浅，对普通人还说得过去；可你要是想成事，这样就够呛了。",
+   "en": "You're at the very bottom, farthest from the central figure, your view narrow — like a child watching the show. A shallow view is forgivable in an ordinary person; but if you want to accomplish anything, it won't do.",
+   "ja": "あなたは一番下にいて、中心人物から最も遠く、見聞が狭い——子どもが見物しているようなもの。浅い見方は凡人なら許されるが、あなたが大成を望むなら、それでは足りない。"
   },
   "20-1": {
    "zh": "你在下卦正中，从缝隙里窥看九五，所见狭窄又不正。从旁边偷看，看得不全——柔顺的人这样还能自守，君子这样做，道就鄙陋了。",
@@ -919,14 +919,14 @@
    "ja": "下卦の最上部にいて、九五に近く、かえって己の行いを観る。人を見るより己を見るに如かず。自分の得失を察して、初めて進退を決められる。"
   },
   "20-3": {
-   "zh": "你在上卦下面，靠近九五的君主，观察国家的盛德。看到国家兴盛，就可以进而为宾——所观的格局大，进取就不苟且。",
-   "en": "You're below the upper trigram, near the fifth-line ruler, observing the state's abundant virtue. Seeing the state flourish, you may advance as a guest. The scale of what you observe is great, so your advance isn't careless.",
-   "ja": "上卦の下にいて、九五の君に近く、国の盛んな徳を観る。国の盛りを見れば、進んで宾となることができる。観るものが大きいので、進み方もいい加減にならない。"
+   "zh": "你在上面偏下的位置，靠近那位核心人物，看得出国家气象正盛。看到局面这么好，就可以进一步参与进去——眼界开阔了，进取就不会草率。",
+   "en": "You're just below the upper trigram, near the central figure — you can see the country's strength flourishing. Seeing things this good, you can step further in. With wide horizons, your advance won't be careless.",
+   "ja": "あなたは上のやや下にいて、中心人物に近く、国の勢いが盛んなのが分かる。これほど良い局面なら、さらに中へ入って行ける——見聞が広がれば、前進もいい加減にならない。"
   },
   "20-4": {
-   "zh": "你身居尊位，得正又近九五，观察自己的行为给天下人看。居上位的人，省察自己的得失，作为天下观察的榜样——自己正了，人自然就被感化。",
-   "en": "You're in the place of honor, proper and near the fifth line, observing your own conduct as an example to the world. Those above examine their own gains and losses, becoming what the world observes — when you yourself are right, people are transformed.",
-   "ja": "尊い位にいて、正を得て九五に近く、己の行いを観じて人に示す。上位者は己の得失を省み、天下の観るところとする。自ら正しければ、人は自然に化される。"
+   "zh": "你在上位，又正又靠近核心，要拿自己的所作所为给天下人做样子。在上面的人，时常反省自己的得失，就是别人看着的榜样——你自己正了，人自然跟着变好。",
+   "en": "You're up high, upright and near the center, and your own conduct is the example the world watches. Those above constantly examine their own gains and losses — that's the model others see. Get yourself right and people naturally follow.",
+   "ja": "あなたは上位にいて、正しく中心にも近く、自らの行いを天下の手本にする。上の者が常に自分の得失を省みる——それが人々の見る模範だ。あなたが正しければ、人は自然と良くなる。"
   },
   "20-5": {
    "zh": "你到了卦的顶，置身观之外，不当事却被人看着行为。位子虽不在，德行仍被人仰慕——不懈地修养自己，这就是观的终点。",
@@ -939,14 +939,14 @@
    "ja": "一番下で、噬嗑の初め。小さく懲らしめて大いに戒める。だから足の趾を滅ずる。小さなうちに懲らしめれば過ちは大きくならない。刑のはじめは、その兆しを止めることで、最後まで追うことではない。"
   },
   "21-1": {
-   "zh": "你在下卦正中，柔顺得正而断狱，容易咬断。所治的案子浅、当事人又中正，即使办得深也不会冤枉——中正的人可以胜任刑罚。",
-   "en": "You're at the center of the lower trigram, soft and proper in judging — the hard bit is easy to bite through. The case is shallow and the person upright, so even a thorough handling won't wrong them. Centered and proper people can handle punishment.",
-   "ja": "下卦の中央にいて、柔らかく正しく獄を治める。噛み砕きやすい。治めるものが浅く、その人も中正なら、深く処しても枉げない。中正な者は刑を任せられる。"
+   "zh": "你在下卦正中，性子柔、走得正，断案子容易理清。案子不复杂、当事人也正派，即便查得深也不会冤枉人——正直稳重的人，适合办案。",
+   "en": "You're at the center of the lower trigram, gentle and upright — the case is easy to sort out. The matter is simple and the people involved are decent, so even a thorough look won't wrong anyone. Steady and fair people are fit to judge.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しい。扱う事が浅く、相手もまともだから、少しく調べても冤罪にはならない。中正な者は、裁く任に向いている。"
   },
   "21-2": {
-   "zh": "你在下卦最上面，不中不正，碰上难啃的案子反而受伤。办难事而才干不称，会有点小麻烦——不过你位柔、不会一直错到底，所以可以免。",
-   "en": "You're at the top of the lower trigram — off-center and improper, biting a hard case and getting hurt instead. Taking a hard task with inadequate ability brings small trouble — but your place is soft and you won't persist in error, so you're let off.",
-   "ja": "下卦の最上部にいて、中も正も外れ、噛みにくいものを治めてかえって傷つく。難しい事を才に合わず行えば、少し不都合が出る。ただ位が柔で最後まで過ちを続けないので、免れる。"
+   "zh": "你在下面偏上的位置，位置不正，偏要啃硬案子，反而把自己弄伤了。能力撑不住却硬接，吃点苦头——好在你没一条道走到黑，还能免了更大的错。",
+   "en": "You're at the top of the lower trigram, out of place — biting a hard case and hurting yourself instead. Ability can't carry it yet you force it, so you pay a little. Luckily you don't bull straight on, so a bigger fault is avoided.",
+   "ja": "あなたは下のやや上にいて、位置が正しくなく、硬い事件に咬みついて自分を傷つけた。力が足りぬのに無理に受けて、少し苦しむ——ただ一本道に突っ込まなかったので、大きな過ちは免れた。"
   },
   "21-3": {
    "zh": "你在上卦下面，去啃难啃的，刚直自持。办难事要有刚直之才，而且要以艰难之心去做——不把它当难事，就担不起这个任。",
@@ -954,9 +954,9 @@
    "ja": "上卦の下にいて、噛みにくいものを噛み、剛直を自ら保つ。難しい事を治めるには剛直な才能が要り、しかも艱難の心で行う。艱難としなければ、その任に勝てない。"
   },
   "21-4": {
-   "zh": "你在尊位旁边，是断狱的主爻，刚健却居柔位。断狱贵在刚而能柔、中而能正——心里常存危惧，判断就不会出差错。",
-   "en": "You're beside the place of honor, the main judge, strong but in a soft place. Judging values strength that can be soft, centrality that stays right — keep fear in your heart and your ruling won't go wrong.",
-   "ja": "尊位の傍らにいて、獄を治める主爻となり、剛でありながら柔の位に居る。獄を裁ぶのは剛で柔を作え、中で正を保つことが肝心。心に危惧を抱けば、その断りは違えない。"
+   "zh": "你在断案的位置上，是拿主意的人，有魄力又懂得柔和。断事最怕一味刚硬——有威严又能审时度势，心里常存戒惧，判断就不会出错。",
+   "en": "You're in the judging seat, the one who decides, with both force and a gentle touch. Judging goes worst when it's all hard line — with dignity plus reading the moment, and a caution always in your heart, your rulings won't go wrong.",
+   "ja": "あなたは裁く立場にいて、判断する人。魄力がありながら柔軟さも知っている。裁断で一番いけないのは、ただ剛直なこと——威厳があり、時勢を読め、心に戒めを抱けば、判断は誤らない。"
   },
   "21-5": {
    "zh": "你到了卦的顶，积恶到了头，刑罚落到首恶身上，蒙蔽已经很深。小惩不知警戒，终成大恶——耳朵听不进过失，所以这个蒙蔽解不开了。",
@@ -979,9 +979,9 @@
    "ja": "下卦の最上部にいて、二つの陰の間にあり、文飾が盛んなのに潤いがある。文が勝てば溺れやすい。常に正を守れれば、その飾りは害とならない。"
   },
   "22-3": {
-   "zh": "你在上卦下面，与初九相应，反而回到朴素。文到了极处就返璞，饰到尽头就归于素——这个素，正是贲的本体。",
-   "en": "You're below the upper trigram, matched with the first line, returning instead to plainness. At the extreme of ornament you return to substance; when adorning ends, plainness remains — and that plainness is Bi's true body.",
-   "ja": "上卦の下にいて、初九に応じ、かえって素に返る。文が極まれば質に返り、飾りが尽きれば素に帰る。この素こそ、賁の本体だ。"
+   "zh": "你在上面偏下的位置，跟下面一个朴实的人相应，反而回到了朴素。花哨到头就返璞，装饰到头就归真——这份朴素，才是贲卦的本色。",
+   "en": "You're just below the upper trigram, connected to someone plain and simple below, and you find your way back to the unadorned. All the flash returns to the plain; all the decoration returns to the real. That plainness is Bi's true color.",
+   "ja": "あなたは上卦のすぐ下にいて、下の素朴な人と応じ、かえって質素に戻る。華やかさの果ては素に返り、飾りの果ては真に帰る——この素朴さこそ、賁の本来の姿だ。"
   },
   "22-4": {
    "zh": "你在尊位旁边，柔顺得正而崇尚质朴，所贲的很薄。重质不重文，礼虽薄，情意却厚——爱好如此，终究有所得。",
@@ -1014,9 +1014,9 @@
    "ja": "上卦の下にいて、剥れは肌に及び、身に迫る。身に剥れが及べば救えない。禍の来るのは、一朝一夕の積もりではない。"
   },
   "23-4": {
-   "zh": "你在尊位旁边，率群阴承奉上九，像一串鱼那样有序。群阴相率跟从阳，各安其位互不侵犯，剥就能止住。",
-   "en": "You're beside the place of honor, leading the yin lines in serving the top line, orderly like a string of fish. When the yin lines follow the yang in ranks, each keeping its place without encroaching, erosion can be stopped.",
-   "ja": "尊位の傍らにいて、群陰を率いて上九を承け、魚を貫くように順序正しい。群陰が陽に従って、それぞれの位を安んじて侵し合わなければ、剥れは止む。"
+   "zh": "你在上位旁边，带着一群人顺顺当当地跟着核心，像一串鱼排着队。大家跟着正道、各守各位不互相挤，剥落的势头就能止住。",
+   "en": "You're beside the place of honor, leading a group in orderly fashion after the central figure, like a string of fish. Everyone follows what's right, each keeping their place without jostling — and the erosion stops.",
+   "ja": "あなたは尊い位の傍らで、一群を整えて中心に従わせる——魚を串に刺したように順序正しい。皆が正に従い、各々の場所を守って押し合わなければ、剥れは止む。"
   },
   "23-5": {
    "zh": "你到了卦的顶，剥到了头，独存一个阳爻，像硕大的果子。剥到极处只剩一阳独存，复兴就靠它——君子得到它就能承载，小人连依靠都失去。",
@@ -1029,29 +1029,29 @@
    "ja": "一番下にいて、復の初め。迷って遠く行かぬうちに戻る。失してすぐ戻れば、悔いには及ばない。復すのは速さが肝心で、速ければ損は小さい。"
   },
   "24-1": {
-   "zh": "你在下卦正中，柔顺得正而下比初九，能停下来归复。靠近善人而能自休归善，这是从善的美德——柔而能下人，所以得到休美。",
-   "en": "You're at the center of the lower trigram, soft and proper, close to the first line, able to stop and return. Near a good person, you rest and return — the beauty of following good. Soft and willing to be low, you gain repose.",
-   "ja": "下卦の中央にいて、柔らかく正しく初九に比し、休んで復える。善人に近づいて自ら休めば復る——善に従う美しさだ。柔で人より下になれるので、休美を得る。"
+   "zh": "你在下卦正中，性子柔、走得正，肯向下面那个改过自新的人靠拢，自己也能停下来回头。挨着好人就能收心归正——柔顺又肯低姿态，就得了这份安顿。",
+   "en": "You're at the center of the lower trigram, gentle and upright, willing to draw close to someone below who's turned their life around — and you can settle and come back too. Being near good people lets you recenter. Gentle and low enough to listen, you find that peace.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しく、下の立ち直った人に近づき、自分も立ち返れる。善人に寄れば心を改められる——柔らかく身を低くすれば、その安らぎが得られる。"
   },
   "24-2": {
-   "zh": "你在下卦最上面，不中不正，屡次迷失屡次回来。屡失屡复，虽危却不至于沉溺——复得频繁，说明志向还没定下来。",
-   "en": "You're at the top of the lower trigram — off-center and improper, losing and returning again and again. Repeated loss and return, though dangerous, won't drown you — returning often just means your aim isn't settled.",
-   "ja": "下卦の最上部にいて、中も正も外れ、たびたび迷ってたびたび戻る。失しては復ることを繰り返せば、危くても溺れはしない。復るのが多いのは、志がまだ定まらないだけだ。"
+   "zh": "你在下卦最上面，位置没摆正，迷失了又回来、回来又迷失。反复折腾虽有危险，还不至于沉下去——这么来回，说明心还没定。",
+   "en": "You're at the top of the lower trigram, out of place — lost and back, back and lost again. The back-and-forth is risky but won't sink you. This circling means your heart still isn't settled.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、迷っては戻り、戻っては迷う。この往来は危ういが、沈むほどではない——こう繰り返すのは、心がまだ定まらぬからだ。"
   },
   "24-3": {
-   "zh": "你在上卦下面，众阴之中唯独与初九相应。大家都迷了，唯独我回头，这是从正不从众——独行者志向坚定。",
-   "en": "You're below the upper trigram, the only yin matched with the first line. While all are lost, I alone return — following what's right, not the crowd. The one who walks alone has a firm aim.",
-   "ja": "上卦の下にいて、多くの陰の中でただ初九に応じる。皆が迷う中、ただ私だけが戻る——正に従って衆に従わない。独り行く者は志が堅い。"
+   "zh": "你在上面偏下的位置，一群人里唯独你跟下面那个改过的人相应。别人都迷着，只有你回头——不走大众的路，认准正的，这份独来独往志向很坚定。",
+   "en": "You're just below the upper trigram, the only one among the crowd connected to the person below who's changed. Everyone else is lost; you alone turn back — following what's right, not the crowd. Walking your own road, your resolve is firm.",
+   "ja": "あなたは上卦のすぐ下にいて、群れの中でただ一人、下の変わった人と応じている。皆が迷う中、あなただけが戻る——大勢ではなく正に従うのだ。一人歩むその志は堅い。"
   },
   "24-4": {
-   "zh": "你在尊位旁边，柔和中正而能自己归复，复得深厚牢固。复在于中，就复得厚——厚了就不动摇，所以可以无悔。",
-   "en": "You're beside the place of honor, soft and centered, able to return yourself — deep and firm. Returning through centrality makes it deep; deep means unshakable, so you can be without regret.",
-   "ja": "尊位の傍らにいて、柔らかく中を得て自ら復え、その復りは厚く固い。中によって復れば、その復りは厚い。厚ければ揺るがないので、悔いなくて済む。"
+   "zh": "你在上位旁边，性子柔、守得正，能自己回头，而且回得深、回得牢。回头回到根上，就稳当不动摇——所以不会后悔。",
+   "en": "You're beside the place of honor, gentle and upright, able to return yourself — and you return deep and solid. Coming back to the root makes you unshakable — so there's no regret.",
+   "ja": "あなたは尊い位の傍らで、柔らかく正しく、自ら立ち返れる。しかもその戻りは深く、堅い。根に返れば揺るがない——だから悔いはない。"
   },
   "24-5": {
-   "zh": "你到了卦的顶，复到了头却迷途不返，离初九最远。迷了不回头，是终身不知反——这个祸不是外面来的，是自己招的。",
-   "en": "You're at the top of the hexagram, Fu at its end yet still lost and not returning, farthest from the first line. Lost and not returning is never turning back your whole life — this trouble isn't from outside; you brought it on yourself.",
-   "ja": "卦の頂点にいて、復は終わったのに迷って返らず、初九から最も遠い。迷って戻らないのは、終身返ることを知らないこと。この患いは外から来たのではなく、自ら招いたものだ。"
+   "zh": "你到了最上面，该回头的时候却迷着不返，离那个能救你的人最远。迷了不回头，等于一辈子不知道反省——这祸不是别人给的，是自己找的。",
+   "en": "You're at the very top of Fu, but you're lost and won't turn back — farthest from the one who could save you. Lost and refusing to return means never looking back your whole life. This trouble isn't from outside; you brought it on yourself.",
+   "ja": "あなたは頂点にいて、復の終わりなのに迷って戻らない——あなたを救える人から最も遠い。迷って戻らぬのは、生涯ふり返らぬということ。この禍は外から来たのではなく、自ら招いたものだ。"
   },
   "25-0": {
    "zh": "你在最底下，是无妄的开始，以刚健而动，动出于诚。凭诚而不是凭私去行动，前往没有不合——无妄的前往，是顺着本心。",
@@ -1064,19 +1064,19 @@
    "ja": "下卦の中央にいて、柔らかく正しく従う。獲りを期さずに行く。報いを求めず為す、それが無妄だ。報われんがために往けば、心はすでに妄っている。"
   },
   "25-2": {
-   "zh": "你在下卦最上面，不中不正，所处不当。灾祸有时不是你造成的，这叫无妄之灾——但处在不当的位置，就更容易碰上。",
-   "en": "You're at the top of the lower trigram — off-center and improper, in a wrong place. Sometimes disaster isn't of your making — that's the 'unnecessary' calamity of Wuwang. But in an improper place you meet it more easily.",
-   "ja": "下卦の最上部にいて、中も正も外れ、処する所が当たらない。災いには自分のせいでないものもある——これを無妄の災という。ただ位に当たらなければ、それに遭いやすい。"
+   "zh": "你在下卦最上面，位置没摆正，待的地方不对。有些灾不是你招的，这就叫无妄之灾——但站位不正，就更容易撞上。",
+   "en": "You're at the top of the lower trigram, out of place — standing where you shouldn't. Some trouble isn't of your making: that's the 'unlooked-for' calamity. But standing wrong, you meet it more easily.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、いる場所も違う。災いには自分のせいでないものもある——これが無妄の災いだ。ただ立ち位置が曲がれば、それに遭いやすい。"
   },
   "25-3": {
-   "zh": "你在上卦下面，刚健却居柔位，可以固守正道。以刚处柔而不妄动，守住本有的正，就能无过。",
-   "en": "You're below the upper trigram, strong in a soft place, able to hold fast to what's right. Strength in softness without rash movement, keeping your native rightness — you can be without fault.",
-   "ja": "上卦の下にいて、剛で柔の位に居り、正を固く守れる。剛を柔に処して妄りに動かず、もともとの正を守れば、過ちはない。"
+   "zh": "你在下面偏上的位置，有股刚劲却肯待在柔的位置上，能守住本分。收着锋芒、不妄动，守住本来该守的，就不会出错。",
+   "en": "You're just above the lower center, with a streak of strength but willing to sit in a soft place — you can hold your part. Keep the edge sheathed, don't act rashly, guard what's yours to guard, and you won't err.",
+   "ja": "あなたは下のやや上にいて、剛の気がありながら柔の位にいて、分を守れる。鋒をしまって妄りに動かず、守るべきを守れば、過ちはない。"
   },
   "25-4": {
-   "zh": "你身居尊位，刚健中正，你的病不是自己招来的。无妄而来的病，不用治自己会好——用药去攻它，反而生出病来。",
-   "en": "You're in the place of honor, strong and centered, your illness not self-inflicted. An Wuwang affliction heals on its own without treatment — attacking it with medicine only creates illness.",
-   "ja": "尊い位にいて、剛中で正しく、その病は自ら招いたものではない。無妄で来た病は、治さずとも自ずと解ける。薬で攻めれば、かえって病を生む。"
+   "zh": "你在上位，刚正，这场病不是你自己招来的。这种无妄之灾，不用折腾它也自己会好——偏要吃药去攻，反而把病招出来。",
+   "en": "You're up high and upright, but this illness isn't something you brought on. An unlooked-for affliction like this heals on its own without fuss — force it with medicine and you'll only invite sickness.",
+   "ja": "あなたは上位にいて剛正だが、この病は自ら招いたものではない。この無妄の災いは、手を入れずとも自然に癒える——薬で攻めれば、かえって病を招く。"
   },
   "25-5": {
    "zh": "你到了卦的顶，无妄到了头，处极还要前行。时机已极还想动，即使无妄也会困穷——安静守着，才是本分。",
@@ -1104,9 +1104,9 @@
    "ja": "上卦の下にいて、小牛に角が生える前に止める。患いを未然に防ぐことだ。事が起きる前に禁じれば、力は少なく功は多い。悪を制するのは早さが肝心。"
   },
   "26-4": {
-   "zh": "你在尊位旁边，柔和中正而止住外物，去其势而不去其牙。制刚不制末节而制根本——根本去掉了，牙就不必怕了。",
-   "en": "You're beside the place of honor, soft and centered, restraining things — removing their momentum, not their teeth. To control strength, address the root, not the tip. Once the root is gone, the teeth aren't frightening.",
-   "ja": "尊位の傍らにいて、柔らかく中を得て物を止め、その勢いを除いて牙は除かない。剛を制するには末ではなく本を制する。本が除かれれば、牙は恐れるに足りない。"
+   "zh": "你在上位旁边，性子柔，能止住一头蛮劲，只卸它的势、不硬拔它的牙。制伏刚强不跟它硬碰、而是从根上化解——根子去了，牙就不吓人了。",
+   "en": "You're beside the place of honor, gentle, and you stop a surge of brute force — taking away its momentum, not yanking out its teeth. Checking strength isn't about meeting force with force; it's working on the root. Take away the root and the teeth aren't scary.",
+   "ja": "あなたは尊い位の傍らで、柔らかく、猛る力を止める——その勢いを抜いても、牙は拔かない。剛を制するのは、力でぶつかることではなく、根から解すことだ。根を除けば牙も恐くない。"
   },
   "26-5": {
    "zh": "你到了卦的顶，畜到了头，止极而通，大道通行。畜到极处就通，先前止住的正是为了行——到了这里，无往而不达。",
@@ -1124,19 +1124,19 @@
    "ja": "下卦の中央にいて、柔らかく正しいが、下の初九に養いを求め、常道に反する。下に養いを求めるのは常を拂うこと。下は上を養えないので、行っても得られない。"
   },
   "27-2": {
-   "zh": "你在下卦最上面，不中不正，处在变动的极点，所求的养完全悖理。不中不正还一味求人，道路已经错了——久了没人可用，是自弃。",
-   "en": "You're at the top of the lower trigram — off-center and improper, at the peak of movement, your seeking wholly perverse. Off-center and asking only from others, your way is already wrong — in time no one will serve you; you've abandoned yourself.",
-   "ja": "下卦の最上部にいて、中も正も外れ、動きの極にあり、求める養いが大いに悖る。中を外れてただ人に求めれば、道はすでに違っている。久しければ用いる者がいなくなる——自ら捨てたのだ。"
+   "zh": "你在下卦最上面，位置不正，又处在躁动的极点，求养的方式完全错了。自己不摆正还一味求人，路已经走歪——久了没人帮你，等于自己放弃自己。",
+   "en": "You're at the top of the lower trigram, out of place, at the peak of restlessness — the way you seek nourishment is completely off. Off-center and asking only from others, your path is already crooked. In time no one will help you — you've abandoned yourself.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、動きの極にある——養いを求めるやり方が完全に狂っている。自分を正さず人ばかりに求めれば、道はすでに曲がっている。やがて誰も助けず、自らを捨てることになる。"
   },
   "27-3": {
-   "zh": "你在上卦下面，柔顺得正而求养于初九，所求专一。身在上位而能向下求，是顺——求之专而且相继，所以得养而无过。",
-   "en": "You're below the upper trigram, soft and proper, seeking nourishment from the first line — focused in your request. Being high yet seeking below is compliance; focused and continuous, you're nourished without fault.",
-   "ja": "上卦の下にいて、柔らかく正しく初九に養いを求め、その求めは専一。上にいて下へ求められるのは順だ。求めが専で続くので、養いを得て過ちはない。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，肯向下面那个实在人求教，而且求得很专。在上位还肯低头请教，这本身就是顺——求人求专一，就能养到实惠不出错。",
+   "en": "You're just below the upper trigram, gentle and upright, willing to ask the solid person below for teaching — and you ask with focus. In a high place, bowing to learn is itself compliance. Ask single-mindedly and you're nourished without error.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しく、下の実直な人に教えを請い、しかも真剣だ。高位で頭を下げて教わるのは、それ自体が順なこと——真剣に求めれば、実益を得て過ちはない。"
   },
   "27-4": {
-   "zh": "你身居尊位，柔和中正却向上依附九五，不能自养。居尊位而不能自养，靠贤者是可以的——守静还行，涉险济事就不行了。",
-   "en": "You're in the place of honor, soft and centered, relying on the top line above, unable to nourish yourself. In high position yet unable to self-nourish, depending on a worthy one is acceptable — staying still works, but venturing into danger doesn't.",
-   "ja": "尊い位にいて、柔らかく中を得て上九に従い、自ら養えない。尊くても自养できず、賢者に頼るのはよい。静を守るのはできても、険を渡ることはできない。"
+   "zh": "你在上位，性子柔，却要仰仗上面的人，养不活自己。身居高位却不能自立，靠着贤者还行——求个安稳可以，真要涉险办事就不行了。",
+   "en": "You're up high and gentle, but you lean on the person above and can't sustain yourself. High yet unable to stand alone, relying on a worthy one is fine — for staying still, yes; for wading into danger, no.",
+   "ja": "あなたは上位にいて柔らかく、上の者に頼って自分を養えない。高い位にいながら自立できず、賢者に頼るのはよい——平穏を求めるのなら可、危難に踏み込むのは無理だ。"
   },
   "27-5": {
    "zh": "你到了卦的顶，是颐卦的主爻，天下靠你得到滋养。做别人的依靠来养人，责任重所以危险——危而能尽到责任，就能渡人。",
@@ -1159,14 +1159,14 @@
    "ja": "下卦の最上部にいて、剛が過ぎて中を得ず、重い任を負えば撓む。剛が過ぎて中を失えば、重い任を負えない。重いものを負う者は、剛で柔を作えることが肝心。"
   },
   "28-3": {
-   "zh": "你在上卦下面，刚强却居柔位，过而不极端，所以能隆起。以刚处柔，就担得起责任——但有责任在身就不能再分心，一分心就出吝。",
-   "en": "You're below the upper trigram, strong in a soft place, excess short of extreme, so you rise. Strength in softness can carry the charge — but with responsibility you can't also be tied elsewhere; attachment brings regret.",
-   "ja": "上卦の下にいて、剛で柔の位に居り、過ぎて極まらないので隆起する。剛を柔に処すれば任を勝てる。ただ任があるのに他に心を寄せてはならない。繋がれば吝が出る。"
+   "zh": "你在上面偏下的位置，有刚劲却肯放柔，用力过了但没过头，所以能顶起来。刚里带柔就担得起——但担着责任就别再分心，一有牵扯就出岔子。",
+   "en": "You're just below the upper trigram, with strength but willing to be soft — you've pushed hard but not too far, so you can carry the load. Strength with give can bear responsibility — but with a burden on you, don't get distracted. One attachment and things go wrong.",
+   "ja": "あなたは上卦のすぐ下にいて、剛でありながら柔らかく、力を使い過ぎずに済ませ、荷を負える。剛に柔があれば任を担える——ただ任を負いながら他に心を寄せてはならない。執われれば、ことが狂う。"
   },
   "28-4": {
-   "zh": "你身居尊位，刚强而过了头，得到上六的阴却不能长久。过极的阳，得柔而暂时兴盛，这花不会久——盛而不实，就没什么可称道的。",
-   "en": "You're in the place of honor, strong and excessive, gaining the yin of the top line but not for long. Extreme yang, boosted by softness, flourishes only briefly — the bloom won't last. Flourishing without substance has nothing to praise.",
-   "ja": "尊い位にいて、剛が過ぎ、上六の陰を得ても長く続かない。過ぎきった陽が柔を得てしばらく盛んになっても、その花は長くない。盛んで中身がなければ、称すべきものがない。"
+   "zh": "你在上位，刚劲用过了头，靠上头一点柔劲撑着也撑不久。太刚的人偶尔借点柔能风光一下，但这花谢得快——热闹没有根基，没什么可夸的。",
+   "en": "You're up high, your force overdone, propped up by a little softness from above — but it won't last. An overly hard person can borrow softness for a brief flourish, yet that flower fades fast — spectacle without roots has nothing to brag about.",
+   "ja": "あなたは上位にいて、剛の使い過ぎ。上から少しの柔を得ても長くは持たない。剛すぎる者がたまに柔を借りて栄えても、その花はすぐ散る——根のない賑わいは、誇るに足りない。"
   },
   "28-5": {
    "zh": "你到了卦的顶，处在大过的尽头，柔弱却冒险，以至于灭顶。才干不够还要强撑，极点就伤身——不过你的志向是济事，所以这个过可以原谅。",
@@ -1179,14 +1179,14 @@
    "ja": "一番下にいて、重なった坎の下、最も深く陷る。重い険の下にいて剛なく自ら抜けられなければ、ますます深く沈む。柔で険に処するのは、自分を溺れさせることだ。"
   },
   "29-1": {
-   "zh": "你在下卦正中，刚健中正而处在险中，可以求小小的所得。在险中而不失刚健，可以求小得——大的还做不到，小的不失操守。",
-   "en": "You're at the center of the lower trigram, strong and centered in danger, able to gain a little. In danger without losing strength, you can seek small gains — the great isn't yet possible, but the small keeps your integrity.",
-   "ja": "下卦の中央にいて、剛中で険にあり、小さな得を求められる。険の中にいて剛を失わなければ、小得を求められる。大きなことはまだできず、小さなことは操守を失わない。"
+   "zh": "你在下卦正中，刚强又不偏，正卡在险里。这时候别贪大，能求点小收获就不错——大局面还撑不起，小的守住就是本事。",
+   "en": "You're at the center of the lower trigram, strong and unbiased, right in the thick of danger. Don't reach for big gains now — a small one is enough. The big picture can't be held yet; keeping the small intact is the skill.",
+   "ja": "あなたは下卦の中央にいて、剛強で偏らず、まさに険の中にいる。今は大きな得を求めるな。小さな成果が得られれば上出来——大きな局面はまだ支えられぬ。小さく守るのが腕前だ。"
   },
   "29-2": {
-   "zh": "你在下卦最上面，不中不正，来去都是险。进退都是险，就不能有什么作为——这时妄动，只会陷得更深。",
-   "en": "You're at the top of the lower trigram — off-center and improper, coming and going both danger. With danger whichever way, you can't accomplish anything — rash motion now only sinks you deeper.",
-   "ja": "下卦の最上部にいて、中も正も外れ、行き来とも険だ。進んでも引いても険なら、何も成せない。ここで妄りに動けば、かえって深く陷る。"
+   "zh": "你在下卦最上面，位置没摆正，前后都是险。进退都危险，就别乱动——这时候一妄动，只会陷得更深。",
+   "en": "You're at the top of the lower trigram, out of place — danger before and behind. With danger both ways, don't move. A rash step now only sinks you deeper.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、前後とも険だ。進んでも引いても危うければ、動くな——ここで妄りに動けば、さらに深く沈むだけだ。"
   },
   "29-3": {
    "zh": "你在上卦下面，柔顺得正而靠近九五，用薄礼从窗口纳诚。处险之时，礼薄而诚到，就能相通——不靠形式靠真心，所以最终能免。",
@@ -1194,14 +1194,14 @@
    "ja": "上卦の下にいて、柔らかく正しく九五に近く、薄い礼を窓から差し出す。険の時、礼は薄くても誠が至れば通じる。文ではなく質によるので、最終的に免れられる。"
   },
   "29-4": {
-   "zh": "你身居尊位，刚健中正而处险中，水还没满，将平可出。刚中处险，险还不至于满——能把心放平等着，险自己就消了。",
-   "en": "You're in the place of honor, strong and centered in danger, the water not yet full — about to level and flow out. Strength-centered in danger, the danger isn't brimming. Level your heart and wait, and the danger subsides by itself.",
-   "ja": "尊い位にいて、剛中で険にあり、水はまだ満ちず、平らになろうとして出られる。剛中で険にあれば、険は満ちきらない。心を平らにして待てば、険は自ずと消える。"
+   "zh": "你在上位，刚正却陷在险里，水还没漫满，稳住就能脱身。险没到满的时候，把心放平、沉住气等一等，险自己就退了。",
+   "en": "You're up high and upright but trapped in danger; the water hasn't filled yet, so holding steady gets you out. Before the danger brims over, level your heart, keep still, wait — and it recedes on its own.",
+   "ja": "あなたは上位にいて剛正だが険に陥り、水はまだ溢れていない。踏ん張れば抜けられる。険が満ちる前に、心を平らにして息を潜めて待てば、険は自ずと引く。"
   },
   "29-5": {
-   "zh": "你在最上面，是坎的尽头，被险缠住出不来。处在险的极点又无法自拔，久了也解不开——柔而不知变，是自己困住自己。",
-   "en": "You're at the top, Kan at its end, bound by danger and unable to leave. At danger's extreme with no way out, long unable to break free — soft and not knowing change, you've trapped yourself.",
-   "ja": "一番上にいて、坎の終わり。険に繋がれて出られない。険の極にあって自ら抜けられず、久しくても解けない。柔で変化を知らないのは、自分で自分を困らせているのだ。"
+   "zh": "你在最上面，是险的尽头，被险困住出不来。陷到头还拔不出，久了也解不开——柔弱又不知道变，是自己把自己困死了。",
+   "en": "You're at the very top of Kan, trapped by danger and unable to get out. At the extreme of danger with no way out, even time won't loosen it. Soft and not knowing how to change, you've trapped yourself.",
+   "ja": "あなたは頂点にいて、坎の終わり。険に捕らえられ、出られない。険の極まで来て抜けられず、時が経っても解けない。柔らかく変化を知らぬ者は、自分で自分を閉じ込めている。"
   },
   "30-0": {
    "zh": "你在最底下，是离的开始，动念纷杂，用恭敬来守住。火性容易乱动，初动又杂——以恭敬自持，动就不会乱。",
@@ -1224,14 +1224,14 @@
    "ja": "上卦の下にいて、剛だが中を外れ、来ること突然で勢いが暴い。剛暴で急に進めば、その勢いは長くない。急なものは必ず折れ、暴いものは必ず捨てられる。"
   },
   "30-4": {
-   "zh": "你身居尊位，柔和中正而附丽于刚，内心深怀忧惧不得安。居尊而能忧，忧就能戒——戒了就不至于失掉光明。",
-   "en": "You're in the place of honor, soft and centered, attached to strength, your heart heavy with worry and unrest. In high position able to worry, worry brings caution — caution keeps you from losing your light.",
-   "ja": "尊い位にいて、柔らかく中を得て剛に付き、心は深く憂えて安まない。尊くて憂えられる者は、憂えれば戒める。戒めれば、その明かりを失わずに済む。"
+   "zh": "你在上位，性子柔、依附着一个刚强的人，心里总悬着不安。在高处还能有忧患意识，是好事——有戒心，就不至于把手里这份明白丢掉。",
+   "en": "You're up high, gentle, leaning on someone strong, your heart never quite at ease. Even at height, keeping a sense of danger is a good thing — with caution, you won't lose the clarity in your hands.",
+   "ja": "あなたは上位にいて柔らかく、剛強な人に寄りかかり、心がいつも落ち着かない。高い所にいても憂患の意識を持つのは良いこと——戒めがあれば、手にした明るさを失わずに済む。"
   },
   "30-5": {
-   "zh": "你到了卦的顶，光明的终点，用刚明之极施用于外。明到极处就可以决断——所诛的是首恶，所不问的是胁从，这是用明的正道。",
-   "en": "You're at the top of the hexagram, Li at its end, applying the utmost of rigid clarity outward. At the peak of clarity you can judge — punish the ringleader, leave the followers alone. That's the right use of clarity.",
-   "ja": "卦の頂点にいて、明の終わり。剛明の極を外に用いる。明が極まれば裁ける——誅すべきは首謀者で、問わないのはその一味。これが明の正しい使い方だ。"
+   "zh": "你到了最上面，是光明的尽头，把聪明刚劲全使在外头。明到了极点就能决断——只办为首的，不追究跟着的，这是用聪明最对的地方。",
+   "en": "You're at the very top of Li — all your brightness and force spent outward. At clarity's peak you can judge. Punish the ringleader, leave the followers be — that's clarity used the right way.",
+   "ja": "あなたは最も上にいて、明かりの終わり。知恵も剛の気も外に使い切った。明が極まれば裁ける——首謀者だけを裁き、従った者は問わぬ。それが明の最も正しい使い方だ。"
   },
   "31-0": {
    "zh": "你在最底下，是感的开始，所感的只是末节，心意向外。感从细微处起，动还很浅——志向虽向外，还没真正落到事上。",
@@ -1254,9 +1254,9 @@
    "ja": "上卦の下にいて、心の位、感応の主。思いが行ったり来たりして定まらない。感応の道は正しく専一であることが肝心。思虑が入り乱れれば感ずる所は狭く、正しければ広く公になる。"
   },
   "31-4": {
-   "zh": "你在尊位，刚健中正却感在不该感的地方，所感浅。感在背上，心意到不了人——不过你得其正，所以可以无悔。",
-   "en": "You're in the place of honor, strong and centered, yet sensing where you shouldn't — shallow response. The feeling is on the back, your aim not reaching people — but you stay right, so you can be without regret.",
-   "ja": "尊い位にいて、剛中で正しいが、感ずべきでない所に感ずる。感ずるのは背中で、志は人に届かない。ただ正を得ているので、悔いなくて済む。"
+   "zh": "你在上位，刚正却动错了地方，感召很浅。好比想感化人却背对着人家，心意到不了——不过出发点还是正的，所以不会后悔。",
+   "en": "You're in charge, upright, but you're feeling toward the wrong place — the connection is shallow. Like trying to move someone with your back turned, your heart can't reach them. But your intent is still right, so there's no regret.",
+   "ja": "あなたは上位にいて、剛健で正しいのに、感ずる場所を間違え、響きが浅い。背中を向けて人を動かそうとしても、心は届かない。ただ出発点は正しいので、悔いはない。"
   },
   "31-5": {
    "zh": "你到了卦的顶，感的终点，所感的只是口舌，不是出于心。用言语去感人，是感的末流——没有真心只动嘴，不足以感人。",
@@ -1269,9 +1269,9 @@
    "ja": "一番下にいて、恒の初め。求めること深すぎて順を踏まない。恒久の道は徐々に進むことが肝心。あまりに急げば、その恒久は長く続かない。"
   },
   "32-1": {
-   "zh": "你在下卦正中，刚健中正而长久守着正道。刚而得中，长久就有根——久守中道，失去的自会回来。",
-   "en": "You're at the center of the lower trigram, strong and centered, long holding your way. Strength with centrality gives endurance a root — hold the middle way and what you lost returns.",
-   "ja": "下卦の中央にいて、剛中でその道を長く守る。剛で中を得れば、久しさに根がある。中道を久しく守れば、失ったものは自ずと戻る。"
+   "zh": "你在下卦正中，刚强又守着分寸，能长久走在正道上。有本事又不偏，这份持久就有根——一直守着中道，丢掉的东西自己会回来。",
+   "en": "You're at the center of the lower trigram, strong and measured, staying on the right path over the long haul. Strength with centrality gives endurance a root — keep to the middle and what you lost returns on its own.",
+   "ja": "あなたは下卦の中央にいて、剛強で節度があり、長く正道を歩んでいる。剛で中を得れば、その続きに根が生まれる——中道を守り続ければ、失ったものは自ずと戻る。"
   },
   "32-2": {
    "zh": "你在下卦最上面，过刚又不居中，德行不能恒久。德不恒，就没人在信你——所处虽正却不能持久，羞辱就跟着来。",
@@ -1279,14 +1279,14 @@
    "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、徳を恒久に保てない。徳が続かなければ人は信じない。位は正しくても長く続けられず、恥が後を追う。"
   },
   "32-3": {
-   "zh": "你在上卦下面，不中不正，久留在不该久的位置。久在不该久的地方，虽久也无功——恒要守在正道上，不是光久就行。",
-   "en": "You're below the upper trigram — off-center and improper — long staying where you shouldn't. Long in a wrong place, though long, achieves nothing. Endurance must be on the right path, not mere duration.",
-   "ja": "上卦の下にいて、中も正も外れ、久しるべきでない所に久しくいる。久しくても功はない。恒はその道にあってこそ——ただ長ければよいのではない。"
+   "zh": "你在上面偏下的位置，位置没摆正，在不该久待的地方耗着。待错了地方，再久也没功劳——恒久要守在正道上，不是光熬时间。",
+   "en": "You're just below the upper trigram, out of place — lingering where you shouldn't stay. Wrong place, however long, earns nothing. Endurance must be on the right path, not merely time served.",
+   "ja": "あなたは上のやや下にいて、位置が正しくなく、長くいるべきでない場所に居座る。場所を間違えれば、どれだけいても功はない——恒久は正道に守るもので、ただ時間を稼ぐことではない。"
   },
   "32-4": {
-   "zh": "你在尊位，柔和中正而恒守其德，以柔顺为正。柔顺的恒，用在顺从别人是对的；但用来裁断事情，就不能一味柔了。",
-   "en": "You're in the place of honor, soft and centered, holding your virtue — taking compliance as right. A yielding constancy is right when following others; but in deciding matters you can't be soft throughout.",
-   "ja": "尊い位にいて、柔らかく中を得て徳を恒に守り、従顺を正とする。柔顺の恒は、人に従う者には正しい。しかし事を裁する者は、一貫して柔ではいけない。"
+   "zh": "你在上位，性子柔、守得住，把顺从当成正道。柔顺拿来对人、跟着好人走是对的；但要是拿来决断事情，就不能一味软到底。",
+   "en": "You're up high, gentle and steadfast, treating compliance as your right path. Yielding is right when it's toward people and following the good; but for deciding matters, you can't be soft all the way through.",
+   "ja": "あなたは上位にいて柔らかく、よく耐え、従うことを正道とする。従順は人に対して、善人に従うなら正しい——だが事を裁するには、柔だけでは済まない。"
   },
   "32-5": {
    "zh": "你到了卦的顶，恒的终点，以动为恒，这个恒反而不恒。恒到了极点却好动，是违背所守——动个不停，就不能长久。",
@@ -1309,14 +1309,14 @@
    "ja": "下卦の最上部にいて、剛が過ぎて執わる所があり、決然と退けない。退いても執わりがあれば心は安まない。執われたのは私情なので、大事を任せられない。"
   },
   "33-3": {
-   "zh": "你在上卦下面，刚强却居柔位，能割舍所好而退。有所爱好而能舍弃，这是君子的退隐——小人却沉溺所好而离不开。",
-   "en": "You're below the upper trigram, strong in a soft place, able to give up what you love and retreat. Having attachments and letting them go — that's the gentleman's withdrawal. The small man drowns in what he loves and can't leave.",
-   "ja": "上卦の下にいて、剛で柔の位に居り、好むものを切って退ける。好むことがあっても捨てられる——それが君子の遯だ。小人は好むものに溺れて離れられない。"
+   "zh": "你在上面偏下的位置，刚强却肯放柔，能割舍爱好抽身而退。舍得下喜欢的东西，这才是君子的退出——小人却沉在里面，怎么也走不开。",
+   "en": "You're just below the upper trigram, strong but willing to soften — you can give up what you love and step away. Able to let go of attachments: that's the gentleman's withdrawal. The small man drowns in what he loves and can't leave.",
+   "ja": "あなたは上卦のすぐ下にいて、剛でありながら柔らかく、好むものを捨てて退ける。愛着を切れる——それが君子の引き際だ。小人は好むものに溺れ、離れられない。"
   },
   "33-4": {
-   "zh": "你身居尊位，刚健中正而下应六二，是遁得其时。该退时退，又不失其中，这是遁的嘉美——功成身退。",
-   "en": "You're in the place of honor, strong and centered, reaching down to the second line — Dun at the right time. Retiring when the time is right without losing your center: that's Dun's excellence — success achieved, then stepping back.",
-   "ja": "尊い位にいて、剛中で六二に応じ、遯の時を得ている。退くべき時に退き、中を失わない——これが遯の嘉さだ。功を成して身を退く。"
+   "zh": "你在上位，刚正，又和下面一个靠谱的人相应，退得正是时候。该退就退、又没乱了方寸——这是退得最漂亮的那种，功成了、身也退了。",
+   "en": "You're up high and upright, matched with someone solid below — you retreat at exactly the right time. Step back when you should, without losing your center — that's the cleanest withdrawal: success achieved, then you step away.",
+   "ja": "あなたは上位にいて剛正、下の頼もしい人と応じ、退く時を誤らない。退くべきに退き、かつ節度を乱さぬ——最も美しい引き際だ。功を成し、身を退く。"
   },
   "33-5": {
    "zh": "你到了卦的顶，遁的终点，超然远去而无所牵挂。没有牵累然后才能走远——心宽身无累，这是遁的极致。",
@@ -1329,9 +1329,9 @@
    "ja": "一番下にいて、大壮の初め。剛で下に動き、進み方が急激。強さが趾にあり、動きはまだ小さいのに急ぐ。壮を恃んで可否を計らなければ、行けば行き詰まる。"
   },
   "34-1": {
-   "zh": "你在下卦正中，刚健中正而不过分，壮而得其正。刚而得中，壮就不凶暴——壮而不失正，所以可以前行。",
-   "en": "You're at the center of the lower trigram, strong and centered without excess — strength with rightness. Strength with centrality keeps it from violence — strong yet not losing what's right, so you can go forward.",
-   "ja": "下卦の中央にいて、剛中で過ぎず、壮俗に正を得る。剛で中を得れば、その壮は暴れない。壮で正を失わないので、進むことができる。"
+   "zh": "你在下卦正中，刚强却不过头，强壮又走得正。有劲又不蛮干，壮就不凶——强壮还不失分寸，所以能往前走。",
+   "en": "You're at the center of the lower trigram, strong but not excessive — robust and upright. Strength with measure keeps it from violence. Strong without losing your bearings — so you can move ahead.",
+   "ja": "あなたは下卦の中央にいて、剛強だが度を越さず、壮んで正しい。剛に節度があれば暴れない——壮んでも分を失わぬから、前に進める。"
   },
   "34-2": {
    "zh": "你在下卦最上面，过刚又不居中，用强壮欺凌人。以壮凌人，是小人所以困——君子不用其壮，所以能免。",
@@ -1339,14 +1339,14 @@
    "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、壮で人を陵ぐ。壮で人を陵ぐのは、小人が行き詰まる所以だ。君子はその壮を用いないので、免れられる。"
   },
   "34-3": {
-   "zh": "你在上卦下面，刚强却居柔位，壮而不极端，前进无阻。壮而得其道，所向无碍——关键不在力气大，而在处置得当。",
-   "en": "You're below the upper trigram, strong in a soft place, robust but not extreme — advancing unblocked. Strength in its proper way meets no obstacle. The key isn't raw power but handling it rightly.",
-   "ja": "上卦の下にいて、剛で柔の位に居り、壮でも極まらず、進む障害がない。壮がその道を得れば、行く先に阻むものなし。肝心なのは力の強さではなく、処し方が当たることだ。"
+   "zh": "你在上面偏下的位置，刚强却肯放柔，壮而不蛮干，前进没人挡。强壮用对了地方，就所向无阻——关键不在劲多大，而在用得对不对。",
+   "en": "You're just below the upper trigram, strong but willing to soften — robust, not reckless — and nothing blocks your way. Strength used the right way meets no obstacle. The point isn't how strong you are but whether you use it well.",
+   "ja": "あなたは上卦のすぐ下にいて、剛でありながら柔らかく、壮んでも暴れず、進むのに障害がない。強さを正しく使えば、行く先を阻むものはない——肝心なのは力の強さではなく、使い方が当たるかだ。"
   },
   "34-4": {
-   "zh": "你在尊位，柔和中正而不以壮自居，所以丧其壮。处壮盛之时而能自己收敛刚强，是以柔制刚——不自有其壮，所以无悔。",
-   "en": "You're in the place of honor, soft and centered, not exalting in strength, so you lose your might. In a time of robustness, reining in your own rigidity is using softness to master strength. Not claiming your might, you have no regret.",
-   "ja": "尊い位にいて、柔らかく中を得て壮を恃まないので、その壮を失う。壮んな時みずから剛を収めるのは、柔で剛を制することだ。壮を自分のものとしないので、悔いはない。"
+   "zh": "你在上位，性子柔，不拿强壮当本事，所以反而放下了那股蛮劲。势头正盛时肯自己收着，就是用柔化刚——不逞强，就没有后悔。",
+   "en": "You're up high and gentle, not treating brawn as achievement — so you actually let go of the brute force. At the peak of strength, reining yourself in is softness mastering force. Don't show off your might and there's no regret.",
+   "ja": "あなたは上位にいて柔らかく、強さを手柄にしない。だからこそ蛮力を手放せる。勢いの盛りに自ら引っ込めるのは、柔で剛を化すことだ——強がらねば、悔いはない。"
   },
   "34-5": {
    "zh": "你到了卦的顶，壮的终点，进无所往、退无所据。壮极就困，进不能退不可——以艰难自处，才能有好结局。",
@@ -1369,14 +1369,14 @@
    "ja": "下卦の最上部にいて、下の二つの陰に信じられ、衆と共に進む。進んで衆の允を得れば、志は行われる。悔いは消える——独りで進むのではないからだ。"
   },
   "35-3": {
-   "zh": "你在上卦下面，不中不正，处近君之位却不守本分。位高而德不称，像老鼠又贪又怕——守着这个不变，危险可想而知。",
-   "en": "You're below the upper trigram — off-center and improper — near the ruler's place but not keeping your station. High position with unworthy virtue, like a rat: greedy and fearful. Hold this unchanged and the danger is plain.",
-   "ja": "上卦の下にいて、中も正も外れ、君に近い位にいて分を守らない。位が高くて徳が釣り合わず、鼠のように貪って恐れる。これを守って変えなければ、危うさは知れている。"
+   "zh": "你在上面偏下的位置，位置没摆正，挨着核心却不安分。位子高、德行跟不上，像老鼠又贪又怯——这样下去，危险明摆着。",
+   "en": "You're just below the upper trigram, out of place — near the center but unsettled. High position, virtue not keeping up: like a rat, greedy and timid. Carry on like this and the danger is plain.",
+   "ja": "あなたは上のやや下にいて、位置が正しくなく、中心に近くても落ち着かぬ。位は高いが徳が追いつかず、鼠のように貪って臆する——このままだと、危ういは目に見えている。"
   },
   "35-4": {
-   "zh": "你在尊位，柔和中正而不以得失为念，前往无私。不被得失拖累心，所往皆通——无私的人，上进就大。",
-   "en": "You're in the place of honor, soft and centered, without gain or loss on your mind, going without selfishness. When gain and loss don't burden your heart, everywhere you go opens. The selfless advance greatly.",
-   "ja": "尊い位にいて、柔らかく中を得て得失を念にせず、行く先に私がない。得失が心を疲れさせなければ、行く所すべて通じる。私のない者は、その進みが大きい。"
+   "zh": "你在上位，性子柔、守得正，心里不惦记得失，往前走没有私心。不被得失拖累，走到哪儿都通——不存私心的人，上进的路才宽。",
+   "en": "You're in charge, gentle and upright, with gain and loss off your mind — you move without selfishness. When gain and loss don't drag at your heart, everywhere opens. The selfless person's advance reaches far.",
+   "ja": "あなたは上位にいて、柔らかく正しく、得失を心にかけず、私なく進む。得失が心を引きずらなければ、どこへでも通じる——私のない者の前進は、遠くまで及ぶ。"
   },
   "35-5": {
    "zh": "你在卦的顶，晋的终点，进无可进，作用反而在内。进到极点就返过来治理自己——讨伐私邑，是反求诸己之道。",
@@ -1394,19 +1394,19 @@
    "ja": "下卦の中央にいて、柔らかく正しく傷は浅く、強い馬の助けを得る。傷が浅く救いが早ければ、回復できる。柔順で中を得たので、助けが得られる。"
   },
   "36-2": {
-   "zh": "你在下卦最上面，刚正而处明夷之中，可以有所作为。除大害不能急——刚而能审，这才是正当之道。",
-   "en": "You're at the top of the lower trigram, rigid and upright amidst Mingyi, able to accomplish. Removing a great harm can't be hasty — strong yet discerning: that's the right way.",
-   "ja": "下卦の最上部にいて、剛正で明夷の中にあり、何か成せる。大害を除くには急いではならない。剛で審えることができれば、それが正しい道だ。"
+   "zh": "你在下面偏上的位置，刚正，正处在光明被压住的时候，仍能做点事。要除掉大害不能急着来——有魄力又能审时度势，这才是正路。",
+   "en": "You're at the top of the lower trigram, upright, right where light is suppressed — yet you can still do something. Removing a great harm can't be hasty. Force with discernment: that's the right way.",
+   "ja": "あなたは下のやや上にいて剛正、まさに光が抑えられている時にも事ができる。大害を除くのに急いではならない——魄力があり、かつ時勢を読める。それが正道だ。"
   },
   "36-3": {
-   "zh": "你在上卦下面，柔顺得正而进入暗地，了解到实情后离去。进到里面知其内情，就可以決然离开——看出苗头就行动，不等一天过完。",
-   "en": "You're below the upper trigram, soft and proper, entering the dark place, learning the truth and leaving. Once inside you know the situation and can decide to go. See the sign and act — don't wait out the day.",
-   "ja": "上卦の下にいて、柔らかく正しく闇の場所へ入り、実情を知って去る。内に入って事情を知れば、去ることを決められる。兆しを見て動き、一日を待たない。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，深入到暗处摸清了实情，就能抽身离开。既然看透了内情，就该当机立断——看出苗头当天就走，别拖。",
+   "en": "You're just below the upper trigram, gentle and upright, going into the dark, learning the truth inside, and leaving. Once you know the real situation, you can decide to go. See the sign and act that very day — don't put it off.",
+   "ja": "あなたは上卦のすぐ下にいて、柔らかく正しい。闇に入って内情を知り、立ち去れる。実情を掴んだら、去ることを決められる——兆しを見たらその日に動き、先延ばしにしない。"
   },
   "36-4": {
-   "zh": "你在尊位，柔和中正而处黑暗之极，把光明藏起来自守。处在暗世而能隐藏光明，这是箕子的道理——光明不会熄灭，所以守着它就行。",
-   "en": "You're in the place of honor, soft and centered at the depth of darkness, hiding your light to keep yourself. In a dark age, hiding your light is Jizi's way. Light can't be extinguished — so just hold it.",
-   "ja": "尊い位にいて、柔らかく中を得て闇の極にあり、明を隠して自らを守る。闇の世に明を隠せるのは箕子の道だ。明は滅びない。ただ守ればよい。"
+   "zh": "你在上位，性子柔，正处在最黑暗的时候，把锋芒藏起来守着本心。世道太暗就藏拙，这是箕子的做法——光明是灭不掉的，守住它就行。",
+   "en": "You're up high and gentle, right in the darkest hour — hiding your edge and keeping your heart intact. When the world's too dark, play dumb: that's Jizi's way. Light can't be put out — just hold on to it.",
+   "ja": "あなたは上位にいて柔らかく、まさに最も暗い時。鋒を隠して本心を守る。世が暗すぎれば愚かに見せる——箕子のやり方だ。光は消せない。ただ守ればよい。"
   },
   "36-5": {
    "zh": "你到了卦的顶，明夷的终点，光明完全熄灭。本来明却终于暗，是自己失了明——居高而不知隐藏，所以坠落得很快。",
@@ -1434,9 +1434,9 @@
    "ja": "上卦の下にいて、柔らかく正しく家の富を保てる。家を持って富を守れるのは、柔顺で正を得ているから。富んで驕らない——これが家を保つ道だ。"
   },
   "37-4": {
-   "zh": "你身居尊位，刚健中正，把治家之道推及天下。君主能正其家，天下就被感化——不用忧劳而自有成。",
-   "en": "You're in the place of honor, strong and centered, extending the household way to the world. A ruler who sets his own house right transforms the world. Without worry or toil, achievement comes.",
-   "ja": "尊い位にいて、剛中で正しく、家を治める道を天下及ぼす。君がその家を正せば、天下は化される。憂え労さずとも、自ずと成る。"
+   "zh": "你在上位，刚正，把治家的道理推到天下。当家的把自己家治正了，天下人自然跟着学——不用你吆喝，事情自己就顺了。",
+   "en": "You're up high and upright, extending the way of the household to the whole world. When the head of a house sets it right, the world learns from them — no need to shout; things fall into place.",
+   "ja": "あなたは上位にいて剛正、家を治める道を天下に及ぼす。家を治める者が自分の家を正せば、天下の人が自然に習う——あなたが声を上げなくても、事は自然と整う。"
   },
   "37-5": {
    "zh": "你到了卦的顶，是治家的终点，用诚与威守住长久。治家之久，在于诚与威并行——威由信而生，所以能有好终。",
@@ -1449,24 +1449,24 @@
    "ja": "一番下にいて、睽の初め。失ったものを求めずに自ら戻る。離れている時、物は求めずとも返る。嫌うところを容れられれば、怨みは解ける。"
   },
   "38-1": {
-   "zh": "你在下卦正中，与六五相应却有乖隔，委曲以求相遇。处乖离之时不能直来直去——委曲相求，是通权达变之道。",
-   "en": "You're at the center of the lower trigram, matched with the sixth line yet separated — winding your way to meet. In divergence you can't go straight. Winding to seek each other is the way of adapting.",
-   "ja": "下卦の中央にいて、六五に応じるが乖き、くねくねと巡り合いを求める。乖離の時はまっすぐ行けない。委曲して求めるのが、権変に通じる道だ。"
+   "zh": "你在下卦正中，跟上面那个志同道合的人一时合不上，得绕着弯去碰头。局面别扭时不能直来直去——委曲一点找机会，这是变通的本事。",
+   "en": "You're at the center of the lower trigram, meant to meet the person above but kept apart — you have to wind your way to connect. In a awkward split you can't go straight. Winding your way toward them is the art of adapting.",
+   "ja": "あなたは下卦の中央にいて、上の志を同じくする人と一時隔たり、巡り合うのに遠回りする。ちぐはぐな時は、まっすぐには行けない——委曲して機を求める、それが臨機の知恵だ。"
   },
   "38-2": {
-   "zh": "你在下卦最上面，不中不正，夹在两个刚爻之间被牵制。处境不安又被人制约，起初很困——守正等待，所以能有好终。",
-   "en": "You're at the top of the lower trigram — off-center and improper — caught between two rigid lines and restrained. Uneasy and controlled by others, at first hard-pressed. Hold to rightness and wait, so you reach a good end.",
-   "ja": "下卦の最上部にいて、中も正も外れ、二つの剛の間で引き留められる。居所が安まらず人に制され、初めは非常に困る。正を守って待つので、良い終わりを得る。"
+   "zh": "你在下卦最上面，位置没摆正，夹在两个强势的人中间受牵制。处境不安又被压着，起初很难——守住正、等着看，终会有好结果。",
+   "en": "You're at the top of the lower trigram, out of place — squeezed between two strong people. Unsettled and pressed, at first it's hard. Keep to what's right and wait, and it ends well.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、二人の強い者の間に挟まれて動けぬ。居心地が悪く抑えられ、初めは辛い——正を守って様子を見れば、やがて良い結果が出る。"
   },
   "38-3": {
-   "zh": "你在上卦下面，孤立无应，与初九同德而相交相信。孤立之时，得同志者相交相信就能渡过——虽危却不孤单。",
-   "en": "You're below the upper trigram, isolated without a match, but joined in trust with the first line of like virtue. In isolation, finding a like-minded one to trust carries you through. Though endangered, you're not alone.",
-   "ja": "上卦の下にいて、孤立して応えもないが、初九と徳を同じくして信じ合う。孤立の時、志を同じくする者と信じ合えば救われる。危うくても孤りではない。"
+   "zh": "你在上面偏下的位置，孤零零没人应你，但和下面一个正派人志趣相投、彼此信得过。孤单的时候有同道撑着，就渡得过去——虽然悬，却不孤立。",
+   "en": "You're just below the upper trigram, alone with no one answering — but like-minded with a decent person below, trusting each other. Alone, an ally carries you through. Though precarious, you're not isolated.",
+   "ja": "あなたは上のやや下にいて、孤立して誰も応えぬが、下のまともな人と志が合い、互いに信じている。孤りの時に同道が支えれば、渡れる——危うくても孤立ではない。"
   },
   "38-4": {
-   "zh": "你在尊位，柔和中正而下应九二，相合很容易。柔中之君得刚中之臣，其合如咬软肉般容易——前往无阻。",
-   "en": "You're in the place of honor, soft and centered, reaching down to the second line — union comes easily. A soft-centered ruler with a strong-centered minister, their joining is as easy as biting tender meat. Going forward meets no block.",
-   "ja": "尊い位にいて、柔らかく中を得て九二に応じる。その合いは極めて容易。柔中の君が剛中の臣を得れば、その合うことは柔らかな肉を噛むよう。行く先に阻むものなし。"
+   "zh": "你在上位，性子柔、守得正，向下够那个刚强的帮手，一拍即合。柔稳的你配上刚强的能人，合起来又快又顺——往前走没人挡。",
+   "en": "You're in charge, gentle and upright, reaching down to the strong helper below — the click comes easily. A gentle, centered you with a strong, able partner: joining up is quick and smooth. Going forward, nothing blocks you.",
+   "ja": "あなたは上位にいて、柔らかく正しく、下の剛強な助け手に手を伸ばすと、すっと合う。柔で穩やかなあなたと剛で有能な相手——結びつくのは早く滑らかだ。前へ進んでも阻むものはない。"
   },
   "38-5": {
    "zh": "你到了卦的顶，是睽的极点，疑心生出妄见。疑到极点就无中生有——能放下疑心，所疑的其实都是亲近的人。",
@@ -1474,9 +1474,9 @@
    "ja": "卦の頂点にいて、睽の極。疑い心から妄った見方が生じる。疑いが極まれば無から有を作る。疑いを解ければ、疑った者たちは皆みずからの親だった。"
   },
   "39-0": {
-   "zh": "你在最底下，是蹇的开始，前往遇险，回来反得其所。时机不可前进就止——止而能自守，反而得到称誉。",
-   "en": "You're at the bottom, the start of Jian — going meets danger, returning finds your place. When the time forbids going, stop. Stopping and keeping yourself brings praise instead.",
-   "ja": "一番下にいて、蹇の初め。行けば険に遇い、来れば所を得る。時が進むことを許さなければ止む。止まって自らを守れば、かえって称賛を得る。"
+   "zh": "你在最底下，刚走到蹇卦的开头，往前是险，退回来反倒有落脚处。走不通就先停下——停得住、守得稳，反而让人夸你稳当。",
+   "en": "You're at the very bottom, just at the start of Jian — ahead is danger, back is solid ground. When the way is blocked, stop. Holding steady and keeping yourself, people end up praising your steadiness.",
+   "ja": "あなたは一番下にいて、蹇の始まり。前は険、戻れば足場がある。通じぬならまず止まれ——止まって守れれば、かえって穩やかだと褒められる。"
   },
   "39-1": {
    "zh": "你在下卦正中，柔顺得正而应九五，冒蹇去救君主。处蹇而尽臣节，不是为了自身——忘身赴难，是忠的最高。",
@@ -1494,19 +1494,19 @@
    "ja": "上卦の下にいて、柔らかく正しく行けば蹇み、来れば九三に連なる。柔では独りで救えないが、剛に連なれば何か成せる。連なるとは、力を合わせることだ。"
   },
   "39-4": {
-   "zh": "你身居尊位，刚健中正却陷在险中，是蹇的主爻。大蹇之时，不是一人能救——刚中而能招来同志，蹇就能解。",
-   "en": "You're in the place of honor, strong and centered yet trapped in danger — the main line of Jian. In a great difficulty, one person can't save it. Strong and centered, gathering your allies, the difficulty can be resolved.",
-   "ja": "尊い位にいて、剛中で険に陷り、蹇の主爻となる。大いな蹇の時、一人では救えない。剛中で同志を招ければ、蹇は解ける。"
+   "zh": "你在上位，刚正却陷在险里，是这场困局的主事人。这么大的难，一个人扛不动——凭你的稳重把朋友同志都招来，困局才解得了。",
+   "en": "You're up high and upright yet stuck in danger — the one steering this whole predicament. A difficulty this big can't be carried by one. Draw friends and allies in with your steadiness, and the predicament breaks.",
+   "ja": "あなたは上位にいて剛正だが険に陥り、この難局の中心にいる。これほどの難を一人では担えない——穩やかさで友人や同志を集めてこそ、難は解ける。"
   },
   "39-5": {
-   "zh": "你到了卦的顶，蹇的终点，前往更蹇，回来反得大。蹇极则反——就近九五之刚，就能有成，这叫来硕。",
-   "en": "You're at the top of the hexagram, Jian at its end — going deepens difficulty, returning gains greatly. When Jian peaks it reverses. Draw near the fifth line's strength and you can achieve — that's the great return.",
-   "ja": "卦の頂点にいて、蹇の終わり。行けばさらに蹇み、来れば大きく得る。蹇が極まれば返る。九五の剛に就けば成すことができ、これを来硕という。"
+   "zh": "你到了最上面，是蹇卦的尽头，越往前越难，退回来反而收获大。难到头就翻转——去靠近那位刚强的核心，就能成事，这叫满载而归。",
+   "en": "You're at the very top of Jian — the further you go the harder, but coming back brings real gain. At difficulty's end it flips. Draw near that strong central figure and you can achieve — that's a rich return.",
+   "ja": "あなたは最も上にいて、蹇の終わり。進むほど難しく、戻ればかえって得が大きい。難が極まれば反転する——あの剛強な中心に近づけば事が成る。満載で帰るというものだ。"
   },
   "40-0": {
-   "zh": "你在最底下，是解的开始，险难刚解，柔顺而不妄动。难刚解时，不可再做别的——静下来安守，就能无过。",
-   "en": "You're at the bottom, the start of Xie — difficulty just released, soft and not acting. When trouble has just eased, don't start new ventures. Settle and keep still, and you'll avoid fault.",
-   "ja": "一番下にいて、解の初め。険難が解けたばかりで、柔らかく動かない。難が解けたばかりの時、別の事をしてはならない。静かに安んじれば、過ちはない。"
+   "zh": "你在最底下，是解卦的开头，险难刚松开，先别急着动。麻烦刚过去就又折腾，容易再惹事——静下来缓一缓，就不会出错。",
+   "en": "You're at the very bottom, the start of Xie — the difficulty just loosened; don't rush to act. Trouble barely gone and you stir again, you'll only invite more. Settle and breathe, and you'll avoid error.",
+   "ja": "あなたは一番下にいて、解の始まり。難がほどけたばかり。急いで動くな——厄が去ったばかりでまた騒げば、新たな禍を招く。静めて息を継げば、過ちはない。"
   },
   "40-1": {
    "zh": "你在下卦正中，刚健中正而解难，去掉邪媚。解难先去邪——刚直而能中，所去得当、所存者正。",
@@ -1514,9 +1514,9 @@
    "ja": "下卦の中央にいて、剛中で難を解き、邪な者を除く。難を解くにはまず邪を除くこと。剛直で中を得れば、除くものは当たり、残すものは正しい。"
   },
   "40-2": {
-   "zh": "你在下卦最上面，不中不正，以小人而占了君子的位子。处非其分，就招人夺取——德不称位，是自己招患。",
-   "en": "You're at the top of the lower trigram — off-center and improper — a small man occupying a gentleman's place. Out of your station invites others to take it. Virtue not matching position brings trouble on yourself.",
-   "ja": "下卦の最上部にいて、中も正も外れ、小人が君子の器に乗る。分にあらざれば人に奪われる。徳が位に釣り合わないのは、自ら患いを招くことだ。"
+   "zh": "你在下卦最上面，位置没摆正，让不该占位的人占了位。站错了位置就招人夺——德行配不上位子，是自己引出祸来。",
+   "en": "You're at the top of the lower trigram, out of place — letting the wrong person hold the right place. Wrong station invites others to take it. Virtue not matching position brings trouble on yourself.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、相応しくない者に場所を奪わせた。場所を誤れば人に奪われる——徳が位に見合わぬなら、禍は自ら招いたものだ。"
   },
   "40-3": {
    "zh": "你在上卦下面，解开小的牵系，而后朋友同类才可信。解去私系，同志就来——牵系不去，信任就立不起来。",
@@ -1524,9 +1524,9 @@
    "ja": "上卦の下にいて、小さな執われを解き、それから朋類が信じられる。私的な執わりを解けば同志が来る。執わりを去らなければ、信は立たない。"
   },
   "40-4": {
-   "zh": "你在尊位，柔和中正而解天下之难，用信服人。解难以诚服人，连小人也会信——诚信所及，难自然解开。",
-   "en": "You're in the place of honor, soft and centered, resolving the world's difficulties, winning people with trust. Resolve trouble by winning with sincerity — even small men believe. Where trust reaches, difficulty dissolves.",
-   "ja": "尊い位にいて、柔らかく中を得て天下の難を解き、信で人を服す。難を解くには誠で人を服させれば、小人も信じる。信の及ぶところ、難は自ずと解ける。"
+   "zh": "你在上位，性子柔、守得正，化解天下难题靠的是让人信服。解难用诚恳，连原本不正的人也会信——诚信到了，难自然就散了。",
+   "en": "You're in charge, gentle and upright, resolving the world's difficulties by winning people's trust. You resolve trouble by winning hearts with sincerity — even the unfriendly come to believe. Where trust reaches, the difficulty dissolves.",
+   "ja": "あなたは上位にいて、柔らかく正しく、天下の難を信で人を服させて解く。難を解くには誠で心を掴めば、不届きな者も信じる——誠の及ぶ所、難は自然に溶ける。"
   },
   "40-5": {
    "zh": "你到了卦的顶，是解的终点，除掉残害中最甚的。难既解，就除其根——去掉居高作害的，所往无阻。",
@@ -1544,9 +1544,9 @@
    "ja": "下卦の中央にいて、剛中で己を損して人に従わない。剛中の徳は自ら損してはならない。正を守って妄りに進まない——これは損ではなく益だ。"
   },
   "41-2": {
-   "zh": "你在下卦最上面，三人则有余，一人则不足。两相与是天地之常——三人就生疑，一人就求配，损有余以成双。",
-   "en": "You're at the top of the lower trigram — three means surplus, one means shortage. Two joining is heaven and earth's norm. Three breeds doubt, one seeks a mate — reduce the surplus to make a pair.",
-   "ja": "下卦の最上部にいて、三人なら余り、一人なら足りない。二つが与え合うのは天地の常だ。三人は疑いを生み、一人は対を求める。余りを損して二つを成す。"
+   "zh": "你在下面偏上的位置，三个人就嫌多、一个人就嫌少。两人相配才是常理——三个人容易起疑，一个人就想找伴，把多的减掉、凑成一对正好。",
+   "en": "You're at the top of the lower trigram — three is too many, one is too few. Two together is the natural way. Three breeds suspicion, one wants a mate; trim the surplus and the pair forms.",
+   "ja": "あなたは下のやや上にいて、三人は多く、一人は足りない。二つが組み合うのが自然の常だ——三人は疑いを生み、一人は相手を求める。余りを減らして二つにすれば、ちょうどよい。"
   },
   "41-3": {
    "zh": "你在上卦下面，柔顺得正而损所当损。损其不善，如同治病——去得快，喜也来得快。",
@@ -1554,19 +1554,19 @@
    "ja": "上卦の下にいて、柔らかく正しく損むべきものを損す。善くないものを除くのは病を取るようなもの。早く去れば、喜びも早い。"
   },
   "41-4": {
-   "zh": "你在尊位，柔和中正而虚己以受天下之益。自损而受人之益，益者自来——虚心就不违背所给。",
-   "en": "You're in the place of honor, soft and centered, emptying yourself to receive the world's increase. Reduce yourself and accept others' help — helpers come on their own. An empty center doesn't reject what's given.",
-   "ja": "尊い位にいて、柔らかく中を得て己を虚しくし、天下の益を受ける。自ら損して人の益を受ければ、益する者は自ら来る。虚な心は与えられるものを拒まない。"
+   "zh": "你在上位，性子柔、守得正，把自己放空去接纳各方的帮助。肯退一步让人，来帮你的人就自己来了——心里空着，就不排斥别人给的东西。",
+   "en": "You're in charge, gentle and upright, emptying yourself to take in whatever help comes. Step back and let people help, and helpers come on their own. An empty center doesn't push away what's offered.",
+   "ja": "あなたは上位にいて、柔らかく正しく、自分を空にして他人的助けを受け入れる。自ら引けば、助けに来る者が自然に来る——中が空なら、与えられるものを拒まない。"
   },
   "41-5": {
-   "zh": "你到了卦的顶，是损的终点，不损己也可以益人。损到极而不损，是损道之成——有其德就可以前往，得人而不私其家。",
-   "en": "You're at the top of the hexagram, Sun at its end — without reducing yourself you can benefit others. At the peak of reducing, not reducing is Sun's completion. With this virtue you can go, gaining people without keeping them private.",
-   "ja": "卦の頂点にいて、損の終わり。己を損さずに人を益せる。損の極で損さないのは、損の道の成就だ。その徳があれば往ける。人を得てもその家を私有しない。"
+   "zh": "你到了最上面，是损卦的尽头，不必再减自己也能帮到别人。减到最后反而不减了，这是损的功夫到家——有这份德行就可以往前，得人心还不把好处独吞。",
+   "en": "You're at the very top of Sun — no need to keep cutting yourself and you can still help others. At the end of reducing, not reducing is the art complete. With that virtue you can go forward, win hearts, and not hoard the benefit.",
+   "ja": "あなたは最も上にいて、損の終わり。自分を減らさずとも人を助けられる。減らすことの果てに、減らさぬのが損の極みだ——この徳があれば前へ行け、人心を得ても利益を独占せぬ。"
   },
   "42-0": {
-   "zh": "你在最底下，是益的开始，受上面之益而可以大有作为。得在上者的益，可任大事——但必尽善，才能免过。",
-   "en": "You're at the bottom, the start of Yi — receiving benefit from above, able to accomplish greatly. Gaining help from those above, you can undertake great things. But only by being fully good can you avoid fault.",
-   "ja": "一番下にいて、益の初め。上からの益を受け、大いに事を成せる。上の者から益を得れば大事を任ぜられる。ただ善を尽くして初めて過ちを免れる。"
+   "zh": "你在最底下，是益卦的开头，上头给了你资源，可以干番大事。得了上面的帮衬就担得起大的——但得把事做漂亮，才能不落埋怨。",
+   "en": "You're at the very bottom, the start of Yi — those above give you resources, so you can take on something big. Backed from above, you can carry large things — but do them well to avoid blame.",
+   "ja": "あなたは一番下にいて、益の始まり。上から与えられ、大きなことを成せる。上の補佐があれば大役を担える——だが事を立派にやってこそ、恨みを招かない。"
   },
   "42-1": {
    "zh": "你在下卦正中，柔顺得正而虚心，益自外来。虚心守常，益者自来不去——诚足以享神，这是受益之本。",
@@ -1574,9 +1574,9 @@
    "ja": "下卦の中央にいて、柔らかく正しく心を虚しくし、益は外から来る。虚しく常を守れば、益する者は来て去らない。誠は神に供えるに足る——これが益を受ける本だ。"
   },
   "42-2": {
-   "zh": "你在下卦最上面，不中不正，把益人之道用在患难上。以所受之益去济人之急，是用之正——行之以诚，人就信。",
-   "en": "You're at the top of the lower trigram — off-center and improper — applying the way of benefit in times of hardship. Using what you received to relieve others' urgency is the right use. Act with sincerity and people trust you.",
-   "ja": "下卦の最上部にいて、中も正も外れ、益する道を患難に用いる。受けた益で人の急を救うのは、その用い方が正しい。誠をもって行えば、人は信じる。"
+   "zh": "你在下卦最上面，位置没摆正，把帮人的道理用在了危难里。拿自己得到的去救别人的急，这是用对了——真心去做，人家就信你。",
+   "en": "You're at the top of the lower trigram, out of place — applying the way of benefit in a time of hardship. Using what you received to relieve another's urgency: that's the right use. Done sincerely, people trust you.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、助け合う道理を危難に使った。受けたもので人の急を救う——それが正しい使い方だ。真心で行えば、人は信じる。"
   },
   "42-3": {
    "zh": "你在上卦下面，柔顺得正而依于九五，奉行所告。有所为就告于上而从而行之——依君行大事，是益之大。",
@@ -1584,9 +1584,9 @@
    "ja": "上卦の下にいて、柔らかく正しく九五に依り、告げられたことを行う。事を為すなら上に告げて従う。君に依って大事を行う——これが益の大なるものだ。"
   },
   "42-4": {
-   "zh": "你身居尊位，刚健中正而有惠下之心，诚相感。以诚惠下，下也以诚报——惠发自心，其应就大。",
-   "en": "You're in the place of honor, strong and centered, with a heart to benefit those below, responding in sincerity. Benefit from the heart, and they repay in kind. Kindness from the heart meets a great response.",
-   "ja": "尊い位にいて、剛中で下を恵む心があり、誠が感応し合う。誠で下を恵めば、下も誠で報いる。恵みが心から出れば、その応えは大きい。"
+   "zh": "你在上位，刚正，真心想让下面的人得好处，这份诚意能互相感应。你诚心对人好，人家也诚心回报——好处是从心里发出的，回响就大。",
+   "en": "You're up high and upright, genuinely wanting those below to benefit — and that sincerity resonates. You wish them well from the heart and they answer in kind. Goodness that comes from the heart meets a great echo.",
+   "ja": "あなたは上位にいて剛正、心から下の人に利益を与えたいと思い、その誠が響き合う。誠をもって人に良くすれば、人も誠で返す——恵みが心から出るから、反響が大きい。"
   },
   "42-5": {
    "zh": "你到了卦的顶，是益的终点，求益不已而没人给你。求益无厌，人就反过来攻击——立心不恒，其求必穷。",
@@ -1604,19 +1604,19 @@
    "ja": "下卦の中央にいて、剛中で戒めを知り、変富有っても憂えない。戒められれば憂えずに済む。中で備えがあれば、突然の変も患いにはならない。"
   },
   "43-2": {
-   "zh": "你在下卦最上面，过刚而决于形色，决断太露。决而去之不可形于外——独行而暂与之和，其志固在去除。",
-   "en": "You're at the top of the lower trigram — overly rigid, deciding in plain sight — too overt. Removing someone shouldn't show outwardly. Go alone but temporarily seem to agree; your aim stays fixed on removal.",
-   "ja": "下卦の最上部にいて、剛が過ぎて色に決し、その決断が露わすぎる。決して除くのは外に形してはならない。独り行ってしばらく和ぶふりをしても、志は除くことにある。"
+   "zh": "你在下面偏上的位置，刚劲过头还挂在脸上，把决心露得太明显。要清除一个人，别先写在脸上——自己悄悄去办、表面上先缓和着，心里的主意不变就行。",
+   "en": "You're at the top of the lower trigram, too rigid and wearing it on your face — your resolve too obvious. Removing someone shouldn't be written on your face. Quietly do it, outwardly keep the peace, inner purpose unchanged.",
+   "ja": "あなたは下のやや上にいて、剛の気が過ぎてそれを顔に出し、決意を露にしすぎた。人を除くのに、まず顔へ書くな——こっそり自分で行い、表ではしばらく和やかに。心の決意が変わらねばよい。"
   },
   "43-3": {
-   "zh": "你在上卦下面，不中不正，进不能、决不果。居不安而进不能，是听不明——能牵以随众，悔就可消。",
-   "en": "You're below the upper trigram — off-center and improper — unable to advance, irresolute. Unsettled and unable to go means poor judgment. If you can follow the crowd, regret can disappear.",
-   "ja": "上卦の下にいて、中も正も外れ、進めず決められない。居所が安まらず進めないのは、見聞きが明らかでない。衆に牽かれて従えば、悔いは消える。"
+   "zh": "你在上面偏下的位置，位置没摆正，进也进不了、断也断不下。心里不定又迈不开步，是没看明白——能跟大家一块走，后悔就能消。",
+   "en": "You're just below the upper trigram, out of place — can't advance, can't decide. Unsettled and unable to step, you haven't seen clearly. If you can move along with the group, regret fades.",
+   "ja": "あなたは上のやや下にいて、位置が正しくなく、進めず断てずにいる。心が定まらず足も出ぬのは、見えていないからだ——皆と共に歩ければ、悔いは消える。"
   },
   "43-4": {
-   "zh": "你身居尊位，刚健中正而决所当决，行之以中。决小人不可过暴——用中道去决，不激而事可成。",
-   "en": "You're in the place of honor, strong and centered, deciding what should be decided, acting with the middle way. Deciding against the small men shouldn't be too violent. Decide through the mean — no backlash, and the task gets done.",
-   "ja": "尊い位にいて、剛中で決すべき者を決し、中道で行う。小人を決するのに暴しすぎてはならない。中道で決すれば、反発を招かず事が成る。"
+   "zh": "你在上位，刚正，该断的就断，而且断得有分寸。清除小人别下狠手过头——用中道去处理，不激化矛盾，事还能办成。",
+   "en": "You're up high and upright — cut away what must be cut, and do it with measure. Removing the unworthy doesn't mean overdoing the force. Handle it through the middle way: no backlash, and the job gets done.",
+   "ja": "あなたは上位にいて剛正、断つべきを断ち、かつ節度を持って断つ。小人を除くのに手を過ごしてはならない——中道で処理すれば、角を立てずに事が成る。"
   },
   "43-5": {
    "zh": "你到了卦的顶，是夬的终点，所决者已去，无可号呼。决之既尽，阴无所容——其终之穷，是理之必至。",
@@ -1629,29 +1629,29 @@
    "ja": "一番下にいて、姤の初め。一つの陰が生まれ始め、剛でこれを止める。陰が生まれたばかりは微かで制しやすい。早めに制すれば、盛んになってから計りにくくなることはない。"
   },
   "44-1": {
-   "zh": "你在下卦正中，刚健中正而制初六之阴，制在自己。阴在我所制之内，可以无过——因不广及，故不利宾。",
-   "en": "You're at the center of the lower trigram, strong and centered, restraining the first yin — control lies with you. With the yin within your control, you avoid fault. Because it doesn't extend widely, it's not favorable to entertain guests.",
-   "ja": "下卦の中央にいて、剛中で初六の陰を制する。制するのは自分次第。陰が己の制する内にあれば過ちはない。広く及ばないので、宾をもてなすのは利しくない。"
+   "zh": "你在下卦正中，刚正，能管住底下刚冒头的苗头，主动权在你手里。事情还在你能控的范围里，就不会出错——只是管得紧了、铺不开，所以还谈不上广结人缘。",
+   "en": "You're at the center of the lower trigram, upright, able to check the sprout just starting below — the initiative is yours. While it's still in your control, no error. But the grip is tight and can't spread wide, so broad alliances aren't yet on the table.",
+   "ja": "あなたは下卦の中央にいて剛正、下で芽生えたものを制し、主導権はあなたにある。まだ手の届く範囲なら過ちはない——ただ締め付けが強く広がらぬゆえ、広く人縁を結ぶには至らぬ。"
   },
   "44-2": {
-   "zh": "你在下卦最上面，过刚而不中，无所遇而不安。处姤之时而无所得，行不安——刚而不中，故不能制其阴。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — meeting nothing and unsettled. In Gou, gaining nothing leaves your movement uneasy. Rigid and off-center, you can't check the yin.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、遇うものがなく安まない。姤の時に得る所がなければ、その行いは落ち着かない。剛で中を外れているので、その陰を制せない。"
+   "zh": "你在下卦最上面，刚劲过头又不居中，谁也碰不上，心里不安。这种时候没收获，行动就稳不住——太刚又没分寸，压不住那些小状况。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center — nothing connects, so you can't settle. In Gou with nothing gained, your movement is unsteady. Too hard with no measure, you can't check the small troubles.",
+   "ja": "あなたは下卦の頂点にいて、剛が過ぎて中を外れ、出会うものがなく、心が落ち着かない。姤で得る所がなければ、歩みは定まらない——剛で分を外せば、小さな不都合も制せない。"
   },
   "44-3": {
-   "zh": "你在上卦下面，与初六正应却失其制。失其所制，民不为用——失民而想有为，变故就自己起来。",
-   "en": "You're below the upper trigram, properly matched with the first yin but losing control. Losing control, people won't serve. Having lost them yet wanting to act, trouble arises of itself.",
-   "ja": "上卦の下にいて、初六と正しく応じるが制を失う。制する所を失えば、民は使われない。民を失って何か成そうとすれば、変は自ら起こる。"
+   "zh": "你在上面偏下的位置，本来和底下的苗头相应，却管不住它了。管不住，人就不听你使唤——失了人心还想干事，乱子就自己冒出来。",
+   "en": "You're just below the upper trigram, matched with the sprout below but losing your grip on it. Uncontrolled, people won't obey you. Having lost their hearts yet wanting to act, trouble springs up on its own.",
+   "ja": "あなたは上のやや下にいて、下の芽と本来応じるのに、制しきれなくなった。制すれば人は従わぬ——人心を失ってなお事を起こせば、乱れが自然に生じる。"
   },
   "44-4": {
-   "zh": "你身居尊位，刚健中正而下包初六之阴，美在其中。以刚中之德包其微阴，不显其美——时既至，其应自来。",
-   "en": "You're in the place of honor, strong and centered, embracing the first yin below — beauty within. With strong-centered virtue you enfold the tiny yin without displaying your beauty. When the time comes, response comes on its own.",
-   "ja": "尊い位にいて、剛中で下の初六の陰を包む。美は内にある。剛中の徳で微かな陰を包み、その美を現さない。時が来れば、応えは自ら来る。"
+   "zh": "你在上位，刚正，把底下刚冒头的一点苗头包在怀里。有本事却不显摆——时候到了，该来的人自然来投奔你。",
+   "en": "You're up high and upright, gathering the tiny sprout below into your fold — ability without display. When the time is right, the ones who should come will come to you on their own.",
+   "ja": "あなたは上位にいて剛正、下で今まさに芽生えたものを懐に包む。実力があっても誇示しない——時が来れば、来るべき者が自然とあなたに集まる。"
   },
   "44-5": {
-   "zh": "你到了卦的顶，是姤的终点，刚而在上，无所与遇。处遇之极而无所遇，是势之穷——然刚而不妄，故可无过。",
-   "en": "You're at the top of the hexagram, Gou at its end — strong above, meeting nothing. At the extreme of encounter with no encounter, your force is spent. But strong and not rash, you can avoid fault.",
-   "ja": "卦の頂点にいて、姤の終わり。剛が上にあり、遇う者がない。遇いの極で遇うものがないのは、勢いが尽きたこと。ただ剛で妄りがないので、過ちは免れる。"
+   "zh": "你到了最上面，是相遇的尽头，性子刚、高高在上，没人跟你相合。走到头还碰不到人，是路走窄了——但刚强的人不胡来，还能免于出错。",
+   "en": "You're at the very top of Gou, rigid and high above, with no one to meet. Reaching the end and still finding no one means the road has narrowed — but rigid people don't act wildly, so even here you can avoid error.",
+   "ja": "あなたは最も上にいて、姤の終わり。剛で高く、誰とも合わない。最後まで出会えぬのは、道が狭まったからだ——だが剛強な者は妄りに動かぬゆえ、なお過ちは免れる。"
   },
   "45-0": {
    "zh": "你在最底下，是萃的开始，与九四相应却信不终。聚人的关键在信有终——信不终，聚必乱；能前往从正就可免。",
@@ -1659,14 +1659,14 @@
    "ja": "一番下にいて、萃の初め。九四に応じるが信が続かない。集めるのは信に終わりがあることが肝心。信が続かなければ集まりは乱れる。正に従って往けば免れる。"
   },
   "45-1": {
-   "zh": "你在下卦正中，柔顺得正而应九五，等被引才前往。进必要等引，不可自往——诚存于心，薄祭也能通。",
-   "en": "You're at the center of the lower trigram, soft and proper, matched with the fifth line — wait to be led before going. Advancing needs a summons; don't go on your own. With sincerity inside, even a thin offering connects.",
-   "ja": "下卦の中央にいて、柔らかく正しく九五に応じる。導かれてから往く。進むには導きを待つべきで、みずから往いてはならない。誠が内にあれば、薄い祭りでも通じる。"
+   "zh": "你在下卦正中，性子柔、走得正，上面有人照应，等他来带再动。往上走得有人引，自己别抢着上——心里有诚意，就算礼数薄一点也能通。",
+   "en": "You're at the center of the lower trigram, gentle and upright, someone above watching over you — wait to be led before moving. Advancing needs a guide; don't shove ahead. With sincerity inside, even thin courtesy gets through.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しく、上から守られ、導かれてから動く。上るには導きが要る。自分で先を争うな——中に誠があれば、礼が薄くても通じる。"
   },
   "45-2": {
-   "zh": "你在下卦最上面，不中不正，想聚却没人相应。求聚不得，所以叹息——能从上，则虽吝也可说无过。",
-   "en": "You're at the top of the lower trigram — off-center and improper — wanting to gather but no one joins. Seeking union and failing, you sigh. If you follow those above, though regretful, you can be faultless.",
-   "ja": "下卦の最上部にいて、中も正も外れ、集まろうとして応じる者がない。集められず嘆く。上に従えば、吝ではあるが過ちはないと言える。"
+   "zh": "你在下面偏上的位置，位置不正，想聚人却没人理你。聚不起来只好叹气——要是肯跟着上面走，就算不情愿，也还能说得过去。",
+   "en": "You're at the top of the lower trigram, out of place — wanting to gather people and no one answers. Can't gather them, so you sigh. If you'd follow those above though, even reluctantly, it would pass muster.",
+   "ja": "あなたは下のやや上にいて、位置が正しくなく、人を集めようとしても相手にされぬ。集まらず嘆くほかない——だが上の者に従う気になれば、いやでも通用する。"
   },
   "45-3": {
    "zh": "你在上卦下面，靠近九五，为众所聚而位不当。近君之地、众人所聚，其势可畏——必尽善才能免过。",
@@ -1674,14 +1674,14 @@
    "ja": "上卦の下にいて、九五に近く、衆の集まる所だが位が当たらない。君に近く衆が集まるのは、その勢いが恐ろしい。善を尽くして初めて過ちを免れる。"
   },
   "45-4": {
-   "zh": "你身居尊位，刚健中正，是萃的主爻，有人还没信你。有位而未尽信，就修常久之德——德修，悔自消。",
-   "en": "You're in the place of honor, strong and centered — Cui's main line — yet some don't fully trust you. Having position without full trust, cultivate lasting virtue. Virtue cultivated, regret fades by itself.",
-   "ja": "尊い位にいて、剛中で正しく、萃の主爻となる。まだ信じない者がいる。位があっても信が足りなければ、久しい徳を修める。徳が修まれば悔いは自ずと消える。"
+   "zh": "你在上位，刚正，是聚拢人心的主心骨，可还有人没服你。有位置不等于有人信——把长久的德行一点点做出来，人心服了，那点遗憾自然就消了。",
+   "en": "You're up high and upright, the one holding people together — yet some still don't believe in you. Having position isn't the same as having trust. Build lasting virtue bit by bit; when hearts are won, that regret melts away.",
+   "ja": "あなたは上位にいて剛正、人心を集める中心だが、まだ服しない者がいる。位があるのと信じられるのとは違う——長く変わらぬ徳を少しずつ積めば、人心が服し、その遺憾も消える。"
   },
   "45-5": {
-   "zh": "你到了卦的顶，是萃的终点，求聚不得，忧惧很深。求聚不得而自伤，是情切——知惧不止，故可无过。",
-   "en": "You're at the top of the hexagram, Cui at its end — seeking union and failing, deeply anxious. Seeking and failing, you grieve — deep feeling. Knowing fear and not stopping, you can avoid fault.",
-   "ja": "卦の頂点にいて、萃の終わり。集めようとして得られず、憂え恐れること深い。集められず自らを傷つけるのは情が切なるゆえ。恐れを知ってやまないので、過ちは免れる。"
+   "zh": "你到了最上面，是萃卦的尽头，想聚人却聚不到，心里又急又怕。聚不到又暗自伤感，是太在乎了——知道怕还不放手，所以还不会出错。",
+   "en": "You're at the very top of Cui — wanting people together and failing, anxious and afraid. Failing and fretting is caring too much. Knowing fear and not letting go, you still avoid error.",
+   "ja": "あなたは最も上にいて、萃の終わり。人を集めようとして集まらず、焦りと恐れが募る。集まらず密かに傷つくのは、気持ちが強すぎるから——恐れを知りながら手放さぬゆえ、まだ過ちはない。"
   },
   "46-0": {
    "zh": "你在最底下，是升的开始，被两个阳爻信任，与之一同上升。升必要有信——上信你，就与之俱进，其升也顺。",
@@ -1694,9 +1694,9 @@
    "ja": "下卦の中央にいて、剛中で上の六五に応じ、誠で感応する。誠で上に仕えれば薄い礼でも通じる。中心の孚は、飾りを借りない。"
   },
   "46-2": {
-   "zh": "你在下卦最上面，刚正而进，进入无人之邑。其进无阻，如入空城——刚而得正，所以升得顺。",
-   "en": "You're at the top of the lower trigram, strong and upright, advancing into an empty town. Your way is unobstructed, like entering a vacant city. Strong and right, your rise is smooth.",
-   "ja": "下卦の最上部にいて、剛正で進み、人のいない邑に入る。その進みに障害はなく、空の城に入るようだ。剛で正を得たので、昇りは順調だ。"
+   "zh": "你在下卦最上面，刚正，往前走像进了空城，一路没人挡。有本事又走得正，上升自然顺——就像走进一座空城，畅通无阻。",
+   "en": "You're at the top of the lower trigram, upright — advancing like entering an empty town, no one in the way. Ability with right movement rises smoothly, like walking into an empty city, nothing blocked.",
+   "ja": "あなたは下卦の頂点にいて剛正、進むのは空城に入るようで、誰も阻まぬ。実力があって正しく進めば昇りは滑らか——まるで空の城へ入るように、通り道に障害がない。"
   },
   "46-3": {
    "zh": "你在上卦下面，柔顺得正而近九五，积诚以事上。以诚事上，不求进位——如祭于山，诚在心不在物。",
@@ -1704,14 +1704,14 @@
    "ja": "上卦の下にいて、柔らかく正しく九五に近く、誠を積んで上に仕える。誠で仕えて位を求めない。山に祭るようなもので、誠は心にあり物にあるのではない。"
   },
   "46-4": {
-   "zh": "你在尊位，柔和中正而下应九二，升得有序。升必有顺序，如登阶有级——柔中而任贤，所以升得安。",
-   "en": "You're in the place of honor, soft and centered, reaching down to the second line — rising in order. Rising must have sequence, like steps on a stair. Soft-centered and appointing worthies, your rise is secure.",
-   "ja": "尊い位にいて、柔らかく中を得て九二に応じ、昇りに順序がある。升るには順序が要る——段を登るようなもの。柔中で賢者を任せるので、昇りは安い。"
+   "zh": "你在上位，性子柔、守得正，下面有人相应，上升得一步一步。往上走得按顺序，就像上台阶一级一级来——柔稳又肯用贤人，升得安稳。",
+   "en": "You're in charge, gentle and upright, with someone below who answers you — your rise comes step by step. Going up has a sequence, like climbing stairs one tread at a time. Gentle, centered, and using the worthy: you rise secure.",
+   "ja": "あなたは上位にいて、柔らかく正しく、下から応える者がいて、昇りが一段ずつ進む。上るには順序がある——階段を一段ずつ登るようなもの。柔で中を得て賢者を任せば、昇りは安い。"
   },
   "46-5": {
-   "zh": "你到了卦的顶，是升的终点，升而不已，心不明。升极而不知止，是冥——只有不息之正可以救其失。",
-   "en": "You're at the top of the hexagram, Sheng at its end — rising without end, your mind dark. Rising to the extreme without knowing to stop is blindness. Only unceasing rightness can save you.",
-   "ja": "卦の頂点にいて、升の終わり。昇り続けて心が明らかでない。昇りの極で止まることを知らぬのは冥い。不息の正だけがその失いを救える。"
+   "zh": "你到了最上面，是升的尽头，还一个劲往上、心里却糊涂了。升到头还不知道停，是昏了头——只有不停的正道，才救得了这个错。",
+   "en": "You're at the very top of Sheng — still climbing, but your mind's gone dim. Rising to the end and not knowing to stop is blindness. Only unceasing rightness can save you from this.",
+   "ja": "あなたは最も上にいて、昇りの終わり。まだ上へ上がろうとして、心はもう昏れている。昇りきって止まらぬのは、頭が混乱しているから——絶えぬ正道だけが、この過ちを救う。"
   },
   "47-0": {
    "zh": "你在最底下，是困的开始，困坐于下不得进。困在下又无依，入得很深——柔而不能自拔，所以久不见用。",
@@ -1719,29 +1719,29 @@
    "ja": "一番下にいて、困の初め。下に座し込んで進めない。下にあって頼るものなく、深く入る。柔で自ら抜けられず、久しく用いられない。"
   },
   "47-1": {
-   "zh": "你在下卦正中，刚健中正却困于供养丰厚。困不在贫而在过——有其德则荣禄自来，以诚处之可免。",
-   "en": "You're at the center of the lower trigram, strong and centered, yet trapped by rich provisions. The trap isn't poverty but excess. With virtue, honor comes on its own; meet it with sincerity and avoid harm.",
-   "ja": "下卦の中央にいて、剛中で養うものの豊かさに困る。困いは貧ではなく過ぎにある。徳があれば栄禄は自ら来る。誠をもって処せば免れられる。"
+   "zh": "你在下卦正中，刚强又正，却被供养太好困住了。麻烦不在穷，而在太过——有本事的人荣华自己会来，诚心待它就不会被拖住。",
+   "en": "You're at the center of the lower trigram, strong and upright, but trapped by too much good living. The trouble isn't poverty, it's excess. The able person's honor comes on its own; meet it sincerely and you won't be dragged down.",
+   "ja": "あなたは下卦の中央にいて剛強で正しいが、恵みが豊かすぎて詰まっている。難は貧ではなく過ぎにある——実力ある者の栄誉は自ずと来る。誠で臨めば、引きずられぬ。"
   },
   "47-2": {
-   "zh": "你在下卦最上面，不中不正，前后都是刚，无处容身。进退皆困、内又无归，是道之穷——柔而不正，故至于此。",
-   "en": "You're at the top of the lower trigram — off-center and improper — rigid before and behind, with nowhere to stand. Stuck either way with no home within, your way is exhausted. Soft and improper, you came to this.",
-   "ja": "下卦の最上部にいて、中も正も外れ、前後とも剛で容れる所がない。進んでも引いても困り、内に帰る所もない——道の穷まりだ。柔で正しくないので、ここに至った。"
+   "zh": "你在下卦最上面，位置不正，前后都是硬角色，没有容身的地方。进退都卡住、心里又没个归处，路走到头了——柔弱又不正，才落得这步。",
+   "en": "You're at the top of the lower trigram, out of place, with rigid forces before and behind — nowhere to stand. Stuck either way with nowhere inside to return: the road is spent. Soft and improper, you came to this.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくなく、前後とも剛で、身を置く所がない。進んでも引いても詰まり、内に帰る所もない——道が尽きたのだ。柔で正しくないから、ここに至った。"
   },
   "47-3": {
-   "zh": "你在上卦下面，与初六正应，被九二隔开。困于隔而不能速，然其应自在——徐而不已，故能有终。",
-   "en": "You're below the upper trigram, properly matched with the first line but blocked by the second. Blocked and slowed, yet the bond remains. Slow and unceasing, you reach a good end.",
-   "ja": "上卦の下にいて、初六と正しく応じるが九二に隔てられる。隔てられて急げないが、応えは自ずとある。徐ろにやまないので、良い終わりを得る。"
+   "zh": "你在上面偏下的位置，和底下一个人本该相应，却被旁人隔着，一时到不了一起。被隔开了慢一点没关系——那份呼应还在，沉住气继续，终会有个好结果。",
+   "en": "You're just below the upper trigram, meant to connect with someone below but cut off by others — you can't reach them yet. Being separated only slows you; the bond remains. Keep calm and go on, and it ends well.",
+   "ja": "あなたは上のやや下にいて、下の人と本来応じるのに、他に隔てられて今は届かない。隔たって遅れるのは構わぬ——その響きは残っている。落ち着いて続ければ、良い結果が出る。"
   },
   "47-4": {
-   "zh": "你身居尊位，刚健中正却困于上下之阴。困于人而不得行志，就徐徐图之——以诚处之，悦自至。",
-   "en": "You're in the place of honor, strong and centered, trapped by the yin above and below. Blocked by people and unable to act, proceed slowly. Meet it with sincerity and relief comes.",
-   "ja": "尊い位にいて、剛中で上下の陰に困る。人に阻まれて志を行えなければ、徐ろに計る。誠をもって処すれば、悦びは自ら来る。"
+   "zh": "你在上位，刚正，却被上下的人夹着动不了。被人卡住施展不开，就慢慢来、别硬顶——诚心待人，局面自然松快。",
+   "en": "You're up high and upright but squeezed by people above and below, unable to move. When others block you, go slowly instead of pushing — meet it with sincerity and the situation loosens by itself.",
+   "ja": "あなたは上位にいて剛正だが、上下の人に挟まれて動けない。人に塞がれて力を出せぬなら、急がず硬くぶつからぬこと——誠で接すれば、局面は自然と緩む。"
   },
   "47-5": {
-   "zh": "你到了卦的顶，是困的终点，缠绵不安不能自定。困极则动而悔生——能悔其所为而改，前往可有得。",
-   "en": "You're at the top of the hexagram, Kun at its end — tangled, unsettled, unable to settle. At extremity you stir and regret arises. If you regret your acts and change, going forward can gain.",
-   "ja": "卦の頂点にいて、困の終わり。まとわりついて安まらず、自ら定まれない。困り極まれば動いて悔いが生じる。自分の所为を悔いて改めれば、往いて得る所がある。"
+   "zh": "你到了最上面，是困卦的尽头，缠缠绵绵静不下来。困到头就乱动、一动就生悔——能把自己做过的事翻出来改，往前走还能有收获。",
+   "en": "You're at the very top of Kun — tangled, unable to settle. At the end of difficulty you stir, and regret follows. But review what you've done and change it, and moving forward still gains.",
+   "ja": "あなたは最も上にいて、困の終わり。まとわりついて落ち着けない。困りきれば動いて悔いが生じる——自らの所業を洗い出して改めれば、前へ進んでも得られる。"
   },
   "48-0": {
    "zh": "你在最底下，是井底，泥污而不为人用。在下而无用于世，是泥井——德不加修，就没人来取。",
@@ -1764,9 +1764,9 @@
    "ja": "上卦の下にいて、柔らかく正しく井の甃を修める。功は内にある。内を修めて外を求めないのは自守だ。過ちはないが、人に及ぶところはまだ見えない。"
   },
   "48-4": {
-   "zh": "你身居尊位，刚中是井之清者，可以食人。有德有位，泽就及人——中正之泉，人所共汲。",
-   "en": "You're in the place of honor, strong and centered — the well's clear water, able to feed people. Virtue with position extends your grace. A centered, upright spring is drawn by all.",
-   "ja": "尊い位にいて、剛中で井の澄んだ水となる。人を食せる。徳と位があれば恵みは人に及ぶ。中正の泉は、人々がともに汲む。"
+   "zh": "你在上位，刚正，像井里那汪清水，能养人。有德行又有位置，好处就能泽润到人——正中的泉水，大家都会来打。",
+   "en": "You're up high and upright, like the clear water in a well that nourishes people. Virtue with position lets your grace reach others. A centered, upright spring — everyone comes to draw from it.",
+   "ja": "あなたは上位にいて剛正、井戸の澄んだ水のようで、人を養える。徳と位があれば、恵みが人に及ぶ——中正の泉は、皆が汲みに来る。"
   },
   "48-5": {
    "zh": "你到了卦的顶，是井的终点，其功已成而不自遮蔽。有泽而公之于人，不私有——信之所及，其用无穷。",
@@ -1774,124 +1774,124 @@
    "ja": "卦の頂点にいて、井の終わり。その功は成り、自ら覆い隠さない。恵みを人に公にし、私有しない。信の及ぶところ、その用は穷まない。"
   },
   "49-0": {
-   "zh": "你在最底下，是革的开始，时未可革，用中顺固守。革不可急——时未至就固守常道，不可以刚逞强。",
-   "en": "You're at the bottom, the start of Ge — the time isn't right, hold fast with centered compliance. Change can't be hasty. Before the time, keep the constant way; don't flaunt your strength.",
-   "ja": "一番下にいて、革の初め。まだ革める時でない。中順で固く守る。革は急げない。時が来ねば常道を守り、剛で強がってはならない。"
+   "zh": "你在最底下，是变革的开头，时机还不该动，先稳住。变革急不得——时候没到就守着老样子，别凭一股刚劲硬来。",
+   "en": "You're at the very bottom, the start of Ge — the time isn't right to change, so hold steady. Change can't be forced. Before the time, keep the old ways; don't barge in with brute force.",
+   "ja": "あなたは一番下にいて、変革の始まり。まだ動く時でない。まず稳んずる——変革は急げぬ。時が来ねば古いままを守り、剛の勢いで無理に動くな。"
   },
   "49-1": {
-   "zh": "你在下卦正中，柔顺得正而上应九五，时可革而后革。革必待其时——中顺而应上，所以行无过。",
-   "en": "You're at the center of the lower trigram, soft and proper, matched above with the fifth line — change when the time allows. Change must wait for its day. Centered, compliant, matched above, you act without fault.",
-   "ja": "下卦の中央にいて、柔らかく正しく上の九五に応じる。時が革めてよいと決まってから革める。革はその時を待つ。中順で上に応じるので、行いに過ちはない。"
+   "zh": "你在下卦正中，性子柔、走得正，上面有人照应，时候到了才动手变革。变革一定要等时候——你柔稳又顺着上头，这么做就不会出错。",
+   "en": "You're at the center of the lower trigram, gentle and upright, someone above answering you — change only when the time comes. Change must wait for its hour. Gentle, steady, following above: doing it this way, no error.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しく、上から応えられ、時が来てから变革に動く。変革には時を待つものだ——あなたが柔で穩やかで上に従うなら、そうすれば過ちはない。"
   },
   "49-2": {
-   "zh": "你在下卦最上面，过刚而革，躁则危、审则可。革议反复三次才定，是慎之至——有其诚则人不疑。",
-   "en": "You're at the top of the lower trigram — overly rigid in change — rash is dangerous, deliberate works. Reaching three consultations before deciding is utmost care. With sincerity, no one doubts.",
-   "ja": "下卦の最上部にいて、剛が過ぎて革める。躁れば危く、審えればよい。革の議論を三度繰り返して初めて決めるのは、慎みの極だ。誠があれば人は疑わない。"
+   "zh": "你在下面偏上的位置，刚劲过头想变革，急躁就危险、想清楚才行。改革的事反复掂量三次才拍板，这是慎之又慎——心是诚的，别人就不疑你。",
+   "en": "You're at the top of the lower trigram, too rigid, wanting change — rash is danger, clear thinking works. Weighing a reform three times before deciding is utmost care. With a sincere heart, no one doubts you.",
+   "ja": "あなたは下のやや上にいて、剛が過ぎて変革を急ぐ。躁れば危うく、よく考えればよい。改革は三度繰り返してから決める——それが慎みの極だ。心が誠なら、人は疑わぬ。"
   },
   "49-3": {
-   "zh": "你在上卦下面，刚而居柔，担当变革之任。有其诚就可以改其命——刚柔相济，故事可成而悔亡。",
-   "en": "You're below the upper trigram, strong in a soft place — bearing the charge of change. With sincerity you can reform the decree. Strength and softness aid each other, so the task succeeds and regret vanishes.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、変革の任を負う。誠があればその命を改められる。剛柔が助け合うので、事は成って悔いは消える。"
+   "zh": "你在下面偏上的位置，有刚劲又肯放柔，扛起了变革这件大事。只要心是诚的，就能把旧规矩改掉——刚柔搭配着来，事办得成，遗憾也没了。",
+   "en": "You're just above the lower center, with strength but willing to soften, carrying the big task of change. If your heart is sincere you can scrap the old rules — strength and give working together, the job gets done and regret fades.",
+   "ja": "あなたは下のやや上にいて、剛の気がありながら柔らかく、変革という大役を担う。心が誠であれば、古い決まりを改められる——剛と柔が組み合えば、事は成り遺憾も消える。"
   },
   "49-4": {
-   "zh": "你身居尊位，刚健中正，是革的主爻，其变显著。大人之变，文采炳然——不待问而人自信，是诚之至。",
-   "en": "You're in the place of honor, strong and centered — Ge's main line — your change conspicuous. A great one's change is brilliantly patterned. Without being asked, people trust you: utmost sincerity.",
-   "ja": "尊い位にいて、剛中で正しく、革の主爻。その変わりは著しい。大人の変わりは文が炳然としている。問わずとも人が信じる——誠の極だ。"
+   "zh": "你在上位，刚正，是变革的主事人，改动明明白白摆在那儿。真正的大人物一变，气象就不一样——不用人问，大家自己就信了，这是诚到了极点。",
+   "en": "You're up high and upright, the one steering the change, the transformation out in the open. When a truly great person changes, the whole aspect shifts — no one needs to ask; people believe on their own. That's sincerity at its peak.",
+   "ja": "あなたは上位にいて剛正、変革の中心者。その変更ははっきりと表に出ている。本当の大人物が変われば、様相が変わる——人に問わずとも、皆が自然に信じる。誠の極みだ。"
   },
   "49-5": {
-   "zh": "你到了卦的顶，是革的终点，君子变其文，小人变其貌。革之既成，不可以更进——守其成而已，往则过。",
-   "en": "You're at the top of the hexagram, Ge at its end — the gentleman changes his pattern, the small man changes his face. Once change is complete, don't push further. Just keep the achievement; going on is excess.",
-   "ja": "卦の頂点にいて、革の終わり。君子はその文を変え、小人はその貌を変える。革りが成ったら、さらに進んではならない。その成りを守るだけだ。往けば過ちだ。"
+   "zh": "你到了最上面，是变革的尽头，该变的外表内里都变了。变革已经完成，就别再折腾——守住这份成果就好，再往前就是过头。",
+   "en": "You're at the very top of Ge — everything that should change, inside and out, has changed. The transformation is complete; don't keep pushing. Just guard what you've achieved — beyond that is excess.",
+   "ja": "あなたは最も上にいて、変革の終わり。変えるべき表も裏も変わった。変革は成った。もう騒ぐな——この成果を守ればよい。先へ進めば度を越す。"
   },
   "50-0": {
-   "zh": "你在最底下，是鼎的开始，颠其趾以倒出陈积之污。去旧恶，虽颠也可以——因贱得贵，故无过。",
-   "en": "You're at the bottom, the start of Ding — tipping the legs to pour out old sediment. Removing old filth, even tipping is fine. Through the low you gain the noble, so no fault.",
-   "ja": "一番下にいて、鼎の初め。足を返して古く溜まった汚れを出す。古い悪を除くなら、ひっくり返してもよい。賤しいところから貴いものを得るので、過ちはない。"
+   "zh": "你在最底下，是鼎卦的开头，把鼎足翻过来倒掉陈旧的东西。清掉旧毛病，哪怕姿态难看也值得——把低的翻成高的，不会出错。",
+   "en": "You're at the very bottom, the start of Ding — tip the legs to dump the old sediment. Clearing out old filth is worth it even if the posture looks bad. Turning the low into the noble, you won't err.",
+   "ja": "あなたは一番下にいて、鼎の始まり。鼎の足を返して古い滓を捨てる。古い悪を除くなら、姿勢がみっともなくても値打ちがある——低いを高いに返すのだ。過ちはない。"
   },
   "50-1": {
-   "zh": "你在下卦正中，刚中而有其实，为六五所应。有德者，虽被嫉也不能近——刚中自守，其道可行。",
-   "en": "You're at the center of the lower trigram, strong and centered with real substance — matched with the sixth line above. One with virtue, though envied, can't be approached. Strong-centered and self-keeping, your way goes.",
-   "ja": "下卦の中央にいて、剛中で実があり、六五に応じられる。徳ある者は、嫉まれても近づけない。剛中を守るので、その道は行かれる。"
+   "zh": "你在下卦正中，刚正、肚子里有真东西，上面有人呼应你。有本事的人，就算有人嫉恨也近不了身——守住自己的正道，就走得通。",
+   "en": "You're at the center of the lower trigram, upright with real substance — someone above answers you. A person of virtue, though envied, can't be reached. Keep to your own right path and it goes through.",
+   "ja": "あなたは下卦の中央にいて剛正、中身が充実し、上から応えられている。実力ある者は、嫉まれても近づけぬ——自分の正道を守れば、道は通じる。"
   },
   "50-2": {
-   "zh": "你在下卦最上面，过刚而不中，其行有阻。刚过则与五不合，故行塞——能自反以和之，终有得。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — your movement blocked. Too rigid, you don't match the fifth line, so you're stopped. Turn back and harmonize, and in the end you gain.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、その行いに阻むものがある。剛が過ぎて五と合わないので塞がる。みずから返って和らげれば、終わりに得る所がある。"
+   "zh": "你在下面偏上的位置，刚劲过头又不居中，行动被卡住。太硬就跟上头合不来，所以路塞了——肯回头找和气，最后还能有收获。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center — your movement is blocked. Too hard, you don't match those above, so the way is stopped. Turn back and find harmony, and in the end you gain.",
+   "ja": "あなたは下のやや上にいて、剛が過ぎて中を外れ、動きが塞がる。剛すぎれば上と合わず、道が詰まる——振り返って和を求めれば、最後には得られる。"
   },
   "50-3": {
-   "zh": "你在上卦下面，不中不正，任重而才不胜。任非其才，就败人之事——德薄位尊，是自取其败。",
-   "en": "You're below the upper trigram — off-center and improper — a heavy charge beyond your ability. Wrong person for the role ruins the work. Thin virtue, high station: you bring about your own downfall.",
-   "ja": "上卦の下にいて、中も正も外れ、重い任を負うが才が及ばない。任が才に非ずば人の事を敗る。徳が薄く位が尊いのは、自らその敗れを招くものだ。"
+   "zh": "你在上面偏下的位置，位置没摆正，担子重、本事却不够。用错了人，就坏人家的事——德行薄、位子高，是自己把自己拽垮。",
+   "en": "You're just below the upper trigram, out of place — a heavy burden beyond your ability. Wrong person for the role ruins the work. Thin virtue, high station: you pull yourself down.",
+   "ja": "あなたは上のやや下にいて、位置が正しくなく、荷は重いのに実力が足りぬ。人を誤れば人の事を駄目にする——徳が薄く位が高いのは、自分で自分を引きずり倒すようなものだ。"
   },
   "50-4": {
-   "zh": "你身居尊位，柔中而下应九二，以中受刚。以柔中之德受刚中之辅，其举也重——守正则可以任。",
-   "en": "You're in the place of honor, soft and centered, reaching down to the second line — receiving strength with the mean. With soft-centered virtue receiving a strong-centered helper, your support is solid. Keep rightness and you can bear it.",
-   "ja": "尊い位にいて、柔らかく中を得て九二に応じ、中で剛を受ける。柔中の徳で剛中の補佐を受ければ、その支えは重い。正を守れば任せられる。"
+   "zh": "你在上位，性子柔，向下接着那个刚强的能人。以柔配刚，这份托付才稳当——守住正道，就担得起这个重。",
+   "en": "You're in charge, gentle, receiving a strong, capable person below. A soft center taking in a strong helper makes the trust solid. Keep to what's right and you can bear the weight.",
+   "ja": "あなたは上位にいて、柔らかく、下の剛強な助け手を受け入れる。柔を中として剛の補佐を受ければ、その支えは重い。正を守れば、任せられる。"
   },
   "50-5": {
-   "zh": "你到了卦的顶，是鼎的终点，刚而居柔，其德如玉。刚而能柔，温润不可犯——鼎道之成，故用无不利。",
-   "en": "You're at the top of the hexagram, Ding at its end — strong in a soft place, your virtue like jade. Strong yet soft, warm and not to be violated. Ding's way fulfilled, so nothing is unfavorable.",
-   "ja": "卦の頂点にいて、鼎の終わり。剛で柔の位にあり、その徳は玉のよう。剛で柔を作え、温潤で犯せない。鼎の道が成ったので、用いるに不利なことはない。"
+   "zh": "你到了最上面，是鼎的尽头，有刚劲却待在柔位上，德行像玉一样。刚硬却能温润，让人不愿意冒犯——鼎养贤的道理到这里就成了，怎么用都顺。",
+   "en": "You're at the very top of Ding — strength in a soft place, virtue like jade. Hard yet warm, not to be violated. The way of the cauldron nourishing the worthy is complete here: use it any way and it goes well.",
+   "ja": "あなたは最も上にいて、鼎の終わり。剛の気がありながら柔の位にいて、徳は玉のよう。剛でいながら温かく、人が冒しにくい——鼎が賢を養う道はここで成り、どう使っても順調だ。"
   },
   "51-0": {
-   "zh": "你在最底下，是震的开始，惧而后安，其惧有则。先惧后安，是知畏——畏则可无患，故笑言有节。",
-   "en": "You're at the bottom, the start of Zhen — fearful then secure, with measure in your fear. Fear first, security after: that's knowing awe. Awe avoids trouble, so laughter and words have measure.",
-   "ja": "一番下にいて、震の初め。恐れて後安んじ、その恐れには節度がある。先に恐れて後安ぶのは、畏ることを知る者。畏れば患いを免れ、笑い言葉にも節度がある。"
+   "zh": "你在最底下，是震卦的开头，先吓一跳、后定下来，害怕也得有分寸。先怕后定，是懂敬畏——心里存着怕，就少惹祸，连说笑都有了节制。",
+   "en": "You're at the very bottom, the start of Zhen — startled first, settled after; even fear needs measure. Fear first, calm after: that's knowing awe. With awe in your heart you avoid trouble, and even laughter keeps its bounds.",
+   "ja": "あなたは一番下にいて、震の始まり。びっくりして、あとで落ち着く。恐れにも度がある——先に恐れ後稳んずるのは、畏れを知ることだ。恐れがあれば禍は減り、笑いにも節度が生まれる。"
   },
   "51-1": {
-   "zh": "你在下卦正中，柔顺得正而遇震来，丧其所守。所失的是外物，不必追——守其中正，久则自复。",
-   "en": "You're at the center of the lower trigram, soft and proper, meeting thunder and losing what you held. What's lost is a thing — don't chase it. Keep your center and rightness; in time it returns.",
-   "ja": "下卦の中央にいて、柔らかく正しく震の来るに遭い、守るものを失う。失ったのは物なので追う必要はない。中正を守れば、久しくして自ら戻る。"
+   "zh": "你在下卦正中，性子柔、走得正，冷不丁挨了雷一击，丢了手里东西。丢的是外物，别追着不放——守住心里那份稳，久了自然会回来。",
+   "en": "You're at the center of the lower trigram, gentle and upright, when thunder strikes out of nowhere and you drop what you held. What's lost is a thing — don't chase it. Keep the steadiness inside; in time it returns.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しい。突然雷に打たれ、手のものを落とした。失ったのは外物だ。追うな——中の落ち着きを守れば、やがて戻る。"
   },
   "51-2": {
-   "zh": "你在下卦最上面，不中不正，惧而自失，行则可免。不安而能行，就可无灾——惧而能改，是可教者。",
-   "en": "You're at the top of the lower trigram — off-center and improper — fearful and self-lost; moving can save you. Uneasy yet able to act avoids disaster. Fearful and able to change: you're teachable.",
-   "ja": "下卦の最上部にいて、中も正も外れ、恐れて自らを失う。行けば免れられる。安まなくても行えるなら災いはない。恐れて改められるのは、教えられる者だ。"
+   "zh": "你在下面偏上的位置，位置不正，吓慌了乱了阵脚，肯动还能免灾。心里不安却肯行动，就没灾——怕了还能改，是能教得好的那种人。",
+   "en": "You're at the top of the lower trigram, out of place — panic costs you your footing, but moving can save you. Uneasy yet willing to act, no disaster. Fearful and able to change: you're teachable.",
+   "ja": "あなたは下のやや上にいて、位置が正しくなく、驚いて足元を乱すが、動けば免れる。心が騒いでも動けば、災いはない——恐れてまだ改められる。教えの入りやすい者だ。"
   },
   "51-3": {
-   "zh": "你在上卦下面，刚而居柔，陷在二阴之间。刚而不能自奋，陷于阴中——有其刚而无其用，是滞。",
-   "en": "You're below the upper trigram, strong in a soft place, trapped between two yin lines. Strong but unable to rouse yourself, stuck among yin. Having strength without using it is stagnation.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、二つの陰の間に陷る。剛で自ら奮えず、陰の中に沈む。剛があって用いられないのは、滞りだ。"
+   "zh": "你在下面偏上的位置，有刚劲却卡在两股柔之间，动弹不得。空有一身本事使不出来，这就是被闷住了——得等时机打通。",
+   "en": "You're just above the lower center, strength caught between two soft forces, unable to budge. Ability you can't use — you're simply boxed in. Wait for the moment that opens it up.",
+   "ja": "あなたは下のやや上にいて、剛の気があるのに二つの柔に挟まれ、動けない。腕前があっても出せぬ——ただ詰まっているだけだ。時が開くのを待つほかない。"
   },
   "51-4": {
-   "zh": "你在尊位，柔和中正而处震，往来皆危却无所丧。守其中则虽危不失——有其事而不失守，是能危者。",
-   "en": "You're in the place of honor, soft and centered amidst thunder — danger coming and going, yet nothing lost. Hold your center and though endangered you don't lose. Handling danger without losing your grip: that's meeting danger well.",
-   "ja": "尊い位にいて、柔らかく中を得て震に処する。往来とも危ういが失うものがない。中を守れば危くても失わない。事があっても守りを失わない——危うさに堪える者だ。"
+   "zh": "你在上位，性子柔，处在雷动之中，来回都危险却没丢掉什么。守住心里那份稳，危险归危险，你不会崩——事来了顶得住、又不乱阵脚，这就是本事。",
+   "en": "You're up high and gentle, amidst the thunder — danger coming and going, yet nothing lost. Hold the steadiness inside; danger is danger, but you won't break. Meeting trouble without losing your footing: that's the real skill.",
+   "ja": "あなたは上位にいて柔らかく、雷の動きの中にいる。往来とも危ういが、失うものはない。中の落ち着きを守れば、危くても崩れない——事が来ても踏ん張り、足元を乱さぬ。それが腕前だ。"
   },
   "51-5": {
-   "zh": "你到了卦的顶，是震的终点，其惧已极，其视不定。惧极则不可以行——能在未及身时先戒，就可免。",
-   "en": "You're at the top of the hexagram, Zhen at its end — fear at its peak, your gaze unsteady. At extreme fear you can't act. If you take warning before it reaches you, you can avoid it.",
-   "ja": "卦の頂点にいて、震の終わり。恐れは極まり、見る目は定まらない。恐り極まれば行けない。まだ身に及ばぬうちに戒めれば、免れられる。"
+   "zh": "你到了最上面，是震卦的尽头，怕到了极点，眼神都定不住。吓到这份上就动不了——能在事还没落到自己头上时先防着，就免了。",
+   "en": "You're at the very top of Zhen — fear at its peak, your gaze unsteady. At this point you can't act. If you take warning before it reaches you, you're spared.",
+   "ja": "あなたは最も上にいて、震の終わり。恐れが極まり、目つきも定まらぬ。ここまで驚くと動けない——まだ身に及ばぬうちに備えれば、免れる。"
   },
   "52-0": {
-   "zh": "你在最底下，是止的开始，在动之初就止住。止于未动，其止也易——能常守，故可无过。",
-   "en": "You're at the bottom, the start of Gen — stopping at the first stir. Stop before moving and stopping is easy. Keep it constant and you avoid fault.",
-   "ja": "一番下にいて、止めの初め。動きの初めに止める。まだ動かぬうちに止めれば、その止めは容易。常に守れれば、過ちはない。"
+   "zh": "你在最底下，是止的开头，刚要动就收住。没动之前就停下，最容易——能一直守着这份克制，就不会出错。",
+   "en": "You're at the very bottom, the start of stopping — reining in at the first stir. Stop before you move and stopping is easiest. Keep that restraint always and you won't err.",
+   "ja": "あなたは一番下にいて、止めの始まり。動こうとした瞬間に引っ込める。動く前に止めるのが一番簡単だ——それをずっと守れば、過ちはない。"
   },
   "52-1": {
-   "zh": "你在下卦正中，柔顺得正，却止于所随者。己虽止而不能止其所随，故心不安——止于己而未及人。",
-   "en": "You're at the center of the lower trigram, soft and proper, but stopping at what you follow. You stop yet can't stop those around you, so your heart is uneasy. Stopping yourself but not reaching others.",
-   "ja": "下卦の中央にいて、柔らかく正しく、従う者どころに止まっている。自分は止めても随う者を止められず、心は安まない。己に止まって人に及ばずだ。"
+   "zh": "你在下卦正中，性子柔、走得正，自己停下了，可身边那帮人没停。你止住了、他们还在动，心里就不踏实——只管住了自己，还没顾得上别人。",
+   "en": "You're at the center of the lower trigram, gentle and upright — you've stopped, but those around you haven't. You're still, they're moving, and your heart isn't at rest. You've stopped yourself but haven't reached others.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しい。自分は止めたが、周りは止まらない。あなたは静かで、あの人たちは動いている——心が落ち着かぬ。自分は律したが、まだ人には及んでいない。"
   },
   "52-2": {
-   "zh": "你在下卦最上面，过刚而不中，止得太甚。止而不得其所，反以自伤——刚而过者，其心不安。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — stopping too hard. Stopping in the wrong place harms you instead. Rigid and excessive, your heart is uneasy.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、止めが甚だすぎる。止める所を得なければ、かえって自らを傷つける。剛で過ぎた者は、心が安まない。"
+   "zh": "你在下卦最上面，刚劲过头又不居中，把自己摁得太死。止错了地方反而伤到自己——太刚硬的人，心里总是不安。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center — you've clamped down too hard. Stopping in the wrong place hurts you instead. A rigid, overdone person is never at ease inside.",
+   "ja": "あなたは下卦の頂点にいて、剛が過ぎて中を外れ、止め方がきつすぎる。止める場所を誤れば、かえって自分を傷つける——剛で過ぎた者は、心が安まない。"
   },
   "52-3": {
-   "zh": "你在上卦下面，柔顺得正而止于其身，不向外施。止于身而不妄动，是本分——能自止，故可无过。",
-   "en": "You're below the upper trigram, soft and proper, stopping at your own body, not acting outwardly. Stopping at yourself without rash motion is your part. Self-stopping avoids fault.",
-   "ja": "上卦の下にいて、柔らかく正しく身に止まり、外へ施さない。身に止まって妄りに動かないのが本分だ。自ら止められるので、過ちはない。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，止在自己身上，不往外伸手。管住自己不妄动，是本分——能自持，就不会出错。",
+   "en": "You're just below the upper trigram, gentle and upright, stopping at yourself, not reaching outward. Holding yourself from rash motion is your part. Self-restraint avoids error.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しく、自分に止まり、外へ手を出さぬ。自分を抑えて妄りに動かぬのが本分だ——自らを保てば、過ちはない。"
   },
   "52-4": {
-   "zh": "你在尊位，柔和中正而止于其言，其言有序。止其言则言不妄发——柔中而出之以序，故悔可消。",
-   "en": "You're in the place of honor, soft and centered, stopping at your words — your words have order. Restraining speech keeps it from rashness. Soft-centered and expressed in order, regret can vanish.",
-   "ja": "尊い位にいて、柔らかく中を得て言葉に止まる。その言葉には順序がある。言葉を止めれば妄りに発しない。柔中で秩序をもって出せば、悔いは消える。"
+   "zh": "你在上位，性子柔、守得正，管得住自己的嘴，说话有条理。话不乱说，就不惹祸——柔稳又说得有序，后悔就消了。",
+   "en": "You're in charge, gentle and upright, holding your tongue — your words have order. Curbing speech keeps it from rashness. Gentle, centered, and saying things in order, regret disappears.",
+   "ja": "あなたは上位にいて、柔らかく正しく、口を緘する。言葉に順序がある。言葉を止めれば、でたらめに出ない——柔で中を得て、筋道を立てて話せば、悔いは消える。"
   },
   "52-5": {
-   "zh": "你到了卦的顶，是止的终点，敦厚于止而不已。止极而能敦厚以终，是止道之成——久而不变，故得其终。",
-   "en": "You're at the top of the hexagram, Gen at its end — generous in stopping without end. At the peak of stopping, ending generously is the way fulfilled. Long unchanging, you reach a good end.",
-   "ja": "卦の頂点にいて、止めの終わり。敦く止めてやまない。止めの極で敦厚に終えられるのは、止めの道の成就だ。久しく変わらぬので、良い終わりを得る。"
+   "zh": "你到了最上面，是止的尽头，还能厚道地守着这份克制不松劲。止到最后还守得厚实，这是止的功夫到家——长久不变，才有好收尾。",
+   "en": "You're at the very top of Gen — still generously holding that restraint, not letting up. Ending with such solid restraint is the way fulfilled. Unchanging over time, you reach a good close.",
+   "ja": "あなたは最も上にいて、止めの終わり。なお厚くこの克制を守って緩めぬ。止めの果てに厚く守り切るのは、止めの功夫が成った証拠——長く変わらねば、良い締めくくりがある。"
   },
   "53-0": {
    "zh": "你在最底下，是渐的开始，进于水涯，其进尚微。进之始，位未安——虽有小言，是常，不足为患。",
@@ -1899,34 +1899,34 @@
    "ja": "一番下にいて、漸の初め。水辺へ進むが、その進みはまだ微か。進み始めは位が安まらない。小さな噂があっても常のことであり、患いには足りない。"
   },
   "53-1": {
-   "zh": "你在下卦正中，柔顺得正而上应九五，进得其所安。进得其安，可以从容自养——中正而应，故其乐也和。",
-   "en": "You're at the center of the lower trigram, soft and proper, matched with the fifth line above — advancing to a settled place. Advancing to ease, you can nurture yourself calmly. Centered, upright, matched — your joy is harmonious.",
-   "ja": "下卦の中央にいて、柔らかく正しく九五に応じ、進んで安きを得る。進んで安ければ、从容に自分を養える。中正に応えるので、その喜びは和やかだ。"
+   "zh": "你在下卦正中，性子柔、走得正，又有个可靠的上级照应，进得踏踏实实。落稳了脚跟，就能从容地养自己——走得正又有人扶，日子过得和顺。",
+   "en": "You're at the center of the lower trigram, gentle and upright, with a reliable superior watching over you — you advance on solid ground. Settled, you can nurture yourself at ease. Upright and supported, life goes smoothly.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しく、頼もしい上の者に守られ、着実に進める。足元が定まれば、悠然と自分を養える——正しく進み、支えもあれば、暮らしは和やかだ。"
   },
   "53-2": {
-   "zh": "你在下卦最上面，过刚而不中，失其所安而妄进。刚而过则失所守，往而不复——惟用之御外，可以得其正。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — leaving ease to rush ahead. Too rigid loses your grip; you go and don't return. Only using it against outside danger keeps you right.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、安きを失って妄りに進む。剛が過ぎれば守るものを失い、行って返らない。外を防ぐのに用いて初めて正を得られる。"
+   "zh": "你在下卦最上面，刚劲过头又不居中，丢了安稳还想硬闯。太刚就守不住，一去不回头——只有把这股劲用在对外的防备上，才用得正。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center — leaving a settled place to rush ahead. Too rigid, you lose your grip and go without looking back. Only turning that force toward outside danger puts it to right use.",
+   "ja": "あなたは下卦の頂点にいて、剛が過ぎて中を外れ、安きを捨てて暴進する。剛が過ぎれば守るものを失い、行って戻らない——その力を外の敵を防ぐのに使ってこそ、正しく使える。"
   },
   "53-3": {
-   "zh": "你在上卦下面，柔顺得正而进于不安之地。所处不安而能得所依，就可以安——柔顺得正，故可免。",
-   "en": "You're below the upper trigram, soft and proper, advancing into an uneasy place. Unsettled yet finding support, you can be at ease. Soft and proper, you avoid harm.",
-   "ja": "上卦の下にいて、柔らかく正しく、安からぬ場所へ進む。所が安まなくても頼る所を得れば安んじられる。柔顺で正を得たので、免れられる。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，却落进不安稳的地方。地方不安稳，但能找到依靠，就能安下来——柔顺又正，所以免了祸。",
+   "en": "You're just below the upper trigram, gentle and upright, advancing into an unsettled place. Unsettled, but you find support and can rest. Gentle and upright, you're spared.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しいが、落ち着かぬ場所に入った。場所が不安でも、頼れるものがあれば安まれる——柔順で正しければ、禍は免れる。"
   },
   "53-4": {
-   "zh": "你在尊位，刚中而下应六二，被三四所隔。中道之合，虽隔终不可夺——久则自通，是正之胜。",
-   "en": "You're in the place of honor, strong and centered, reaching down to the second line but blocked by the third and fourth. A rightful union, though blocked, can't be taken away. In time it opens — rightness wins.",
-   "ja": "尊い位にいて、剛中で六二に応じるが三・四に隔てられる。中道の合いは、隔てられても奪えない。久しければ自ずと通じる——正の勝ちだ。"
+   "zh": "你在上位，刚正，向下够那个志同道合的人，却被旁人隔着。正道的相合，暂时隔开也夺不走——时间久了自会打通，这是正的力量。",
+   "en": "You're in charge, upright, reaching down to someone who matches you — but others keep you apart. A rightful connection, though blocked, can't be taken away. In time it opens on its own: that's the win of what's right.",
+   "ja": "あなたは上位にいて、剛健で、下の志を同じくする者に手を伸ばすが、周囲に隔てられる。正しい結びつきは、隔てられても奪えない——時が経てば自ずと通じる。正の力だ。"
   },
   "53-5": {
-   "zh": "你到了卦的顶，是渐的终点，超然于外，其仪可法。进之极而不累于位，可为法者在其仪——志在高远，不徒进也。",
-   "en": "You're at the top of the hexagram, Jian at its end — rising above, your bearing exemplary. At advance's peak, unburdened by station, what sets an example is your bearing. The aim is lofty, not mere advancement.",
-   "ja": "卦の頂点にいて、漸の終わり。超然として外にあり、その振る舞いは手本となる。進みの極で位に縛られず、手本となるのはその儀だ。志は高遠にあり、ただ進むのではない。"
+   "zh": "你到了最上面，是渐进的终点，超然在局外，所作所为成了别人的榜样。走到头却不贪恋位子——真正让人学的是你的风度；志向在高远处，不只是往前爬。",
+   "en": "You're at the very top of Jian, rising above the fray, your bearing a model for others. Reaching the peak without clinging to position — what people learn is your demeanor; the aim is the far distance, not merely climbing.",
+   "ja": "あなたは最も上にいて、漸の終わり。局外に超然とし、その振る舞いが人の手本になる。頂点にいても位に執われない——人に学ばれるのはその風貌だ。志は高遠にあり、ただ登るのではない。"
   },
   "54-0": {
-   "zh": "你在最底下，是归妹的开始，以媵妾的卑微身份而行其本分。处下而能尽分，虽不足也可行——安于其位，其行就正。",
-   "en": "You're at the bottom, the start of Guimei — in the lowly place of a handmaid, yet fulfilling your part. Low yet fulfilling your role, though lacking you can act. At ease in your place, your conduct is right.",
-   "ja": "一番下にいて、帰妹の初め。媵の賤しい身で本分を行う。下にいて分を尽くせば、足りなくても行える。その位に安んじれば、その行いは正しい。"
+   "zh": "你在最底下，名分还没摆正，只能以较低的身份、守着自己的本分做事。职位低却能把分内的事做好，虽不显眼也走得通——安于眼下这个位置，把事做正就行。",
+   "en": "You're at the very bottom, your standing not yet proper, doing your part from a lower place. Low but doing your duty well — unglamorous, yet workable. Settle where you are and do the task right.",
+   "ja": "あなたは一番下にいて、名分がまだ正しくない。低い立場で、自分の分を守って事をするほかない。低くても己の仕事をきちんとできれば、地味でも通じる——今の位置に安んじて、事を正しくすればよい。"
   },
   "54-1": {
    "zh": "你在下卦正中，刚中而上应六五，眼光不及远。所见虽偏却能守正——幽静自守，是本分所安。",
@@ -1934,24 +1934,24 @@
    "ja": "下卦の中央にいて、剛中で六五に応じるが、見る目は遠く及ばない。見るところは偏っても正を守れる。幽かに自らを守るのが、分の安む所だ。"
   },
   "54-2": {
-   "zh": "你在下卦最上面，不中不正，想求为正室反而归为媵妾。不安其分而求进，反失其所——柔而不正，故不能自达。",
-   "en": "You're at the top of the lower trigram — off-center and improper — seeking to be the true wife yet ending as a concubine. Restless in your place and seeking advancement, you lose your ground. Soft and improper, you can't arrive.",
-   "ja": "下卦の最上部にいて、中も正も外れ、正室になろうとしてかえって媵となった。分に安んじず進もうとして、所を失う。柔で正しくないので、自ら達せない。"
+   "zh": "你在下卦最上面，位置不正，不安于本分想往上够，结果反而降低了身份。不安分还硬求进，只会失去立足之地——柔弱又不正，到不了想去的地方。",
+   "en": "You're at the top of the lower trigram, out of place — restless, reaching above yourself, and you end up lowered instead. Unsettled and grasping for more, you lose your footing. Soft and off-center, you can't get where you want.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくない。分に安んじず上を狙ったのに、かえって身分を下げた。落ち着かず進もうとすれば、足元を失う——柔で正しくないから、行き先に着けない。"
   },
   "54-3": {
-   "zh": "你在上卦下面，刚而居柔，无正应而等待其时。有德而无遇，就待时——不妄求，所以虽迟却有期。",
-   "en": "You're below the upper trigram, strong in a soft place, no proper match, waiting for your time. Virtue without encounter means waiting. No rash seeking, so though late there's a date.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、正しい応えがなく時を待つ。徳があって巡り合いがなければ、時を待つのみ。妄りに求めないので、遅くても期がある。"
+   "zh": "你在上面偏下的位置，刚强却肯放柔，没有合适的对象，就等着。有本事没遇上机会，等就是了——不瞎求，所以虽晚却终究有盼头。",
+   "en": "You're just below the upper trigram, strong but willing to soften, with no proper match — so you wait. Ability without an opening means waiting. No rash seeking, so though late, there's still a date.",
+   "ja": "あなたは上卦のすぐ下にいて、剛でありながら柔らかく、正しい相手がいず時を待つ。徳があって巡り合いがなければ、待つのみ——妄りに求めぬゆえ、遅くても期がある。"
   },
   "54-4": {
-   "zh": "你在尊位，柔中而下应九二，其德盛而能自下。以尊下贤，不尚装饰而尚德——德之盛如月将圆。",
-   "en": "You're in the place of honor, soft and centered, reaching down to the second line — virtue full yet humble. In high station you humble yourself before the worthy, valuing virtue not ornament. Its fullness like a moon nearing full.",
-   "ja": "尊い位にいて、柔らかく中を得て九二に応じる。徳は盛んなのに自ら下る。尊くて賢者を下し、飾りではなく徳を尊ぶ。その徳の盛りは月が満ちんとするようだ。"
+   "zh": "你在上位，性子柔、守得正，下面有个能人相应，德行厚实却肯放低姿态。在高位却礼贤下士，看重的不是排场而是德行——这份厚重像月亮快圆的时候，分量足了。",
+   "en": "You're up high, gentle and upright, with a capable person below answering you — virtue full yet humble. In high station you honor the worthy, valuing character over show. That fullness is like a moon nearing full — the weight is there.",
+   "ja": "あなたは上位にいて柔らかく正しく、下の有能な者が応える。徳は厚いのに自ら低く振る舞う。高位で賢者を敬い、見せびらかさず徳を重んじる——その重厚さは、月が満ちかける時のようだ。"
   },
   "54-5": {
-   "zh": "你到了卦的顶，是归妹的终点，有其礼而无其实。礼存实亡，就成不了事——有名无实，故无可取。",
-   "en": "You're at the top of the hexagram, Guimei at its end — the rite without the reality. Form remains, substance gone, so nothing can be completed. Name without reality has nothing to recommend it.",
-   "ja": "卦の頂点にいて、帰妹の終わり。礼はあるが実がない。礼は残って実が亡ければ、事は成せない。名だけで実がないので、取るべくものがない。"
+   "zh": "你到了最上面，是归妹的尽头，礼数办得齐全，内里却没有真情。光有个形式、没有实质，事就成不了——有名无实，没什么可取的。",
+   "en": "You're at the very top of Guimei — the rites complete but no true feeling inside. Form without substance, and the task can't be completed. All name, no reality — nothing to recommend it.",
+   "ja": "あなたは最も上にいて、帰妹の終わり。礼式は整っているが、内に真情がない。形だけで実がなければ、事は成せぬ——名だけで実がない。取り得るものは何もない。"
   },
   "55-0": {
    "zh": "你在最底下，是丰的开始，与九四同德相遇。处丰之初，得同类相资——虽对等也无妨，前往可以有为。",
@@ -1959,154 +1959,154 @@
    "ja": "一番下にいて、豊の初め。九四と徳を同じくして巡り合う。豊の初めに同じ類の助けを得る。対等でも差し支えなく、往いて何か成せる。"
   },
   "55-1": {
-   "zh": "你在下卦正中，柔正而被六五遮蔽，光明不显。明被遮，往则见疑——积其诚以发之，蔽就开了。",
-   "en": "You're at the center of the lower trigram, soft and proper, hidden by the fifth line — your light unseen. Hidden, going brings suspicion. Gather sincerity to bring it out and the cover opens.",
-   "ja": "下卦の中央にいて、柔らかく正しいが六五に覆われて明かりは見えない。明が覆われれば往けば疑われる。誠を積んで発すれば、その覆いは開ける。"
+   "zh": "你在下卦正中，性子柔、走得正，却被上面一个昏暗的人遮着，光透不出来。光被遮住就别急着露面——把诚心攒够了再显，那层遮蔽自然就开了。",
+   "en": "You're at the center of the lower trigram, gentle and upright — a dim person above hides your light. When the light's covered, don't rush to show yourself. Build up sincerity then emerge, and the cover opens by itself.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しいが、上の昏い者に覆われて光が透けぬ。光が覆われたら、急に出るな——誠を十分に溜めてから現せば、その覆いは自然と開く。"
   },
   "55-2": {
-   "zh": "你在下卦最上面，刚正却被上六遮蔽，作用不行。明大蔽，不可有为——能自止其用，故可无过。",
-   "en": "You're at the top of the lower trigram, rigid and upright but hidden by the top line — your use won't go. Greatly obscured, you can't act. Stopping your own use avoids fault.",
-   "ja": "下卦の最上部にいて、剛正だが上六に覆われて働きが行かない。明が大きく覆われれば、何も成せない。自らその用を止めれば、過ちは免れる。"
+   "zh": "你在下面偏上的位置，刚正，却被上面一个昏暗的人遮住，本事使不出来。光明被遮得厉害，就先别硬出头——收住自己的锋芒，反而不会出错。",
+   "en": "You're at the top of the lower trigram, upright, but a dim person above hides your light — your ability can't get out. When the light's heavily covered, don't force your way out yet. Draw your edge in and you'll avoid error.",
+   "ja": "あなたは下のやや上にいて剛正だが、上の昏い人に覆われて実力が出せない。光がひどく遮られたら、まず無理に出るな——鋒をしまえば、かえって過ちはない。"
   },
   "55-3": {
-   "zh": "你在上卦下面，与初九同德相遇，虽蔽而可行。所蔽虽同，得同德者相助，其行可有成。",
-   "en": "You're below the upper trigram, meeting the first line of like virtue — though hidden, you can act. Hidden the same way, but with a like-minded ally your action can succeed.",
-   "ja": "上卦の下にいて、初九と徳を同じくして巡り合う。覆われていても行ける。覆われ方は同じでも、同じ徳の者と助け合えば、その行いは成せる。"
+   "zh": "你在上面偏下的位置，和下面一个正派人志趣相投，即使被遮着也能行动。处境虽一样被压着，但有个同道相助，事情就做得成。",
+   "en": "You're just below the upper trigram, in tune with a decent person below — even under cover you can act. Circumstances press you the same way, but with a like-minded ally the job gets done.",
+   "ja": "あなたは上のやや下にいて、下のまともな人と志が合い、覆われていても動ける。同じように抑えられていても、同道の助けがあれば事は成る。"
   },
   "55-4": {
-   "zh": "你在尊位，柔和中正而能招致天下之明。以柔中致贤明，庆誉自来——虚己而受人之明，是丰之主。",
-   "en": "You're in the place of honor, soft and centered, able to gather the world's brightness. With soft centrality you attract the worthy and their light — praise comes on its own. Emptying yourself to receive others' light: Feng's master.",
-   "ja": "尊い位にいて、柔らかく中を得て天下の明かりを招く。柔中で賢明を致せば、慶誉は自ら来る。己を虚しくして人の明を受ける——これが豊の主だ。"
+   "zh": "你在上位，性子柔、守得正，能把天下人的聪明都招来。虚着心接纳别人的长处，福气和名声自己就来了——这是丰卦最要紧的本事。",
+   "en": "You're up high, gentle and steadfast, able to gather the world's cleverness. Empty of yourself, you take in others' strengths — blessing and renown come on their own. That's Feng's most important art.",
+   "ja": "あなたは上位にいて柔らかく正しく、天下人の知恵を集められる。心を空にして人の長所を受ければ、福も名声も自然と来る——豊の最も大事な腕前だ。"
   },
   "55-5": {
-   "zh": "你到了卦的顶，是丰的终点，自高而蔽，人都离去。丰极则自蔽而人离——高而不与人接，其终必孤。",
-   "en": "You're at the top of the hexagram, Feng at its end — self-exalted and obscured, everyone leaves. At abundance's peak you hide yourself and people depart. High without contact, you end alone.",
-   "ja": "卦の頂点にいて、豊の終わり。みずから高ぶって覆われ、人は皆去る。豊が極まれば自らを蔽い人は離れる。高くて人と交わらぬなら、終わりは必ず孤りだ。"
+   "zh": "你到了最上面，是丰盛的尽头，自己把自己架高、遮住了眼，人都离你而去。太满就蔽塞、人就散——高高在上不跟人来往，最后只剩孤身。",
+   "en": "You're at the very top of Feng — self-exalted, blinded, everyone's walked off. At the peak of fullness you hide yourself and people leave. High up with no contact with others, you end up alone.",
+   "ja": "あなたは頂点にいて、豊の終わり。自らを高くし、目を覆われ、皆が去った。満ちれば自らを蔽い、人が離れる——高くして人と交わらぬなら、終わりは孤独だ。"
   },
   "56-0": {
-   "zh": "你在最底下，是旅的开始，处下而琐细，志趣卑下。处旅而志趣卑琐，灾自取——柔而不正，不能自振。",
-   "en": "You're at the bottom, the start of Lu — low and petty, your aims mean. Traveling with a petty spirit brings trouble on yourself. Soft and improper, you can't rouse yourself.",
-   "ja": "一番下にいて、旅の初め。下にあって些細で、志が卑しい。旅にあって志が卑小なら、災いは自ら招く。柔で正しくないので、自ら立てない。"
+   "zh": "你在最底下，刚出门在外，处境卑微、眼界也窄。落魄时还尽想些小计较，祸是自己招的——柔弱又没个正形，就振作不起来。",
+   "en": "You're at the very bottom, just out in the world, lowly and narrow in view. Down and out, still nursing small grievances — trouble you bring on yourself. Soft and without bearing, you can't pull yourself up.",
+   "ja": "あなたは一番下にいて、旅に出たばかり。身分は低く、見聞も狭い。落ちぶれてなお小さな損得を数える——禍は自ら招いたものだ。柔弱で品格がなければ、立ち上がれない。"
   },
   "56-1": {
-   "zh": "你在下卦正中，柔正而得所安，有资财、有仆从。处旅而得其次，内有资、外有助——柔中故能自安。",
-   "en": "You're at the center of the lower trigram, soft and proper, finding your resting place, with means and a servant. Traveling and finding your inn, means within and help without. Soft-centered, you can settle.",
-   "ja": "下卦の中央にいて、柔らかく正しく安きを得る。財があり従者もいる。旅して次を得、内に資産、外に助け。柔中なので自ら安んじられる。"
+   "zh": "你在下卦正中，性子柔、走得正，在外头安顿下来，有盘缠、有人帮。人在外面有个落脚处，里头有积蓄、外头有帮手——柔稳的人，自己就安顿得下。",
+   "en": "You're at the center of the lower trigram, gentle and upright — settled out in the world, with means and a helper. A place to land outside, resources within and help without. Gentle and steady, you settle yourself.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しい。外で落ち着き、旅費もあり、助け手もいる。外に足の場、中に蓄え、外に助け——柔で穩やかな者は、自分で落ち着ける。"
   },
   "56-2": {
-   "zh": "你在下卦最上面，过刚而不中，失其所安与所依。刚而过则人不与，故失所安——虽正仍不免于危。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — losing your rest and support. Too rigid and people won't stay with you, so you lose your place. Though right, you can't avoid danger.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、安きと頼る者を失う。剛が過ぎれば人と与しないので、安きを失う。正しくても危いのは免れない。"
+   "zh": "你在下卦最上面，刚劲过头又不居中，丢了安身的地方，也没了依靠。太硬气别人就不跟你了，所以安身之处也没了——就算出发点没错，也免不了危险。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center — you lose your resting place and your support. Too hard and people won't stay with you, so your place is gone. Even with right intent, danger can't be avoided.",
+   "ja": "あなたは下卦の頂点にいて、剛が過ぎて中を外れ、安きと頼りを失った。剛すぎれば人が付いてこず、安きも消える——志が正しくても、危いのは免れない。"
   },
   "56-3": {
-   "zh": "你在上卦下面，刚而居柔，得其资具而未得其位。有具而无位，故心不快——旅之道贵在得所安。",
-   "en": "You're below the upper trigram, strong in a soft place, with means but not your proper station. Having the means without the place, your heart is unsettled. The traveler's way values finding rest.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、その具は得たが位を得ていない。具があって位がなければ心は快くない。旅の道は安きを得ることを尊ぶ。"
+   "zh": "你在外面打拼，有本事、也有盘缠，可就是没到你该站的位置——所以心里憋屈。旅居在外，最要紧的是先有个安身的地方；眼下有本事没位子，别急，先安顿下来。",
+   "en": "You're out making your way, with ability and money, but still not in the position you should have — that's why you're frustrated. Traveling, the first thing is somewhere to land. Ability without a place right now — don't rush; settle in first.",
+   "ja": "あなたは外で働いていて、実力も旅費もある。だがまだ自分の立つべき位に着けていない——だから心中が晴れない。旅ではまず安息の場所が肝心。今は実力があっても位がない。急がず、まず落ち着け。"
   },
   "56-4": {
-   "zh": "你在尊位，柔中而处旅，有所花费而终有所得。有文明之德，虽小有所失，终以誉命——柔中故能通上。",
-   "en": "You're in the place of honor, soft and centered, traveling — you spend a little but gain in the end. With cultivated virtue, though you lose a little you end praised. Soft-centered, you reach those above.",
-   "ja": "尊い位にいて、柔らかく中を得て旅に処する。費すところがあっても終わりに得る所がある。文明の徳があれば、少し失っても終には誉められる。柔中なので上に通じる。"
+   "zh": "你在上位，性子柔、守得正，人在外头奔波，花了些代价终究有收获。有文明在里头，虽小有损失，最后还是得了好名声——柔稳的人，上头也肯照应。",
+   "en": "You're up high, gentle and upright, out on the road — you spend something but gain in the end. Culture within you means a small loss still ends in a good name. Gentle and steady, those above are willing to look after you.",
+   "ja": "あなたは上位にいて柔らかく正しい。旅で奔走し、代償を払っても最後は得られる。中に人文の徳があれば、少し損しても評判を得る——柔で穩やかな者は、上からも顧みられる。"
   },
   "56-5": {
-   "zh": "你到了卦的顶，是旅的终点，先得后失，巢已焚。处旅之极而骄，故先笑后号——失其柔顺，是自取。",
-   "en": "You're at the top of the hexagram, Lu at its end — first gain then loss, your nest burned. At travel's extreme you grow proud, so laughter turns to wailing. Losing softness is self-inflicted.",
-   "ja": "卦の頂点にいて、旅の終わり。先に得て後失い、巣は焼けた。旅の極で驕るので、先は笑い後は叫び。柔順を失ったのは自ら招いたことだ。"
+   "zh": "你到了最上面，是旅居的尽头，先得后失，安身的地方都烧了。在外混到头还骄横，先得意后哭天——丢了柔顺的本分，是自己作的。",
+   "en": "You're at the very top of Lu — first gain, then loss, your very shelter burned. Traveling to the end and still arrogant: laughter first, wailing after. Throwing away the gentle way is your own doing.",
+   "ja": "あなたは最も上にいて、旅の終わり。得た後に失い、安息の場所も焼けた。旅の果てまで驕り、先は笑い後は叫び——柔順の分を捨てたのは、自分のせいだ。"
   },
   "57-0": {
-   "zh": "你在最底下，是巽的开始，柔而多疑，进退不定。疑而不能决，就用刚来决——柔济之以刚，是正。",
-   "en": "You're at the bottom, the start of Xun — soft and doubtful, wavering. Doubt without decision: use firmness to decide. Softness aided by firmness is right.",
-   "ja": "一番下にいて、巽の初め。柔で疑いが多く、進退が定まらない。疑って決められぬなら、剛で決する。柔を剛で補うのが正しい。"
+   "zh": "你在最底下，刚学着柔顺地办事，心里没准主意、进退不定。拿不定就别再软磨——该断的时候用点刚劲，柔中带刚才是对的。",
+   "en": "You're at the very bottom, just learning to work gently, your mind unsettled, wavering. Can't decide? Stop soft-pedaling — use some firmness when the moment calls for it. Soft with a spine of steel is what's right.",
+   "ja": "あなたは一番下にいて、柔順に事を学んでいるが、心に定めがなく、進退が定まらない。決められぬなら、もう甘やかさずに——断つべき時に剛を使う。柔の中に剛があるのが正しい。"
   },
   "57-1": {
-   "zh": "你在下卦正中，刚中而过于巽，其诚可通。巽到床下，是太过——然中实而诚，故能通神明。",
-   "en": "You're at the center of the lower trigram, strong and centered yet overly yielding — your faith connects. Yielding under the bed is excess, but centered and genuine, it reaches the divine.",
-   "ja": "下卦の中央にいて、剛中で巽りすぎる。その誠は通じる。床の下まで巽るのは過ぎだが、中が実して誠があるので、神明に通じる。"
+   "zh": "你在下卦正中，刚强却过分地柔顺，那份诚意还是能通。低头低到床底下，是过了头——但心里实在、是真心的，所以连神明都能感应到。",
+   "en": "You're at the center of the lower trigram, strong but over-yielding — yet your sincerity still gets through. Bowing under the bed is going too far, but centered and genuine, it reaches even the divine.",
+   "ja": "あなたは下卦の中央にいて、剛で中を得ているが、柔順が過ぎる。その誠は通じる。床の下まで頭を下げるのは過ぎだ——だが中が実して誠があるので、神明にも通じる。"
   },
   "57-2": {
-   "zh": "你在下卦最上面，过刚而不中，屡巽而人不与。巽不出于诚，频频作态，人就轻你——勉强者事必穷。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — repeatedly yielding but no one follows. Yielding not from faith, done again and again, makes people slight you. Forced effort comes to nothing.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、たびたび巽っても人は従わない。誠から出ない巽りを繰り返せば、人は軽く見る。無理をする者は事が穷まる。"
+   "zh": "你在下面偏上的位置，刚劲过头又不居中，一再低头服软，人家却不买账。服软不是从心里来的、只是做样子，久了就被看轻——勉强撑着，事情走到头就是死路。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center, bowing again and again yet no one buys it. Yielding that isn't from the heart, just going through the motions, gets you slighted. Forcing it, you run out of road.",
+   "ja": "あなたは下のやや上にいて、剛が過ぎて中を外れ、何度も頭を下げるのに相手にされない。誠から出ない服従を繰り返せば、人は軽く見る——無理を続ければ、道は行き詰まる。"
   },
   "57-3": {
-   "zh": "你在上卦下面，柔正而巽于上下之刚。以柔正处刚之间，能顺而不失——有所获，是巽之效。",
-   "en": "You're below the upper trigram, soft and proper, yielding to the rigidity above and below. Soft and proper among the strong, you comply without losing yourself. Gaining something is Xun's effect.",
-   "ja": "上卦の下にいて、柔らかく正しく上下の剛に巽う。柔正で剛の間にあって、従って失わない。得る所がある——これが巽りの効だ。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，夹在两股刚之间。柔顺地待着又不失自己，还能有所收获——这就是会处的本事。",
+   "en": "You're just below the upper trigram, gentle and upright, caught between two forces. Yielding without losing yourself, you still gain something — that's the knack of getting along.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しく、二つの剛の間にいる。柔順でいながら自分を失わず、得るものもある——それが付き合いの上手さだ。"
   },
   "57-4": {
-   "zh": "你身居尊位，刚中而正，是巽的主爻，其令有节。刚中而巽，令不暴——申明命令而后行，故有终。",
-   "en": "You're in the place of honor, strong, centered and right — Xun's main line — your commands measured. Strong-centered and yielding, your commands aren't harsh. Declare then act, so you reach an end.",
-   "ja": "尊い位にいて、剛中で正しく、巽の主爻。その命令には節度がある。剛中で巽えば命令は暴しくない。命を申してから行うので、終わりがある。"
+   "zh": "你在上位，刚正，是发号施令的人，命令有分寸。刚里有柔，令就不苛——把话讲清楚再办，事情才收得了尾。",
+   "en": "You're up high and upright, the one issuing orders, and your commands have measure. Strength with softness keeps them from being harsh. Say it clearly, then act — that's how a job gets finished.",
+   "ja": "あなたは上位にいて剛正、号令を出す人。命令に節度がある。剛の中に柔があれば、命令は酷くない——はっきり言ってから動く。それで事が終わる。"
   },
   "57-5": {
-   "zh": "你到了卦的顶，是巽的终点，过巽而失其所守。巽极则失其刚——失刚就失了自断之力，其道穷。",
-   "en": "You're at the top of the hexagram, Xun at its end — over-yielding, losing your grip. At Xun's extreme you lose firmness. Losing firmness loses your power to decide — your way ends.",
-   "ja": "卦の頂点にいて、巽の終わり。巽りすぎて守るものを失う。巽が極まれば剛を失う。剛を失えば自ら断ずる力を失い、その道は穷まる。"
+   "zh": "你到了最上面，是巽的尽头，柔顺过了头，把该守的骨气丢了。一味退让就没了主心骨——没了主见，路就走到头了。",
+   "en": "You're at the very top of Xun, yielding too far, throwing away the backbone you should have kept. All giving way and you've no spine left — no spine, no way forward.",
+   "ja": "あなたは最も上にいて、巽の終わり。柔順が過ぎ、守るべき骨気を失った。ただ譲り続ければ、芯がなくなる——芯がなければ、道は最後まで行けない。"
   },
   "58-0": {
-   "zh": "你在最底下，是兑的开始，以刚居正，其悦和而不流。悦之初，无所系应，故悦也和——和而不偏，是正。",
-   "en": "You're at the bottom, the start of Dui — strong in a right place, your joy harmonious not dissolute. At the start of joy, no attachments, so the joy is harmonious. Harmonious not biased: that's right.",
-   "ja": "一番下にいて、兑の初め。剛で正しく居り、その悦びは和して流れない。悦びの初めは繋がる応えがなく、悦びは和やか。和して偏らぬのが正だ。"
+   "zh": "你在最底下，是喜悦的开始，刚正地待人，和气但不随波逐流。刚开始的高兴没什么牵绊，所以和——和而不偏，这才是对的。",
+   "en": "You're at the very bottom of Dui, upright, your joy harmonious but not loose. At the start of joy, with no attachments, the joy is simply harmonious. Harmonious without bias — that's right.",
+   "ja": "あなたは一番下にいて、兑の始まり。剛で正しく、悦びは和やかだが流されない。悦びの初めは執われがなく、ただ和やか——和して偏らぬ、それが正しい。"
   },
   "58-1": {
-   "zh": "你在下卦正中，刚中而悦，其悦本于诚。悦而以诚，人不疑其佞——刚中自守，故悔可消。",
-   "en": "You're at the center of the lower trigram, strong and centered with joy — joy rooted in faith. Joy with sincerity, no one suspects flattery. Strong-centered and self-keeping, regret can vanish.",
-   "ja": "下卦の中央にいて、剛中で悦ぶ。その悦びは誠に基づく。悦んで誠があれば、人は佞りを疑わない。剛中を守るので悔いは消える。"
+   "zh": "你在下卦正中，有股刚劲又肯真心待人，这喜悦是打心底来的。诚心对人有好处，别人不疑你是假意——守得住这份真诚，后悔就消了。",
+   "en": "You're at the center of the lower trigram — a streak of strength but genuine with people, joy from the heart. Sincere joy, no one suspects you're faking. Keep that sincerity and regret disappears.",
+   "ja": "あなたは下卦の中央にいて、剛の気がありながら人に真心で接する。この喜びは心の底から来ている。誠をもって人に接すれば、誰も偽りを疑わぬ——その誠を守れば、悔いは消える。"
   },
   "58-2": {
-   "zh": "你在下卦最上面，不中不正，来求人之悦己。求人之悦己而无所守，是邪道——柔而不正，故至于此。",
-   "en": "You're at the top of the lower trigram — off-center and improper — seeking others to please you. Seeking approval without principles is a crooked way. Soft and improper, you came to this.",
-   "ja": "下卦の最上部にいて、中も正も外れ、人来て悦ばせようとする。人に悦ばれることを求めて守るものがないのは邪道だ。柔で正しくないので、ここに至った。"
+   "zh": "你在下卦最上面，位置不正，光想着让别人来讨自己欢心。一味求人夸自己、又没个准主意，路子就歪了——柔弱又不正，才落到这步。",
+   "en": "You're at the top of the lower trigram, out of place, only wanting others to please you. Chasing approval with no principles is a crooked path. Soft and improper, you came to this.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくない。ただ人に自分を悦ばせようとする。評価ばかり求めて芯がなければ、道は曲がる——柔で正しくないから、ここに至った。"
   },
   "58-3": {
-   "zh": "你在上卦下面，刚而居柔，介然守正而未自定。介于邪正之间而能自守，虽未安而有喜——能疾其邪，是其介。",
-   "en": "You're below the upper trigram, strong in a soft place — upright but not yet settled. Between wrong and right yet keeping yourself — unsettled but with joy. Loathing the wrong is your integrity.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、くっきりと正を守るがまだ定まらない。邪正の間で自ら守れれば、安まなくても喜びがある。邪を憎むのがその節操だ。"
+   "zh": "你在上面偏下的位置，刚强却肯放柔，硬是守着正、心里还没完全踏实。在邪和正之间站住了脚，虽然不安却有喜——能厌恶邪的，就是这份骨气。",
+   "en": "You're just below the upper trigram, strong but willing to soften, holding firmly to what's right though not yet settled. Standing between wrong and right and keeping yourself — unsettled, yet with joy. Loathing the wrong is your integrity.",
+   "ja": "あなたは上卦のすぐ下にいて、剛でありながら柔らかく、きっぱり正を守るが、まだ心は定まらない。邪と正の間で踏ん張れる——安まなくても喜びがある。邪を憎む、それが節操だ。"
   },
   "58-4": {
-   "zh": "你在尊位，刚中而近上六之阴，被它所悦而信之。信所不当信，害将至——位尊而悦，不可不戒。",
-   "en": "You're in the place of honor, strong and centered, near the yin of the top line — charmed and trusting it. Trusting what shouldn't be trusted, harm is coming. High and pleased, you must be watchful.",
-   "ja": "尊い位にいて、剛中で上六の陰に近く、それに悦んで信じる。信ずべからざるを信じれば、害は来る。尊くて悦ぶゆえ、戒めないわけにはいかない。"
+   "zh": "你在上位，刚正，却挨着底下那个会讨好人的人，被他哄得信了他。信了不该信的，祸就来了——在高位还被人哄着高兴，不可不防。",
+   "en": "You're in charge, upright, but beside someone below who flatters you — and you're charmed into trusting them. Trusting what shouldn't be trusted, harm is on its way. High up and being charmed, you'd better stay watchful.",
+   "ja": "あなたは上位にいて、剛健で正しいのに、下の媚びる者に近づき、その気にされて信じてしまう。信ずべからざる者を信じれば、禍が来る——高位でかつ哄し上げられている、警戒が要る。"
   },
   "58-5": {
-   "zh": "你到了卦的顶，是兑的终点，引同类以相悦。引人以悦，其心不可知——悦之极而不出于正，是兑之末。",
-   "en": "You're at the top of the hexagram, Dui at its end — drawing your kind to enjoy together. Drawing people to pleasure, the heart can't be known. Joy at its peak not from rightness is Dui's dregs.",
-   "ja": "卦の頂点にいて、兑の終わり。同じ類を引いて悦び合う。人を悦びに誘えば、その心は計り知れない。悦びの極が正から出ないのは、兑の末だ。"
+   "zh": "你到了最上面，是喜悦的尽头，拉着一伙人热闹。拿话把人哄得高兴，心里打的什么主意谁也摸不准——乐到头还不走正道，这是最要不得的。",
+   "en": "You're at the very top of Dui, the end of joy, dragging a crowd along for the fun. Charming people into good cheer, nobody can tell what you're really after. Joy at its peak that isn't rooted in what's right — the worst of Dui.",
+   "ja": "あなたは最も上にいて、悦びの終わり。一団を引き連れて賑わう。言葉で人を機嫌よくしても、何を企んでいるかは誰にも分からない——悦びの果てが正でない、それが兑の最も良くない姿だ。"
   },
   "59-0": {
-   "zh": "你在最底下，是涣的开始，得壮马以救其难。涣之始，救之贵速——得刚者相助，就可以济。",
-   "en": "You're at the bottom, the start of Huan — a strong horse to rescue your difficulty. At the start of scattering, rescue values speed. With a strong helper, you can get through.",
-   "ja": "一番下にいて、渙の初め。強い馬を得て難を救う。渙の初めは救うのに速さが肝心。剛なる者の助けを得れば、渡れる。"
+   "zh": "你在最底下，是涣卦的开头，像有匹壮马快来帮你脱困。乱刚开始时，救得越快越好——有股刚劲来搭把手，就渡得过去。",
+   "en": "You're at the very bottom, the start of Huan — like a strong horse coming to pull you out. At the start of scattering, rescue values speed. A strong force lends a hand and you cross.",
+   "ja": "あなたは一番下にいて、涣の始まり。駿馬が来て難を救うようだ。乱れ始めた時は、救うのが早いほどよい——剛の力が助けに来れば、渡れる。"
   },
   "59-1": {
-   "zh": "你在下卦正中，刚中而涣，奔就其机以为安。涣之时，得所依则安——刚中能自择，故悔可消。",
-   "en": "You're at the center of the lower trigram, strong and centered, scattering — hurrying to the right place for safety. In scattering, finding support brings ease. Strong-centered and choosing well, regret vanishes.",
-   "ja": "下卦の中央にいて、剛中で渙る。機を奔って安きを求める。渙る時は頼る所を得れば安い。剛中で自ら選べるので、悔いは消える。"
+   "zh": "你在下卦正中，刚强，在涣散中找准落脚点靠过去。乱的时候有个依靠就能安——刚强又肯挑对地方，后悔就没了。",
+   "en": "You're at the center of the lower trigram, strong, picking your footing in the scatter and moving toward it. In a scatter, somewhere to lean brings ease. Strong and choosing well, regret disappears.",
+   "ja": "あなたは下卦の中央にいて剛強、涣散の中で足場を見つけて寄る。乱れの中で頼れる所を得れば安い——剛で中を得て場所を選べれば、悔いは消える。"
   },
   "59-2": {
-   "zh": "你在下卦最上面，不中不正而能涣其私身。能散其私以从公，虽不中也可无悔——忘其身者可以济涣。",
-   "en": "You're at the top of the lower trigram — off-center and improper — yet scattering your private self. Dispelling the private to follow the public, though off-center you can be faultless. Forgetting yourself can overcome scattering.",
-   "ja": "下卦の最上部にいて、中も正も外れているが私身を散らせる。私を散らして公に従えば、中を外れても悔いはない。身を忘れる者は渙りを救える。"
+   "zh": "你在下面偏上的位置，位置不正，却能散掉私心、向着大家。能放下自己、为公家着想，就算位置偏一点也没遗憾——忘掉自己，才能把散了的局面收回来。",
+   "en": "You're at the top of the lower trigram, out of place, yet able to scatter your private self and turn toward the common good. Letting go of yourself and thinking of others — even off-center, no regret. Forget yourself and the scattered situation can be gathered.",
+   "ja": "あなたは下のやや上にいて、位置は正しくないが、私心を散らして皆に向かえる。自分を手放して公を考えれば、位置が少し曲がっても悔いはない——私を忘れてこそ、散った局面を取り戻せる。"
   },
   "59-3": {
-   "zh": "你在上卦下面，柔正而涣其私党，以成一统。能散其私党者，其功最大——使众人合而为一，非寻常所及。",
-   "en": "You're below the upper trigram, soft and proper, scattering your private clique to make one union. Scattering private factions is the greatest achievement — uniting many into one is beyond the ordinary.",
-   "ja": "上卦の下にいて、柔らかく正しく私党を散らして一つに統べる。私党を散らせる者の功は最も大きい。衆を一つに合わせるのは、並みの及ぶ所ではない。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，把小圈子拆开、合成一个整体。能散掉私党的人，功劳最大——让大家拧成一股绳，这不是平常人做得到的。",
+   "en": "You're just below the upper trigram, gentle and upright — breaking the private clique to make one whole. Scattering private factions is the greatest achievement: uniting everyone into one is beyond the ordinary.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しく、小圏を裂いて一つの全体にする。私党を散らせる者の功は最も大きい——皆を一つの綱に締めるのは、並みの者にはできない。"
   },
   "59-4": {
-   "zh": "你在尊位，刚中而涣其号令，以及其居。涣之大者在于号令——出其令而无所私，人心可合。",
-   "en": "You're in the place of honor, strong and centered, scattering your commands to your dwelling. The great scattering lies in commands. Issue them without selfishness and hearts can unite.",
-   "ja": "尊い位にいて、剛中で号令を渙らせ、その居に及ぼす。渙りの大なるは号令にある。令を出して私がなければ、人心は合わせられる。"
+   "zh": "你在上位，刚正，把政令推行下去、连自己的小圈子也一起散开。涣散时最要紧的是号令——把命令发得公正无私，人心就能重新聚拢。",
+   "en": "You're up high and upright, pushing the word out and scattering even your own little circle. In a scatter, what matters most is the command. Issue it without selfishness and hearts can gather again.",
+   "ja": "あなたは上位にいて剛正、政令を推し及ぼし、自分の小圏まで散らす。涣散の時は号令が肝心だ——命令を私なく出せば、人心は再び集まる。"
   },
   "59-5": {
-   "zh": "你到了卦的顶，是涣的终点，去其伤害而远出之。涣之极可以去其害——远其所当远，故可无过。",
-   "en": "You're at the top of the hexagram, Huan at its end — removing harm and sending it far away. At scattering's peak you can remove the harm. Keep far what should be far, so you avoid fault.",
-   "ja": "卦の頂点にいて、渙の終わり。害を除いて遠くへ出す。渙りの極は害を除ける。遠ざけるべきを遠ざければ、過ちはない。"
+   "zh": "你到了最上面，是涣散的尽头，把祸害清掉、远远送走。乱到头正好除掉害人精——把该远离的远远隔开，就不会出错。",
+   "en": "You're at the very top of Huan — clearing out the harm and sending it far away. When the scattering ends, that's exactly when you can cut out the source of trouble. Keep what should be far far away and you won't err.",
+   "ja": "あなたは最も上にいて、涣の終わり。害を除いて遠くへ追いやる。乱れきった今こそ、害の種を断てる——遠ざけるべきを遠ざければ、過ちはない。"
   },
   "60-0": {
-   "zh": "你在最底下，是节的开始，时未可行，故不出。节在于知时——时未可则不出，是本分当然。",
-   "en": "You're at the bottom, the start of Jie — the time isn't right, so you don't go out. Limitation lies in knowing the time. When it isn't time, staying in is your proper part.",
-   "ja": "一番下にいて、節の初め。まだ行く時でないので出ない。節は時を知ることにある。時が許さぬなら出ないのが、分の当然だ。"
+   "zh": "你在最底下，是节制开头，时机没到就先不露面。节制贵在认时——时候不对就不动，本来就该这样。",
+   "en": "You're at the very bottom, the start of Jie — the time isn't right, so don't show yourself. Limitation means knowing the time. When the time's wrong, staying still is simply your part.",
+   "ja": "あなたは一番下にいて、節の始まり。時が来ねば姿を見せぬ。節目は時を知ることにある——時が違えば動かぬ。もともとそうあるべきだ。"
   },
   "60-1": {
    "zh": "你在下卦正中，刚中而当可行之时，却仍不出。时可出而不出，是失其节——节之过，与不节同失。",
@@ -2114,29 +2114,29 @@
    "ja": "下卦の中央にいて、剛中で行ける時なのに出ない。出るべき時に出ないのは、節を失うこと。節の過ぎは、節しないのと同じく誤る。"
   },
   "60-2": {
-   "zh": "你在下卦最上面，不中不正，不能自节而后嗟叹。不能节于前、嗟于后，悔已晚——能知所嗟，则可无过。",
-   "en": "You're at the top of the lower trigram — off-center and improper — unable to restrain yourself, then lamenting. Can't limit before, lament after — regret is late. Knowing what you lament, you can avoid fault.",
-   "ja": "下卦の最上部にいて、中も正も外れ、自ら節せず後になって嘆く。前は節できず後で嘆くのは、悔いも遅い。嘆くところを知れば、過ちは免れる。"
+   "zh": "你在下面偏上的位置，位置不正，管不住自己，事后才唉声叹气。事前不约束、事后才后悔，已经晚了——但能意识到自己在叹什么，还来得及补救。",
+   "en": "You're at the top of the lower trigram, out of place, unable to restrain yourself — then lamenting afterward. No check before, regret after: too late. But knowing what you're lamenting means there's still time to mend.",
+   "ja": "あなたは下のやや上にいて、位置が正しくなく、自分を律せず後で嘆く。前は縛らず後悔する——もう遅い。だが何を嘆いているか分かれば、まだ取り戻せる。"
   },
   "60-3": {
-   "zh": "你在上卦下面，柔正而上承九五，安于其节。节而能安，则不苦——柔顺得正，故其节可行。",
-   "en": "You're below the upper trigram, soft and proper, receiving the fifth line above — at ease with your limit. Limit with ease isn't bitter. Soft and proper, your limit can be carried out.",
-   "ja": "上卦の下にいて、柔らかく正しく九五を承け、その節に安んずる。節して安んじられれば苦しくない。柔顺で正を得たので、その節は行える。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，上面有人照应，安于自己的分寸。节制得让人安心，就不觉得苦——柔顺又正，这份分寸守得下去。",
+   "en": "You're just below the upper trigram, gentle and upright, someone above watching over you — at ease with your own limits. A limit that lets you rest isn't bitter. Gentle and upright, this measure holds.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しく、上に支えられ、自分の節度に安んずる。節が人を安心させれば、苦にならない——柔順で正しければ、その分は守れる。"
   },
   "60-4": {
-   "zh": "你身居尊位，刚中而节，人乐从之。节而使人不以为苦，是甘节——中正以节，故往有功。",
-   "en": "You're in the place of honor, strong and centered in your limit, and people gladly follow. A limit people don't find bitter is a sweet limit. Centered and upright, going achieves.",
-   "ja": "尊い位にいて、剛中で節し、人は喜んで従う。節して人を苦しめないのは甘い節だ。中正で節するので、往けば功がある。"
+   "zh": "你在上位，刚正，给自己立了规矩，别人也乐意跟着。规矩定得让人不觉得苦，才是好规矩——正当地节制自己，往前走就有成效。",
+   "en": "You're up high and upright, setting limits for yourself, and others gladly follow. Limits people don't find bitter are the good ones. Regulating yourself the right way, moving forward gets results.",
+   "ja": "あなたは上位にいて剛正、自分に決まりを立て、人も進んで従う。決まりが苦しくなければ、それが良い決まりだ——正しく自分を律すれば、前へ進んで成果が出る。"
   },
   "60-5": {
-   "zh": "你到了卦的顶，是节的终点，节之太过而人不能堪。节而至于苦，则不可久——虽正而穷，然其志可取。",
-   "en": "You're at the top of the hexagram, Jie at its end — limiting too much, beyond what people can bear. A limit turned bitter can't last. Though right, it ends; yet the intention is worthy.",
-   "ja": "卦の頂点にいて、節の終わり。節が過ぎて人が耐えられない。節が苦しくなれば長く続かない。正しくても穷まるが、その志は取り得る。"
+   "zh": "你到了最上面，是节制的尽头，把自己箍得太紧，别人受不了。节到让人觉得苦，就撑不久——虽然出发点是对的，志气仍可取。",
+   "en": "You're at the very top of Jie — binding yourself too tight, beyond what others can bear. A limit turned bitter won't last. Though the intent is right, the resolve is still worthy.",
+   "ja": "あなたは最も上にいて、節の終わり。自分をきつく締め付け、人に耐えられぬ。節が苦しくなれば長く続かぬ——出発点は正しくても、その志はまだ取り得る。"
   },
   "61-0": {
-   "zh": "你在最底下，是中孚的开始，其诚未有所向。诚之道贵专一——有所他向，心就不安，故不可不戒。",
-   "en": "You're at the bottom, the start of Zhongfu — your faith not yet directed. Faith values singleness. Directed elsewhere, the heart is uneasy, so you must be watchful.",
-   "ja": "一番下にいて、中孚の初め。誠はまだ向かう所がない。誠の道は専一が肝心。他へ向けば心は安まないので、戒めないわけにはいかない。"
+   "zh": "你在最底下，是中孚的开头，诚心还没个明确的对象。诚最怕三心二意——心往别处飘就不踏实，所以不能不警醒。",
+   "en": "You're at the very bottom, the start of Zhongfu — your faith has no clear object yet. Faith fears divided hearts most. Let the mind wander and you're uneasy — so stay watchful.",
+   "ja": "あなたは一番下にいて、中孚の始まり。誠はまだはっきりした向き先がない。誠が一番恐れるのは二心だ——心がよそへ行けば落ち着かぬ。だから警戒せねばならない。"
   },
   "61-1": {
    "zh": "你在下卦正中，刚中而诚，其诚感人而不远。诚积于中，虽在幽远人亦应——不求人知而人自和。",
@@ -2144,54 +2144,54 @@
    "ja": "下卦の中央にいて、剛中で誠がある。その誠は遠くの人にも及ぶ。誠が内に積もれば、幽かな所でも人が応じる。人に知られようと求めず、人は自ずと和す。"
   },
   "61-2": {
-   "zh": "你在下卦最上面，不中不正，其心无主。中心无主，则喜怒哀乐皆系于人——不信诸己，故不能自定。",
-   "en": "You're at the top of the lower trigram — off-center and improper — your heart without a master. Without a master within, joy and anger all depend on others. Not trusting yourself, you can't settle.",
-   "ja": "下卦の最上部にいて、中も正も外れ、心に主がない。心に主がなければ、喜怒哀楽はみな人にかかわる。自らを信じないので、定まれない。"
+   "zh": "你在下面偏上的位置，位置不正，心里没个准主意。心里没主，喜怒哀乐全看别人脸色——不相信自己，就永远定不下来。",
+   "en": "You're at the top of the lower trigram, out of place, with no center inside. Without a center within, your joys and angers all hang on other people. Distrusting yourself, you can never settle.",
+   "ja": "あなたは下のやや上にいて、位置が正しくなく、心に芯がない。芯がなければ、喜怒哀楽はすべて人の顔色次第——自分を信じねば、いつまでも定まらない。"
   },
   "61-3": {
-   "zh": "你在上卦下面，柔正而上从九五，绝其私党。舍其私与上从于君，是绝其类——绝私则无害。",
-   "en": "You're below the upper trigram, soft and proper, following the fifth line above, cutting off your private clique. Leaving private ties to follow the ruler is severing your kind. No private ties, no harm.",
-   "ja": "上卦の下にいて、柔らかく正しく九五に従い、私党を絶つ。私的な与を捨てて君に従うのは、その類を絶つことだ。私を絶てば害はない。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，向上跟着正道，把小圈子断干净。舍了私党去追随正道，这叫断得干净——私心断了，就没有后患。",
+   "en": "You're just below the upper trigram, gentle and upright, following the right path above, cutting off the private clique clean. Leaving private ties to follow what's right — that's a clean break. With the private cut, there's no aftermath.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しく、上へ正道に従い、小圏をきっぱり断つ。私的な仲間を捨てて正に従う——それがきっぱり断つということだ。私心が切れれば、後患はない。"
   },
   "61-4": {
-   "zh": "你身居尊位，刚中而诚，固结天下而不私。有诚以固结天下，人皆归之——中实之孚，为孚之主。",
-   "en": "You're in the place of honor, strong and centered with faith — binding the world without selfishness. With faith you hold the world together and all come to you. Centered, real faith: the master of Fu.",
-   "ja": "尊い位にいて、剛中で誠があり、天下を固く結んで私しない。誠で天下を結べば、人は皆帰する。中が実した孚は、孚の主だ。"
+   "zh": "你在上位，刚正又诚恳，把天下人紧紧团结起来、不存私心。凭着这份诚把人心聚住，大家都来投奔——心里的实在，就是诚信的根本。",
+   "en": "You're in charge, strong and sincere, binding the world together without selfishness. With faith you hold people together and all come to you. The real faith inside you is the root of trust itself.",
+   "ja": "あなたは上位にいて、剛健で誠があり、天下を私なく固く結んでいる。誠で人心を繋ぎとめれば、皆が帰ってくる——中が実した誠が、信の根本だ。"
   },
   "61-5": {
-   "zh": "你到了卦的顶，是孚的终点，声闻过高而无其实。有声无实，是孚之穷——过而不知止，其道必困。",
-   "en": "You're at the top of the hexagram, Fu at its end — renowned too high without substance. Sound without reality is Fu's exhaustion. Excess without knowing to stop, your way is sure to be trapped.",
-   "ja": "卦の頂点にいて、孚の終わり。名声が高すぎて実がない。声があって実がないのは、孚の穷まりだ。過ぎて止まらぬなら、その道は必ず困る。"
+   "zh": "你到了最上面，是诚信的尽头，名声很响却没有实料。只有声音没有内容，诚信就到头了——虚高还不知道收，路必然走不通。",
+   "en": "You're at the very top of Fu — a loud name with nothing behind it. Sound without substance means trust is spent. Hollow and still not knowing to stop, the road is sure to dead-end.",
+   "ja": "あなたは最も上にいて、信の終わり。名声は高いが中身がない。声だけで実がなければ、信は尽きた——虚高なのに引っ込めぬなら、道は必ず詰まる。"
   },
   "62-0": {
-   "zh": "你在最底下，是小过的开始，以柔而好上，进得太骤。小过之世，可在下不可在上——初就想高飞，故进也骤。",
-   "en": "You're at the bottom, the start of Xiaoguo — soft yet fond of rising, advancing too fast. In an age of small excess, the low is right, not the high. Wanting to soar from the start makes your rush.",
-   "ja": "一番下にいて、小過の初め。柔で上を好み、進みが急すぎる。小過の世では下にあるのがよく上ではない。初めから高く飛ぼうとするので進みが急だ。"
+   "zh": "你在最底下，是小过的开头，柔弱却想往高处飞，步子迈得太急。这种时候该待在低处、不该往高处挤——一开始就想着高飞，所以才这么急。",
+   "en": "You're at the very bottom of Xiaoguo — soft yet fond of rising, moving too fast. In an age of small excess, the low is right, not the high. Wanting to soar from the first step is why you rush.",
+   "ja": "あなたは一番下にいて、小過の初め。柔でありながら上を好み、進みが急だ。小さな過ぎの世では、低くいるのがよく、高いのは駄目——最初から高く飛ぼうとするから、急ぐのだ。"
   },
   "62-1": {
-   "zh": "你在下卦正中，柔正而过其祖、不及其君。过而能自下，不犯其上——过其所当过，不及所不当及。",
-   "en": "You're at the center of the lower trigram, soft and proper — passing your ancestor but not reaching your ruler. Exceeding yet staying low, not offending above. Exceed what should be exceeded, not what shouldn't.",
-   "ja": "下卦の中央にいて、柔らかく正しく、その祖を過ぎて君には及ばない。過ぎても自ら下り、上を犯さない。過ぎるべきを過ぎ、及ぶべきでないところに及ばない。"
+   "zh": "你在下卦正中，性子柔、走得正，稍稍过了一点，但没有冒犯上头。该过的就过、不该及的不去及——懂得收着，就不惹事。",
+   "en": "You're at the center of the lower trigram, gentle and upright — a little past the line, but not offending above. Exceed what should be exceeded, don't reach where you shouldn't. Knowing to hold back, you avoid trouble.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しい。少し過ぎたが、上を冒してはいない。過ぎるべきを過ぎ、及ぶべきでない所へ及ばぬ——引っ込めることを知れば、事を起こさぬ。"
   },
   "62-2": {
-   "zh": "你在下卦最上面，过刚而不中，不能自防其过。刚过而不知自防，则被人所乘——自防者所以保身。",
-   "en": "You're at the top of the lower trigram — overly rigid, off-center — unable to guard your own excess. Too rigid without self-guard, others take advantage. Self-guarding is how you keep safe.",
-   "ja": "下卦の最上部にいて、剛が過ぎて中を外れ、自分の過ぎを防げない。剛が過ぎて自ら防ぐことを知らなければ、人につけ込まれる。自ら防ぐのは身を保つゆえだ。"
+   "zh": "你在下面偏上的位置，刚劲过头又不居中，管不住自己的过错。太硬还不知道防着点，就被人钻空子——会自我约束，才是保身的道理。",
+   "en": "You're at the top of the lower trigram, too rigid and off-center, unable to guard your own faults. Too hard and not watching your step, people take advantage. Self-guard is how you keep safe.",
+   "ja": "あなたは下のやや上にいて、剛が過ぎて中を外れ、自分の過ちを防げない。剛すぎて警戒を忘れれば、人につけ込まれる——自らを律することこそ、身を守る道だ。"
   },
   "62-3": {
-   "zh": "你在上卦下面，刚而居柔，过而不极，可以相遇。刚而能柔，故不过——往则危，不可不戒，因时处之。",
-   "en": "You're below the upper trigram, strong in a soft place — excess short of extreme, so you can meet. Strong yet soft, you don't overdo. Going is dangerous, so be watchful and act by the time.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、過ぎて極まらないので巡り合える。剛で柔を作えれば過ぎない。往けば危ういので戒めを要し、時によって処する。"
+   "zh": "你在上面偏下的位置，有刚劲却肯放柔，稍微过一点但没过头，还能跟人碰上。刚里带柔就不会太过——再往前有危险，得盯着点时机，见机行事。",
+   "en": "You're just below the upper trigram, strength but willing to soften — a little past the line but not too far, so you can still meet. Strength with give keeps you from excess. Ahead lies danger, so watch the timing and act by the moment.",
+   "ja": "あなたは上のやや下にいて、剛の気がありながら柔らかく、少し過ぎたが度は越さず、人と巡り合える。剛に柔があれば過ぎない——先は危ういので、時を見て動く。"
   },
   "62-4": {
-   "zh": "你在尊位，柔中而不能大有为，其泽未下。有位无才，故不能成大——所能者小事，是本分。",
-   "en": "You're in the place of honor, soft and centered but unable to do greatly — your grace hasn't reached below. Position without ability can't achieve the great. Small things are your part.",
-   "ja": "尊い位にいて、柔らかく中を得るが大いには為せず、恵みは下に及ばない。位はあって才がなければ大を成せない。できるのは小事、それが本分だ。"
+   "zh": "你在上位，性子柔，守得正却干不了大事，好处也到不了下面。位子有了、本事没跟上，就成不了大的——能做的只是些小事，认清自己的分。",
+   "en": "You're up high, gentle and upright, but can't do anything great — the benefit doesn't reach below. Position without the ability can't achieve the large. Small tasks are all you can manage; know your measure.",
+   "ja": "あなたは上位にいて柔らかく正しいが、大きなことはできず、恵みも下に届かない。位はあって実力が追いつかぬ——大きなことは成せぬ。できるのは小事だけ。自分の分を知れ。"
   },
   "62-5": {
-   "zh": "你到了卦的顶，是过的终点，过而不知止，无所遇。过之极则无所遇，是穷——高而不知反，灾自己。",
-   "en": "You're at the top of the hexagram, excess at its end — passing on without stop, meeting nothing. At excess's extreme you meet nothing — exhaustion. High without returning, disaster comes of itself.",
-   "ja": "卦の頂点にいて、過ぎの終わり。過ぎて止まらず、遇う者がない。過ぎの極は遇う所なし、それが穷まりだ。高くて返ることを知らねば、災いは自ら来る。"
+   "zh": "你到了最上面，是过错的尽头，错了还不知道收，谁也遇不上。一错到底就没人理你了——爬得高还不回头，灾是自己找的。",
+   "en": "You're at the very top of Xiaoguo — wronging on and on without stopping, meeting no one. Excess to the end leaves you alone: that's exhaustion. Climbing high and never turning back, disaster is self-sought.",
+   "ja": "あなたは最も上にいて、過ぎの終わり。過ぎてまだ引っ込めず、誰とも巡り合えない。過ごしてしまえば人も相手にしない——高くいて戻らぬなら、災いは自ら招いたものだ。"
   },
   "63-0": {
    "zh": "你在最底下，是既济的开始，曳住车轮不进。既成之后，患在轻进——能止其进，可保其成。",
@@ -2199,29 +2199,29 @@
    "ja": "一番下にいて、既済の初め。車輪を引いて進まない。成った後は、軽く進むことが患い。進みを止められれば、その成りを保てる。"
   },
   "63-1": {
-   "zh": "你在下卦正中，柔正而失其可行之具。中正自守，所失者不求自得——不逐者，其道自复。",
-   "en": "You're at the center of the lower trigram, soft and proper, having lost the means to act. Keep center and rightness and what's lost returns unasked. Don't chase — your way restores itself.",
-   "ja": "下卦の中央にいて、柔らかく正しく、行く具を失う。中正を守れば、失ったものは求めずに得られる。追わぬ者は、その道が自ずと戻る。"
+   "zh": "你在下卦正中，性子柔、走得正，却暂时没了行事的凭借。守着正道就行，丢的东西不用找自己会回来——不追着要，路自己就复原了。",
+   "en": "You're at the center of the lower trigram, gentle and upright, but temporarily without the means to act. Just keep to what's right — what you lost returns unasked. Don't chase; your way restores itself.",
+   "ja": "あなたは下卦の中央にいて、柔らかく正しいが、今は行動の手立てを失っている。中正を守ればいい——失ったものは求めずに戻る。追わぬ者は、道が自ずと元に戻る。"
   },
   "63-2": {
-   "zh": "你在下卦最上面，刚正而以刚伐远，久而后克。既济之时而事于外，其难可知——用小人则益乱。",
-   "en": "You're at the top of the lower trigram, rigid and upright, attacking afar with force — long, then victory. In Jiji, taking on outside endeavors is clearly hard. Using small men only increases disorder.",
-   "ja": "下卦の最上部にいて、剛正で剛をもって遠くを討ち、久しくして勝つ。既済の時に外で事を起こすのは難しいと知れる。小人を用いれば、乱れは増すばかりだ。"
+   "zh": "你在下面偏上的位置，刚正，用强力去打远处，打了很久才拿下。事情已成还要对外用兵，难得很——再用小人，只会把局面搅得更乱。",
+   "en": "You're at the top of the lower trigram, upright, attacking from afar with force — long, then victory. After the task is done, undertaking things abroad is plainly hard. Use small men and you only stir more disorder.",
+   "ja": "あなたは下のやや上にいて剛正、遠くを力で討ち、久しくしてやっと落とした。事が成ってなお外へ兵を出すのは、難しいと知れ——小人を使えば、さらに乱れるだけだ。"
   },
   "63-3": {
-   "zh": "你在上卦下面，柔正而处既济，其备常具。既成而能常备，可以不败——于无事之时戒，是其明。",
-   "en": "You're below the upper trigram, soft and proper in Jiji — always prepared. Complete yet always ready, you avoid defeat. Warning yourself in quiet times: that's clarity.",
-   "ja": "上卦の下にいて、柔らかく正しく既済に処し、備えを常に整える。成っていて常に備えられれば敗れずに済む。事のない時に戒めるのが、その明るさだ。"
+   "zh": "你在上面偏下的位置，性子柔、走得正，事成之后还时时防备着。成了还能常备不懈，就不会败——没事的时候就想好预案，这是明白人。",
+   "en": "You're just below the upper trigram, gentle and upright — even after success, always on guard. Complete yet ever prepared, you don't fail. Planning in quiet times: that's the wise person.",
+   "ja": "あなたは上のやや下にいて、柔らかく正しい。事が成っても、いつも備えている。成ってなお備えを怠らねば敗れない——何もない時にこそ手を打っておく。それが賢い者だ。"
   },
   "63-4": {
-   "zh": "你身居尊位，刚中而正，其祭以诚不以物。既济之盛，不在礼隆而在诚至——诚则实受其福。",
-   "en": "You're in the place of honor, strong, centered and right — your sacrifice by faith, not by gifts. Jiji's abundance isn't in rich rites but in utmost faith. Faith receives real blessing.",
-   "ja": "尊い位にいて、剛中で正しく、祭りは物ではなく誠による。既済の盛りは礼の隆かさではなく誠の至りにある。誠ならば実にその福を受ける。"
+   "zh": "你在上位，刚正，祭拜靠的是诚心不是排场。事业最盛的时候，比的不在礼多隆重、而在心有多诚——诚到了，福才实实在在落到身上。",
+   "en": "You're in charge, upright — your sacrifice is by faith, not by show. At Jiji's height, what counts isn't a grand rite but a full heart. When the heart is full, blessing truly lands on you.",
+   "ja": "あなたは上位にいて、剛健で正しい。祭りは物ではなく誠による。既済の盛りは、礼の豪華さではなく、誠の深さで決まる——誠があれば、福が実に降りる。"
   },
   "63-5": {
-   "zh": "你到了卦的顶，是既济的终点，其首既濡，其危已至。既济之极而将反，其危在首——不知其变，故至于溺。",
-   "en": "You're at the top of the hexagram, Jiji at its end — your head is wet, danger arrived. At Jiji's peak, about to reverse, the danger is at the head. Not knowing change, you end up drowning.",
-   "ja": "卦の頂点にいて、既済の終わり。頭はすでに濡れ、危いは来た。既済の極は返ろうとしており、危いは頭にある。その変わりを知らないので、沈むに至る。"
+   "zh": "你到了最上面，是成功的尽头，头都湿了，危险已经到了。事成到极点就要反转，祸从头上浇下来——看不出要变，就被淹了。",
+   "en": "You're at the very top of Jiji — your head already wet, danger arrived. At success's peak it's about to flip; trouble pours down from above. Failing to see the turn, you drown.",
+   "ja": "あなたは最も上にいて、成功の終わり。頭はもう濡れ、危いは来ている。事が極まれば反転し、禍は頭から降りる——変化を見抜けねば、溺れる。"
   },
   "64-0": {
    "zh": "你在最底下，是未济的开始，柔弱不能渡，所以湿了尾巴。才不足以济而强济，进就困——量己而后动，是慎。",
@@ -2229,29 +2229,29 @@
    "ja": "一番下にいて、未済の初め。柔弱で渡れず、尾を濡らす。才が足りないのに無理に渡れば進みは困る。己を量ってから動くのが慎みだ。"
   },
   "64-1": {
-   "zh": "你在下卦正中，刚中而能自止，不轻进。未济之时，进不可骤——刚中而能止，其行也正。",
-   "en": "You're at the center of the lower trigram, strong and centered, able to stop yourself, not advancing rashly. In Weiji, advance can't be sudden. Strong-centered and able to stop, your conduct is right.",
-   "ja": "下卦の中央にいて、剛中で自ら止められ、軽く進まない。未済の時は進みを急げない。剛中で止められれば、その行いは正しい。"
+   "zh": "你在下卦正中，刚强却懂得自己刹车，不冒进。事还没成的时候，进不能急——有本事又收得住，走得就正。",
+   "en": "You're at the center of the lower trigram, strong but knowing to brake yourself — no rash advance. Before the task is done, you can't hurry forward. Ability with self-restraint keeps you on the right road.",
+   "ja": "あなたは下卦の中央にいて、剛強だが自分でブレーキを知っている。事がまだ成らぬ時に、急いで進んではならない。実力があって引っ込められれば、道は正しく進む。"
   },
   "64-2": {
-   "zh": "你在下卦最上面，不中不正，不能自济却可以因人。柔而不中，独往则困——能附于刚者，就可共济。",
-   "en": "You're at the top of the lower trigram — off-center and improper — unable to cross alone but able to rely on another. Soft and off-center, going alone is hard. Attaching to the strong lets you cross together.",
-   "ja": "下卦の最上部にいて、中も正も外れ、独りでは渡れず人に因れる。柔で中を外れれば、独往は困る。剛に付けば共に渡れる。"
+   "zh": "你在下卦最上面，位置不正，自己渡不了河，但可以借别人的力。柔弱又没准主意，单干就卡住——能依附刚强的人，就能一起过去。",
+   "en": "You're at the top of the lower trigram, out of place — you can't cross alone but can lean on another. Soft and undecided, going solo sticks you. Attach to the strong and you can cross together.",
+   "ja": "あなたは下卦の頂点にいて、位置が正しくない。独りでは渡れず、人の力を借りられる。柔で芯がなければ、独走は詰まる——剛強な者に寄れば、共に渡れる。"
   },
   "64-3": {
-   "zh": "你在上卦下面，刚而居柔，以刚济难而持之以久。未济而能济，在于刚而能久——久则功成而有赏。",
-   "en": "You're below the upper trigram, strong in a soft place — crossing difficulty with firmness and persisting. Overcoming the unfinished lies in firmness that lasts. Lasting, you succeed and are rewarded.",
-   "ja": "上卦の下にいて、剛で柔の位にあり、剛をもって難を済み、久しく続ける。未済を済めるのは剛で長く続けられるから。久しければ功は成り褒美がある。"
+   "zh": "你在上面偏下的位置，有刚劲又肯放柔，靠这股劲去渡难关，还能一直撑下去。事没成的时候能成事，靠的就是刚强加持久——熬得住，功就成、赏就有。",
+   "en": "You're just below the upper trigram, strength and give together, crossing difficulty with that force and sustaining it. Before the task is done, what carries it through is strength plus endurance. Hold out and the work succeeds, the reward comes.",
+   "ja": "あなたは上のやや下にいて、剛の気がありながら柔らかく、その力で難を渡り、長く耐えられる。事がまだ成らぬ時に成せるのは、剛と持続だ——堪えれば功は成り、褒美も来る。"
   },
   "64-4": {
-   "zh": "你在尊位，柔中而应九二，以柔中之德济难。有其德，其光自着——虚中而任刚，其孚及于人。",
-   "en": "You're in the place of honor, soft and centered, matched with the second line — crossing difficulty with soft-centered virtue. With virtue, your light shows itself. Empty within and appointing the strong, your faith reaches people.",
-   "ja": "尊い位にいて、柔らかく中を得て九二に応じ、柔中の徳で難を済む。徳があればその光は自ずと現れる。中を虚しくして剛を任せれば、その孚は人に及ぶ。"
+   "zh": "你在上位，性子柔、守得正，下面有人相应，用柔稳去渡难关。有这份德行，光采自然显出来——虚着心任用刚强的人，你的诚意就到了人心里。",
+   "en": "You're in charge, gentle and upright, with someone below who answers you — crossing difficulty with soft-centered virtue. With virtue, your light shows itself. Empty within and appointing the strong, your faith reaches people.",
+   "ja": "あなたは上位にいて、柔らかく正しく、下から応える者がいて、柔中の徳で難を渡る。徳があればその光は自ずと現れる——中を虚しくして剛を任せれば、誠が人に届く。"
   },
   "64-5": {
-   "zh": "你到了卦的顶，是未济的终点，可以有为而自乐，过了就失。未济之终，可与其人共乐——然乐不可极，极则并所守而失。",
-   "en": "You're at the top of the hexagram, Weiji at its end — able to act and rejoicing, but excess loses it. At the end of Weiji, you can rejoice with your people. Yet joy can't be maxed out; at the extreme you lose even your grip.",
-   "ja": "卦の頂点にいて、未済の終わり。為すことができて自ら喜ぶが、過ぎれば失う。未済の終わりはその人と共に喜べる。ただ喜びは極めてはならず、極めれば守るものまで失う。"
+   "zh": "你到了最上面，是未济的尽头，总算能有点作为、高兴一下，但过头就失。事到尾声跟大家乐一乐可以——只是乐不能没边，过头连原本守住的都丢了。",
+   "en": "You're at the very top of Weiji — finally you can act and rejoice, but excess loses it. At the end, celebrating with your people is fine — just don't let joy run wild; overdoing it loses even what you held.",
+   "ja": "あなたは最も上にいて、未済の終わり。やっと何かできて喜べるが、度を越せば失う。事の終わりに皆と楽しむのはよい——ただ喜びに際限があってはならない。過ぎれば、守っていたものまで失う。"
   }
  }
 }

@@ -14,7 +14,7 @@ from plain_p6 import HEXAGRAMS as H6, LINES as L6
 from plain_p7 import HEXAGRAMS as H7, LINES as L7
 from plain_p8 import HEXAGRAMS as H8, LINES as L8
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"  # plain.json 数据版本：v2 人话精修（zh/en/ja 各 201 条覆盖）
 
 HEXAGRAMS = {}
 LINES = {}

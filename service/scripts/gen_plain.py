@@ -20,6 +20,7 @@
 """
 import json
 import re
+import copy
 import sys
 from pathlib import Path
 
@@ -28,6 +29,9 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 OUT = ROOT / "skills/zhouyi-lookup/scripts/zhouyi/plain.json"
 sys.path.insert(0, str(SCRIPT_DIR))
 import plain_data  # noqa: E402
+import plain_zh_v2  # noqa: E402  v2 精修覆盖：仍是注释腔的条目重写成真白话
+import plain_en_v2  # noqa: E402  对应条目的英文人话
+import plain_ja_v2  # noqa: E402  对应条目的日文人话
 PRO_ENGINE = Path.home() / (
     "WorkBuddy/MakeMoney On WB/zhouyi-api/workbuddy-engine/plain.json"
 )
@@ -44,10 +48,25 @@ META = {
 
 
 def build() -> dict:
+    hexagrams = copy.deepcopy(plain_data.HEXAGRAMS)
+    lines = copy.deepcopy(plain_data.LINES)
+    # v2 精修：覆盖三语，保留未被覆盖的 en/ja 原文
+    for key, zh in plain_zh_v2.ZH.items():
+        if key.isdigit():
+            target = hexagrams.get(key)
+        else:
+            target = lines.get(key)
+        if target is None:
+            raise SystemExit(f"v2 覆盖的 key 不存在: {key}")
+        target["zh"] = zh
+        if key in plain_en_v2.EN:
+            target["en"] = plain_en_v2.EN[key]
+        if key in plain_ja_v2.JA:
+            target["ja"] = plain_ja_v2.JA[key]
     return {
         "_meta": META,
-        "hexagrams": plain_data.HEXAGRAMS,
-        "lines": plain_data.LINES,
+        "hexagrams": hexagrams,
+        "lines": lines,
     }
 
 

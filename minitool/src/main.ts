@@ -237,9 +237,9 @@ function renderReading(c: any): void {
   parts.push(`<div class="sum-head"><span class="sum-no">第 ${esc(String(h.number))} 卦</span><b>${esc(h.name)}卦</b></div>`);
   parts.push(`<div class="sum-meta">上${esc(h.upper)}（${esc(r.upper_nature?.nature ?? "")}）· 下${esc(h.lower)}（${esc(r.lower_nature?.nature ?? "")}）` +
     (pos ? `　·　动爻 <b>${esc(pos)}</b>　·　之卦 ${esc(String(c.changed?.number ?? "—"))} ${esc(c.changed?.name ?? "")}` : "") + `</div>`);
-  // 白话大意：结果的意思放最显眼处，编号对应读法次序
-  if (typeof r.meaning === "string" && r.meaning) parts.push(`<div class="sum-meaning"><span class="sum-step">1</span><div><b>这卦在讲什么</b><p>${esc(r.meaning)}</p></div></div>`);
-  if (li?.meaning?.xiang) parts.push(`<div class="sum-meaning"><span class="sum-step">2</span><div><b>动的这一爻在讲什么</b><p>${esc(li.meaning.xiang)}</p></div></div>`);
+  // 白话大意：用引擎的 plain 层（真正的现代白话），结果的意思放最显眼处
+  if (r.plain?.zh) parts.push(`<div class="sum-meaning"><span class="sum-step">1</span><div><b>这卦在讲什么</b><p>${esc(r.plain.zh)}</p></div></div>`);
+  if (li?.plain?.zh) parts.push(`<div class="sum-meaning"><span class="sum-step">2</span><div><b>动的这一爻在讲什么</b><p>${esc(li.plain.zh)}</p></div></div>`);
   parts.push(`<p class="sum-how">怎么读：先看卦辞（全卦处境）→ 再看动爻（你这一爻）→ 之卦作参照。看完往下翻，原文按此顺序排好。</p>`);
   // 断语小抄：只列本卦经文里真正出现的字，大白话解释（不按事项下断）
   const vw = verdictsIn(r.judgment + " " + (li?.text ?? ""));
@@ -255,9 +255,9 @@ function renderReading(c: any): void {
   $("rd-judgment-label").textContent = `① 卦辞 · 全卦的处境`;
   $("rd-judgment-label").className = "section-h";
   $("rd-judgment").innerHTML = blockquote(r.judgment);
-  // 卦辞白话：卦义主旨（引擎依公版注疏撰述），直接摆在原文下方
-  if (typeof r.meaning === "string" && r.meaning) {
-    $("rd-judgment").insertAdjacentHTML("afterend", `<p class="plain"><b>白话：</b>${esc(r.meaning)}</p>`);
+  // 卦辞白话：引擎 plain 层的现代白话转写，直接摆在原文下方
+  if (r.plain?.zh) {
+    $("rd-judgment").insertAdjacentHTML("afterend", `<p class="plain"><b>白话：</b>${esc(r.plain.zh)}</p>`);
   }
   const label2 = $("rd-line-label");
   label2.className = "section-h";
@@ -268,8 +268,8 @@ function renderReading(c: any): void {
     $("rd-line").innerHTML = blockquote(li.text);
     const m = li.meaning ?? ({} as any);
     $("rd-meaning").innerHTML =
-      `<p class="plain"><b>白话·取象：</b>${esc(m.xiang ?? "")}</p><p class="plain"><b>白话·义理：</b>${esc(m.li ?? "")}</p>` +
-      (m.sources?.length ? `<details class="source-box"><summary>出处（点开看注疏来源）</summary><p class="small muted">${esc(m.sources.map((s: any) => s.work).join("、"))}</p></details>` : "");
+      (li.plain?.zh ? `<p class="plain"><b>白话：</b>${esc(li.plain.zh)}</p>` : "") +
+      (m.sources?.length ? `<details class="source-box"><summary>原文取象与义理（点开看）</summary><p class="small muted">取象：${esc(m.xiang ?? "")}　义理：${esc(m.li ?? "")}</p><p class="small muted">出处：${esc(m.sources.map((s: any) => s.work).join("、"))}</p></details>` : "");
     // 高岛原书节录：出处引文，折叠收起，想深入者自点
     const tk = excerptFor(h.number, li.label);
     $("rd-tk").innerHTML = tk
@@ -285,8 +285,8 @@ function renderReading(c: any): void {
     $("rd-changed").innerHTML = ch
       ? `<p class="arrow">→ 之卦</p><div class="changed"><div class="hexdraw">${hexBars(chGlyphs)}</div><p>${ch.number} · ${ch.name}卦（事之所趋，轻轻读）</p>` +
         blockquote(engine.read(ch.number, null, "zh").judgment) +
-        (typeof engine.read(ch.number, null, "zh").meaning === "string"
-          ? `<p class="plain"><b>白话：</b>${esc(engine.read(ch.number, null, "zh").meaning)}</p>` : "") +
+        (engine.read(ch.number, null, "zh").plain?.zh
+          ? `<p class="plain"><b>白话：</b>${esc(engine.read(ch.number, null, "zh").plain.zh)}</p>` : "") +
         `</div>`
       : "";
     wrap.hidden = false;
