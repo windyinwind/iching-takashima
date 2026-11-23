@@ -250,7 +250,7 @@ ${heading === "h1" ? takashimaBlock(lang, n, String(p)) : ""}
 
 function descFor(lang: Lang, n: number) {
   const h = getByNumber(n);
-  if (lang === "en") return `${hexTitle("en", n)}: ${T.trigram_en[h.upper][1]} over ${T.trigram_en[h.lower][1]}. The judgment and six lines in Legge's translation, each line drawn and explained, and Takashima Donshō's commentary.`;
+  if (lang === "en") return `${hexTitle("en", n)}: ${T.trigram_en[h.upper][1]} over ${T.trigram_en[h.lower][1]}. Judgment and six lines in Legge's translation, each drawn and explained, with Takashima's commentary.`;
   if (lang === "ja") return `${hexTitle("ja", n)}の卦辞・爻辞（原文）、六爻それぞれの図と構造、高島呑象の解釈。上卦${T.trigram_ja[h.upper][0]}・下卦${T.trigram_ja[h.lower][0]}。`;
   return `${h.name}卦（第${n}卦），上${h.upper}下${h.lower}：卦辞、六爻爻辞与逐爻图解、义理，附高岛呑象《増補高島易断》原注。`;
 }
@@ -355,7 +355,7 @@ ${adUnit(AD_SLOT_DISPLAY)}
 ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
 </article>`;
   return shell({
-    lang, origin, title: `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`, side: { n },
+    lang, origin, title: lang === "en" ? `${hexTitle(lang, n)} · I Ching` : `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`, side: { n },
     jsonld: {
       "@context": "https://schema.org",
       "@graph": [
@@ -389,20 +389,33 @@ function relatedLines(lang: Lang, n: number, p: number) {
   return lis ? `<nav class="rel-lines"><h2>${esc(t.head)}</h2><ul class="rel">${lis}</ul></nav>` : "";
 }
 
+/** Trim to a word boundary under `max` characters so a search snippet ends cleanly. */
+const clip = (t: string, max: number) => {
+  const s = t.replace(/\s+/g, " ").trim();
+  if (s.length <= max) return s;
+  return s.slice(0, Math.max(20, max)).replace(/\s+\S*$/, "").replace(/[,;:(]$/, "") + "…";
+};
+
 export function linePage(lang: Lang, n: number, p: number, origin: string) {
   const w = W[lang];
   const label = lineLabel(p, linesOf(getByNumber(n))[p] === 1);
   const title = `${hexTitle(lang, n)} · ${w.line(p)} ${label}`;
+  // The <title> drops the parenthetical gloss and the long site name: the full form
+  // ran past 60 characters on every English line page and got cut in results.
+  const headTitle = lang === "en"
+    ? `Hexagram ${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name} · ${w.line(p)} ${label} · I Ching`
+    : `${title} · ${w.site}`;
   const body = `<article><p class="kicker"><a href="${hexPath(lang, n)}">${esc(hexTitle(lang, n))}</a></p>
 ${lineSection(lang, n, p, { heading: "h1", link: false })}
 ${relatedLines(lang, n, p)}
 ${adUnit(AD_SLOT_INARTICLE)}
 <nav class="prevnext">${p > 0 ? `<a rel="prev" href="${linePath(lang, n, p - 1)}">← ${esc(w.line(p - 1))}</a>` : `<a href="${hexPath(lang, n)}">← ${esc(hexShort(lang, n))}</a>`}${p < 5 ? `<a rel="next" href="${linePath(lang, n, p + 1)}">${esc(w.line(p + 1))} →</a>` : `<a href="${hexPath(lang, n)}">${esc(hexShort(lang, n))} →</a>`}</nav></article>`;
+  const tail = " Drawn and explained, with Takashima's commentary.";
   const desc = lang === "en"
-    ? `${title}: “${LEGGE[String(n)].lines[p]}” Drawn and explained, with the hexagram it changes to and Takashima's commentary.`
+    ? `${headTitle.replace(/ · I Ching$/, "")}: “${clip(LEGGE[String(n)].lines[p], 155 - tail.length - headTitle.length)}”${tail}`
     : lang === "ja" ? `${title}：${TRAD[String(n)].lines[p]} 爻の図・構造・之卦と高島の解釈。`
       : `${title}：${getByNumber(n).lines[p]} 爻位图解、义理、之卦与高岛原注。`;
-  return shell({ lang, origin, title: `${title} · ${w.site}`, description: desc, path: (l) => linePath(l, n, p), og: `/og/${n}.png`, side: { n, p } }, body);
+  return shell({ lang, origin, title: headTitle, description: desc, path: (l) => linePath(l, n, p), og: `/og/${n}.png`, side: { n, p } }, body);
 }
 
 export function hexagramsIndex(lang: Lang, origin: string) {
