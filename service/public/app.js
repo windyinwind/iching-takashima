@@ -112,6 +112,9 @@ function track(event, params = {}) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event, ...params });
 }
+// Derive a cast method from input KEYS only. Never send the values — a phrase
+// is the user's question and must stay on the device.
+const methodOf = (x) => !x ? "none" : "piles" in x ? "stalks" : "seed" in x ? "phrase" : "numbers" in x ? "numbers" : "at" in x ? "now" : "shared";
 const $$ = (s) => [...document.querySelectorAll(s)];
 const el = (tag, attrs = {}, ...kids) => {
   const e = document.createElement(tag);
@@ -213,6 +216,9 @@ function show(id) {
   $(id).hidden = false;
 }
 
+// Casting funnel: a view per step lets GA4 show exactly where readers drop off.
+const stepView = (step, extra = {}) => track("cast_step_view", { lang, step, ...extra });
+
 function selectTab(name) {
   for (const b of $$("[data-tab]")) b.setAttribute("aria-selected", String(b.dataset.tab === name));
   for (const p of $$("[data-panel]")) p.hidden = p.dataset.panel !== name;
@@ -292,10 +298,12 @@ function localIso() {
     `${off >= 0 ? "+" : "-"}${p(Math.trunc(off / 60))}:${p(off % 60)}`;
 }
 
-function castError(msg) {
+function castError(msg, method = "none") {
   const e = $("#cast-error");
   e.textContent = msg;
   e.hidden = !msg;
+  // Send the stage, never the message: an API error may echo the user's phrase.
+  if (msg) track("cast_error", { lang, cast_method: method, stage: "chain" });
 }
 
 // ---------------------------------------------------------------------------
@@ -348,7 +356,7 @@ async function runCast(next, { animate = true } = {}) {
       show("#method");
       selectTab("stalks");
     }
-    castError(e.message);
+    castError(e.message, methodOf(next));
     stalks.reset();
     if ($('[data-tab="stalks"]').getAttribute("aria-selected") === "true") stalks.start();
     return;
@@ -357,7 +365,7 @@ async function runCast(next, { animate = true } = {}) {
   chain = c;
   track("cast_completed", {
     lang,
-    cast_method: "piles" in next ? "stalks" : "seed" in next ? "phrase" : "numbers" in next ? "numbers" : "at" in next ? "now" : "shared",
+    cast_method: methodOf(next),
     hexagram_number: c.hexagram.number,
     hexagram_title: c.titles?.hexagram || "",
     moving_line: c.moving_position == null ? 0 : c.moving_position + 1,
@@ -371,6 +379,7 @@ async function runCast(next, { animate = true } = {}) {
   $("#method").hidden = true;
   $("#prepare").hidden = true;
   show("#reveal");
+  stepView("reveal");
   const lines = linesFromGlyphs(c.hexagram.glyphs);
   const moving = c.changed ? lines.flatMap((l, i) => (l !== c.changed.linesBottomUp[i] ? [i] : [])) : [];
   drawHex($("#hex"), lines, moving, animate);
@@ -450,6 +459,7 @@ async function loadReading() {
     $("#tk-source").textContent = `${tk.source.author}《${tk.source.work}》 · ${tk.source.location}`;
   }
   show("#after");
+  stepView("reading");
 }
 
 // ---------------------------------------------------------------------------
@@ -485,7 +495,10 @@ document.addEventListener("click", async (ev) => {
     track("language_switched", { from_lang: lang, to_lang: l.dataset.lang });
     return setLang(l.dataset.lang);
   }
-  if (tab) return selectTab(tab.dataset.tab);
+  if (tab) {
+    track("cast_method_selected", { lang, method: tab.dataset.tab });
+    return selectTab(tab.dataset.tab);
+  }
   if (ev.target.closest("#stalks")) return stalks.divide();
   if (!a) return;
   const act = a.dataset.action;
@@ -493,6 +506,7 @@ document.addEventListener("click", async (ev) => {
     track("cast_started", { lang });
     $("#prepare").hidden = true;
     show("#method");
+    stepView("method");
     selectTab("stalks");
     $("#method").scrollIntoView({ behavior: "smooth", block: "start" });
   } else if (act === "divide") stalks.divide();
@@ -504,6 +518,8 @@ document.addEventListener("click", async (ev) => {
     loadReading();
   } else if (act === "restart") restart();
   else if (act === "copy") {
+    // Never send the URL: it carries the phrase/numbers the user cast with.
+    track("share_link_copy", { lang, cast_method: methodOf(input), hexagram_number: chain?.hexagram?.number || 0 });
     try {
       await navigator.clipboard.writeText(location.href);
       $("#copied").textContent = t("copied");
@@ -539,6 +555,7 @@ $("[data-panel=numbers]").addEventListener("submit", (ev) => {
   try {
     guide = await api("guide", {});
   } catch {
+    track("cast_error", { lang, stage: "guide" });
     $("#prep-intro").textContent = t("error");
     return;
   }
@@ -554,6 +571,7 @@ $("[data-panel=numbers]").addEventListener("submit", (ev) => {
   if (deep && !Object.keys(shared).length) {
     $("#prepare").hidden = true;
     show("#method");
+    stepView("method", { entry: "deep_link" });
     if (deep[1] && ["stalks", "phrase", "numbers", "time"].includes(deep[1])) selectTab(deep[1]);
     $("#method").scrollIntoView();
   }
