@@ -3,7 +3,7 @@
 import { HEXAGRAMS, LEGGE, LINE_MEANING, PLAIN, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
-import { LEARN, type SideCtx, hexData, learnPage, learnPath, learnTitle, leftSidebar, rightSidebar } from "./learn.ts";
+import { LEARN, type SideCtx, hexData, learnPage, learnPath, learnTitle, leftSidebar, relations, rightSidebar } from "./learn.ts";
 import { INFO, infoLinks, infoPage, infoPath } from "./info.ts";
 
 export type Lang = "en" | "zh" | "ja";
@@ -371,12 +371,31 @@ ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
   }, body);
 }
 
+const REL_LINE: Record<Lang, { head: string; changed: string; inverse: string; opposite: string; nuclear: string }> = {
+  en: { head: "This line in related hexagrams", changed: "If this line moves, in", inverse: "Inverse hexagram", opposite: "Opposite hexagram", nuclear: "Nuclear hexagram" },
+  zh: { head: "亲缘卦中的同一爻", changed: "此爻动，之卦的同一爻", inverse: "综卦", opposite: "错卦", nuclear: "互卦" },
+  ja: { head: "関連する卦の同じ爻", changed: "この爻が動いた之卦の同じ爻", inverse: "綜卦", opposite: "錯卦", nuclear: "互卦" },
+};
+
+/** The same line position in the hexagrams related to this one: internal links
+ *  between line pages, which are the site's least-discovered page class. */
+function relatedLines(lang: Lang, n: number, p: number) {
+  const t = REL_LINE[lang];
+  const r = relations(n);
+  const items: [string, number][] = [[t.changed, changedOf(n, p)], [t.inverse, r.inverse], [t.opposite, r.opposite], [t.nuclear, r.nuclear]];
+  const seen = new Set([n]);
+  const lis = items.filter(([, m]) => !seen.has(m) && seen.add(m)).map(([label, m]) =>
+    `<li><span class="muted small">${esc(label)}</span><a class="hexlink" href="${linePath(lang, m, p)}">${figure(linesOf(getByNumber(m)), { small: true, hl: [p], label: `${hexTitle(lang, m)}, ${W[lang].line(p)}` })}<span>${esc(hexShort(lang, m))} · ${esc(W[lang].line(p))}</span></a></li>`).join("");
+  return lis ? `<nav class="rel-lines"><h2>${esc(t.head)}</h2><ul class="rel">${lis}</ul></nav>` : "";
+}
+
 export function linePage(lang: Lang, n: number, p: number, origin: string) {
   const w = W[lang];
   const label = lineLabel(p, linesOf(getByNumber(n))[p] === 1);
   const title = `${hexTitle(lang, n)} · ${w.line(p)} ${label}`;
   const body = `<article><p class="kicker"><a href="${hexPath(lang, n)}">${esc(hexTitle(lang, n))}</a></p>
 ${lineSection(lang, n, p, { heading: "h1", link: false })}
+${relatedLines(lang, n, p)}
 ${adUnit(AD_SLOT_INARTICLE)}
 <nav class="prevnext">${p > 0 ? `<a rel="prev" href="${linePath(lang, n, p - 1)}">← ${esc(w.line(p - 1))}</a>` : `<a href="${hexPath(lang, n)}">← ${esc(hexShort(lang, n))}</a>`}${p < 5 ? `<a rel="next" href="${linePath(lang, n, p + 1)}">${esc(w.line(p + 1))} →</a>` : `<a href="${hexPath(lang, n)}">${esc(hexShort(lang, n))} →</a>`}</nav></article>`;
   const desc = lang === "en"

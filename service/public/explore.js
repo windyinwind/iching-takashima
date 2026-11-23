@@ -9,6 +9,42 @@ document.addEventListener("click", (ev) => {
   if (a) track("grok_bot_click", { lang: document.documentElement.lang, page: location.pathname });
 });
 
+// Navigation behaviour: which onward links readers actually follow, so weak
+// pages can be fixed from evidence instead of guesses.
+const hexNumOf = (href) => {
+  const m = /\/hexagram\/(\d+)-/.exec(href || "");
+  return m ? Number(m[1]) : 0;
+};
+document.addEventListener("click", (ev) => {
+  const a = ev.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href") || "";
+  const base = { lang: document.documentElement.lang, page: location.pathname };
+  if (a.closest("section.line h3")) track("line_page_click", { ...base, hexagram_number: hexNumOf(href) });
+  else if (a.closest(".rel-lines")) track("related_line_click", { ...base, hexagram_number: hexNumOf(href) });
+  else if (a.closest(".changes")) track("changed_hexagram_click", { ...base, hexagram_number: hexNumOf(href) });
+  else if (a.closest(".rel")) track("related_hexagram_click", { ...base, hexagram_number: hexNumOf(href) });
+  else if (a.closest(".matrix")) track("hexagram_table_click", { ...base, hexagram_number: hexNumOf(href) });
+  if (a.classList.contains("btn") && href.includes("#cast")) track("learn_cast_cta_click", base);
+});
+
+// Scroll depth on reading pages: 50% and 90%, once each per page view.
+(() => {
+  const fired = new Set();
+  addEventListener("scroll", () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (max <= 0) return;
+    const pct = (h.scrollTop / max) * 100;
+    for (const t of [50, 90]) {
+      if (pct >= t && !fired.has(t)) {
+        fired.add(t);
+        track("scroll_depth", { percent: t, lang: document.documentElement.lang, page: location.pathname });
+      }
+    }
+  }, { passive: true });
+})();
+
 // Sidebar interactions: the hexagram builder and highlighting in the 64-hexagram table.
 const data = JSON.parse(document.getElementById("hexdata")?.textContent || "[]");
 const byLines = new Map(data.map(([n, lines, title, path]) => [lines, { n, title, path }]));
