@@ -1,0 +1,67 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-11-23T00:00:00Z",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "name": "Append - iching cast analytics additions",
+    "description": "The live container already covers 14 events. This appends GTM coverage for the 4 missing ones: cast_error, cast_method_selected, cast_step_view, share_link_copy. Uses measurementIdOverride G-J1JRVQT2LY, matching the existing GA4 event tags. Import with Append/Merge and Rename on conflicts.",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "iching-takashima",
+      "publicId": "GTM-PK39VX5W",
+      "usageContext": ["WEB"],
+      "fingerprint": "0"
+    },
+    "builtInVariable": [
+      {"type": "EVENT"}
+    ],
+    "variable": [
+      {"accountId":"0","containerId":"0","variableId":"9001","name":"DLV - ACH - lang","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"lang"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"},
+      {"accountId":"0","containerId":"0","variableId":"9002","name":"DLV - ACH - cast_method","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"cast_method"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"},
+      {"accountId":"0","containerId":"0","variableId":"9003","name":"DLV - ACH - stage","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"stage"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"},
+      {"accountId":"0","containerId":"0","variableId":"9004","name":"DLV - ACH - method","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"method"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"},
+      {"accountId":"0","containerId":"0","variableId":"9005","name":"DLV - ACH - step","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"step"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"},
+      {"accountId":"0","containerId":"0","variableId":"9006","name":"DLV - ACH - entry","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"entry"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"},
+      {"accountId":"0","containerId":"0","variableId":"9007","name":"DLV - ACH - hexagram_number","type":"dlv","parameter":[{"type":"TEMPLATE","key":"name","value":"hexagram_number"},{"type":"TEMPLATE","key":"dataLayerVersion","value":"2"},{"type":"BOOLEAN","key":"setDefaultValue","value":"false"}],"parentFolderId":"0","fingerprint":"0"}
+    ],
+    "trigger": [
+      {"accountId":"0","containerId":"0","triggerId":"9001","name":"CE - cast analytics additions","type":"CUSTOM_EVENT","customEventFilter":[{"type":"MATCH_REGEX","parameter":[{"type":"TEMPLATE","key":"arg0","value":"{{_event}}"},{"type":"TEMPLATE","key":"arg1","value":"^(cast_error|cast_method_selected|cast_step_view|share_link_copy)$"}]}],"filter":[],"autoEventFilter":[],"parameter":[],"parentFolderId":"0","fingerprint":"0"}
+    ],
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "9001",
+        "name": "GA4 - Event - cast analytics additions",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "BOOLEAN", "key": "sendEcommerceData", "value": "false"},
+          {"type": "TEMPLATE", "key": "eventName", "value": "{{_event}}"},
+          {"type": "TEMPLATE", "key": "measurementIdOverride", "value": "G-J1JRVQT2LY"},
+          {"type": "LIST", "key": "eventSettingsTable", "list": [
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"lang"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - lang}}"}]},
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"cast_method"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - cast_method}}"}]},
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"stage"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - stage}}"}]},
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"method"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - method}}"}]},
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"step"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - step}}"}]},
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"entry"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - entry}}"}]},
+            {"type":"MAP","map":[{"type":"TEMPLATE","key":"parameter","value":"hexagram_number"},{"type":"TEMPLATE","key":"parameterValue","value":"{{DLV - ACH - hexagram_number}}"}]}
+          ]}
+        ],
+        "firingTriggerId": ["9001"],
+        "blockingTriggerId": [],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {"type": "MAP"},
+        "consentSettings": {"consentStatus": "NOT_SET"},
+        "parentFolderId": "0",
+        "fingerprint": "0"
+      }
+    ],
+    "fingerprint": "0"
+  }
+}
