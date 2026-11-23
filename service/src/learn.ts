@@ -485,8 +485,14 @@ const DESC: Record<string, Record<Lang, string>> = {
   "moving-lines": { en: "Old and young lines, moving lines, and how the changed hexagram is formed.", zh: "老少之爻、动爻与之卦如何得出。", ja: "老陰老陽、動爻と之卦の求め方。" },
   "takashima-method": { en: "Takashima Donshō’s abbreviated yarrow-stalk method, step by step, with his own worked example.", zh: "高岛呑象三变略筮法，逐步讲解，附其本人占例。", ja: "高島呑象の三変略筮法を一歩ずつ、本人の占例つきで。" },
   "worked-example": { en: "Takashima’s own cast (21, 22, 16 → Meng, line 5 → Huan) taken apart stalk by stalk, read in full, with practice casts and the common mistakes.", zh: "把高岛本人占例（21、22、16 → 蒙卦五爻动 → 之涣）一策一策拆开，完整读一遍，附练习与常见错误。", ja: "高島自身の占例（21・22・16 → 蒙・五爻動 → 之卦は渙）を筮竹一本ずつ分解し、読み通す。練習とよくある間違いつき。" },
-  "how-to-read-the-text": { en: "The verdict vocabulary of the Zhouyi — 吉, 凶, 厉, 悔, 吝, 咎 — and a four-step way to read any judgment or line text, with two lines read through.", zh: "《周易》断语词汇——吉、凶、厉、悔、吝、咎——与四步读法，附两条爻辞的完整走查。", ja: "『周易』の断語の語彙――吉・凶・厉・悔・吝・咎――と四歩の読み方。二つの爻を読み通します。" },
+  "how-to-read-the-text": { en: "The verdict vocabulary of the Zhouyi — 吉, 凶, 厉, 悔, 吝, 咎 — and a four-step way to read any judgment or line text, with two lines read through.", zh: "《周易》断语词汇——吉、凶、厉、悔、吝、咎——与四步读法，附两条爻辞的完整走查。", ja: "易経の経文（卦辞・爻辞）の読み方を、断語の語彙（吉・凶・厲・悔・吝・咎）と四歩の読み方で解説。二つの爻辞を実際に読み通します。" },
   "related-hexagrams": { en: "Inverse, opposite and nuclear hexagrams, with examples.", zh: "综卦、错卦、互卦及其示例。", ja: "綜卦・錯卦・互卦とその例。" },
+};
+
+// Search-result titles for pages whose query wording differs from the on-page
+// title. Only the <title> tag changes; the H1 and navigation keep learnTitle().
+const SEO_TITLE: Partial<Record<string, Partial<Record<Lang, string>>>> = {
+  "how-to-read-the-text": { ja: "経文の読み方｜卦辞・爻辞の断語（吉・凶・厲・悔・吝・咎）を四歩で読む" },
 };
 
 export function learnPage(lang: Lang, slug: string) {
@@ -495,7 +501,7 @@ export function learnPage(lang: Lang, slug: string) {
   const prev = i > 0 ? `<a rel="prev" href="${learnPath(lang, LEARN[i - 1])}">← ${esc(learnTitle(lang, LEARN[i - 1]))}</a>` : "<span></span>";
   const next = i < LEARN.length - 1 ? `<a rel="next" href="${learnPath(lang, LEARN[i + 1])}">${esc(learnTitle(lang, LEARN[i + 1]))} →</a>` : "";
   return {
-    title: learnTitle(lang, slug), description: DESC[slug][lang],
+    title: SEO_TITLE[slug]?.[lang] ?? learnTitle(lang, slug), description: DESC[slug][lang],
     body: `<article class="learn"><p class="kicker">${esc({ en: "Learn", zh: "入门", ja: "入門" }[lang])} · ${i + 1}/${LEARN.length}</p><h1>${esc(learnTitle(lang, slug))}</h1>${body(lang, slug)}<nav class="prevnext">${prev}${next}</nav></article>`,
   };
 }

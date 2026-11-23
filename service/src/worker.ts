@@ -60,6 +60,12 @@ function preferredLang(req: Request): Lang {
   return (first as Lang) || "en";
 }
 
+const STARTROW: Record<Lang, { cast: string; example: string }> = {
+  en: { cast: "Cast a hexagram now", example: "See a complete cast, step by step" },
+  zh: { cast: "现在起一卦", example: "先看一次完整的起卦示例" },
+  ja: { cast: "今すぐ卦を立てる", example: "まず完全な起卦の実例を見る" },
+};
+
 const LANDING: Record<Lang, { title: string; description: string }> = {
   en: { title: "I Ching · Takashima Method: cast and read the Book of Changes, step by step",
     description: "Split the yarrow stalks yourself and see every step of the cast by Takashima Donshō's method. The classic text, Legge's translation and Takashima's commentary. No predictions." },
@@ -107,6 +113,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
     .on('meta[property="og:description"]', { element: (e) => e.setAttribute("content", meta.description) })
     .on('meta[name="twitter:card"]', { element: (e) => e.setAttribute("content", "summary_large_image") })
     .on("head", { element: (e) => { e.append(head, { html: true }); } })
+    .on("#prepare", { element: (e) => { const s = STARTROW[l]; e.prepend(`<p class="startrow"><button type="button" class="btn" data-action="ready">${s.cast}</button> <a class="btn ghost" href="/${l}/learn/worked-example">${s.example}</a></p>`, { html: true }); } })
     .on("#prep-title", { element: (e) => { e.setInnerContent(g.title); } })
     .on("#prep-intro", { element: (e) => { e.setInnerContent(g.intro); } })
     .on("#prep-steps", { element: (e) => { e.setInnerContent(steps, { html: true }); } })
@@ -129,7 +136,12 @@ export default {
     const path = url.pathname;
     // Pages move to the custom domain once CANONICAL_HOST is set; the API and MCP stay on every host so existing clients keep working.
     const home = env.CANONICAL_HOST;
-    if (home && url.hostname !== home && url.hostname !== "localhost" && req.method === "GET" && path !== "/mcp" && !path.startsWith("/api/"))
+    // http→https on the canonical host, keyed on the CF-Visitor scheme:
+    // wrangler dev simulates the production host over plain http, so keying on
+    // url.protocol alone would redirect-loop every local preview.
+    const visitorScheme = /"scheme":"([a-z]+)"/.exec(req.headers.get("cf-visitor") ?? "")?.[1];
+    const isHttp = visitorScheme !== undefined && visitorScheme !== "https";
+    if (home && url.hostname !== "localhost" && req.method === "GET" && path !== "/mcp" && !path.startsWith("/api/") && (url.hostname !== home || isHttp))
       return Response.redirect(`https://${home}${path}${url.search}`, 301);
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: { ...CORS, "Access-Control-Allow-Methods": "GET, POST, OPTIONS" } });
     const ip = req.headers.get("CF-Connecting-IP") ?? "unknown";

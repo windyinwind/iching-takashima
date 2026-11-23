@@ -9,7 +9,7 @@ export const infoPath = (lang: Lang, slug: InfoSlug) => `/${lang}/${slug}`;
 const REPO = "https://github.com/windyinwind/iching-takashima";
 const ISSUES = `${REPO}/issues`;
 const BOT = "https://x.ai/bot/1UcfT98mXBGBnDMaoGtG2";
-const UPDATED = { en: "Last updated: 18 November 2026", zh: "最后更新：2026 年 11 月 18 日", ja: "最終更新：2026年11月18日" };
+const UPDATED = { en: "Last updated: 23 November 2026", zh: "最后更新：2026 年 11 月 23 日", ja: "最終更新：2026年11月23日" };
 
 export const INFO_TITLES: Record<InfoSlug, Record<Lang, string>> = {
   about: { en: "About this site", zh: "关于本站", ja: "このサイトについて" },
@@ -130,7 +130,7 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <h2>When you visit</h2>
 <p>The site runs on Cloudflare. Like any web server, it receives your IP address, browser type, the page address and the time of each request. Cloudflare uses these to deliver the page and protect against abuse, and the site’s request logs keep them for a few days for fixing errors. They are not used to identify you or build a profile. See ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare’s privacy policy")}.</p>
 <h2>Analytics</h2>
-<p>The site loads ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")} (container <code>GTM-PK39VX5W</code>) to load ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}. It records the pages you view, the page address, an approximate location derived from your IP address, and browser and device information. Google may set cookies such as <code>_ga</code> to tell visits apart. The site does not use this analytics data to build advertising profiles. See ${a("https://policies.google.com/privacy", "Google’s privacy policy")}.</p>
+<p>The site loads ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")} (container <code>GTM-PK39VX5W</code>) to load ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}. It records the pages you view, the page address, an approximate location derived from your IP address, and browser and device information. It also records interactions on the page — completing a cast, following links between hexagrams, using the hexagram builder and how far a page is scrolled — so the site can be improved. Google may set cookies such as <code>_ga</code> to tell visits apart. The site does not use this analytics data to build advertising profiles. See ${a("https://policies.google.com/privacy", "Google’s privacy policy")}.</p>
 <p>To opt out, block or delete these cookies in your browser settings, use a tracker blocker, or install ${a("https://tools.google.com/dlpage/gaoptout", "Google’s Analytics opt-out add-on")}.</p>
 <h2>Advertising</h2>
 <p>The site shows advertising served by ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")}. Google and third-party vendors use cookies to serve ads based on your prior visits to this and other websites; Google’s use of advertising cookies enables it and its partners to serve ads based on those visits. See ${a("https://policies.google.com/technologies/ads", "how Google uses data in advertising")}.</p>
@@ -154,7 +154,7 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <h2>访问时</h2>
 <p>本站运行在 Cloudflare 上。和所有网站一样，服务器会收到每次请求的 IP 地址、浏览器类型、页面地址和时间。Cloudflare 用这些来送达页面、防范滥用；本站的请求日志会保留几天，用于排查错误。这些信息不用于识别你或建立画像。详见 ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare 隐私政策")}。</p>
 <h2>访问统计</h2>
-<p>本站通过 ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（容器 <code>GTM-PK39VX5W</code>）加载 ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}。它记录你浏览的页面、页面地址、由 IP 推算的大致地区，以及浏览器与设备信息。Google 可能写入 <code>_ga</code> 等 Cookie 以区分访问。本站不将这些统计数据用于广告画像。详见 ${a("https://policies.google.com/privacy", "Google 隐私政策")}。</p>
+<p>本站通过 ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（容器 <code>GTM-PK39VX5W</code>）加载 ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}。它记录你浏览的页面、页面地址、由 IP 推算的大致地区，以及浏览器与设备信息。它还记录页面内的互动——完成一次起卦、点击卦与卦之间的链接、使用画卦工具、页面的滚动深度——用于改进本站。Google 可能写入 <code>_ga</code> 等 Cookie 以区分访问。本站不将这些统计数据用于广告画像。详见 ${a("https://policies.google.com/privacy", "Google 隐私政策")}。</p>
 <p>若不想被统计，可在浏览器设置中阻止或删除这些 Cookie、使用追踪拦截器，或安装 ${a("https://tools.google.com/dlpage/gaoptout", "Google Analytics 停用插件")}。</p>
 <h2>广告</h2>
 <p>本站投放由 ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")} 提供的广告。Google 及第三方供应商会使用 Cookie，根据你此前对本站及其他网站的访问来投放广告；Google 使用广告 Cookie 后，它及其合作伙伴便可依据你的访问记录投放广告。详见 ${a("https://policies.google.com/technologies/ads", "Google 如何将数据用于广告")}。</p>
@@ -178,7 +178,7 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <h2>閲覧時</h2>
 <p>本サイトは Cloudflare 上で動いています。一般的なウェブサーバーと同じく、リクエストごとに IP アドレス、ブラウザの種類、ページのアドレス、時刻を受け取ります。Cloudflare はこれをページの配信と不正利用の防止に使い、本サイトのリクエストログはエラー対応のため数日間保持します。個人の特定やプロファイル作成には使いません。詳しくは ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare のプライバシーポリシー")} をご覧ください。</p>
 <h2>アクセス解析</h2>
-<p>本サイトは ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（コンテナ <code>GTM-PK39VX5W</code>）で ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")} を読み込みます。閲覧したページ、ページのアドレス、IP アドレスから推定されるおおよその地域、ブラウザ・端末の情報が記録されます。Google は訪問を区別するため <code>_ga</code> などの Cookie を設定する場合があります。本サイトはこの解析データを広告目的のプロファイル作成には利用しません。詳しくは ${a("https://policies.google.com/privacy", "Google のプライバシーポリシー")} をご覧ください。</p>
+<p>本サイトは ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（コンテナ <code>GTM-PK39VX5W</code>）で ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")} を読み込みます。閲覧したページ、ページのアドレス、IP アドレスから推定されるおおよその地域、ブラウザ・端末の情報が記録されます。また、起卦の完了、卦同士のリンクのクリック、卦ビルダーの利用、ページのスクロール深度といったページ内の操作も、サイト改善のために記録されます。Google は訪問を区別するため <code>_ga</code> などの Cookie を設定する場合があります。本サイトはこの解析データを広告目的のプロファイル作成には利用しません。詳しくは ${a("https://policies.google.com/privacy", "Google のプライバシーポリシー")} をご覧ください。</p>
 <p>解析を拒否するには、ブラウザの設定でこれらの Cookie をブロック・削除する、トラッキング防止機能を使う、または ${a("https://tools.google.com/dlpage/gaoptout", "Google Analytics オプトアウト アドオン")} をインストールしてください。</p>
 <h2>広告</h2>
 <p>本サイトは ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")} の広告を表示します。Google を含む第三者配信事業者は Cookie を使用して、本サイトや他のサイトへの過去のアクセス情報に基づいて広告を配信します。Google が広告 Cookie を使用することにより、Google とそのパートナーはあなたのアクセス情報に基づく広告を配信できます。詳しくは ${a("https://policies.google.com/technologies/ads", "広告における Google のデータ使用")} をご覧ください。</p>

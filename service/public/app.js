@@ -264,6 +264,7 @@ const stalks = {
     this.busy = true;
     const left = this.cursor;
     this.counts.push(left);
+    track("cast_change_completed", { lang, change: this.counts.length });
     $("#stalks").classList.add("split");
     $("#stalk-status").textContent = t("left")(left, 49 - left);
     $("#stalk-counts").append(el("li", {}, t("countItem")(this.counts.length, left)));
@@ -467,6 +468,14 @@ function restart() {
   stalks.reset();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+// Reading behaviour: do readers follow the result into the hexagram, line and
+// trigram pages? Only clicks inside the reveal/reading flow count here; the
+// sidebars are tracked separately by explore.js.
+document.addEventListener("click", (ev) => {
+  const a = ev.target.closest('#reveal a[href*="/hexagram/"], #reveal a[href*="/trigram/"], #reading a[href*="/hexagram/"], #reading a[href*="/trigram/"], #after a[href*="/hexagram/"], #after a[href*="/trigram/"]');
+  if (a) track("reading_link_click", { lang, target: a.getAttribute("href") });
+});
 
 document.addEventListener("click", async (ev) => {
   const a = ev.target.closest("[data-action]");
