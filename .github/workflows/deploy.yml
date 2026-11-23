@@ -23,7 +23,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Test
-        run: npm test
+        # src/generated/excerpts.json is generated, not committed (same as tests.yml).
+        run: npm run build && npm test
       - name: Deploy
         run: npx -y wrangler@4 deploy
         env:
