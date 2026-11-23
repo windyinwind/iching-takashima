@@ -67,8 +67,8 @@ const STARTROW: Record<Lang, { cast: string; example: string }> = {
 };
 
 const LANDING: Record<Lang, { title: string; description: string }> = {
-  en: { title: "I Ching · Takashima Method: cast and read the Book of Changes, step by step",
-    description: "Split the yarrow stalks yourself and see every step of the cast by Takashima Donshō's method. The classic text, Legge's translation and Takashima's commentary. No predictions." },
+  en: { title: "I Ching · Takashima Method: cast a hexagram step by step",
+    description: "Split the yarrow stalks yourself and see every step of the cast by Takashima Donshō's method, with the classic text, Legge's translation and commentary. No predictions." },
   zh: { title: "周易 · 高岛略筮：按高岛呑象之法起卦，步步可见",
     description: "亲手分筮竹，按高岛呑象略筮法起卦，每一变怎么分、怎么数、得何卦，全部展示。附卦辞爻辞与《増補高島易断》原注，不作预测。" },
   ja: { title: "易経 · 高島流略筮：筮竹を分けて、起卦の手順をすべて見る",
