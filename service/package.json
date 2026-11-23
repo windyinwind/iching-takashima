@@ -10,5 +10,6 @@
     "dev": "python3 scripts/gen_excerpts.py && wrangler dev",
     "deploy": "python3 scripts/gen_excerpts.py && wrangler deploy"
   },
-  "engines": { "node": ">=23.6" }
+  "engines": { "node": ">=23.6" },
+  "devDependencies": { "wrangler": "^4.166.0" }
 }
