@@ -458,6 +458,9 @@ export function trigramsIndex(lang: Lang, origin: string) {
     `<h1>${esc(title)}</h1><ol class="grid tri-grid">${ORDER.map((t) => `<li>${tLink(lang, t)}</li>`).join("")}</ol>`);
 }
 
+/** Bump when page content or titles change, so Google knows to recrawl. */
+const SITEMAP_LASTMOD = "2026-11-24";
+
 export function sitemap(origin: string) {
   const urls: string[] = [];
   for (const l of LANGS) {
@@ -474,7 +477,7 @@ export function sitemap(origin: string) {
     return LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l === "zh" ? "zh-Hans" : l}" href="${href(l)}"/>`).join("") +
       `<xhtml:link rel="alternate" hreflang="x-default" href="${href("en")}"/>`;
   };
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map((u) => `<url><loc>${origin}${u}</loc>${altFor(u)}<lastmod>2026-11-18</lastmod></url>`).join("\n")}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map((u) => `<url><loc>${origin}${u}</loc>${altFor(u)}<lastmod>${SITEMAP_LASTMOD}</lastmod></url>`).join("\n")}\n</urlset>\n`;
 }
 
 /** Page URLs for a cast, so the website, the API and the MCP server can link every part of a reading. */
