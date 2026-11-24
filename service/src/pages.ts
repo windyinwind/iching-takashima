@@ -180,6 +180,7 @@ function shell(m: Meta, body: string) {
 ${GTM_HEAD}
 ${ADSENSE_HEAD}
 ${m.jsonld ? `<script type="application/ld+json">${JSON.stringify(m.jsonld).replace(/</g, "\\u003c")}</script>` : ""}
+<!-- buildcheck-2026-11-24 -->
 </head><body>
 ${GTM_NOSCRIPT}
 <header class="top"><a class="brand" href="/${m.lang}/">${esc(w.site)}</a><nav class="langs pages" aria-label="Language">${langs}</nav></header>
