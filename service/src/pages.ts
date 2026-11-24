@@ -72,6 +72,8 @@ export function hexTitle(lang: Lang, n: number) {
   if (lang === "ja") return `第${n}卦 ${T.hexagram_ja[String(n)][0]}（${T.hexagram_ja[String(n)][1]}）`;
   return `第 ${n} 卦 ${h.name}`;
 }
+/** Kanji name plus reading, e.g. 山雷頤（さんらいい）: the form Japanese searchers actually type. */
+const jaName = (n: number) => `${T.hexagram_ja[String(n)][0]}（${T.hexagram_ja[String(n)][1]}）`;
 const hexShort = (lang: Lang, n: number) =>
   lang === "en" ? `${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name}` : lang === "ja" ? `${n} ${T.hexagram_ja[String(n)][0]}` : `${n} ${getByNumber(n).name}`;
 
@@ -355,7 +357,7 @@ ${adUnit(AD_SLOT_DISPLAY)}
 ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
 </article>`;
   return shell({
-    lang, origin, title: lang === "en" ? `${hexTitle(lang, n)} · I Ching` : `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`, side: { n },
+    lang, origin, title: lang === "en" ? `${hexTitle(lang, n)} · I Ching` : lang === "ja" ? `${jaName(n)} 第${n}卦 · 易経 · 高島流略筮` : `${hexTitle(lang, n)} · ${w.site}`, description: descFor(lang, n), path: (l) => hexPath(l, n), og: `/og/${n}.png`, side: { n },
     jsonld: {
       "@context": "https://schema.org",
       "@graph": [
@@ -402,8 +404,11 @@ export function linePage(lang: Lang, n: number, p: number, origin: string) {
   const title = `${hexTitle(lang, n)} · ${w.line(p)} ${label}`;
   // The <title> drops the parenthetical gloss and the long site name: the full form
   // ran past 60 characters on every English line page and got cut in results.
+  // Search data (GSC, Nov 2026): people type "hexagram 46.6" (hexagram.line) in English and
+  // the kanji name ("山雷頤", "山天大畜 上") in Japanese, so each title leads with that form.
   const headTitle = lang === "en"
-    ? `Hexagram ${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name} · ${w.line(p)} ${label} · I Ching`
+    ? `Hexagram ${n}.${p + 1} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name} · ${w.line(p)} ${label} · I Ching`
+    : lang === "ja" ? `${jaName(n)} ${w.line(p)} ${label} · 第${n}卦 · 易経`
     : `${title} · ${w.site}`;
   const body = `<article><p class="kicker"><a href="${hexPath(lang, n)}">${esc(hexTitle(lang, n))}</a></p>
 ${lineSection(lang, n, p, { heading: "h1", link: false })}
@@ -413,7 +418,7 @@ ${adUnit(AD_SLOT_INARTICLE)}
   const tail = " Drawn and explained, with Takashima's commentary.";
   const desc = lang === "en"
     ? `${headTitle.replace(/ · I Ching$/, "")}: “${clip(LEGGE[String(n)].lines[p], 155 - tail.length - headTitle.length)}”${tail}`
-    : lang === "ja" ? `${title}：${TRAD[String(n)].lines[p]} 爻の図・構造・之卦と高島の解釈。`
+    : lang === "ja" ? `${jaName(n)} ${w.line(p)} ${label}：${TRAD[String(n)].lines[p]} 爻の図・構造・之卦と高島の解釈。`
       : `${title}：${getByNumber(n).lines[p]} 爻位图解、义理、之卦与高岛原注。`;
   return shell({ lang, origin, title: headTitle, description: desc, path: (l) => linePath(l, n, p), og: `/og/${n}.png`, side: { n, p } }, body);
 }
