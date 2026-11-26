@@ -181,7 +181,8 @@ export default {
       }
     }
     if (path === "/sitemap.xml") return new Response(sitemap(origin), { headers: { "Content-Type": "application/xml", "Cache-Control": "public, max-age=86400" } });
-    if (path === "/robots.txt") return new Response(`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`, { headers: { "Content-Type": "text/plain" } });
+    if (path === "/robots.txt") return new Response(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /mcp\nSitemap: ${origin}/sitemap.xml\n`, { headers: { "Content-Type": "text/plain" } });
+    if (path === "/favicon.ico") return Response.redirect(`${origin}/favicon.svg`, 301);
 
     const hasCast = CAST_KEYS.some((k) => url.searchParams.has(k));
     if (path === "/" || path === "/index.html") {
