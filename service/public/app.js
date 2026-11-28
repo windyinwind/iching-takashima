@@ -69,6 +69,40 @@ const UI = {
     upperTri: "上卦", lowerTri: "下卦", lineLink: "此爻详解",
     error: "出错了，请再试一次。",
   },
+  hant: {
+    brand: "周易 · 高島略筮",
+    sharedNote: "這是別人分享的一卦。同一輸入永遠得同一卦。",
+    startOwn: "自己起一卦",
+    step1: "一 · 準備", step2: "二 · 起卦", step3: "三 · 逐步推演", step4: "四 · 經文", step5: "五 · 起卦之後",
+    ready: "我準備好了",
+    chooseTitle: "起卦",
+    noQuestion: "所問之事放在心裡，不要寫出來。它不會進入任何系統。",
+    tabStalks: "分筮竹", tabPhrase: "說一句話", tabNumbers: "報數", tabTime: "此刻",
+    stalksHow: "四十九根筮竹在移動。心最專一的那一刻，點一下（或按空格）隨手分為二，不要瞄準。共分三次。",
+    divide: "分",
+    phraseLabel: "當下浮現的一句話",
+    cast: "起卦",
+    numbersLabel: "隨口報兩三個正整數",
+    timeHow: "準備好時，以此刻（你所在地的時間）起卦。",
+    castNow: "以此刻起卦",
+    showAll: "顯示全部步驟",
+    judgment: "卦辭", takashima: "高島原書", zhan: "高島分事占斷", cases: "高島占例",
+    copyLink: "複製這一卦的鏈接", openGrok: "問 Grok Bot", restart: "重新起卦",
+    footer: "這是經文與方法的檢索工具：展示過程與出處，不作預測。結論永遠在你。",
+    mcp: "供 AI 助手使用的 MCP 服務：",
+    left: (l, r) => `左手 ${l} 策 · 右手 ${r} 策`,
+    countItem: (i, l) => `第${"一二三"[i - 1]}變：左手 ${l} 策`,
+    waiting: (i) => `第${"一二三"[i - 1]}變（共三變）：準備好就點`,
+    casting: "起卦中…",
+    movingLine: (label) => `動爻 · ${label}`,
+    leggeSrc: "",
+    tkNote: "以下為高島原書之辭，照錄原文。",
+    omitted: "健康、生育與戰事相關內容已略去。",
+    copied: "鏈接已複製。",
+    allHex: "六十四卦",
+    upperTri: "上卦", lowerTri: "下卦", lineLink: "此爻詳解",
+    error: "出錯了，請再試一次。",
+  },
   ja: {
     brand: "易経 · 高島流略筮",
     sharedNote: "共有された卦です。同じ入力からは必ず同じ卦が得られます。",
@@ -143,6 +177,7 @@ function pickLang() {
   const saved = store.get("lang");
   if (saved in UI) return saved;
   const nav = (navigator.language || "").toLowerCase();
+  if (/^zh-(hant|tw|hk|mo)\b/.test(nav)) return "hant";
   return nav.startsWith("zh") ? "zh" : nav.startsWith("ja") ? "ja" : "en";
 }
 
@@ -166,7 +201,7 @@ async function api(path, q) {
 // ---------------------------------------------------------------------------
 
 function applyChrome() {
-  document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
+  document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang === "hant" ? "zh-Hant" : lang;
   document.title = t("brand");
   for (const n of $$("[data-i18n]")) {
     const v = t(n.dataset.i18n);
@@ -179,7 +214,8 @@ function applyChrome() {
 
 function quoteBlock(item) {
   if (!item.quote) return null;
-  const q = el("blockquote", { class: "quote" }, el("span", { lang: lang === "en" ? "zh" : lang }, item.quote));
+  const qLang = lang === "en" ? "zh" : lang === "zh" ? "zh-Hans" : lang === "hant" ? "zh-Hant" : lang;
+  const q = el("blockquote", { class: "quote" }, el("span", { lang: qLang }, item.quote));
   if (item.quote_en) q.append(el("div", {}, "“" + item.quote_en + "”"));
   if (item.src) q.append(el("cite", {}, item.src));
   return q;
@@ -442,17 +478,21 @@ async function loadReading() {
     if (lang === "en") $("#read-line").replaceChildren(read.english.lines[p], original(ln.text));
     else if (lang === "ja") $("#read-line").replaceChildren(el("span", { lang: "ja" }, read.japanese.lines[p]));
     else $("#read-line").replaceChildren(ln.text);
-    $("#read-meaning").replaceChildren(...(lang === "zh" && ln.meaning ? [el("p", {}, ln.meaning.xiang), el("p", {}, ln.meaning.li)] : []));
+    $("#read-meaning").replaceChildren(...((lang === "zh" || lang === "hant") && ln.meaning ? [el("p", {}, ln.meaning.xiang), el("p", {}, ln.meaning.li)] : []));
   }
   $("#read-source").textContent = lang === "en" ? t("leggeSrc") : "";
   show("#reading");
 
   $("#tk").hidden = !tk;
   if (tk) {
+    const tkLang = lang === "hant" ? "zh-Hant" : "zh";
+    $("#tk-commentary").lang = tkLang;
+    $("#tk-zhan").lang = tkLang;
+    $("#tk-cases").lang = tkLang;
     $("#tk-note").textContent = t("tkNote") + (tk.omitted.zhan || tk.omitted.cases ? " " + t("omitted") : "");
     $("#tk-commentary").textContent = tk.commentary;
     $("#tk-zhan").replaceChildren(...(tk.zhan_general ? [el("dd", {}, tk.zhan_general)] : []),
-      ...tk.zhan.flatMap((z) => [el("dt", {}, "问" + z.topic), el("dd", {}, z.text)]));
+      ...tk.zhan.flatMap((z) => [el("dt", {}, (lang === "hant" ? "問" : "问") + z.topic), el("dd", {}, z.text)]));
     $("#tk-zhan-wrap").hidden = !tk.zhan.length && !tk.zhan_general;
     $("#tk-cases").replaceChildren(...tk.cases.map((x) => el("div", { class: "case" }, x.cast ? el("b", {}, x.cast) : null, x.text)));
     $("#tk-cases-wrap").hidden = !tk.cases.length;

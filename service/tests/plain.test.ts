@@ -7,6 +7,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { PLAIN } from "../src/engine/data.ts";
+import { toHant } from "../src/engine/hant.ts";
 import { linePage } from "../src/pages.ts";
 import { read } from "../src/engine/index.ts";
 
@@ -41,10 +42,10 @@ test("plain language has no stray latin in zh/ja and no CJK in en", () => {
 
 test("line pages render the plain-language block in every language", () => {
   const origin = "https://takashima-iching.com";
-  for (const lang of LANGS) {
+  for (const lang of [...LANGS, "hant"] as const) {
     const html = linePage(lang, 56, 3, origin); // 旅卦九四
     assert.match(html, /class="plain"/, `${lang}: plain block missing`);
-    const plain = PLAIN.lines["56-3"][lang];
+    const plain = lang === "hant" ? toHant(PLAIN.lines["56-3"].zh) : PLAIN.lines["56-3"][lang];
     assert.ok(html.includes(plain), `${lang}: plain text not rendered verbatim`);
     assert.doesNotMatch(html.slice(html.indexOf('class="plain"')).slice(0, 600), /undefined|\[object Object\]/, `${lang}: garbage in plain block`);
   }
@@ -57,6 +58,11 @@ test("engine.read exposes plain at top level and on each line (mini-tool/MCP con
   assert.deepEqual(line.line.plain, PLAIN.lines["56-3"]);
   // plain is a sibling of meaning, not nested inside it
   assert.ok(!("plain" in (line.line.meaning ?? {})), "plain must not be nested under meaning");
+
+  const hexHant = read(56, null, "hant");
+  assert.equal(hexHant.plain.hant, toHant(PLAIN.hexagrams["56"].zh));
+  assert.equal(hexHant.plain.en, PLAIN.hexagrams["56"].en);
+  assert.equal(hexHant.plain.ja, PLAIN.hexagrams["56"].ja);
 });
 
 test("plain.json committed copy matches the generator source", () => {

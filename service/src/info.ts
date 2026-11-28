@@ -1,6 +1,7 @@
 // Site information pages: about, contact, privacy and terms, in three languages.
 // Keep the privacy page true to what the site actually does; update it whenever the analytics or ads in use change.
 import type { Lang } from "./pages.ts";
+import { toHant } from "./engine/hant.ts";
 
 export const INFO = ["about", "contact", "privacy", "terms"] as const;
 export type InfoSlug = (typeof INFO)[number];
@@ -9,39 +10,113 @@ export const infoPath = (lang: Lang, slug: InfoSlug) => `/${lang}/${slug}`;
 const REPO = "https://github.com/windyinwind/iching-takashima";
 const ISSUES = `${REPO}/issues`;
 const BOT = "https://x.ai/bot/1UcfT98mXBGBnDMaoGtG2";
-const UPDATED = { en: "Last updated: 23 November 2026", zh: "最后更新：2026 年 11 月 23 日", ja: "最終更新：2026年11月23日" };
+const UPDATED = { en: "Last updated: 23 November 2026", zh: "最后更新：2026 年 11 月 23 日", hant: "最後更新：2026 年 11 月 23 日", ja: "最終更新：2026年11月23日" };
 
 export const INFO_TITLES: Record<InfoSlug, Record<Lang, string>> = {
-  about: { en: "About this site", zh: "关于本站", ja: "このサイトについて" },
-  contact: { en: "Contact and support", zh: "联系与支持", ja: "お問い合わせ・サポート" },
-  privacy: { en: "Privacy policy", zh: "隐私政策", ja: "プライバシーポリシー" },
-  terms: { en: "Terms of use", zh: "使用条款", ja: "利用規約" },
+  about: { en: "About this site", zh: "关于本站", hant: "關於本站", ja: "このサイトについて" },
+  contact: { en: "Contact and support", zh: "联系与支持", hant: "聯繫與支持", ja: "お問い合わせ・サポート" },
+  privacy: { en: "Privacy policy", zh: "隐私政策", hant: "隱私政策", ja: "プライバシーポリシー" },
+  terms: { en: "Terms of use", zh: "使用条款", hant: "使用條款", ja: "利用規約" },
 };
 
 const DESCRIPTIONS: Record<InfoSlug, Record<Lang, string>> = {
   about: {
     en: "What this I Ching site is, where its texts come from, and how the Takashima method of casting works here.",
     zh: "本站是什么、经文与注释的出处，以及本站如何按高岛略筮法起卦。",
+    hant: "本站是什麼、經文與注釋的出處，以及本站如何按高島略筮法起卦。",
     ja: "このサイトの目的、経文と解釈の出典、高島流略筮法による起卦の仕組み。",
   },
   contact: {
     en: "How to report a problem, suggest a correction to a text or translation, or ask a question about the site.",
     zh: "报告问题、指正经文或译文、咨询本站的方式。",
+    hant: "報告問題、指正經文或譯文、諮詢本站的方式。",
     ja: "不具合の報告、経文・翻訳の誤りのご指摘、ご質問の方法。",
   },
   privacy: {
     en: "What data this site processes when you visit or cast a hexagram, what stays in your browser, and what is kept.",
     zh: "访问本站或起卦时处理哪些数据、哪些只留在你的浏览器、保存多久。",
+    hant: "訪問本站或起卦時處理哪些數據、哪些只留在你的瀏覽器、保存多久。",
     ja: "サイト閲覧・起卦の際に扱うデータ、ブラウザ内にだけ残るもの、保存期間。",
   },
   terms: {
     en: "The terms for using this I Ching study site, its API and its MCP server.",
     zh: "使用本站及其 API、MCP 服务的条款。",
+    hant: "使用本站及其 API、MCP 服務的條款。",
     ja: "本サイトと API・MCP サーバーの利用条件。",
   },
 };
 
 const a = (href: string, text: string) => `<a href="${href}"${href.startsWith("http") ? ' rel="noopener"' : ""}>${text}</a>`;
+
+const aboutZh = (o: string, l: "zh" | "hant") => `
+<p>本站是研读《周易》的工具。你可以按高岛呑象的略筮法亲手分筮起卦，每一步怎么分、怎么数都看得见，再读所得之卦的经文与高岛原注。</p>
+<h2>做什么，不做什么</h2>
+<p>本站展示方法与出处，不作预测，也不提供建议。卦对你的处境意味着什么，由你自己判断。</p>
+<h2>出处</h2>
+<ul>
+<li>《周易》经文及《十翼》传文。</li>
+<li>英文：James Legge 译 <em>The Yî King</em>（1882 年，《东方圣书》第 16 卷），已进入公有领域。</li>
+<li>高岛呑象（1832–1914）《増補高島易断》汉文本。高岛注的英文、日文译文由机器辅助翻译，再逐条对照汉文核校；本站页面只载节录。</li>
+<li>繁体中文转换字典改编自 OpenCC（Apache License 2.0），并经《周易》经文人工核校。</li>
+</ul>
+<p>如发现经文或译文有误，请${a(`/${l}/contact`, "告诉我们")}。</p>
+<h2>其他用法</h2>
+<ul>
+<li>${a(BOT, "Grok Bot")}：在对话中陪你起卦、读卦。</li>
+<li>免费的 MCP 服务（供 AI 助手使用）：<code>${o}/mcp</code>，以及 JSON API。</li>
+<li>起卦引擎开源（MIT 许可），见 ${a(REPO, "GitHub")}。</li>
+</ul>
+<p>本站由个人开发者独立运营。</p>`;
+
+const contactZh = (l: "zh" | "hant") => `
+<p>报告程序问题、经文错字、译文误读汉文，或询问本站相关事宜，请${a(ISSUES, "在 GitHub 提交 issue")}。需要一个免费的 GitHub 账号；issue 是公开的，请勿填写个人信息。</p>
+<p>指正经文或译文时，请附上页面地址（或卦与爻），并说明你认为应当如何。</p>
+<h2>关于具体卦的解读</h2>
+<p>本站不为个人解卦。想把一卦细细谈开，可以用 ${a(BOT, "Grok Bot")}，或读${a(`/${l}/learn/reading-a-hexagram`, "入门")}各篇。</p>
+<h2>隐私相关</h2>
+<p>本站不设账号，也不保存起卦记录（见${a(`/${l}/privacy`, "隐私政策")}），通常并无关于你的数据。如有隐私方面的问题，请提交 issue，只需写明希望私下联系。</p>`;
+
+const privacyZh = (l: "zh" | "hant") => `
+<p class="muted">${UPDATED[l]}</p>
+<p>简而言之：不设账号，不保存起卦结果，也从不索取或传送你心里所问之事。本站使用 Google Tag Manager 统计访问量，并投放由 Google AdSense 提供的广告，见下文。</p>
+<h2>访问时</h2>
+<p>本站运行在 Cloudflare 上。和所有网站一样，服务器会收到每次请求的 IP 地址、浏览器类型、页面地址和时间。Cloudflare 用这些来送达页面、防范滥用；本站的请求日志会保留几天，用于排查错误。这些信息不用于识别你或建立画像。详见 ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare 隐私政策")}。</p>
+<h2>访问统计</h2>
+<p>本站通过 ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（容器 <code>GTM-PK39VX5W</code>）加载 ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}。它记录你浏览的页面、页面地址、由 IP 推算的大致地区，以及浏览器与设备信息。它还记录页面内的互动——完成一次起卦、选择起卦方法、点击卦与卦之间的链接、复制卦的链接、使用画卦工具、页面的滚动深度——用于改进本站。Google 可能写入 <code>_ga</code> 等 Cookie 以区分访问。本站不将这些统计数据用于广告画像。详见 ${a("https://policies.google.com/privacy", "Google 隐私政策")}。</p>
+<p>若不想被统计，可在浏览器设置中阻止或删除这些 Cookie、使用追踪拦截器，或安装 ${a("https://tools.google.com/dlpage/gaoptout", "Google Analytics 停用插件")}。</p>
+<h2>广告</h2>
+<p>本站投放由 ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")} 提供的广告。Google 及第三方供应商会使用 Cookie，根据你此前对本站及其他网站的访问来投放广告；Google 使用广告 Cookie 后，它及其合作伙伴便可依据你的访问记录投放广告。详见 ${a("https://policies.google.com/technologies/ads", "Google 如何将数据用于广告")}。</p>
+<p>你可以在 ${a("https://www.google.com/settings/ads", "Google 广告设置")} 中退出个性化广告，也可以在 ${a("https://www.aboutads.info", "aboutads.info")} 退出部分第三方供应商对 Cookie 的使用。</p>
+<h2>起卦时</h2>
+<p>你分筮得到的数字会发送到服务器，服务器算出卦象后返回。起卦结果不保存，只会作为页面地址的一部分出现在请求日志中，同样保留几天。</p>
+<p>“分享”链接把卦象写在链接里，拿到链接的人都能看到这一卦。</p>
+<h2>浏览器中</h2>
+<p>本站在浏览器的本地存储中记住你选的语言；切换语言时，会在会话存储中暂存未完成的起卦。两者都不离开你的设备，可在浏览器设置中清除。本站自身不设置 Cookie；Google Analytics 与 AdSense 可能设置上文所述的 Cookie。</p>
+<h2>API、MCP 服务与 Grok Bot</h2>
+<p>对 API 与 MCP 服务的请求，处理方式与页面请求相同，不作保存。${a(BOT, "Grok Bot")} 运行在 xAI 的服务上，适用 ${a("https://x.ai/legal/privacy-policy", "xAI 隐私政策")}。</p>
+<h2>未成年人</h2>
+<p>本站不面向儿童，也不向任何人收集个人信息。</p>
+<h2>变更</h2>
+<p>本站于 2026 年 11 月 15 日加入访问统计，2026 年 11 月 18 日加入广告（Google AdSense），本页均已在上线前更新。若所用统计或广告方式改变，本页会在其上线前更新。</p>
+<h2>联系</h2>
+<p>见${a(`/${l}/contact`, "联系与支持")}。</p>`;
+
+const termsZh = (l: "zh" | "hant") => `
+<p class="muted">${UPDATED[l]}</p>
+<h2>研读工具，而非建议</h2>
+<p>本站呈现经典原文、注释与传统起卦方法，供研读与思考之用，不作预测。本站内容均不构成医疗、法律、财务或其他专业建议，你所作的决定由你自己负责。</p>
+<h2>使用本站、API 与 MCP 服务</h2>
+<p>本站、JSON API 与 MCP 服务可以免费自由使用，包括接入你自己的应用和 AI 助手。请勿过量请求；为保证大家都能使用，自动化流量可能被限速或阻止。</p>
+<h2>内容</h2>
+<ul>
+<li>《周易》、Legge 1882 年英译与高岛原文均属公有领域。</li>
+<li>起卦引擎以 ${a(`${REPO}/blob/main/LICENSE`, "MIT 许可")} 开源。</li>
+<li>本站所作高岛注的英文、日文译文，以及本站撰写的说明文字，版权归本站所有。欢迎简短引用并附上链接。</li>
+</ul>
+<h2>免责</h2>
+<p>本站按现状提供。我们尽力保证文本准确，但无法保证每个字、每处译文都没有错误，也无法保证服务始终可用。</p>
+<h2>变更</h2>
+<p>本条款可能更新，以上日期为最新版本。</p>`;
 
 const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
   about: {
@@ -54,6 +129,7 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <li>The classic text of the <em>Zhouyi</em>, with the commentaries of the Ten Wings.</li>
 <li>English: James Legge, <em>The Yî King</em> (Sacred Books of the East, vol. 16, 1882), in the public domain.</li>
 <li>Takashima Donshō 高島呑象 (1832–1914), <em>Zōho Takashima Ekidan</em> 増補高島易断, from its Chinese text. The English and Japanese renderings of Takashima’s commentary were made with machine assistance, then checked against the Chinese item by item; pages here show excerpts.</li>
+<li>Traditional Chinese conversion tables adapted from OpenCC (Apache License 2.0) and checked against the classic text.</li>
 </ul>
 <p>If you find a mistake in a text or a translation, please ${a("/en/contact", "tell us")}.</p>
 <h2>Other ways to use it</h2>
@@ -63,24 +139,8 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <li>The casting engine is open source (MIT licence) on ${a(REPO, "GitHub")}.</li>
 </ul>
 <p>The site is run by an independent developer.</p>`,
-    zh: (o) => `
-<p>本站是研读《周易》的工具。你可以按高岛呑象的略筮法亲手分筮起卦，每一步怎么分、怎么数都看得见，再读所得之卦的经文与高岛原注。</p>
-<h2>做什么，不做什么</h2>
-<p>本站展示方法与出处，不作预测，也不提供建议。卦对你的处境意味着什么，由你自己判断。</p>
-<h2>出处</h2>
-<ul>
-<li>《周易》经文及《十翼》传文。</li>
-<li>英文：James Legge 译 <em>The Yî King</em>（1882 年，《东方圣书》第 16 卷），已进入公有领域。</li>
-<li>高岛呑象（1832–1914）《増補高島易断》汉文本。高岛注的英文、日文译文由机器辅助翻译，再逐条对照汉文核校；本站页面只载节录。</li>
-</ul>
-<p>如发现经文或译文有误，请${a("/zh/contact", "告诉我们")}。</p>
-<h2>其他用法</h2>
-<ul>
-<li>${a(BOT, "Grok Bot")}：在对话中陪你起卦、读卦。</li>
-<li>免费的 MCP 服务（供 AI 助手使用）：<code>${o}/mcp</code>，以及 JSON API。</li>
-<li>起卦引擎开源（MIT 许可），见 ${a(REPO, "GitHub")}。</li>
-</ul>
-<p>本站由个人开发者独立运营。</p>`,
+    zh: (o) => aboutZh(o, "zh"),
+    hant: (o) => toHant(aboutZh(o, "hant")),
     ja: (o) => `
 <p>このサイトは『易経』（周易）を学ぶための道具です。高島呑象の略筮法で、筮竹を自分で分けて卦を立て、数え方から卦の成り立ちまでを一歩ずつ確かめたうえで、得た卦の経文と高島の解釈を読むことができます。</p>
 <h2>できること・しないこと</h2>
@@ -90,6 +150,7 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <li>『周易』の経文と十翼の伝。</li>
 <li>英訳：James Legge, <em>The Yî King</em>（1882年、『東方聖典』第16巻）。パブリックドメイン。</li>
 <li>高島呑象（1832–1914）『増補高島易断』の漢文テキスト。高島の解釈の英訳・和訳は機械の補助で作成し、漢文と一項ずつ照合しています。各ページは抄録です。</li>
+<li>繁体字中国語への変換辞書は OpenCC（Apache License 2.0）を基に『周易』経文と照合しています。</li>
 </ul>
 <p>経文や翻訳の誤りにお気づきの際は${a("/ja/contact", "お知らせください")}。</p>
 <h2>ほかの使い方</h2>
@@ -108,13 +169,8 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <p>This site doesn’t interpret readings for individuals. To talk a reading through, try the ${a(BOT, "Grok Bot")}, or the ${a("/en/learn/reading-a-hexagram", "Learn")} pages.</p>
 <h2>Privacy requests</h2>
 <p>The site keeps no accounts and stores no casts (see the ${a("/en/privacy", "privacy policy")}), so there is usually nothing held about you. If you have a privacy question, open an issue and say only that you would like to be contacted privately.</p>`,
-    zh: () => `
-<p>报告程序问题、经文错字、译文误读汉文，或询问本站相关事宜，请${a(ISSUES, "在 GitHub 提交 issue")}。需要一个免费的 GitHub 账号；issue 是公开的，请勿填写个人信息。</p>
-<p>指正经文或译文时，请附上页面地址（或卦与爻），并说明你认为应当如何。</p>
-<h2>关于具体卦的解读</h2>
-<p>本站不为个人解卦。想把一卦细细谈开，可以用 ${a(BOT, "Grok Bot")}，或读${a("/zh/learn/reading-a-hexagram", "入门")}各篇。</p>
-<h2>隐私相关</h2>
-<p>本站不设账号，也不保存起卦记录（见${a("/zh/privacy", "隐私政策")}），通常并无关于你的数据。如有隐私方面的问题，请提交 issue，只需写明希望私下联系。</p>`,
+    zh: () => contactZh("zh"),
+    hant: () => toHant(contactZh("hant")),
     ja: () => `
 <p>不具合、経文の誤字、漢文を読み誤った翻訳、サイトについてのご質問は、${a(ISSUES, "GitHub の issue")} でお寄せください。無料の GitHub アカウントが必要です。issue は公開されるため、個人情報は書かないでください。</p>
 <p>経文や翻訳のご指摘には、ページのアドレス（または卦と爻）と、正しいと思われる内容を添えてください。</p>
@@ -148,30 +204,8 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <p>Visit analytics was added on 15 November 2026, and advertising (Google AdSense) on 18 November 2026; this page was updated before each went live. If the analytics or advertising in use changes, this page will be updated before that goes live.</p>
 <h2>Contact</h2>
 <p>See ${a("/en/contact", "Contact and support")}.</p>`,
-    zh: () => `
-<p class="muted">${UPDATED.zh}</p>
-<p>简而言之：不设账号，不保存起卦结果，也从不索取或传送你心里所问之事。本站使用 Google Tag Manager 统计访问量，并投放由 Google AdSense 提供的广告，见下文。</p>
-<h2>访问时</h2>
-<p>本站运行在 Cloudflare 上。和所有网站一样，服务器会收到每次请求的 IP 地址、浏览器类型、页面地址和时间。Cloudflare 用这些来送达页面、防范滥用；本站的请求日志会保留几天，用于排查错误。这些信息不用于识别你或建立画像。详见 ${a("https://www.cloudflare.com/privacypolicy/", "Cloudflare 隐私政策")}。</p>
-<h2>访问统计</h2>
-<p>本站通过 ${a("https://marketingplatform.google.com/about/tag-manager/", "Google Tag Manager")}（容器 <code>GTM-PK39VX5W</code>）加载 ${a("https://policies.google.com/technologies/partner-sites", "Google Analytics")}。它记录你浏览的页面、页面地址、由 IP 推算的大致地区，以及浏览器与设备信息。它还记录页面内的互动——完成一次起卦、选择起卦方法、点击卦与卦之间的链接、复制卦的链接、使用画卦工具、页面的滚动深度——用于改进本站。Google 可能写入 <code>_ga</code> 等 Cookie 以区分访问。本站不将这些统计数据用于广告画像。详见 ${a("https://policies.google.com/privacy", "Google 隐私政策")}。</p>
-<p>若不想被统计，可在浏览器设置中阻止或删除这些 Cookie、使用追踪拦截器，或安装 ${a("https://tools.google.com/dlpage/gaoptout", "Google Analytics 停用插件")}。</p>
-<h2>广告</h2>
-<p>本站投放由 ${a("https://support.google.com/adsense/answer/48182", "Google AdSense")} 提供的广告。Google 及第三方供应商会使用 Cookie，根据你此前对本站及其他网站的访问来投放广告；Google 使用广告 Cookie 后，它及其合作伙伴便可依据你的访问记录投放广告。详见 ${a("https://policies.google.com/technologies/ads", "Google 如何将数据用于广告")}。</p>
-<p>你可以在 ${a("https://www.google.com/settings/ads", "Google 广告设置")} 中退出个性化广告，也可以在 ${a("https://www.aboutads.info", "aboutads.info")} 退出部分第三方供应商对 Cookie 的使用。</p>
-<h2>起卦时</h2>
-<p>你分筮得到的数字会发送到服务器，服务器算出卦象后返回。起卦结果不保存，只会作为页面地址的一部分出现在请求日志中，同样保留几天。</p>
-<p>“分享”链接把卦象写在链接里，拿到链接的人都能看到这一卦。</p>
-<h2>浏览器中</h2>
-<p>本站在浏览器的本地存储中记住你选的语言；切换语言时，会在会话存储中暂存未完成的起卦。两者都不离开你的设备，可在浏览器设置中清除。本站自身不设置 Cookie；Google Analytics 与 AdSense 可能设置上文所述的 Cookie。</p>
-<h2>API、MCP 服务与 Grok Bot</h2>
-<p>对 API 与 MCP 服务的请求，处理方式与页面请求相同，不作保存。${a(BOT, "Grok Bot")} 运行在 xAI 的服务上，适用 ${a("https://x.ai/legal/privacy-policy", "xAI 隐私政策")}。</p>
-<h2>未成年人</h2>
-<p>本站不面向儿童，也不向任何人收集个人信息。</p>
-<h2>变更</h2>
-<p>本站于 2026 年 11 月 15 日加入访问统计，2026 年 11 月 18 日加入广告（Google AdSense），本页均已在上线前更新。若所用统计或广告方式改变，本页会在其上线前更新。</p>
-<h2>联系</h2>
-<p>见${a("/zh/contact", "联系与支持")}。</p>`,
+    zh: () => privacyZh("zh"),
+    hant: () => toHant(privacyZh("hant")),
     ja: () => `
 <p class="muted">${UPDATED.ja}</p>
 <p>要点：アカウントなし、起卦の結果は保存しません。心の中で思っている問いは一切尋ねず、送信もしません。本サイトはアクセス解析に Google Tag Manager を使用し、Google AdSense の広告を表示しています（下記）。</p>
@@ -214,22 +248,8 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 <p>The site is provided as it is. We work to keep the texts accurate but can’t guarantee that every character or translation is free of error, or that the service will always be available.</p>
 <h2>Changes</h2>
 <p>These terms may be updated; the date above shows the latest version.</p>`,
-    zh: () => `
-<p class="muted">${UPDATED.zh}</p>
-<h2>研读工具，而非建议</h2>
-<p>本站呈现经典原文、注释与传统起卦方法，供研读与思考之用，不作预测。本站内容均不构成医疗、法律、财务或其他专业建议，你所作的决定由你自己负责。</p>
-<h2>使用本站、API 与 MCP 服务</h2>
-<p>本站、JSON API 与 MCP 服务可以免费自由使用，包括接入你自己的应用和 AI 助手。请勿过量请求；为保证大家都能使用，自动化流量可能被限速或阻止。</p>
-<h2>内容</h2>
-<ul>
-<li>《周易》、Legge 1882 年英译与高岛原文均属公有领域。</li>
-<li>起卦引擎以 ${a(`${REPO}/blob/main/LICENSE`, "MIT 许可")} 开源。</li>
-<li>本站所作高岛注的英文、日文译文，以及本站撰写的说明文字，版权归本站所有。欢迎简短引用并附上链接。</li>
-</ul>
-<h2>免责</h2>
-<p>本站按现状提供。我们尽力保证文本准确，但无法保证每个字、每处译文都没有错误，也无法保证服务始终可用。</p>
-<h2>变更</h2>
-<p>本条款可能更新，以上日期为最新版本。</p>`,
+    zh: () => termsZh("zh"),
+    hant: () => toHant(termsZh("hant")),
     ja: () => `
 <p class="muted">${UPDATED.ja}</p>
 <h2>学習の道具であり、助言ではありません</h2>
@@ -252,7 +272,8 @@ const BODY: Record<InfoSlug, Record<Lang, (origin: string) => string>> = {
 export function infoPage(lang: Lang, slug: string, origin: string) {
   if (!(INFO as readonly string[]).includes(slug)) return null;
   const s = slug as InfoSlug;
-  return { title: INFO_TITLES[s][lang], description: DESCRIPTIONS[s][lang], body: `<h1>${INFO_TITLES[s][lang]}</h1>${BODY[s][lang](origin)}` };
+  const bodyHtml = `<h1>${INFO_TITLES[s][lang]}</h1>${BODY[s][lang](origin)}`;
+  return { title: INFO_TITLES[s][lang], description: DESCRIPTIONS[s][lang], body: lang === "hant" ? toHant(bodyHtml) : bodyHtml };
 }
 
 /** Footer links to the information pages, shared by the casting app and the server-rendered pages. */

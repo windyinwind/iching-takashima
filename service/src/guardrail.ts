@@ -26,9 +26,10 @@ export function retryIn(ip: string, now = Date.now()): number | null {
 
 const headers = (retry: number) => ({ "Cache-Control": "no-store", "Retry-After": String(Math.max(1, retry)) });
 
-export function apiTooMany(l: "zh" | "en" | "ja", retry: number, cors: Record<string, string>): Response {
+export function apiTooMany(l: "zh" | "hant" | "en" | "ja", retry: number, cors: Record<string, string>): Response {
   const say = {
     zh: "请求过于频繁：请稍候再试。",
+    hant: "請求過於頻繁：請稍候再試。",
     en: "Rate limit exceeded: please wait a while and try again.",
     ja: "リクエストが多すぎます：しばらく待ってから再試行してください。",
   };

@@ -26,6 +26,11 @@ test("api 429 carries Retry-After, no-store, CORS and the self-host pointer", as
   const body: { error: string } = await res.json();
   assert.match(body.error, /请求过于频繁/);
   assert.match(body.error, /github\.com\/windyinwind\/iching-takashima/);
+
+  const hantRes = apiTooMany("hant", 30, { "Access-Control-Allow-Origin": "*" });
+  assert.equal(hantRes.status, 429);
+  const hantBody: { error: string } = await hantRes.json();
+  assert.match(hantBody.error, /請求過於頻繁/);
 });
 
 test("mcp 429 is a JSON-RPC error with Retry-After", async () => {

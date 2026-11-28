@@ -2,10 +2,13 @@
 // hexagrams, an interactive hexagram builder, and the 8×8 table of all 64 hexagrams.
 import { HEXAGRAMS, LEGGE, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, linesOf } from "./engine/core.ts";
+import { toHant } from "./engine/hant.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
 
 const EXCERPTS: any = excerptsJson;
 import { type Lang, figure, hexPath, hexTitle, linePath, trigramPath, trigramTitle } from "./pages.ts";
+
+const zhKey = (l: Lang): "en" | "zh" | "ja" => (l === "hant" ? "zh" : l);
 
 const ORDER = ["乾", "兑", "离", "震", "巽", "坎", "艮", "坤"];
 const esc = (s: unknown) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -23,7 +26,9 @@ export function relations(n: number) {
 }
 
 const short = (lang: Lang, n: number) =>
-  lang === "en" ? `${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name}` : lang === "ja" ? `${n} ${T.hexagram_ja[String(n)][0]}` : `${n} ${getByNumber(n).name}`;
+  lang === "en" ? `${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name}` :
+    lang === "ja" ? `${n} ${T.hexagram_ja[String(n)][0]}` :
+    lang === "hant" ? toHant(`${n} ${getByNumber(n).name}`) : `${n} ${getByNumber(n).name}`;
 
 const mini = (lang: Lang, n: number, hl: number[] = []) =>
   `<a class="hexlink" href="${hexPath(lang, n)}">${figure(linesOf(getByNumber(n)), { small: true, hl, label: hexTitle(lang, n) })}<span>${esc(short(lang, n))}</span></a>`;
@@ -34,14 +39,14 @@ export const LEARN = ["reading-a-hexagram", "lines-and-positions", "the-eight-tr
 export const learnPath = (lang: Lang, slug: string) => `/${lang}/learn/${slug}`;
 
 const TITLES: Record<string, Record<Lang, string>> = {
-  "reading-a-hexagram": { en: "How to read a hexagram", zh: "怎样读一卦", ja: "卦の読み方" },
-  "lines-and-positions": { en: "Yin, yang and the six positions", zh: "阴阳与六爻之位", ja: "陰陽と六爻の位" },
-  "the-eight-trigrams": { en: "The eight trigrams", zh: "八卦", ja: "八卦" },
-  "moving-lines": { en: "Moving lines and the changed hexagram", zh: "动爻与之卦", ja: "動爻と之卦" },
-  "takashima-method": { en: "Takashima’s three-change method", zh: "高岛的略筮法", ja: "高島の略筮法" },
-  "worked-example": { en: "A complete cast, stalk by stalk", zh: "一次完整的起卦：逐步拆解", ja: "起卦の完全な実例：一歩ずつ" },
-  "how-to-read-the-text": { en: "How to read the text", zh: "经文怎么读", ja: "経文の読み方" },
-  "related-hexagrams": { en: "Related hexagrams: inverse, opposite, nuclear", zh: "综卦、错卦、互卦", ja: "綜卦・錯卦・互卦" },
+  "reading-a-hexagram": { en: "How to read a hexagram", zh: "怎样读一卦", hant: "怎樣讀一卦", ja: "卦の読み方" },
+  "lines-and-positions": { en: "Yin, yang and the six positions", zh: "阴阳与六爻之位", hant: "陰陽與六爻之位", ja: "陰陽と六爻の位" },
+  "the-eight-trigrams": { en: "The eight trigrams", zh: "八卦", hant: "八卦", ja: "八卦" },
+  "moving-lines": { en: "Moving lines and the changed hexagram", zh: "动爻与之卦", hant: "動爻與之卦", ja: "動爻と之卦" },
+  "takashima-method": { en: "Takashima’s three-change method", zh: "高岛的略筮法", hant: "高島的略筮法", ja: "高島の略筮法" },
+  "worked-example": { en: "A complete cast, stalk by stalk", zh: "一次完整的起卦：逐步拆解", hant: "一次完整的起卦：逐步拆解", ja: "起卦の完全な実例：一歩ずつ" },
+  "how-to-read-the-text": { en: "How to read the text", zh: "经文怎么读", hant: "經文怎麼讀", ja: "経文の読み方" },
+  "related-hexagrams": { en: "Related hexagrams: inverse, opposite, nuclear", zh: "综卦、错卦、互卦", hant: "綜卦、錯卦、互卦", ja: "綜卦・錯卦・互卦" },
 };
 export const learnTitle = (lang: Lang, slug: string) => TITLES[slug][lang];
 
@@ -56,27 +61,29 @@ const cap = (figHtml: string, text: string) => `<figure>${figHtml}<figcaption>${
 const castLink = (lang: Lang, text: string, hash = "#cast") => `<p><a class="btn" href="/${lang}/${hash}">${esc(text)}</a></p>`;
 
 function labelledFigure(lang: Lang) {
+  const k = zhKey(lang);
   const l = linesOf(getByNumber(MENG));
-  const names = { en: ["1 (bottom)", "2", "3", "4", "5", "6 (top)"], zh: ["初爻", "二爻", "三爻", "四爻", "五爻", "上爻"], ja: ["初爻", "二爻", "三爻", "四爻", "五爻", "上爻"] }[lang];
-  const yy = { en: ["yin", "yang"], zh: ["阴", "阳"], ja: ["陰", "陽"] }[lang];
+  const names = { en: ["1 (bottom)", "2", "3", "4", "5", "6 (top)"], zh: ["初爻", "二爻", "三爻", "四爻", "五爻", "上爻"], ja: ["初爻", "二爻", "三爻", "四爻", "五爻", "上爻"] }[k];
+  const yy = { en: ["yin", "yang"], zh: ["阴", "阳"], ja: ["陰", "陽"] }[k];
   const rows = [5, 4, 3, 2, 1, 0].map((i) => `<tr><td>${figure([l[i]], { small: true })}</td><td>${esc(names[i])}</td><td>${esc(yy[l[i]])}</td></tr>`).join("");
   return `<table class="labelled">${rows}</table>`;
 }
 
 function trigramTable(lang: Lang) {
-  const head = { en: ["", "Trigram", "Image", "Family", "No."], zh: ["", "卦", "象", "家人", "先天数"], ja: ["", "卦", "象", "家族", "先天数"] }[lang];
-  const fam: Record<Lang, Record<string, string>> = {
+  const k = zhKey(lang);
+  const head = { en: ["", "Trigram", "Image", "Family", "No."], zh: ["", "卦", "象", "家人", "先天数"], ja: ["", "卦", "象", "家族", "先天数"] }[k];
+  const fam: Record<"en" | "zh" | "ja", Record<string, string>> = {
     en: { "乾": "father", "坤": "mother", "震": "eldest son", "巽": "eldest daughter", "坎": "middle son", "离": "middle daughter", "艮": "youngest son", "兑": "youngest daughter" },
     zh: T.family, ja: { "乾": "父", "坤": "母", "震": "長男", "巽": "長女", "坎": "中男", "离": "中女", "艮": "少男", "兑": "少女" },
   };
   const img = (t: string) => (lang === "en" ? T.trigram_en[t][1] : lang === "ja" ? T.trigram_ja[t][2] : T.nature[t]);
-  const rows = ORDER.map((t, i) => `<tr><td>${figure([...T.trigrams[t]], { small: true })}</td><td><a href="${trigramPath(lang, t)}">${esc(trigramTitle(lang, t))}</a></td><td>${esc(img(t))}</td><td>${esc(fam[lang][t])}</td><td>${i + 1}</td></tr>`).join("");
+  const rows = ORDER.map((t, i) => `<tr><td>${figure([...T.trigrams[t]], { small: true })}</td><td><a href="${trigramPath(lang, t)}">${esc(trigramTitle(lang, t))}</a></td><td>${esc(img(t))}</td><td>${esc(fam[k][t])}</td><td>${i + 1}</td></tr>`).join("");
   return `<table class="tbl"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 function body(lang: Lang, slug: string): string {
   const r = relations(MENG);
-  const en = lang === "en", ja = lang === "ja";
+  const en = lang === "en", ja = lang === "ja", rem = lang === "hant" ? "餘" : "余";
   const t = (e: string, z: string, j: string) => (en ? e : ja ? j : z);
   const qa = (q: string, a: string) => `<h3>${q}</h3>${p(a)}`;
   const faq = (items: string[]) => [`<h2>${t("Frequently asked questions", "常见问题", "よくある質問")}</h2>`, ...items].join("");
@@ -199,7 +206,7 @@ function body(lang: Lang, slug: string): string {
         `<li>${t("<b>Add the hung stalk: remainder + 1.</b> The answer of this change is a number from 1 to 8 (in the third change, 1 to 6). Never use the remainder on its own.", "<b>加挂一：余数 + 1。</b>这一变的得数是 1 至 8（第三变为 1 至 6）。绝不能只用余数。", "<b>掛一を加える：余り＋1。</b>この変の答えは一〜八（三変目では一〜六）です。余りだけを使ってはいけません。")}</li>`,
         `<li>${t("<b>Look the number up.</b> In the first two changes it is an Earlier Heaven number and names a trigram — see " + L(lang, "the-eight-trigrams") + ". In the third change it names the moving line, counted from the bottom.", "<b>查这个数。</b>前两变中，它是先天数，对应一个三画卦——见" + L(lang, "the-eight-trigrams") + "。第三变中，它定动爻，自下而上数。", "<b>その数を引く。</b>最初の二変では先天数として一つの小成卦を定めます――" + L(lang, "the-eight-trigrams") + "参照。三変目では、下から数えた動爻を定めます。")}</li></ol>`,
         p(t("<b>Takashima’s own example.</b> Left-hand counts 21, 22, 16: 21 → remainder 5, +1 = 6 = Kan; 22 → remainder 6, +1 = 7 = Gen; 16 counted by sixes → remainder 4, +1 = 5. Kan below Gen is Meng, moving line 5, changing to Huan. It is the reading he made for his friend Fukuhara Minoru on his appointment as Governor of Okinawa.",
-          "<b>高岛自己的占例。</b>左手 21、22、16 策：21 余 5 加 1 得 6 为坎；22 余 6 加 1 得 7 为艮；16 六六数之余 4 加 1 得 5。下坎上艮为蒙，动五爻，之涣。即高岛为友人福原实赴任冲绳县知事所占。",
+          `<b>高岛自己的占例。</b>左手 21、22、16 策：21 ${rem} 5 加 1 得 6 为坎；22 ${rem} 6 加 1 得 7 为艮；16 六六数之${rem} 4 加 1 得 5。下坎上艮为蒙，动五爻，之涣。即高岛为友人福原实赴任冲绳县知事所占。`,
           "<b>高島自身の占例。</b>左手 21・22・16 本：21 は余り 5 で＋1＝6、坎。22 は余り 6 で＋1＝7、艮。16 は六本ずつで余り 4、＋1＝5。下坎上艮で蒙、五爻動いて渙に之く。友人福原実の沖縄県知事赴任に際しての占いです。")),
         row(cap(fig(MENG, [4]), H(lang, MENG)), `<span class="arrow">→</span>`, cap(fig(59, [4]), H(lang, 59))),
         `<h2>${t("Three ways to cast, compared", "三种起卦法比较", "三つの起卦法の比較")}</h2>`,
@@ -254,11 +261,11 @@ function body(lang: Lang, slug: string): string {
 }
 
 function workedExample(lang: Lang): string {
-  const en = lang === "en", ja = lang === "ja";
+  const en = lang === "en", ja = lang === "ja", remChar = lang === "hant" ? "餘" : "余";
   const t = (e: string, z: string, j: string) => (en ? e : ja ? j : z);
   const meng = getByNumber(MENG), huan = getByNumber(59);
-  const jq = (n: number) => esc(lang === "en" ? LEGGE[String(n)].judgment : lang === "ja" ? TRAD[String(n)].judgment : getByNumber(n).judgment);
-  const line5 = lang === "en" ? esc(LEGGE["4"].lines[4]) : lang === "ja" ? `六五。${esc(TRAD["4"].lines[4])}` : `六五：${esc(meng.lines[4])}`;
+  const jq = (n: number) => esc(lang === "en" ? LEGGE[String(n)].judgment : lang === "ja" || lang === "hant" ? TRAD[String(n)].judgment : getByNumber(n).judgment);
+  const line5 = lang === "en" ? esc(LEGGE["4"].lines[4]) : lang === "ja" ? `六五。${esc(TRAD["4"].lines[4])}` : `六五：${esc(lang === "hant" ? TRAD["4"].lines[4] : meng.lines[4])}`;
   const tkParas: string[] = EXCERPTS["4"]?.["4"]?.zh ?? [];
   const changeTable = (left: number, mod: number, result: string) => {
     const right = 49 - left, rem = left % mod, groups = Math.floor(left / mod);
@@ -287,7 +294,7 @@ function workedExample(lang: Lang): string {
       "<b>五十本</b>を用意します。<b>一本を取り分けて使わない</b>：太極を象ります。どの変でも使うのは<b>四十九本</b>です。一つの事を定め、心の中で静かに念じ、望む答えへの執着を手放してください――心の準備も方法の一部で、このサイトのホームでは起卦のたびにその手順を案内します。")),
     `<h2>${t("Change 1: the lower trigram", "第一变：下卦", "一変目：下卦")}</h2>`,
     p(t("Split the 49 without aiming. Suppose — as in Takashima’s cast — the left bundle comes to <b>21</b> and the right bundle to <b>28</b>. Take <b>one stalk from the right bundle</b> and hold it in your left hand. Then count the <b>left bundle only</b>, off in eights: 21 = 8 × 2 + 5, so the remainder is 5. In this abbreviated method the right bundle is never counted — beyond the one stalk taken from it, it plays no part. Add the hung stalk: 5 + 1 = <b>6</b>. Earlier Heaven number 6 is <b>Kan 坎</b>, water. That is the lower trigram.",
-      "把四十九策随手分二。设如高岛此占，左手得 <b>21</b>，右手得 <b>28</b>。<b>自右手取一策</b>挂于左手。然后只数<b>左手</b>，八八数之：21 = 8 × 2 + 5，余 5。略筮法中右手之策从不计数——除取出的那一策外，它不起任何作用。加挂一：5 + 1 = <b>6</b>。先天数 6 为<b>坎</b>，象水。此为下卦。",
+      `把四十九策随手分二。设如高岛此占，左手得 <b>21</b>，右手得 <b>28</b>。<b>自右手取一策</b>挂于左手。然后只数<b>左手</b>，八八数之：21 = 8 × 2 + 5，${remChar} 5。略筮法中右手之策从不计数——除取出的那一策外，它不起任何作用。加挂一：5 + 1 = <b>6</b>。先天数 6 为<b>坎</b>，象水。此为下卦。`,
       "四十九本を無心に分けます。高島の占いのように、左の束が <b>21</b> 本、右の束が <b>28</b> 本だったとします。<b>右の束から一本</b>を取り、左手に挟みます。次に<b>左の束だけ</b>を八本ずつ数えます：21 ＝ 8 × 2 ＋ 5 で、余りは 5。この略筮法では右の束は決して数えません――取り出した一本を除けば、役割はありません。掛一を加えます：5 ＋ 1 ＝ <b>6</b>。先天数 6 は<b>坎</b>、水の象。これが下卦です。")),
     changeTable(21, 8, t("Earlier Heaven 6 → Kan 坎, the lower trigram", "先天数 6 → 坎，为下卦", "先天数 6 → 坎、下卦")),
     row(cap(figure([...T.trigrams["坎"]]), t("Lower trigram: Kan 坎 — water", "下卦：坎——水", "下卦：坎――水"))),
@@ -299,13 +306,13 @@ function workedExample(lang: Lang): string {
       "ここにはこの占いで出た二つの数だけを挙げます。八つの全体表は" + L(lang, "the-eight-trigrams") + "にあります。")),
     `<h2>${t("Change 2: the upper trigram", "第二变：上卦", "二変目：上卦")}</h2>`,
     p(t("Gather the 49 again — every change starts from the full set. Split without aiming; this time the left bundle is <b>22</b> (right bundle 27). Take one from the right, count the left in eights: 22 = 8 × 2 + 6, remainder 6, plus the hung stalk = <b>7</b>. Earlier Heaven 7 is <b>Gen 艮</b>, mountain — the upper trigram. Kan below and Gen above: the hexagram is complete, and it is " + H(lang, MENG) + ".",
-      "重新集齐四十九策——每一变都从全数开始。随手分二，这次左手得 <b>22</b>（右手 27）。自右取一，左手八八数之：22 = 8 × 2 + 6，余 6，加挂一 = <b>7</b>。先天数 7 为<b>艮</b>，象山——上卦。下坎上艮，卦已成形，即" + H(lang, MENG) + "。",
+      `重新集齐四十九策——每一变都从全数开始。随手分二，这次左手得 <b>22</b>（右手 27）。自右取一，左手八八数之：22 = 8 × 2 + 6，${remChar} 6，加挂一 = <b>7</b>。先天数 7 为<b>艮</b>，象山——上卦。下坎上艮，卦已成形，即` + H(lang, MENG) + "。",
       "四十九本を再び集めます――どの変も全数から始めます。無心に分けると、今度は左の束が <b>22</b> 本（右は 27 本）。右から一本取り、左を八本ずつ数えます：22 ＝ 8 × 2 ＋ 6、余り 6、掛一を加えて <b>7</b>。先天数 7 は<b>艮</b>、山の象――上卦です。下に坎、上に艮で卦が完成しました。" + H(lang, MENG) + "です。")),
     changeTable(22, 8, t("Earlier Heaven 7 → Gen 艮, the upper trigram", "先天数 7 → 艮，为上卦", "先天数 7 → 艮、上卦")),
     row(cap(fig(MENG), H(lang, MENG))),
     `<h2>${t("Change 3: the moving line", "第三变：动爻", "三変目：動爻")}</h2>`,
     p(t("Gather the 49 a third time and split; the left bundle is <b>16</b> (right bundle 33). Take one from the right as before, but now count the left bundle <b>in sixes</b>, because a hexagram has six lines: 16 = 6 × 2 + 4, remainder 4, plus the hung stalk = <b>5</b>. The moving line is <b>line 5</b>, counted from the bottom. Flip that one line — in Meng it is yin, so it becomes yang — and the hexagram changes into " + H(lang, 59) + ".",
-      "第三次集齐四十九策分二，左手得 <b>16</b>（右手 33）。照例自右取一，但这次左手<b>六六数之</b>，因一卦有六爻：16 = 6 × 2 + 4，余 4，加挂一 = <b>5</b>。动爻为<b>第五爻</b>，自下而上数。把这一爻翻转——蒙卦五爻为阴，变为阳——卦即变为" + H(lang, 59) + "。",
+      `第三次集齐四十九策分二，左手得 <b>16</b>（右手 33）。照例自右取一，但这次左手<b>六六数之</b>，因一卦有六爻：16 = 6 × 2 + 4，${remChar} 4，加挂一 = <b>5</b>。动爻为<b>第五爻</b>，自下而上数。把这一爻翻转——蒙卦五爻为阴，变为阳——卦即变为` + H(lang, 59) + "。",
       "三度目に四十九本を集めて分けると、左の束は <b>16</b> 本（右は 33 本）。同じく右から一本取りますが、今度は左の束を<b>六本ずつ</b>数えます。一卦は六爻だからです：16 ＝ 6 × 2 ＋ 4、余り 4、掛一を加えて <b>5</b>。動爻は下から数えて<b>五爻</b>です。その一爻を反転させます――蒙の五爻は陰なので陽になります――すると卦は" + H(lang, 59) + "に変わります。")),
     changeTable(16, 6, t("Line 5 moves", "第五爻动", "五爻が動く")),
     row(cap(fig(MENG, [4]), H(lang, MENG)), `<span class="arrow">→</span>`, cap(fig(59, [4]), H(lang, 59))),
@@ -325,8 +332,8 @@ function workedExample(lang: Lang): string {
       `読み全体が懸かるのはこの爻で、専用のページがあります：<a href="${linePath(lang, MENG, 4)}">蒙・六五</a>。構造上は陰爻が陽位にあって位を得ませんが、中を得ており――上卦の真ん中、君の位です――下の剛健な九二と応じます。高島はこれを、若い君主が自らの未熟さを知り、賢臣を信任する象と読みます。`)),
     ...(tkParas.length ? [
       `<h3>${t("What Takashima himself wrote on this line", "高岛本人对此爻的原注", "高島自身によるこの爻への注")}</h3>`,
-      ...(lang === "zh" ? [] : [p(t("The commentary is shown in its original Chinese text, as elsewhere on this site.", "原注以汉文原文呈现，与本站其他页面同例。", "解釈は他のページと同様、漢文の原文で示します。"))]),
-      ...tkParas.slice(0, 2).map((para) => `<p lang="zh">${esc(para)}</p>`),
+      ...(lang === "zh" || lang === "hant" ? [] : [p(t("The commentary is shown in its original Chinese text, as elsewhere on this site.", "原注以汉文原文呈现，与本站其他页面同例。", "解釈は他のページと同様、漢文の原文で示します。"))]),
+      ...tkParas.slice(0, 2).map((para) => `<p${lang === "hant" ? "" : ' lang="zh"'}>${esc(para)}</p>`),
     ] : []),
     `<h3>${t("Step 3 — the changed hexagram: Huan", "第三步——之卦：涣", "第三歩――之卦：渙")}</h3>`,
     `<blockquote class="text">${jq(59)}</blockquote>`,
@@ -342,21 +349,21 @@ function workedExample(lang: Lang): string {
       "各問では、起卦者が記録する通りの左手の数を三つ示します。答えを開く前に、本卦・動爻・之卦を自分で出してください。三つの答えはいずれもこのサイト自身の起卦エンジンで算出しました。")),
     `<h3>${t("Exercise 1", "练习一", "練習一")}</h3>`,
     ex(t("Left-hand counts: <b>10, 17, 23</b>.", "左手根数：<b>10、17、23</b>。", "左手の数：<b>10・17・23</b>。"),
-      [t("Change 1: 10 = 8 × 1 + 2, remainder 2, + 1 = 3 → Earlier Heaven 3 is Li 離, the lower trigram.", "第一变：10 = 8 × 1 + 2，余 2，加 1 = 3 → 先天数 3 为离，下卦。", "一変目：10 ＝ 8 × 1 ＋ 2、余り 2、＋1 ＝ 3 → 先天数 3 は離、下卦。"),
-       t("Change 2: 17 = 8 × 2 + 1, remainder 1, + 1 = 2 → Earlier Heaven 2 is Dui 兌, the upper trigram. Dui over Li is " + H(lang, 49) + ".", "第二变：17 = 8 × 2 + 1，余 1，加 1 = 2 → 先天数 2 为兑，上卦。下离上兑为" + H(lang, 49) + "。", "二変目：17 ＝ 8 × 2 ＋ 1、余り 1、＋1 ＝ 2 → 先天数 2 は兌、上卦。下に離、上に兌で" + H(lang, 49) + "。"),
-       t("Change 3: 23 = 6 × 3 + 5, remainder 5, + 1 = 6 → line 6 moves.", "第三变：23 = 6 × 3 + 5，余 5，加 1 = 6 → 上爻动。", "三変目：23 ＝ 6 × 3 ＋ 5、余り 5、＋1 ＝ 6 → 上爻が動く。")],
+      [t("Change 1: 10 = 8 × 1 + 2, remainder 2, + 1 = 3 → Earlier Heaven 3 is Li 離, the lower trigram.", `第一变：10 = 8 × 1 + 2，${remChar} 2，加 1 = 3 → 先天数 3 为离，下卦。`, "一変目：10 ＝ 8 × 1 ＋ 2、余り 2、＋1 ＝ 3 → 先天数 3 は離、下卦。"),
+       t("Change 2: 17 = 8 × 2 + 1, remainder 1, + 1 = 2 → Earlier Heaven 2 is Dui 兌, the upper trigram. Dui over Li is " + H(lang, 49) + ".", `第二变：17 = 8 × 2 + 1，${remChar} 1，加 1 = 2 → 先天数 2 为兑，上卦。下离上兑为` + H(lang, 49) + "。", "二変目：17 ＝ 8 × 2 ＋ 1、余り 1、＋1 ＝ 2 → 先天数 2 は兌、上卦。下に離、上に兌で" + H(lang, 49) + "。"),
+       t("Change 3: 23 = 6 × 3 + 5, remainder 5, + 1 = 6 → line 6 moves.", `第三变：23 = 6 × 3 + 5，${remChar} 5，加 1 = 6 → 上爻动。`, "三変目：23 ＝ 6 × 3 ＋ 5、余り 5、＋1 ＝ 6 → 上爻が動く。")],
       t(`Result: <b>${esc(hexTitle(lang, 49))}</b>, <a href="${linePath(lang, 49, 5)}">line 6 moving</a>, changing to <b>${esc(hexTitle(lang, 13))}</b> — ${H(lang, 13)}.`, `结果：<b>${esc(hexTitle(lang, 49))}</b>，<a href="${linePath(lang, 49, 5)}">上爻动</a>，之<b>${esc(hexTitle(lang, 13))}</b>——${H(lang, 13)}。`, `結果：<b>${esc(hexTitle(lang, 49))}</b>、<a href="${linePath(lang, 49, 5)}">上爻が動き</a>、之卦は<b>${esc(hexTitle(lang, 13))}</b>――${H(lang, 13)}。`)),
     `<h3>${t("Exercise 2", "练习二", "練習二")}</h3>`,
     ex(t("Left-hand counts: <b>40, 8, 12</b>. Watch the remainders on this one.", "左手根数：<b>40、8、12</b>。这一题请特别留意余数。", "左手の数：<b>40・8・12</b>。この問では余りに注意してください。"),
-      [t("Change 1: 40 = 8 × 5 + 0, remainder 0, + 1 = 1 → Earlier Heaven 1 is Qian 乾, the lower trigram. A remainder of 0 is valid: it is the +1 that turns it into a usable number.", "第一变：40 = 8 × 5 + 0，余 0，加 1 = 1 → 先天数 1 为乾，下卦。余 0 是有效的：正是那 +1 把它变成可用的数。", "一変目：40 ＝ 8 × 5 ＋ 0、余り 0、＋1 ＝ 1 → 先天数 1 は乾、下卦。余り 0 は有効です。その＋1 が使える数に変えます。"),
-       t("Change 2: 8 = 8 × 1 + 0, remainder 0, + 1 = 1 → Qian 乾 again, the upper trigram. Qian over Qian is " + H(lang, 1) + ".", "第二变：8 = 8 × 1 + 0，余 0，加 1 = 1 → 仍为乾，上卦。下乾上乾为" + H(lang, 1) + "。", "二変目：8 ＝ 8 × 1 ＋ 0、余り 0、＋1 ＝ 1 → 再び乾、上卦。下も上も乾で" + H(lang, 1) + "。"),
-       t("Change 3: 12 = 6 × 2 + 0, remainder 0, + 1 = 1 → line 1 moves.", "第三变：12 = 6 × 2 + 0，余 0，加 1 = 1 → 初爻动。", "三変目：12 ＝ 6 × 2 ＋ 0、余り 0、＋1 ＝ 1 → 初爻が動く。")],
+      [t("Change 1: 40 = 8 × 5 + 0, remainder 0, + 1 = 1 → Earlier Heaven 1 is Qian 乾, the lower trigram. A remainder of 0 is valid: it is the +1 that turns it into a usable number.", `第一变：40 = 8 × 5 + 0，${remChar} 0，加 1 = 1 → 先天数 1 为乾，下卦。${remChar} 0 是有效的：正是那 +1 把它变成可用的数。`, "一変目：40 ＝ 8 × 5 ＋ 0、余り 0、＋1 ＝ 1 → 先天数 1 は乾、下卦。余り 0 は有効です。その＋1 が使える数に変えます。"),
+       t("Change 2: 8 = 8 × 1 + 0, remainder 0, + 1 = 1 → Qian 乾 again, the upper trigram. Qian over Qian is " + H(lang, 1) + ".", `第二变：8 = 8 × 1 + 0，${remChar} 0，加 1 = 1 → 仍为乾，上卦。下乾上乾为` + H(lang, 1) + "。", "二変目：8 ＝ 8 × 1 ＋ 0、余り 0、＋1 ＝ 1 → 再び乾、上卦。下も上も乾で" + H(lang, 1) + "。"),
+       t("Change 3: 12 = 6 × 2 + 0, remainder 0, + 1 = 1 → line 1 moves.", `第三变：12 = 6 × 2 + 0，${remChar} 0，加 1 = 1 → 初爻动。`, "三変目：12 ＝ 6 × 2 ＋ 0、余り 0、＋1 ＝ 1 → 初爻が動く。")],
       t(`Result: <b>${esc(hexTitle(lang, 1))}</b>, <a href="${linePath(lang, 1, 0)}">line 1 moving</a>, changing to <b>${esc(hexTitle(lang, 44))}</b> — ${H(lang, 44)}.`, `结果：<b>${esc(hexTitle(lang, 1))}</b>，<a href="${linePath(lang, 1, 0)}">初爻动</a>，之<b>${esc(hexTitle(lang, 44))}</b>——${H(lang, 44)}。`, `結果：<b>${esc(hexTitle(lang, 1))}</b>、<a href="${linePath(lang, 1, 0)}">初爻が動き</a>、之卦は<b>${esc(hexTitle(lang, 44))}</b>――${H(lang, 44)}。`)),
     `<h3>${t("Exercise 3", "练习三", "練習三")}</h3>`,
     ex(t("Left-hand counts: <b>27, 35, 20</b>.", "左手根数：<b>27、35、20</b>。", "左手の数：<b>27・35・20</b>。"),
-      [t("Change 1: 27 = 8 × 3 + 3, remainder 3, + 1 = 4 → Earlier Heaven 4 is Zhen 震, the lower trigram.", "第一变：27 = 8 × 3 + 3，余 3，加 1 = 4 → 先天数 4 为震，下卦。", "一変目：27 ＝ 8 × 3 ＋ 3、余り 3、＋1 ＝ 4 → 先天数 4 は震、下卦。"),
-       t("Change 2: 35 = 8 × 4 + 3, remainder 3, + 1 = 4 → Zhen 震 again, the upper trigram. Zhen over Zhen is " + H(lang, 51) + ".", "第二变：35 = 8 × 4 + 3，余 3，加 1 = 4 → 仍为震，上卦。下震上震为" + H(lang, 51) + "。", "二変目：35 ＝ 8 × 4 ＋ 3、余り 3、＋1 ＝ 4 → 再び震、上卦。下も上も震で" + H(lang, 51) + "。"),
-       t("Change 3: 20 = 6 × 3 + 2, remainder 2, + 1 = 3 → line 3 moves.", "第三变：20 = 6 × 3 + 2，余 2，加 1 = 3 → 三爻动。", "三変目：20 ＝ 6 × 3 ＋ 2、余り 2、＋1 ＝ 3 → 三爻が動く。")],
+      [t("Change 1: 27 = 8 × 3 + 3, remainder 3, + 1 = 4 → Earlier Heaven 4 is Zhen 震, the lower trigram.", `第一变：27 = 8 × 3 + 3，${remChar} 3，加 1 = 4 → 先天数 4 为震，下卦。`, "一変目：27 ＝ 8 × 3 ＋ 3、余り 3、＋1 ＝ 4 → 先天数 4 は震、下卦。"),
+       t("Change 2: 35 = 8 × 4 + 3, remainder 3, + 1 = 4 → Zhen 震 again, the upper trigram. Zhen over Zhen is " + H(lang, 51) + ".", `第二变：35 = 8 × 4 + 3，${remChar} 3，加 1 = 4 → 仍为震，上卦。下震上震为` + H(lang, 51) + "。", "二変目：35 ＝ 8 × 4 ＋ 3、余り 3、＋1 ＝ 4 → 再び震、上卦。下も上も震で" + H(lang, 51) + "。"),
+       t("Change 3: 20 = 6 × 3 + 2, remainder 2, + 1 = 3 → line 3 moves.", `第三变：20 = 6 × 3 + 2，${remChar} 2，加 1 = 3 → 三爻动。`, "三変目：20 ＝ 6 × 3 ＋ 2、余り 2、＋1 ＝ 3 → 三爻が動く。")],
       t(`Result: <b>${esc(hexTitle(lang, 51))}</b>, <a href="${linePath(lang, 51, 2)}">line 3 moving</a>, changing to <b>${esc(hexTitle(lang, 55))}</b> — ${H(lang, 55)}.`, `结果：<b>${esc(hexTitle(lang, 51))}</b>，<a href="${linePath(lang, 51, 2)}">三爻动</a>，之<b>${esc(hexTitle(lang, 55))}</b>——${H(lang, 55)}。`, `結果：<b>${esc(hexTitle(lang, 51))}</b>、<a href="${linePath(lang, 51, 2)}">三爻が動き</a>、之卦は<b>${esc(hexTitle(lang, 55))}</b>――${H(lang, 55)}。`)),
     `<h2>${t("Common mistakes", "常见错误", "よくある間違い")}</h2>`,
     `<ul class="points">`,
@@ -386,7 +393,7 @@ function howToReadTheText(lang: Lang): string {
   const faq = (items: string[]) => [`<h2>${t("Frequently asked questions", "常见问题", "よくある質問")}</h2>`, ...items].join("");
   // The classic text quoted from the site's own data: Legge for English, the traditional-character text for Japanese, the received text for Chinese.
   const lineText = (n: number, idx: number, name: string) =>
-    en ? esc(LEGGE[String(n)].lines[idx]) : ja ? `${name}。${esc(TRAD[String(n)].lines[idx])}` : `${name}：${esc(getByNumber(n).lines[idx])}`;
+    en ? esc(LEGGE[String(n)].lines[idx]) : ja ? `${name}。${esc(TRAD[String(n)].lines[idx])}` : `${name}：${esc(lang === "hant" ? TRAD[String(n)].lines[idx] : getByNumber(n).lines[idx])}`;
   const verdictTable = () => {
     const rows: [string, string, string][] = en ? [
       ["亨", "smooth going", "the way is open; things flow without obstruction"],
@@ -419,7 +426,7 @@ function howToReadTheText(lang: Lang): string {
       ["吝", "羞吝", "迟疑不决所致的难堪，较厉为轻"],
       ["凶", "不利", "对所占之事为逆"],
     ];
-    const head = { en: ["Word", "Meaning", "Note"], zh: ["断语", "义", "注"], ja: ["断語", "意味", "注"] }[lang];
+    const head = { en: ["Word", "Meaning", "Note"], zh: ["断语", "义", "注"], ja: ["断語", "意味", "注"] }[zhKey(lang)];
     return `<table class="tbl"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("")}</tbody></table>`;
   };
   const top = linePath(lang, MENG, 5), tai3 = linePath(lang, 11, 2);
@@ -479,14 +486,14 @@ function howToReadTheText(lang: Lang): string {
 
 const DESC: Record<string, Record<Lang, string>> = {
 
-  "reading-a-hexagram": { en: "Yin and yang lines, reading from the bottom, the two trigrams, line names like 六五, and what to read after a cast.", zh: "阴爻阳爻、自下而上、上下卦、爻题与起卦后读什么。", ja: "陰爻・陽爻、下から読むこと、上下卦、爻の名前、起卦後に読むもの。" },
-  "lines-and-positions": { en: "Proper place, central lines, correspondence and neighbours: how a line is read against its place.", zh: "当位、得中、应与比：爻如何结合其位来读。", ja: "当位・中・応・比：爻を位との関係で読む方法。" },
-  "the-eight-trigrams": { en: "The eight trigrams with their images, family roles and Earlier Heaven numbers.", zh: "八卦之象、家人与先天数。", ja: "八卦の象・家族・先天数。" },
-  "moving-lines": { en: "Old and young lines, moving lines, and how the changed hexagram is formed.", zh: "老少之爻、动爻与之卦如何得出。", ja: "老陰老陽、動爻と之卦の求め方。" },
-  "takashima-method": { en: "Takashima Donshō’s abbreviated yarrow-stalk method, step by step, with his own worked example.", zh: "高岛呑象三变略筮法，逐步讲解，附其本人占例。", ja: "高島呑象の三変略筮法を一歩ずつ、本人の占例つきで。" },
-  "worked-example": { en: "Takashima’s own cast (21, 22, 16 → Meng, line 5 → Huan) taken apart stalk by stalk, read in full, with practice casts and the common mistakes.", zh: "把高岛本人占例（21、22、16 → 蒙卦五爻动 → 之涣）一策一策拆开，完整读一遍，附练习与常见错误。", ja: "高島自身の占例（21・22・16 → 蒙・五爻動 → 之卦は渙）を筮竹一本ずつ分解し、読み通す。練習とよくある間違いつき。" },
-  "how-to-read-the-text": { en: "The verdict vocabulary of the Zhouyi — 吉, 凶, 厉, 悔, 吝, 咎 — and a four-step way to read any judgment or line text, with two lines read through.", zh: "《周易》断语词汇——吉、凶、厉、悔、吝、咎——与四步读法，附两条爻辞的完整走查。", ja: "易経の経文（卦辞・爻辞）の読み方を、断語の語彙（吉・凶・厲・悔・吝・咎）と四歩の読み方で解説。二つの爻辞を実際に読み通します。" },
-  "related-hexagrams": { en: "Inverse, opposite and nuclear hexagrams, with examples.", zh: "综卦、错卦、互卦及其示例。", ja: "綜卦・錯卦・互卦とその例。" },
+  "reading-a-hexagram": { en: "Yin and yang lines, reading from the bottom, the two trigrams, line names like 六五, and what to read after a cast.", zh: "阴爻阳爻、自下而上、上下卦、爻题与起卦后读什么。", hant: "陰爻陽爻、自下而上、上下卦、爻題與起卦後讀什麼。", ja: "陰爻・陽爻、下から読むこと、上下卦、爻の名前、起卦後に読むもの。" },
+  "lines-and-positions": { en: "Proper place, central lines, correspondence and neighbours: how a line is read against its place.", zh: "当位、得中、应与比：爻如何结合其位来读。", hant: "當位、得中、應與比：爻如何結合其位來讀。", ja: "当位・中・応・比：爻を位との関係で読む方法。" },
+  "the-eight-trigrams": { en: "The eight trigrams with their images, family roles and Earlier Heaven numbers.", zh: "八卦之象、家人与先天数。", hant: "八卦之象、家人與先天數。", ja: "八卦の象・家族・先天数。" },
+  "moving-lines": { en: "Old and young lines, moving lines, and how the changed hexagram is formed.", zh: "老少之爻、动爻与之卦如何得出。", hant: "老少之爻、動爻與之卦如何得出。", ja: "老陰老陽、動爻と之卦の求め方。" },
+  "takashima-method": { en: "Takashima Donshō’s abbreviated yarrow-stalk method, step by step, with his own worked example.", zh: "高岛呑象三变略筮法，逐步讲解，附其本人占例。", hant: "高島呑象三變略筮法，逐步講解，附其本人占例。", ja: "高島呑象の三変略筮法を一歩ずつ、本人の占例つきで。" },
+  "worked-example": { en: "Takashima’s own cast (21, 22, 16 → Meng, line 5 → Huan) taken apart stalk by stalk, read in full, with practice casts and the common mistakes.", zh: "把高岛本人占例（21、22、16 → 蒙卦五爻动 → 之涣）一策一策拆开，完整读一遍，附练习与常见错误。", hant: "把高島本人占例（21、22、16 → 蒙卦五爻動 → 之渙）一策一策拆開，完整讀一遍，附練習與常見錯誤。", ja: "高島自身の占例（21・22・16 → 蒙・五爻動 → 之卦は渙）を筮竹一本ずつ分解し、読み通す。練習とよくある間違いつき。" },
+  "how-to-read-the-text": { en: "The verdict vocabulary of the Zhouyi — 吉, 凶, 厉, 悔, 吝, 咎 — and a four-step way to read any judgment or line text, with two lines read through.", zh: "《周易》断语词汇——吉、凶、厉、悔、吝、咎——与四步读法，附两条爻辞的完整走查。", hant: "《周易》斷語詞彙——吉、凶、厲、悔、吝、咎——與四步讀法，附兩條爻辭的完整走查。", ja: "易経の経文（卦辞・爻辞）の読み方を、断語の語彙（吉・凶・厲・悔・吝・咎）と四歩の読み方で解説。二つの爻辞を実際に読み通します。" },
+  "related-hexagrams": { en: "Inverse, opposite and nuclear hexagrams, with examples.", zh: "综卦、错卦、互卦及其示例。", hant: "綜卦、錯卦、互卦及其示例。", ja: "綜卦・錯卦・互卦とその例。" },
 };
 
 // Search-result titles for pages whose query wording differs from the on-page
@@ -500,10 +507,12 @@ export function learnPage(lang: Lang, slug: string) {
   const i = LEARN.indexOf(slug);
   const prev = i > 0 ? `<a rel="prev" href="${learnPath(lang, LEARN[i - 1])}">← ${esc(learnTitle(lang, LEARN[i - 1]))}</a>` : "<span></span>";
   const next = i < LEARN.length - 1 ? `<a rel="next" href="${learnPath(lang, LEARN[i + 1])}">${esc(learnTitle(lang, LEARN[i + 1]))} →</a>` : "";
-  return {
-    title: SEO_TITLE[slug]?.[lang] ?? learnTitle(lang, slug), description: DESC[slug][lang],
-    body: `<article class="learn"><p class="kicker">${esc({ en: "Learn", zh: "入门", ja: "入門" }[lang])} · ${i + 1}/${LEARN.length}</p><h1>${esc(learnTitle(lang, slug))}</h1>${body(lang, slug)}<nav class="prevnext">${prev}${next}</nav></article>`,
-  };
+  const title = SEO_TITLE[slug]?.[lang] ?? learnTitle(lang, slug);
+  const description = DESC[slug][lang];
+  const rawBody = `<article class="learn"><p class="kicker">${esc({ en: "Learn", zh: "入门", hant: "入門", ja: "入門" }[lang])} · ${i + 1}/${LEARN.length}</p><h1>${esc(learnTitle(lang, slug))}</h1>${body(lang, slug)}<nav class="prevnext">${prev}${next}</nav></article>`;
+  return lang === "hant"
+    ? { title: toHant(title), description: toHant(description), body: toHant(rawBody) }
+    : { title, description, body: rawBody };
 }
 
 // --- sidebars ----------------------------------------------------------------
@@ -511,6 +520,7 @@ export function learnPage(lang: Lang, slug: string) {
 const SIDE = {
   en: { learn: "Learn", related: "Related hexagrams", inverse: "Inverse (upside down)", opposite: "Opposite (all lines changed)", nuclear: "Nuclear (hidden inside)", pair: "Its pair in the sequence", sameUpper: "Same upper trigram", sameLower: "Same lower trigram", build: "Build a hexagram", buildHint: "Click a line to switch yin ⚋ / yang ⚊.", table: "All 64 hexagrams", tableHint: "Rows: lower trigram · columns: upper trigram" },
   zh: { learn: "入门", related: "亲缘卦", inverse: "综卦（上下颠倒）", opposite: "错卦（六爻全变）", nuclear: "互卦（卦中之卦）", pair: "卦序之对", sameUpper: "同上卦", sameLower: "同下卦", build: "自己画一卦", buildHint: "点击一爻切换阴 ⚋ / 阳 ⚊。", table: "六十四卦表", tableHint: "行：下卦 · 列：上卦" },
+  hant: { learn: "入門", related: "親緣卦", inverse: "綜卦（上下顛倒）", opposite: "錯卦（六爻全變）", nuclear: "互卦（卦中之卦）", pair: "卦序之對", sameUpper: "同上卦", sameLower: "同下卦", build: "自己畫一卦", buildHint: "點擊一爻切換陰 ⚋ / 陽 ⚊。", table: "六十四卦表", tableHint: "行：下卦 · 列：上卦" },
   ja: { learn: "入門", related: "関連する卦", inverse: "綜卦（上下逆さ）", opposite: "錯卦（全爻反転）", nuclear: "互卦（内に隠れた卦）", pair: "卦序の対", sameUpper: "上卦が同じ", sameLower: "下卦が同じ", build: "卦を組み立てる", buildHint: "爻をクリックして陰 ⚋／陽 ⚊ を切り替え。", table: "六十四卦一覧", tableHint: "行：下卦・列：上卦" },
 };
 

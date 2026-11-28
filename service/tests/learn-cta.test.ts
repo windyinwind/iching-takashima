@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { LEARN, learnPage } from "../src/learn.ts";
 
-const LANGS = ["en", "zh", "ja"] as const;
+const LANGS = ["en", "zh", "hant", "ja"] as const;
 
 // Articles ending in the stalk-splitting CTA deep-link straight to that method.
 const STALKS_SLUGS = new Set(["the-eight-trigrams", "takashima-method"]);
@@ -33,7 +33,7 @@ test("CTA texts differ across languages (no untranslated fallback)", () => {
       const btn = [...page.body.matchAll(/class="btn" href="\/[a-z]+\/#[^"]*">([^<]*)</g)][0];
       return btn[1];
     });
-    assert.equal(new Set(texts).size, 3, `${slug}: CTA text identical across languages`);
+    assert.equal(new Set(texts).size, 4, `${slug}: CTA text identical across languages`);
   }
 });
 

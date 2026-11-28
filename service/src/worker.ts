@@ -2,7 +2,7 @@
 import * as engine from "./engine/index.ts";
 import { mcp } from "./mcp.ts";
 import { retryIn, apiTooMany, mcpTooMany } from "./guardrail.ts";
-import { LANGS, type Lang, castLinks, route, sideScripts, sitemap, W, GTM_HEAD, GTM_NOSCRIPT, ADSENSE_HEAD } from "./pages.ts";
+import { LANGS, type Lang, castLinks, htmlLang, route, sideScripts, sitemap, W, GTM_HEAD, GTM_NOSCRIPT, ADSENSE_HEAD } from "./pages.ts";
 import { leftSidebar, rightSidebar } from "./learn.ts";
 import { infoLinks } from "./info.ts";
 
@@ -22,7 +22,7 @@ const html = (body: string, extra: Record<string, string> = {}) =>
 
 const lang = (q: URLSearchParams): engine.Lang => {
   const l = q.get("lang");
-  return l === "en" || l === "ja" ? l : "zh";
+  return l === "en" || l === "ja" || l === "hant" ? l : "zh";
 };
 const listParam = (q: URLSearchParams, k: string) => q.get(k)?.split(/[\s,]+/).filter(Boolean);
 
@@ -47,22 +47,29 @@ function api(path: string, q: URLSearchParams, origin: string): unknown {
     case "/api/takashima":
       return engine.takashima(Number(q.get("n")), q.get("pos") || null, lang(q), q.get("all") === "1");
     case "/api/list":
-      return engine.list();
+      return engine.list(q.has("lang") ? lang(q) : undefined);
     case "/api/sources":
-      return engine.sources();
+      return engine.sources(q.has("lang") ? lang(q) : undefined);
   }
   return undefined;
 }
 
 function preferredLang(req: Request): Lang {
   const al = (req.headers.get("Accept-Language") || "").toLowerCase();
-  const first = al.split(",").map((s) => s.trim().slice(0, 2)).find((s) => s === "zh" || s === "ja" || s === "en");
-  return (first as Lang) || "en";
+  for (const raw of al.split(",")) {
+    const tag = raw.split(";")[0].trim();
+    if (/^zh-(hant|tw|hk|mo)\b/.test(tag)) return "hant";
+    if (/^zh\b/.test(tag)) return "zh";
+    if (/^ja\b/.test(tag)) return "ja";
+    if (/^en\b/.test(tag)) return "en";
+  }
+  return "en";
 }
 
 const STARTROW: Record<Lang, { cast: string; example: string }> = {
   en: { cast: "Cast a hexagram now", example: "See a complete cast, step by step" },
   zh: { cast: "现在起一卦", example: "先看一次完整的起卦示例" },
+  hant: { cast: "現在起一卦", example: "先看一次完整的起卦示例" },
   ja: { cast: "今すぐ卦を立てる", example: "まず完全な起卦の実例を見る" },
 };
 
@@ -71,6 +78,8 @@ const LANDING: Record<Lang, { title: string; description: string }> = {
     description: "Split the yarrow stalks yourself and see every step of the cast by Takashima Donshō's method, with the classic text, Legge's translation and commentary. No predictions." },
   zh: { title: "周易 · 高岛略筮：按高岛呑象之法起卦，步步可见",
     description: "亲手分筮竹，按高岛呑象略筮法起卦，每一变怎么分、怎么数、得何卦，全部展示。附卦辞爻辞与《増補高島易断》原注，不作预测。" },
+  hant: { title: "周易 · 高島略筮：按高島呑象之法起卦，步步可見",
+    description: "親手分筮竹，按高島呑象略筮法起卦，每一變怎麼分、怎麼數、得何卦，全部展示。附卦辭爻辭與《增補高島易斷》原注，不作預測。" },
   ja: { title: "易経 · 高島流略筮：筮竹を分けて、起卦の手順をすべて見る",
     description: "高島呑象の略筮法で卦を立て、筮竹の数え方から卦の成り立ちまでを一歩ずつ表示。経文と高島の解釈を出典つきで。予言はしません。" },
 };
@@ -81,7 +90,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
   const g = engine.guide(l);
   const meta = LANDING[l];
   const steps = g.prepare.map((s: any) =>
-    `<li><strong>${escapeHtml(s.step)}</strong>${escapeHtml(s.say)}${s.quote ? `<blockquote class="quote"><span lang="${l === "en" ? "zh" : l}">${escapeHtml(s.quote)}</span>${s.quote_en ? `<div>“${escapeHtml(s.quote_en)}”</div>` : ""}<cite>${escapeHtml(s.src)}</cite></blockquote>` : ""}</li>`).join("");
+    `<li><strong>${escapeHtml(s.step)}</strong>${escapeHtml(s.say)}${s.quote ? `<blockquote class="quote"><span lang="${l === "en" ? "zh" : htmlLang(l)}">${escapeHtml(s.quote)}</span>${s.quote_en ? `<div>“${escapeHtml(s.quote_en)}”</div>` : ""}<cite>${escapeHtml(s.src)}</cite></blockquote>` : ""}</li>`).join("");
   // WebSite is what lets a search result show the site's name instead of the
   // bare domain. Only the landing pages carry it; the hexagram pages already
   // declare their own Article markup.
@@ -90,14 +99,14 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
     "@type": "WebSite",
     name: W[l].site,
     url: `${origin}/${l}/`,
-    inLanguage: l === "zh" ? "zh-Hans" : l,
+    inLanguage: htmlLang(l),
     description: meta.description,
   })}</script>`;
   const head = [
     GTM_HEAD,
     ADSENSE_HEAD,
     `<link rel="canonical" href="${origin}/${l}/">`,
-    ...LANGS.map((x) => `<link rel="alternate" hreflang="${x === "zh" ? "zh-Hans" : x}" href="${origin}/${x}/">`),
+    ...LANGS.map((x) => `<link rel="alternate" hreflang="${htmlLang(x)}" href="${origin}/${x}/">`),
     `<link rel="alternate" hreflang="x-default" href="${origin}/en/">`,
     `<meta property="og:url" content="${origin}/${l}/">`,
     `<meta property="og:image" content="${origin}/og/default.png">`,
@@ -106,7 +115,7 @@ async function landing(req: Request, env: Env, l: Lang, origin: string, noindex:
     noindex ? `<meta name="robots" content="noindex, follow">` : "",
   ].join("");
   return new HTMLRewriter()
-    .on("html", { element: (e) => { e.setAttribute("lang", l === "zh" ? "zh-Hans" : l); e.setAttribute("data-lang", l); } })
+    .on("html", { element: (e) => { e.setAttribute("lang", htmlLang(l)); e.setAttribute("data-lang", l); } })
     .on("title", { element: (e) => { e.setInnerContent(meta.title); } })
     .on('meta[name="description"]', { element: (e) => e.setAttribute("content", meta.description) })
     .on('meta[property="og:title"]', { element: (e) => e.setAttribute("content", meta.title) })
@@ -186,12 +195,14 @@ export default {
 
     const hasCast = CAST_KEYS.some((k) => url.searchParams.has(k));
     if (path === "/" || path === "/index.html") {
-      const l = (url.searchParams.get("lang") as Lang) || preferredLang(req);
+      const rawQ = (url.searchParams.get("lang") || "").toLowerCase();
+      const normQ = /^zh-(hant|tw|hk|mo)\b/.test(rawQ) ? "hant" : rawQ === "zh-hans" || rawQ === "zh-cn" ? "zh" : rawQ;
+      const l = (normQ as Lang) || preferredLang(req);
       const target = LANGS.includes(l) ? l : "en";
       if (!hasCast) return Response.redirect(`${origin}/${target}/`, 302);
       return landing(req, env, target, origin, true);
     }
-    const lm = /^\/(en|zh|ja)\/?$/.exec(path);
+    const lm = /^\/(en|zh|hant|ja)\/?$/.exec(path);
     if (lm) {
       // Both forms rendered the same page, so Google saw two URLs for it; the
       // canonical already named the slashed one, so send the other there.

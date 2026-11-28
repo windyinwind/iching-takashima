@@ -2,12 +2,15 @@
 // three languages. Every page draws its lines (yang ⚊ / yin ⚋) and links to the related pages.
 import { HEXAGRAMS, LEGGE, LINE_MEANING, PLAIN, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
+import { toHant, toHantHtml } from "./engine/hant.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
 import { LEARN, type SideCtx, hexData, learnPage, learnPath, learnTitle, leftSidebar, relations, rightSidebar } from "./learn.ts";
 import { INFO, infoLinks, infoPage, infoPath } from "./info.ts";
 
-export type Lang = "en" | "zh" | "ja";
-export const LANGS: Lang[] = ["en", "zh", "ja"];
+export type Lang = "en" | "zh" | "hant" | "ja";
+export const LANGS: Lang[] = ["en", "zh", "hant", "ja"];
+export const htmlLang = (l: Lang) => (l === "zh" ? "zh-Hans" : l === "hant" ? "zh-Hant" : l);
+const zhKey = (l: Lang): "en" | "zh" | "ja" => (l === "hant" ? "zh" : l);
 const EXCERPTS: any = excerptsJson;
 const ORDER = ["乾", "兑", "离", "震", "巽", "坎", "艮", "坤"];
 const TRIGRAM_SLUG: Record<string, string> = { "乾": "qian", "兑": "dui", "离": "li", "震": "zhen", "巽": "xun", "坎": "kan", "艮": "gen", "坤": "kun" };
@@ -48,6 +51,17 @@ export const W = {
     askBot: "问 Grok Bot", noPredict: "经文与义理的检索工具，不作预测，结论在你。",
     yongLabel: "六爻皆动",
   },
+  hant: {
+    site: "周易 · 高島略筮", learn: "入門", all: "六十四卦", trigrams: "八卦", cast: "起一卦",
+    judgment: "卦辭", lines: "六爻", line: (p: number) => `第 ${p + 1} 爻`, original: "原文",
+    lower: "下卦（內卦）", upper: "上卦（外卦）", changesTo: "此爻動則變為",
+    takashima: "高島原書（節錄）", tkFull: "高島全文、分事占斷與占例：見 Grok Bot。", tkZhOnly: "",
+    legge: "", prev: "上一卦", next: "下一卦",
+    structure: "象數結構", asLower: "為下卦", asUpper: "為上卦",
+    plain: "白話", plainNote: "把經文與義理用現代白話講一遍，幫你讀懂原文，不是對你所占事項的判斷。",
+    askBot: "問 Grok Bot", noPredict: "經文與義理的檢索工具，不作預測，結論在你。",
+    yongLabel: "六爻皆動",
+  },
   ja: {
     site: "易経 · 高島流略筮", learn: "入門", all: "六十四卦一覧", trigrams: "八卦", cast: "卦を立てる",
     judgment: "卦辞", lines: "六爻", line: (p: number) => `${["初", "二", "三", "四", "五", "上"][p]}爻`, original: "原文",
@@ -70,17 +84,21 @@ export function hexTitle(lang: Lang, n: number) {
   const h = getByNumber(n);
   if (lang === "en") return `Hexagram ${n} ${T.hexagram_en[String(n)][0]} ${h.name} (${T.hexagram_en[String(n)][1]})`;
   if (lang === "ja") return `第${n}卦 ${T.hexagram_ja[String(n)][0]}（${T.hexagram_ja[String(n)][1]}）`;
-  return `第 ${n} 卦 ${h.name}`;
+  const s = `第 ${n} 卦 ${h.name}`;
+  return lang === "hant" ? toHant(s) : s;
 }
 /** Kanji name plus reading, e.g. 山雷頤（さんらいい）: the form Japanese searchers actually type. */
 const jaName = (n: number) => `${T.hexagram_ja[String(n)][0]}（${T.hexagram_ja[String(n)][1]}）`;
 const hexShort = (lang: Lang, n: number) =>
-  lang === "en" ? `${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name}` : lang === "ja" ? `${n} ${T.hexagram_ja[String(n)][0]}` : `${n} ${getByNumber(n).name}`;
+  lang === "en" ? `${n} ${T.hexagram_en[String(n)][0]} ${getByNumber(n).name}` :
+    lang === "ja" ? `${n} ${T.hexagram_ja[String(n)][0]}` :
+    lang === "hant" ? toHant(`${n} ${getByNumber(n).name}`) : `${n} ${getByNumber(n).name}`;
 
 export function trigramTitle(lang: Lang, t: string) {
   if (lang === "en") return `${T.trigram_en[t][0]} ${t} ${SYMBOLS[t]} (${T.trigram_en[t][1]})`;
   if (lang === "ja") return `${T.trigram_ja[t][0]}（${T.trigram_ja[t][1]}）${SYMBOLS[t]}・${T.trigram_ja[t][2]}`;
-  return `${t} ${SYMBOLS[t]}（${T.nature[t]}）`;
+  const s = `${t} ${SYMBOLS[t]}（${T.nature[t]}）`;
+  return lang === "hant" ? toHant(s) : s;
 }
 
 // --- drawing ----------------------------------------------------------------
@@ -165,11 +183,11 @@ export function sideScripts(lang: Lang) {
 function shell(m: Meta, body: string) {
   const w = W[m.lang];
   const url = m.origin + m.path(m.lang);
-  const alt = LANGS.map((l) => `<link rel="alternate" hreflang="${l === "zh" ? "zh-Hans" : l}" href="${m.origin}${m.path(l)}">`).join("") +
+  const alt = LANGS.map((l) => `<link rel="alternate" hreflang="${htmlLang(l)}" href="${m.origin}${m.path(l)}">`).join("") +
     `<link rel="alternate" hreflang="x-default" href="${m.origin}${m.path("en")}">`;
   const og = m.origin + (m.og ?? "/og/default.png");
-  const langs = LANGS.map((l) => `<a href="${m.path(l)}" hreflang="${l}"${l === m.lang ? ' aria-current="true"' : ""}>${{ en: "EN", zh: "中文", ja: "日本語" }[l]}</a>`).join("");
-  return `<!doctype html><html lang="${m.lang === "zh" ? "zh-Hans" : m.lang}"><head><meta charset="utf-8">
+  const langs = LANGS.map((l) => `<a href="${m.path(l)}" hreflang="${htmlLang(l)}"${l === m.lang ? ' aria-current="true"' : ""}>${{ en: "EN", zh: "简体", hant: "繁體", ja: "日本語" }[l]}</a>`).join("");
+  const out = `<!doctype html><html lang="${htmlLang(m.lang)}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(m.title)}</title><meta name="description" content="${esc(m.description)}">
 <link rel="canonical" href="${url}">${alt}
@@ -188,6 +206,7 @@ ${GTM_NOSCRIPT}
 ${sideScripts(m.lang)}
 <footer><p>${esc(w.noPredict)}</p><p class="small"><a href="${TEMPLATE}" rel="noopener">${esc(w.askBot)}</a> · <a href="https://github.com/windyinwind/iching-takashima" rel="noopener">GitHub</a></p><p class="small">${infoLinks(m.lang)}</p></footer>
 </body></html>`;
+  return m.lang === "hant" ? toHantHtml(out) : out;
 }
 
 const tLink = (lang: Lang, t: string) =>
@@ -199,6 +218,7 @@ function judgmentText(lang: Lang, n: number) {
   const h = getByNumber(n);
   if (lang === "en") return `<blockquote class="text">${esc(LEGGE[String(n)].judgment)}<div class="muted small" lang="zh">${esc(h.judgment)}</div></blockquote>`;
   if (lang === "ja") return `<blockquote class="text" lang="ja">${esc(TRAD[String(n)].judgment)}</blockquote>`;
+  if (lang === "hant") return `<blockquote class="text">${esc(TRAD[String(n)].judgment)}</blockquote>`;
   return `<blockquote class="text">${esc(h.judgment)}</blockquote>`;
 }
 
@@ -207,6 +227,7 @@ function lineText(lang: Lang, n: number, p: number) {
   const label = lineLabel(p, linesOf(h)[p] === 1);
   if (lang === "en") return `<blockquote class="text">${esc(LEGGE[String(n)].lines[p])}<div class="muted small" lang="zh">${esc(label)}：${esc(h.lines[p])}</div></blockquote>`;
   if (lang === "ja") return `<blockquote class="text" lang="ja">${esc(label)}。${esc(TRAD[String(n)].lines[p])}</blockquote>`;
+  if (lang === "hant") return `<blockquote class="text">${esc(label)}：${esc(TRAD[String(n)].lines[p])}</blockquote>`;
   return `<blockquote class="text">${esc(label)}：${esc(h.lines[p])}</blockquote>`;
 }
 
@@ -214,17 +235,19 @@ function takashimaBlock(lang: Lang, n: number, key: string) {
   const e = EXCERPTS[String(n)]?.[key];
   if (!e) return "";
   const w = W[lang];
-  const tr: string[] | undefined = e[lang];
-  const paras = lang === "zh" || !tr ? e.zh : tr;
-  const note = lang === "zh" ? "" : tr ? "" : `<p class="muted small">${esc(w.tkZhOnly)}</p>`;
-  return `<section class="tk"><h3>${esc(w.takashima)}</h3>${note}${paras.map((p: string) => `<p${paras === e.zh ? ' lang="zh"' : ""}>${esc(p)}</p>`).join("")}<p class="muted small"><a href="${TEMPLATE}" rel="noopener">${esc(w.tkFull)}</a></p></section>`;
+  const isZh = lang === "zh" || lang === "hant";
+  const tr: string[] | undefined = isZh ? undefined : e[lang];
+  const paras = isZh || !tr ? e.zh : tr;
+  const note = isZh ? "" : tr ? "" : `<p class="muted small">${esc(w.tkZhOnly)}</p>`;
+  return `<section class="tk"><h3>${esc(w.takashima)}</h3>${note}${paras.map((p: string) => `<p${!isZh && paras === e.zh ? ' lang="zh"' : ""}>${esc(p)}</p>`).join("")}<p class="muted small"><a href="${TEMPLATE}" rel="noopener">${esc(w.tkFull)}</a></p></section>`;
 }
 
 // 人话版：64 卦 + 384 爻的现代白话转写，三语各自成文，与取象/义理原文并列展示。
 function plainBlock(lang: Lang, kind: "hex" | "line", n: number, p?: number): string {
+  const k = zhKey(lang);
   const text = kind === "hex"
-    ? PLAIN.hexagrams[String(n)]?.[lang]
-    : PLAIN.lines[`${n}-${p}`]?.[lang];
+    ? PLAIN.hexagrams[String(n)]?.[k]
+    : PLAIN.lines[`${n}-${p}`]?.[k];
   if (!text) return "";
   const w = W[lang];
   return `<section class="plain"><h3>${esc(w.plain)}</h3><p>${esc(text)}</p><p class="muted small">${esc(w.plainNote)}</p></section>`;
@@ -235,7 +258,7 @@ function lineSection(lang: Lang, n: number, p: number, { heading = "h3", link = 
   const lines = linesOf(getByNumber(n));
   const label = lineLabel(p, lines[p] === 1);
   const ch = changedOf(n, p);
-  const meaning = lang === "zh" ? LINE_MEANING[String(n)]?.[p] : null;
+  const meaning = lang === "zh" || lang === "hant" ? LINE_MEANING[String(n)]?.[p] : null;
   const title = `${w.line(p)} · ${label}`;
   return `<section class="line" id="line-${p + 1}">
 <${heading}>${link ? `<a href="${linePath(lang, n, p)}">${esc(title)}</a>` : esc(title)}</${heading}>
@@ -267,7 +290,7 @@ function leggeYong(n: number): string {
 // --- hexagram FAQ -------------------------------------------------------------
 // Questions and answers generated only from the site's own data: the judgment text, the two
 // trigrams and their images, and the moving-line reading order taught on the Learn pages.
-const FAQ_HEADING: Record<Lang, string> = { en: "Frequently asked questions", zh: "常见问题", ja: "よくある質問" };
+const FAQ_HEADING: Record<Lang, string> = { en: "Frequently asked questions", zh: "常见问题", hant: "常見問題", ja: "よくある質問" };
 
 function hexFaq(lang: Lang, n: number): { q: string; aHtml: string; aText: string }[] {
   const h = getByNumber(n);
@@ -303,7 +326,7 @@ function hexFaq(lang: Lang, n: number): { q: string; aHtml: string; aText: strin
         aText: `まず本卦の動爻そのものの爻辞を読みます（このページの各爻の節にあります）。次に、その爻が変化してなる之卦を見ます（「${W.ja.changesTo}」のリンク先）。動爻と之卦の仕組みは「${mlName}」を参照してください。` },
     ];
   }
-  const j = h.judgment;
+  const j = lang === "hant" ? TRAD[String(n)].judgment : h.judgment;
   return [
     { q: `第 ${n} 卦 ${h.name} 是什么卦？`,
       aHtml: `${esc(h.name)}是六十四卦之第 ${n} 卦，上${esc(up)}下${esc(lo)}。卦辞原文：「${esc(j)}」`,
@@ -312,8 +335,8 @@ function hexFaq(lang: Lang, n: number): { q: string; aHtml: string; aText: strin
       aHtml: `上卦（外卦）为 ${esc(up)} ${SYMBOLS[up]}，象${esc(T.nature[up])}；下卦（内卦）为 ${esc(lo)} ${SYMBOLS[lo]}，象${esc(T.nature[lo])}。`,
       aText: `上卦（外卦）为 ${up} ${SYMBOLS[up]}，象${T.nature[up]}；下卦（内卦）为 ${lo} ${SYMBOLS[lo]}，象${T.nature[lo]}。` },
     { q: `${h.name} 的动爻怎么读？`,
-      aHtml: `先读本卦动爻本身的爻辞（见本页各爻小节），再看该爻变化后所成的之卦（见各爻下「${esc(W.zh.changesTo)}」的链接）。动爻与之卦的原理见${ml}。`,
-      aText: `先读本卦动爻本身的爻辞（见本页各爻小节），再看该爻变化后所成的之卦（见各爻下「${W.zh.changesTo}」的链接）。动爻与之卦的原理见《${mlName}》。` },
+      aHtml: `先读本卦动爻本身的爻辞（见本页各爻小节），再看该爻变化后所成的之卦（见各爻下「${esc(W[lang].changesTo)}」的链接）。动爻与之卦的原理见${ml}。`,
+      aText: `先读本卦动爻本身的爻辞（见本页各爻小节），再看该爻变化后所成的之卦（见各爻下「${W[lang].changesTo}」的链接）。动爻与之卦的原理见《${mlName}》。` },
   ];
 }
 
@@ -333,9 +356,9 @@ function hexagramPage(lang: Lang, n: number, origin: string) {
   const w = W[lang];
   const h = getByNumber(n);
   const lines = linesOf(h);
-  const meaning = lang === "zh" ? T.hexagram_meaning[h.name] : "";
+  const meaning = lang === "zh" || lang === "hant" ? T.hexagram_meaning[h.name] : "";
   const yong = h.yong
-    ? `<section class="line" id="yong"><h3>${esc(h.yong.label)} · ${esc(w.yongLabel)}</h3><blockquote class="text">${esc(lang === "en" ? leggeYong(n) : h.yong.text)}</blockquote>${takashimaBlock(lang, n, "yong")}</section>`
+    ? `<section class="line" id="yong"><h3>${esc(h.yong.label)} · ${esc(w.yongLabel)}</h3><blockquote class="text">${esc(lang === "en" ? leggeYong(n) : lang === "hant" ? (TRAD[String(n)].yong ?? h.yong.text) : h.yong.text)}</blockquote>${takashimaBlock(lang, n, "yong")}</section>`
     : "";
   const body = `<article>
 <p class="kicker">${esc(lang === "en" ? `Hexagram ${n} of 64` : lang === "ja" ? `六十四卦の第${n}` : `六十四卦之第 ${n}`)}</p>
@@ -361,12 +384,12 @@ ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
     jsonld: {
       "@context": "https://schema.org",
       "@graph": [
-        { "@type": "Article", headline: hexTitle(lang, n), inLanguage: lang,
+        { "@type": "Article", headline: hexTitle(lang, n), inLanguage: htmlLang(lang),
           about: { "@type": "CreativeWork", name: "I Ching (Book of Changes)" }, isPartOf: { "@type": "WebSite", name: W.en.site, url: origin },
           breadcrumb: { "@type": "BreadcrumbList", itemListElement: [
             { "@type": "ListItem", position: 1, name: w.all, item: `${origin}/${lang}/hexagrams` },
             { "@type": "ListItem", position: 2, name: hexTitle(lang, n), item: origin + hexPath(lang, n) }] } },
-        { "@type": "FAQPage", inLanguage: lang,
+        { "@type": "FAQPage", inLanguage: htmlLang(lang),
           mainEntity: hexFaq(lang, n).map(({ q, aText }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: aText } })) },
       ],
     },
@@ -376,6 +399,7 @@ ${lang === "en" ? `<p class="muted small">${esc(w.legge)}</p>` : ""}
 const REL_LINE: Record<Lang, { head: string; changed: string; inverse: string; opposite: string; nuclear: string }> = {
   en: { head: "This line in related hexagrams", changed: "If this line moves, in", inverse: "Inverse hexagram", opposite: "Opposite hexagram", nuclear: "Nuclear hexagram" },
   zh: { head: "亲缘卦中的同一爻", changed: "此爻动，之卦的同一爻", inverse: "综卦", opposite: "错卦", nuclear: "互卦" },
+  hant: { head: "親緣卦中的同一爻", changed: "此爻動，之卦的同一爻", inverse: "綜卦", opposite: "錯卦", nuclear: "互卦" },
   ja: { head: "関連する卦の同じ爻", changed: "この爻が動いた之卦の同じ爻", inverse: "綜卦", opposite: "錯卦", nuclear: "互卦" },
 };
 
@@ -419,7 +443,7 @@ ${adUnit(AD_SLOT_INARTICLE)}
   const desc = lang === "en"
     ? `${headTitle.replace(/ · I Ching$/, "")}: “${clip(LEGGE[String(n)].lines[p], 155 - tail.length - headTitle.length)}”${tail}`
     : lang === "ja" ? `${jaName(n)} ${w.line(p)} ${label}：${TRAD[String(n)].lines[p]} 爻の図・構造・之卦と高島の解釈。`
-      : `${title}：${getByNumber(n).lines[p]} 爻位图解、义理、之卦与高岛原注。`;
+      : `${title}：${(lang === "hant" ? TRAD[String(n)].lines[p] : getByNumber(n).lines[p])} 爻位图解、义理、之卦与高岛原注。`;
   return shell({ lang, origin, title: headTitle, description: desc, path: (l) => linePath(l, n, p), og: `/og/${n}.png`, side: { n, p } }, body);
 }
 
@@ -459,7 +483,7 @@ export function trigramsIndex(lang: Lang, origin: string) {
 }
 
 /** Bump when page content or titles change, so Google knows to recrawl. */
-const SITEMAP_LASTMOD = "2026-11-24";
+const SITEMAP_LASTMOD = "2026-11-28";
 
 export function sitemap(origin: string) {
   const urls: string[] = [];
@@ -472,9 +496,9 @@ export function sitemap(origin: string) {
     }
   }
   const altFor = (u: string) => {
-    const rest = u.replace(/^\/(en|zh|ja)\//, "");
+    const rest = u.replace(/^\/(en|zh|hant|ja)\//, "");
     const href = (l: Lang) => `${origin}/${l}/${rest}`;
-    return LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l === "zh" ? "zh-Hans" : l}" href="${href(l)}"/>`).join("") +
+    return LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${htmlLang(l)}" href="${href(l)}"/>`).join("") +
       `<xhtml:link rel="alternate" hreflang="x-default" href="${href("en")}"/>`;
   };
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map((u) => `<url><loc>${origin}${u}</loc>${altFor(u)}<lastmod>${SITEMAP_LASTMOD}</lastmod></url>`).join("\n")}\n</urlset>\n`;
@@ -495,15 +519,15 @@ export function castLinks(lang: Lang, origin: string, chain: any) {
 }
 
 export function route(path: string, origin: string): string | null {
-  const lm = /^\/(en|zh|ja)\/learn\/([a-z-]+)$/.exec(path);
+  const lm = /^\/(en|zh|hant|ja)\/learn\/([a-z-]+)$/.exec(path);
   if (lm) {
     const lang = lm[1] as Lang, pg = learnPage(lang, lm[2]);
     return pg && shell({ lang, origin, title: `${pg.title} · ${W[lang].site}`, description: pg.description, path: (l) => learnPath(l, lm[2]), side: { learn: lm[2] } }, pg.body.replace('<nav class="prevnext">', `${adUnit(AD_SLOT_INARTICLE)}<nav class="prevnext">`));
   }
-  const im = /^\/(en|zh|ja)\/([a-z]+)$/.exec(path);
+  const im = /^\/(en|zh|hant|ja)\/([a-z]+)$/.exec(path);
   const ip = im && infoPage(im[1] as Lang, im[2], origin);
   if (ip) return shell({ lang: im![1] as Lang, origin, title: `${ip.title} · ${W[im![1] as Lang].site}`, description: ip.description, path: (l) => `/${l}/${im![2]}` }, ip.body);
-  const m = /^\/(en|zh|ja)\/(hexagrams|trigrams|hexagram\/(\d+)(?:-[a-z-]*)?(?:\/line-([1-6]))?|trigram\/([a-z]+))$/.exec(path);
+  const m = /^\/(en|zh|hant|ja)\/(hexagrams|trigrams|hexagram\/(\d+)(?:-[a-z-]*)?(?:\/line-([1-6]))?|trigram\/([a-z]+))$/.exec(path);
   if (!m) return null;
   const lang = m[1] as Lang;
   if (m[2] === "hexagrams") return hexagramsIndex(lang, origin);
