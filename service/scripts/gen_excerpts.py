@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build the Takashima excerpts the public pages show: src/generated/excerpts.json.
 
-Only the opening of each page's commentary is published (the full translation is the edition).
-English and Japanese come from translations/vol1/ when a page has been translated and checked;
-otherwise only the Chinese original is shown. The output is git-ignored, like translations/.
+Pages render the full Chinese commentary from the source data; this file carries the
+English and Japanese excerpts, taken from translations/vol1/ when a page has been
+translated and checked (the full translation is the edition). The output is
+git-ignored, like translations/.
 
     python3 service/scripts/gen_excerpts.py
 """
@@ -44,8 +45,10 @@ def excerpt(paras, lang):
         if total >= LIMIT[lang]:
             break
         room = LIMIT[lang] - total
-        if out and len(p) > room:
-            break                      # never end on a stub: stop before a paragraph that won't fit
+        if out and len(p) > room and room < 80:
+            break                      # never end on a stub: stop when too little room is left
+        # (with room to spare, the cut below shortens the paragraph instead of
+        # dropping it — dropping it collapsed 35 lines to a <30-char opening)
         if len(p) > room:
             cut = max(p.rfind(e, 0, room) for e in ENDS[lang])
             p = (p[:cut + 1] if cut > room // 3 else p[:room]) + "…"

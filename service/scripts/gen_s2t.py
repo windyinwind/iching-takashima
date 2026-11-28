@@ -84,6 +84,16 @@ OVERRIDE = {
     "丑类": "丑類",
     "丑为牛": "丑為牛",
 
+    # Takashima commentary/case corpus (full text rendered on pages since 2026-11-28):
+    # OpenCC phrases half-convert or keep the wrong char in these attested compounds
+    "贵价": "貴價",      # ph gave 貴价 (菜種 case); 價 is correct
+    "游上": "遊上",      # ph kept 游上 (余游上毛 case); verb takes 遊
+    "游至": "遊至",      # verb use takes 遊
+    "太子游": "太子遊",  # ph 子游 (the disciple's name) otherwise eats the 游 in 太子游至大津
+    "郁郁": "郁郁",      # classical 郁郁 (論語 郁郁乎文哉); ph gave 鬱郁, half-converted
+    "占万余": "占萬餘",  # a longer ph hit gave 佔万餘元; 占 stays (classical), 萬餘 converts
+    "改进党": "改進黨",  # Meiji party name in a case; 黨 is correct
+
     # remaining gold-specific & Japanese-kanji fixes
     "几几乎": "幾幾乎",
     "合作伙伴": "合作夥伴",

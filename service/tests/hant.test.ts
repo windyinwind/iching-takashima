@@ -20,6 +20,13 @@ const TRIGRAMS = ["qian", "dui", "li", "zhen", "xun", "kan", "gen", "kun"];
 const ALLOWED_RESIDUAL_CH = new Set([
   "无", "于", "占", "凶", "咸", "征", "群", "云", "斗", "里",
   "尸", "咨", "干", "丑", "采", "瓮", "后", "腊", "机", "范", "余",
+  // Residuals attested in the Takashima commentary/case corpus (fully rendered on
+  // pages since 2026-11-28) where the char IS the correct traditional/Japanese form:
+  // 据 拮据 (ph-preserved), 岩 岩石・岩手縣 (Japanese place names), 辟 刑辟・大辟・辟穀
+  // (classical), 准 批准・准許 (standard traditional), 跖 盜跖 (proper name),
+  // 台 仙台 (Japanese place name), 仆 顛仆 (classical "topple"), 几 隱几 (classical table),
+  // 郁 郁郁 (classical, kept by a gen_s2t override; ph half-converted it to 鬱郁).
+  "据", "岩", "辟", "准", "跖", "台", "仆", "几", "郁",
 ]);
 
 let prevCaches: unknown;
