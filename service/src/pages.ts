@@ -1,6 +1,6 @@
 // Server-rendered pages for search engines and link previews: hexagrams, lines and trigrams in
 // three languages. Every page draws its lines (yang ⚊ / yin ⚋) and links to the related pages.
-import { HEXAGRAMS, LEGGE, LINE_MEANING, PLAIN, T, TRAD } from "./engine/data.ts";
+import { HEXAGRAMS, LEGGE, LINE_MEANING, PLAIN, TAKASHIMA, T, TRAD } from "./engine/data.ts";
 import { SYMBOLS, getByLines, getByNumber, lineLabel, linesOf } from "./engine/core.ts";
 import { toHant, toHantHtml } from "./engine/hant.ts";
 import excerptsJson from "./generated/excerpts.json" with { type: "json" };
@@ -32,7 +32,8 @@ export const W = {
     site: "I Ching · Takashima Method", learn: "Learn", all: "All 64 hexagrams", trigrams: "The eight trigrams", cast: "Cast a hexagram",
     judgment: "The judgment", lines: "The six lines", line: (p: number) => `Line ${p + 1}`, original: "Original text",
     lower: "Lower (inner) trigram", upper: "Upper (outer) trigram", changesTo: "If this line moves, it changes to",
-    takashima: "From Takashima's commentary", tkFull: "Takashima’s full commentary, topic readings and recorded cases: in the Grok Bot and the forthcoming edition.",
+    takashima: "From Takashima's commentary", tkFull: "Read your own cast with Takashima's method, step by step: the Grok Bot.",
+    zhan: "By topic, from Takashima", cases: "Recorded cases",
     tkZhOnly: "Takashima’s commentary in the Chinese text.",
     legge: "English: James Legge, The Yî King (1882), public domain.", prev: "Previous", next: "Next",
     structure: "Structure", asLower: "As the lower trigram", asUpper: "As the upper trigram",
@@ -44,7 +45,8 @@ export const W = {
     site: "周易 · 高岛略筮", learn: "入门", all: "六十四卦", trigrams: "八卦", cast: "起一卦",
     judgment: "卦辞", lines: "六爻", line: (p: number) => `第 ${p + 1} 爻`, original: "原文",
     lower: "下卦（内卦）", upper: "上卦（外卦）", changesTo: "此爻动则变为",
-    takashima: "高岛原书（节录）", tkFull: "高岛全文、分事占断与占例：见 Grok Bot。", tkZhOnly: "",
+    takashima: "高岛原书", tkFull: "自己起卦、按高岛法逐步占断：见 Grok Bot。", tkZhOnly: "",
+    zhan: "分事占断", cases: "占例",
     legge: "", prev: "上一卦", next: "下一卦",
     structure: "象数结构", asLower: "为下卦", asUpper: "为上卦",
     plain: "白话", plainNote: "把经文与义理用现代白话讲一遍，帮你读懂原文，不是对你所占事项的判断。",
@@ -55,7 +57,8 @@ export const W = {
     site: "周易 · 高島略筮", learn: "入門", all: "六十四卦", trigrams: "八卦", cast: "起一卦",
     judgment: "卦辭", lines: "六爻", line: (p: number) => `第 ${p + 1} 爻`, original: "原文",
     lower: "下卦（內卦）", upper: "上卦（外卦）", changesTo: "此爻動則變為",
-    takashima: "高島原書（節錄）", tkFull: "高島全文、分事占斷與占例：見 Grok Bot。", tkZhOnly: "",
+    takashima: "高島原書", tkFull: "自己起卦、按高島法逐步占斷：見 Grok Bot。", tkZhOnly: "",
+    zhan: "分事占斷", cases: "占例",
     legge: "", prev: "上一卦", next: "下一卦",
     structure: "象數結構", asLower: "為下卦", asUpper: "為上卦",
     plain: "白話", plainNote: "把經文與義理用現代白話講一遍，幫你讀懂原文，不是對你所占事項的判斷。",
@@ -66,7 +69,8 @@ export const W = {
     site: "易経 · 高島流略筮", learn: "入門", all: "六十四卦一覧", trigrams: "八卦", cast: "卦を立てる",
     judgment: "卦辞", lines: "六爻", line: (p: number) => `${["初", "二", "三", "四", "五", "上"][p]}爻`, original: "原文",
     lower: "下卦（内卦）", upper: "上卦（外卦）", changesTo: "この爻が動けば之卦は",
-    takashima: "高島の解釈（抄録）", tkFull: "高島の全文・事項別占断・占例は Grok Bot で。",
+    takashima: "高島の解釈", tkFull: "自分の卦を高島流で一歩ずつ読むなら Grok Bot で。",
+    zhan: "事項別の占断", cases: "占例",
     tkZhOnly: "高島の解釈は漢文テキストのまま掲げます。",
     legge: "", prev: "前の卦", next: "次の卦",
     structure: "卦の構造", asLower: "下卦として", asUpper: "上卦として",
@@ -231,26 +235,55 @@ function lineText(lang: Lang, n: number, p: number) {
   return `<blockquote class="text">${esc(label)}：${esc(h.lines[p])}</blockquote>`;
 }
 
+/** The full Takashima entry for a judgment, a line or the yong, from the source data. */
+function takashimaSource(n: number, key: string) {
+  const v = TAKASHIMA[String(n)];
+  if (!v) return null;
+  if (key === "judgment") return v.judgment;
+  if (key === "yong") return v.yong;
+  return v.lines?.[Number(key)] ?? null;
+}
+
 function takashimaBlock(lang: Lang, n: number, key: string) {
   const e = EXCERPTS[String(n)]?.[key];
-  if (!e) return "";
+  const src = takashimaSource(n, key);
+  if (!e && !src) return "";
   const w = W[lang];
   const isZh = lang === "zh" || lang === "hant";
-  const tr: string[] | undefined = isZh ? undefined : e[lang];
-  const paras = isZh || !tr ? e.zh : tr;
-  const note = isZh ? "" : tr ? "" : `<p class="muted small">${esc(w.tkZhOnly)}</p>`;
-  return `<section class="tk"><h3>${esc(w.takashima)}</h3>${note}${paras.map((p: string) => `<p${!isZh && paras === e.zh ? ' lang="zh"' : ""}>${esc(p)}</p>`).join("")}<p class="muted small"><a href="${TEMPLATE}" rel="noopener">${esc(w.tkFull)}</a></p></section>`;
+  const tr: string[] | undefined = isZh ? undefined : e?.[lang];
+  // A checked translation shows its excerpt (the full translation is the edition in
+  // preparation). Everything else shows the FULL Chinese commentary from the source:
+  // the generated excerpt is capped (zh 420 chars) and its paragraph rule collapsed
+  // 35 of 384 lines to a stub of under 30 chars, which left those pages nearly empty.
+  const paras: string[] = tr ?? src?.commentary ?? e?.zh ?? [];
+  const zhText = !isZh && !tr; // Chinese text shown to a non-Chinese reader
+  const note = zhText ? `<p class="muted small">${esc(w.tkZhOnly)}</p>` : "";
+  const lp = zhText ? ' lang="zh"' : "";
+  // The per-topic readings (分事占断) and recorded cases (占例) exist in the source for
+  // nearly every line (zhan: 384/384, cases: 381/384) but were never rendered; they are
+  // the most page-specific text the book has, so they belong on the page.
+  const zhan = (src?.zhan ?? []).filter((z: any) => z?.text?.trim());
+  const zhanHtml = zhan.length
+    ? `<h4>${esc(w.zhan)}</h4><dl class="zhan">${zhan.map((z: any) => `<div><dt>${esc(z.topic)}</dt><dd${lp}>${esc(z.text)}</dd></div>`).join("")}</dl>`
+    : "";
+  const cases = (src?.cases ?? []).filter((c: any) => c?.text?.length);
+  const casesHtml = cases.length
+    ? `<h4>${esc(w.cases)}</h4>${cases.map((c: any) => c.text.map((t: string) => `<p${lp}>${esc(t)}</p>`).join("")).join("")}`
+    : "";
+  return `<section class="tk"><h3>${esc(w.takashima)}</h3>${note}${paras.map((p: string) => `<p${lp}>${esc(p)}</p>`).join("")}${zhanHtml}${casesHtml}<p class="muted small"><a href="${TEMPLATE}" rel="noopener">${esc(w.tkFull)}</a></p></section>`;
 }
 
 // 人话版：64 卦 + 384 爻的现代白话转写，三语各自成文，与取象/义理原文并列展示。
-function plainBlock(lang: Lang, kind: "hex" | "line", n: number, p?: number): string {
+// The disclaimer is identical on every block, so embedded line sections on a hexagram
+// page omit it (note=false): it otherwise repeated seven times on one page.
+function plainBlock(lang: Lang, kind: "hex" | "line", n: number, p?: number, note = true): string {
   const k = zhKey(lang);
   const text = kind === "hex"
     ? PLAIN.hexagrams[String(n)]?.[k]
     : PLAIN.lines[`${n}-${p}`]?.[k];
   if (!text) return "";
   const w = W[lang];
-  return `<section class="plain"><h3>${esc(w.plain)}</h3><p>${esc(text)}</p><p class="muted small">${esc(w.plainNote)}</p></section>`;
+  return `<section class="plain"><h3>${esc(w.plain)}</h3><p>${esc(text)}</p>${note ? `<p class="muted small">${esc(w.plainNote)}</p>` : ""}</section>`;
 }
 
 function lineSection(lang: Lang, n: number, p: number, { heading = "h3", link = true } = {}) {
@@ -263,9 +296,9 @@ function lineSection(lang: Lang, n: number, p: number, { heading = "h3", link = 
   return `<section class="line" id="line-${p + 1}">
 <${heading}>${link ? `<a href="${linePath(lang, n, p)}">${esc(title)}</a>` : esc(title)}</${heading}>
 <div class="line-head">${figure(lines, { hl: [p], label: `${hexTitle(lang, n)}, ${title}` })}<div>${lineText(lang, n, p)}</div></div>
-<ul class="facts">${facts(lang, n, p).map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
+<p class="facts">${facts(lang, n, p).map((f) => esc(f)).join(" ")}</p>
 ${meaning ? `<p>${esc(meaning.x)}</p><p>${esc(meaning.l)}</p>` : ""}
-${plainBlock(lang, "line", n, p)}
+${plainBlock(lang, "line", n, p, heading === "h1")}
 <p class="changes">${esc(w.changesTo)} ${hLink(lang, ch, [p])}</p>
 ${heading === "h1" ? takashimaBlock(lang, n, String(p)) : ""}
 </section>`;
